@@ -117,6 +117,7 @@ export const fr: Copy = {
     nightText:
       'Progressive, deep house, minimal, techno. Treize DJs résidents, une session de jour chaque week-end et OPUS, notre session de nuit, une fois par mois jusqu’à deux heures. Les lumières baissent ; la terrasse, non.',
     nightPhotoCap: 'Sous l’enseigne',
+    privateCta: 'Réserver un événement privé',
     nightCta: 'Rencontrer les résidents',
     factResidents: 'Résidents',
     factSessions: 'Sessions',

@@ -162,7 +162,7 @@ const L = (p: string) => localise(lang, p);
   </section>
 
   <!-- Your own thing -->
-  <section class="section section--flush-top">
+  <section class="section section--flush-top" id="private">
     <div class="wrap">
       <div class="chapter-head" data-reveal="fade">
         <span class="num">03</span>
@@ -422,6 +422,10 @@ const L = (p: string) => localise(lang, p);
   }
 
   /* ---------------- PRIVATE ---------------- */
+  /* linked to from the home page, so it must clear the sticky nav */
+  #private {
+    scroll-margin-top: 92px;
+  }
   .private {
     display: grid;
     grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);

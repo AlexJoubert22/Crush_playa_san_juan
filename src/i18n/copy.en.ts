@@ -115,6 +115,7 @@ export const en = {
     nightText:
       "Progressive, deep house, minimal, techno. Thirteen resident DJs, a daytime session every weekend and OPUS, our night session, once a month until two. The lights go down, the terrace doesn't.",
     nightPhotoCap: 'Under the sign',
+    privateCta: 'Book a private event',
     nightCta: 'Meet the residents',
     factResidents: 'Residents',
     factSessions: 'Sessions',

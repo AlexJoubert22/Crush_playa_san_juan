@@ -435,7 +435,12 @@ const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? 
                   ))
                 }
               </ul>
-              <a href={L('/sound')} class="btn btn--light" data-reveal="fade">{c.home.nightCta} <Arrow /></a>
+              <div class="night__actions" data-reveal="fade">
+                <a href={L('/sound')} class="btn btn--light">{c.home.nightCta} <Arrow /></a>
+                <a href={`${L('/events')}#private`} class="btn btn--ghost night__ghost">
+                  {c.home.privateCta}
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -1354,6 +1359,16 @@ const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? 
       flex-wrap: wrap;
       row-gap: 0.6rem;
     }
+  }
+
+  .night__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .night__ghost {
+    --btn-fg: var(--night-ink);
+    border-color: rgba(244, 239, 230, 0.5);
   }
 
   /* ---------------- SESSIONS + AGENDA ---------------- */

@@ -117,6 +117,7 @@ export const ru: Copy = {
     nightText:
       'Progressive, deep house, minimal, techno. Тринадцать резидентов, дневная сессия каждые выходные и OPUS, наша ночная сессия, раз в месяц до двух. Свет гаснет, терраса — нет.',
     nightPhotoCap: 'Под вывеской',
+    privateCta: 'Заказать частное событие',
     nightCta: 'Познакомиться с резидентами',
     factResidents: 'Резиденты',
     factSessions: 'Сессии',

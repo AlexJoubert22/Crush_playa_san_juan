@@ -931,6 +931,36 @@ function initMiniNext() {
   time.textContent = next.time;
 }
 
+/* ------------------------------------------------------- hash landing */
+/**
+ * Arriving with a hash from another page: the view transition router swaps the
+ * document without the browser's native jump, and Lenis owns the scroll anyway,
+ * so the landing has to be made by hand — once, after layout has settled.
+ */
+function initHashLanding() {
+  const id = location.hash.slice(1);
+  if (!id) return;
+  const target = document.getElementById(id);
+  if (!target) return;
+  // a tab id on the menu page is handled by initMenuPage, not a scroll
+  if (id === 'drinks' || id === 'food') return;
+
+  const land = () => {
+    const style = getComputedStyle(target);
+    const margin = parseFloat(style.scrollMarginTop) || 92;
+    const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - margin);
+    if (lenis) lenis.scrollTo(top, { duration: reduced() ? 0 : 1.1 });
+    else window.scrollTo({ top, behavior: reduced() ? 'auto' : 'smooth' });
+  };
+  // images and split lines change the height under us; land after they settle
+  const t1 = window.setTimeout(land, 120);
+  const t2 = window.setTimeout(land, 700);
+  onCleanup(() => {
+    window.clearTimeout(t1);
+    window.clearTimeout(t2);
+  });
+}
+
 /* ------------------------------------------------------- language menu */
 /** The <details> switch works on its own; this only closes it politely. */
 function initLang() {
@@ -1019,6 +1049,7 @@ function init() {
   initLenis();
   initNav();
   initLang();
+  initHashLanding();
   initNow();
   initReveal();
   initAgenda();
