@@ -89,23 +89,3 @@ Personalidad: **elegante de día, rítmica de noche.**
 
 Astro 7 (estático) · CSS vanilla con tokens · GSAP 3.15 (ScrollTrigger, SplitText) · Lenis · fuentes autoalojadas (Fontsource) · imágenes por `astro:assets` (AVIF/WebP, srcset).
 Rutas: `/`, `/menu`, `/sound`, `/story`, `/visit`, `/404`.
-
-
-## El cielo
-
-En la portada el fondo es el cielo de un día. No hay tres temas que se alternan: hay una sola
-`hour` continua, interpolada por scroll entre los `data-hour` de cada capítulo (09:00 en el hero,
-33:00 en «Mañana, otra vez»), y de ella cuelgan el reloj, el chip, **el color del fondo y la tinta**.
-
-- Las paradas de color están en `SKY` (`app.ts`): amarillo pálido al amanecer, casi blanco a
-  mediodía, bone por la tarde, melocotón, albaricoque y naranja al atardecer, ciruela al anochecer,
-  negro de noche, índigo antes del alba y de vuelta al amarillo. Se mezclan en OKLab, porque en sRGB
-  el paso de naranja a ciruela se embarra.
-- La tinta solo puede ser clara u oscura, así que cambia en dos horas (`NIGHT_INK_FROM`,
-  `NIGHT_INK_TO`) elegidas donde el cielo ya la aguanta, y las rampas por esos cruces son muy cortas
-  (10–20 px de scroll por debajo de 4,5:1, tapados por el fundido de 0,9 s de la tinta). El resto del
-  arco está entre 6,7:1 y 17:1.
-- El cielo se escribe como `--canvas` en línea sobre `<html>` y se borra al salir de la portada, así
-  que las páginas interiores conservan su tema fijo. El primer fotograma ya es amarillo porque el
-  HTML de la portada lo trae puesto.
-- Ningún bloque de la portada lleva fondo propio: si alguien añade uno, romperá la continuidad.

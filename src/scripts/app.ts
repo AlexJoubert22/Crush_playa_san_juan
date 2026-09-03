@@ -602,93 +602,6 @@ function initDayline() {
 }
 
 /* ------------------------------------------------------- home: sun arc */
-/* ------------------------------------------------------- the sky */
-/**
- * The home page's background is the sky over one day. It follows the same
- * scrolled `hour` that drives the clock and the chip, so everything that
- * narrates the day agrees. Stops are mixed in OKLab so the in-betweens stay
- * clean — sRGB mixing turns orange-to-plum into mud.
- *
- * The ink can only flip between dark and light, so it flips at the two hours
- * where the sky crosses the middle of its brightness, and the ramps through
- * those crossings are steep (a few dozen pixels of scroll) so the moment where
- * neither ink reads perfectly is transient and hidden under the theme's own
- * crossfade.
- */
-const SKY: [number, string][] = [
-  [9.0, '#f8efd1'], // dawn — pale warm yellow
-  [10.5, '#f8f2dd'],
-  [12.5, '#f7f4ee'], // midday — the whitest point
-  [15.0, '#f4efe6'], // bone, the day canvas exactly
-  [17.0, '#f6dfcc'], // peach — the sunset chapter opens
-  [18.5, '#f4cba6'], // apricot
-  [20.0, '#e9a677'], // orange
-  [20.75, '#c5705a'], // deep orange — last stop that carries dark ink
-  [20.9, '#5c2c3c'], // dusk plum — first stop that carries light ink
-  [22.0, '#170f1b'],
-  [23.0, '#0b090e'], // night — the night canvas exactly
-  [28.6, '#0b090e'],
-  [29.2, '#1c1a2c'], // pre-dawn indigo
-  [29.5, '#4d4866'],
-  [29.75, '#b9b3c6'], // first light — dark ink again
-  [30.0, '#e9e4e0'],
-  [31.0, '#f8efd1'], // dawn again: "tomorrow, again"
-  [33.0, '#f8efd1'],
-];
-/** Where the ink flips. Between these, the sky is dark and the ink is light. */
-const NIGHT_INK_FROM = 20.82;
-const NIGHT_INK_TO = 29.6;
-
-type Lab = [number, number, number];
-const hexToLab = (hex: string): Lab => {
-  const n = parseInt(hex.slice(1), 16);
-  const lin = (c: number) => {
-    const v = c / 255;
-    return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
-  };
-  const r = lin(n >> 16), g = lin((n >> 8) & 255), b = lin(n & 255);
-  const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
-  const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
-  const s2 = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
-  return [
-    0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s2,
-    1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s2,
-    0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s2,
-  ];
-};
-const labToCss = ([L, a, bb]: Lab): string => {
-  const l = (L + 0.3963377774 * a + 0.2158037573 * bb) ** 3;
-  const m = (L - 0.1055613458 * a - 0.0638541728 * bb) ** 3;
-  const s2 = (L - 0.0894841775 * a - 1.291485548 * bb) ** 3;
-  const gam = (c: number) => {
-    const v = Math.max(0, Math.min(1, c));
-    return Math.round(255 * (v <= 0.0031308 ? 12.92 * v : 1.055 * v ** (1 / 2.4) - 0.055));
-  };
-  return `rgb(${gam(4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s2)} ${gam(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s2)} ${gam(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s2)})`;
-};
-const SKY_LAB = SKY.map(([h, hex]) => [h, hexToLab(hex)] as [number, Lab]);
-
-/** The sky colour at a given scrolled hour, as a CSS rgb() string. */
-function skyAt(h: number): string {
-  if (h <= SKY_LAB[0][0]) return labToCss(SKY_LAB[0][1]);
-  for (let i = 1; i < SKY_LAB.length; i++) {
-    const [h1, c1] = SKY_LAB[i];
-    if (h <= h1) {
-      const [h0, c0] = SKY_LAB[i - 1];
-      const t = (h - h0) / (h1 - h0);
-      return labToCss([c0[0] + (c1[0] - c0[0]) * t, c0[1] + (c1[1] - c0[1]) * t, c0[2] + (c1[2] - c0[2]) * t]);
-    }
-  }
-  return labToCss(SKY_LAB[SKY_LAB.length - 1][1]);
-}
-
-/** Which token set the ink, lines and accents take at a given hour. */
-function themeAt(h: number): string {
-  if (h >= NIGHT_INK_FROM && h < NIGHT_INK_TO) return 'night';
-  if (h >= 17 && h < NIGHT_INK_FROM) return 'sunset';
-  return 'day';
-}
-
 const THEME_COLOR: Record<string, string> = { day: '#f4efe6', sunset: '#f3e4dd', night: '#0b0910' };
 
 function setTheme(t: string) {
@@ -696,7 +609,7 @@ function setTheme(t: string) {
   if (html.dataset.theme === t) return;
   html.dataset.theme = t;
   const meta = document.querySelector<HTMLMetaElement>('meta[data-theme-color]');
-  if (meta && !('sky' in html.dataset)) meta.content = THEME_COLOR[t] ?? THEME_COLOR.day;
+  if (meta) meta.content = THEME_COLOR[t] ?? THEME_COLOR.day;
 }
 
 function initHome() {
@@ -721,24 +634,16 @@ function initHome() {
     lastNarration = narration(9);
   }
 
-  // The sky drives the canvas from here on; the theme (ink, lines, accents)
-  // follows the same hour, so the two can never disagree.
-  const html = document.documentElement;
-  const meta = document.querySelector<HTMLMetaElement>('meta[data-theme-color]');
-  html.dataset.sky = '';
-  let lastSky = '';
-  const paintSky = (hour: number) => {
-    const css = skyAt(hour);
-    if (css !== lastSky) {
-      lastSky = css;
-      html.style.setProperty('--canvas', css);
-      if (meta) meta.content = css;
-    }
-    setTheme(themeAt(hour));
-  };
-  onCleanup(() => {
-    html.style.removeProperty('--canvas');
-    delete html.dataset.sky;
+  // Theme per chapter
+  document.querySelectorAll<HTMLElement>('[data-chapter-theme]').forEach((sec) => {
+    const t = sec.dataset.chapterTheme!;
+    ScrollTrigger.create({
+      trigger: sec,
+      start: 'top 58%',
+      end: 'bottom 58%',
+      onEnter: () => setTheme(t),
+      onEnterBack: () => setTheme(t),
+    });
   });
 
   // Clock: interpolate between [data-hour] anchors (hours may exceed 24 for "next day")
@@ -768,7 +673,6 @@ function initHome() {
       }
       if (y < tops[0]) hour = Number(anchors[0].dataset.hour);
     }
-    paintSky(hour);
     const text = fmt(hour);
     if (clockText) clockText.textContent = text;
     if (heroClock) heroClock.textContent = text;
