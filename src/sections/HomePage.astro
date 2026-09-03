@@ -1215,7 +1215,7 @@ const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? 
   }
   .night__stage {
     position: relative;
-    background: var(--night-canvas);
+    /* no fixed black here: the sky is already dark by the time this arrives */
     overflow: hidden;
   }
   .night__content {
@@ -1306,7 +1306,6 @@ const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? 
   .ticker {
     overflow: hidden;
     border-block: 1px solid var(--night-line);
-    background: var(--night-canvas);
     padding-block: 1.1rem;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);

@@ -43,6 +43,11 @@ body {
     background-color var(--dur-theme) var(--ease-inout),
     color var(--dur-theme) var(--ease-inout);
 }
+/* When the sky drives the canvas it must track the scroll instantly; only the
+   ink keeps its crossfade. */
+[data-sky] body {
+  transition: color var(--dur-theme) var(--ease-inout);
+}
 img,
 picture,
 video,

@@ -37,7 +37,11 @@ const c = t(lang);
 const base = Astro.site ?? new URL(site.url);
 const canonical = new URL(localise(lang, path), base).href;
 const ogUrl = new URL(ogImage, base).href;
-const themeColor = theme === 'night' ? '#0b090e' : theme === 'sunset' ? '#f3e4dd' : '#f4efe6';
+/** The home page's canvas is the sky, and the day starts at dawn — paint that
+ *  before any script runs so the first frame is already the right colour. */
+const DAWN = '#f8efd1';
+const isArc = page === 'home';
+const themeColor = isArc ? DAWN : theme === 'night' ? '#0b090e' : theme === 'sunset' ? '#f3e4dd' : '#f4efe6';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -74,7 +78,12 @@ const clientCopy = {
 ---
 
 <!doctype html>
-<html lang={languages[lang].htmlLang} data-theme={theme} data-page={page}>
+<html
+  lang={languages[lang].htmlLang}
+  data-theme={theme}
+  data-page={page}
+  style={isArc ? `--canvas: ${DAWN}` : undefined}
+>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
