@@ -2,12 +2,14 @@
 import '@fontsource-variable/unbounded';
 import '@fontsource-variable/manrope';
 import '@fontsource/instrument-serif/400-italic.css';
+// Instrument Serif has no Cyrillic; Playfair steps in for the Russian italics.
+import '@fontsource/playfair-display/400-italic.css';
 import '@/styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import Nav from '@/components/Nav.astro';
 import Footer from '@/components/Footer.astro';
 import { site, analytics } from '@/data/site';
-import { languages, localise, type Lang } from '@/i18n';
+import { languages, langs, localise, type Lang } from '@/i18n';
 import { t } from '@/i18n/copy';
 
 interface Props {
@@ -54,11 +56,20 @@ const jsonLd = {
     postalCode: site.address.postal,
     addressCountry: 'ES',
   },
+  inLanguage: languages[lang].htmlLang,
   sameAs: [site.instagram, site.facebook, site.tiktok, site.tripadvisor],
   openingHoursSpecification: [
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'], opens: '09:00', closes: '20:00' },
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Friday', 'Saturday', 'Sunday'], opens: '09:00', closes: '23:00' },
   ],
+};
+
+/** The words the client script needs: live status, chip lines, calendar labels. */
+const clientCopy = {
+  status: c.status,
+  chip: c.chip,
+  nowLabel: c.home.daylineNow,
+  closedLabel: c.home.daylineClosed,
 };
 ---
 
@@ -70,9 +81,9 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="en" href={new URL(path, base).href} />
-    <link rel="alternate" hreflang="es" href={new URL(localise('es', path), base).href} />
+    {langs.map((l) => <link rel="alternate" hreflang={l} href={new URL(localise(l, path), base).href} />)}
     <link rel="alternate" hreflang="x-default" href={new URL(path, base).href} />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -84,12 +95,14 @@ const jsonLd = {
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogUrl} />
     <meta property="og:locale" content={languages[lang].locale} />
+    {langs.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={languages[l].locale} />)}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogUrl} />
     <script is:inline data-astro-rerun>document.documentElement.classList.add('js');</script>
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script type="application/json" id="crush-copy" set:html={JSON.stringify(clientCopy)} />
     {
       analytics.domain && (
         <script defer data-domain={analytics.domain} src={analytics.src} is:inline />

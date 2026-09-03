@@ -24,7 +24,7 @@ const L = (p: string) => localise(lang, p);
       <span class="nav__word">Crush</span>
     </a>
 
-    <nav class="nav__links" aria-label="Primary">
+    <nav class="nav__links" aria-label={c.alt.primaryNav}>
       {
         nav.map((item) => (
           <a
@@ -39,6 +39,7 @@ const L = (p: string) => localise(lang, p);
     </nav>
 
     <div class="nav__right">
+      <LangSwitch lang={lang} path={path} class="nav__lang" />
       <div class="nav__clock" data-clock hidden aria-hidden="true">
         <svg class="nav__sun" viewBox="0 0 24 24" fill="currentColor" data-sun>
           <circle cx="12" cy="12" r="5"></circle>
@@ -49,7 +50,6 @@ const L = (p: string) => localise(lang, p);
         <span class="chip__dot" aria-hidden="true"></span>
         <span class="chip__swap"><span class="chip__line" data-now-text>{c.status.openDaily}</span></span>
       </div>
-      <LangSwitch lang={lang} path={path} class="nav__lang" />
       <a href={L('/book')} class="btn btn--sm nav__cta">{c.nav.book}</a>
       <button
         class="nav__burger"
@@ -75,7 +75,7 @@ const L = (p: string) => localise(lang, p);
       </div>
     </div>
 
-    <nav class="menu__links" aria-label="Menu">
+    <nav class="menu__links" aria-label={c.alt.menuNav}>
       <a href={L('/')} class="menu__link"><span class="menu__num num">00</span>{c.nav.home}</a>
       {
         nav.map((item, i) => (
@@ -91,9 +91,9 @@ const L = (p: string) => localise(lang, p);
     <a href={L('/events')} class="menu__next" data-next-session-mini>
       <span class="label menu__next-label">{c.sound.nextSession}</span>
       <span class="menu__next-body">
-        <span class="menu__next-when num">{c.sessions.cadenzaWhen}</span>
-        <span class="menu__next-name">Cadenza</span>
-        <span class="menu__next-time num">{sessions.cadenza.time}</span>
+        <span class="menu__next-when num" data-mini-when>{c.sessions.cadenzaWhen}</span>
+        <span class="menu__next-name" data-mini-name>Cadenza</span>
+        <span class="menu__next-time num" data-mini-time>{sessions.cadenza.time}</span>
       </span>
       <Arrow class="menu__next-arrow" />
     </a>
@@ -317,8 +317,8 @@ const L = (p: string) => localise(lang, p);
     min-height: 100%;
     display: grid;
     grid-template-rows: auto 1fr auto auto;
-    gap: var(--space-6);
-    padding: 96px var(--gutter) var(--space-7);
+    gap: var(--space-5);
+    padding: 88px var(--gutter) var(--space-6);
   }
   .menu__top {
     display: flex;

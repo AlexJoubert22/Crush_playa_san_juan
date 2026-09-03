@@ -155,6 +155,11 @@ address {
   font-size: 1.12em;
   line-height: 0.9;
 }
+/* Cyrillic italics come from Playfair, which sits a touch smaller on the line */
+html[lang^='ru'] .em {
+  font-size: 1.04em;
+  letter-spacing: 0;
+}
 .lede {
   font-size: var(--text-lede);
   line-height: 1.4;
@@ -608,6 +613,10 @@ address {
 }
 [data-reveal='lines'].is-in .line-inner {
   transform: none;
+}
+/* Once revealed, the masks let go so text-shadow glows are no longer clipped */
+[data-reveal='lines'].is-done .line {
+  overflow: visible;
 }
 [data-reveal='lines'] .line:nth-child(2) .line-inner {
   transition-delay: 70ms;

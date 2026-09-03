@@ -1,6 +1,6 @@
 # Crush — website
 
-Nueva web de **Crush** (Av. de Niza 12, Playa de San Juan, Alicante). Estática, bilingüe (inglés y español), siete páginas por idioma, construida con Astro 7.
+Nueva web de **Crush** (Av. de Niza 12, Playa de San Juan, Alicante). Estática, en cuatro idiomas (inglés, español, francés y ruso), siete páginas por idioma, construida con Astro 7.
 La dirección de arte está en [DESIGN.md](./DESIGN.md).
 
 ## Arrancar
@@ -21,7 +21,7 @@ src/
   pages/        envoltorios: index · menu · sound · events · story · book · 404
                 y su espejo en es/ (mismo contenido, otro idioma)
   sections/     las páginas de verdad; cada una recibe la prop `lang`
-  i18n/         index.ts (rutas y helpers) · copy.ts (todos los textos, EN + ES)
+  i18n/         index.ts (rutas y helpers) · copy.ts (ensamblador) · copy.en/es/fr/ru.ts (todos los textos)
   layouts/      Base.astro  (head, fuentes, nav, footer, JSON-LD, ClientRouter)
   components/   Nav · Footer · Strap (FOOD · DRINKS · BEATS) · Arrow
   scripts/      app.ts  (Lenis, GSAP ScrollTrigger + SplitText, reveals, arco solar,
@@ -49,7 +49,7 @@ public/         favicons, og.jpg
 | Redes sociales del pie | `src/data/site.ts` (`instagram`, `facebook`, `tiktok`, `tripadvisor`) |
 | Reglas de eventos (días, horas, fechas saltadas, eventos puntuales) | `src/data/events.source.json` (mismo formato que el API actual) |
 | **Agenda desde Google Calendar** | variable `PUBLIC_CRUSH_ICS` — ver abajo |
-| Textos de cada página, en los dos idiomas | `src/i18n/copy.ts` |
+| Textos de cada página, en cada idioma | `src/i18n/copy.en.ts`, `copy.es.ts`, `copy.fr.ts`, `copy.ru.ts` — mismas claves en los cuatro; si falta una, TypeScript avisa |
 | Reserva por WhatsApp | `site.whatsapp` en `src/data/site.ts`. Para pasar a un endpoint real (Formspree, TheFork…), pon la URL en `data-endpoint` del `<form>` de `src/sections/BookPage.astro` |
 | Analítica sin cookies | variables `PUBLIC_ANALYTICS_DOMAIN` y `PUBLIC_ANALYTICS_SRC`. Sin ellas no se carga ningún script de terceros y no hace falta banner de cookies |
 | Colores, tipografías, ritmos | `src/styles/tokens.css` |
@@ -60,15 +60,27 @@ La agenda ("Next up") se calcula en el navegador con la hora de Alicante a parti
 
 ## Idiomas
 
-Inglés en la raíz (`/menu`) y español bajo prefijo (`/es/menu`). Cada página de `src/pages/` es
-un envoltorio de tres líneas que renderiza la sección correspondiente con `lang="en"` o `lang="es"`,
-así que el maquetado existe una sola vez.
+Inglés en la raíz (`/menu`) y los demás bajo prefijo (`/es/menu`, `/fr/menu`, `/ru/menu`). Cada
+página de `src/pages/` es un envoltorio de tres líneas que renderiza la sección correspondiente con
+su `lang`, así que el maquetado existe una sola vez.
 
-Para cambiar un texto, edítalo en `src/i18n/copy.ts` — están los dos idiomas uno al lado del otro.
-Los nombres y descripciones de los platos salen de `menu.json`, que ya trae `en` y `es`.
+- Los textos viven en `src/i18n/copy.<idioma>.ts`. El inglés define la forma (`Copy`); los otros
+  tres deben tener exactamente las mismas claves, y el compilador lo comprueba.
+- Los platos salen de `menu.json`, que lleva nombre y descripción en `en`, `es`, `fr` y `ru`.
+- Las fechas del calendario y la agenda se formatean con el idioma de la página.
+- El conmutador de idioma es un `<details>` nativo: funciona sin JavaScript. Cada idioma enlaza a
+  la misma página en el otro idioma, y el `<head>` lleva `hreflang` para los cuatro más `x-default`.
+- Las cursivas en ruso usan Playfair Display, porque Instrument Serif no tiene cirílico.
 
-Para añadir un idioma: añádelo a `languages` en `src/i18n/index.ts`, duplica un bloque en
-`copy.ts` y crea la carpeta `src/pages/<código>/` con los mismos envoltorios.
+Para añadir un idioma: súmalo a `languages` en `src/i18n/index.ts`, crea `copy.<código>.ts` copiando
+el inglés, añádelo al ensamblador `copy.ts`, crea `src/pages/<código>/` con los mismos envoltorios y
+añade el locale al sitemap en `astro.config.mjs`.
+
+## SEO
+
+- `sitemap-index.xml` generado en cada build con alternates `hreflang` para cada URL; `robots.txt` lo referencia.
+- Título y descripción propios por página e idioma, `og:locale` y `og:locale:alternate`, JSON-LD del local con `inLanguage`.
+- Sin cookies de terceros: la analítica solo se carga si se define `PUBLIC_ANALYTICS_DOMAIN`.
 
 ## Agenda conectada a Google Calendar
 

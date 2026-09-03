@@ -1,59 +1,59 @@
 {
- "updatedAt": "2026-05-06T21:07:37.983Z",
- "recurring": [
-  {
-   "id": "cadenza",
-   "name": "Cadenza",
-   "weekday": [
-    "saturday",
-    "sunday"
-   ],
-   "time": "10:00 - 16:00",
-   "artist": "Resident DJs",
-   "genre": "Daytime Sessions",
-   "imageUrls": [
-    "/images/events/cadenza.webp",
-    "/images/events/cadenza3.png"
-   ],
-   "promoted": true
-  },
-  {
-   "id": "opus",
-   "name": "OPUS",
-   "weekday": [
-    "saturday"
-   ],
-   "monthWeek": 2,
-   "time": "21:00 - 02:00",
-   "artist": "Many DJs",
-   "genre": "Progressive House",
-   "imageUrls": [
-    "https://assets.crushculture.es/event/recurring/opus/opus-1.png"
-   ],
-   "promoted": true,
-   "promoteDays": 4,
-   "videoUrl": "https://assets.crushculture.es/document/doc-new-1775028465604/14912587_1920_1080_50fps.mp4",
-   "active": true,
-   "skipDates": [
-    "2026-05-09"
-   ]
-  }
- ],
- "oneOff": [
-  {
-   "id": "oneoff-new-1774978795114",
-   "date": "2026-04-04",
-   "weekday": "saturday",
-   "name": "OPUS",
-   "time": "19:00 - 01:30",
-   "artist": "ALE MARIN, EXIQUEL ",
-   "genre": "Progressive House",
-   "imageUrl": "https://assets.crushculture.es/event/one-off/oneoff-new-1774978795114/opus-1.png",
-   "link": null,
-   "active": true,
-   "promoted": true,
-   "promoteDays": 14,
-   "videoUrl": ""
-  }
- ]
+  "updatedAt": "2026-05-06T21:07:37.983Z",
+  "recurring": [
+    {
+      "id": "cadenza",
+      "name": "Cadenza",
+      "weekday": [
+        "saturday",
+        "sunday"
+      ],
+      "time": "10:00 – 16:00",
+      "artist": "Resident DJs",
+      "genre": "Daytime Sessions",
+      "imageUrls": [
+        "/images/events/cadenza.webp",
+        "/images/events/cadenza3.png"
+      ],
+      "promoted": true
+    },
+    {
+      "id": "opus",
+      "name": "OPUS",
+      "weekday": [
+        "saturday"
+      ],
+      "monthWeek": 2,
+      "time": "21:00 – 02:00",
+      "artist": "Many DJs",
+      "genre": "Progressive House",
+      "imageUrls": [
+        "https://assets.crushculture.es/event/recurring/opus/opus-1.png"
+      ],
+      "promoted": true,
+      "promoteDays": 4,
+      "videoUrl": "https://assets.crushculture.es/document/doc-new-1775028465604/14912587_1920_1080_50fps.mp4",
+      "active": true,
+      "skipDates": [
+        "2026-05-09"
+      ]
+    }
+  ],
+  "oneOff": [
+    {
+      "id": "oneoff-new-1774978795114",
+      "date": "2026-04-04",
+      "weekday": "saturday",
+      "name": "OPUS",
+      "time": "19:00 – 01:30",
+      "artist": "ALE MARIN, EXIQUEL ",
+      "genre": "Progressive House",
+      "imageUrl": "https://assets.crushculture.es/event/one-off/oneoff-new-1774978795114/opus-1.png",
+      "link": null,
+      "active": true,
+      "promoted": true,
+      "promoteDays": 14,
+      "videoUrl": ""
+    }
+  ]
 }

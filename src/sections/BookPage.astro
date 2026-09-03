@@ -48,7 +48,7 @@ const waHref = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(c.book.
         <address class="lede" data-reveal="fade">
           {site.address.street}<br />
           {site.address.postal} {site.address.area}<br />
-          {site.address.city}, {site.address.country}
+          {site.address.city}, {c.country}
         </address>
         <div class="chip" data-now data-reveal="fade" style="--reveal-delay: 80ms">
           <span class="chip__dot" aria-hidden="true"></span>
@@ -171,9 +171,9 @@ const waHref = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(c.book.
         </div>
         <ul class="rule-list where__hours" data-stagger>
           {
-            site.hours.map((h) => (
+            site.hours.map((h, i) => (
               <li>
-                <span class="row__name">{h.days}</span>
+                <span class="row__name">{c.hoursDays[i] ?? h.days}</span>
                 <span class="row__price">
                   {h.open} – {h.close}
                 </span>

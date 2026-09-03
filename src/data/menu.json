@@ -6,7 +6,9 @@
    "tab": "drinks",
    "name": {
     "en": "Coffee",
-    "es": "Café"
+    "es": "Café",
+    "fr": "Coffee",
+    "ru": "Coffee"
    },
    "sort": 0
   },
@@ -15,7 +17,9 @@
    "tab": "drinks",
    "name": {
     "en": "Matcha",
-    "es": "Matcha"
+    "es": "Matcha",
+    "fr": "Matcha",
+    "ru": "Matcha"
    },
    "sort": 1
   },
@@ -24,7 +28,9 @@
    "tab": "drinks",
    "name": {
     "en": "Frappés",
-    "es": "Frappés"
+    "es": "Frappés",
+    "fr": "Frappés",
+    "ru": "Frappés"
    },
    "sort": 2
   },
@@ -33,7 +39,9 @@
    "tab": "drinks",
    "name": {
     "en": "Smoothies",
-    "es": "Smoothies"
+    "es": "Smoothies",
+    "fr": "Smoothies",
+    "ru": "Smoothies"
    },
    "sort": 3
   },
@@ -42,7 +50,9 @@
    "tab": "drinks",
    "name": {
     "en": "Shakes",
-    "es": "Batidos"
+    "es": "Batidos",
+    "fr": "Shakes",
+    "ru": "Shakes"
    },
    "sort": 4
   },
@@ -51,7 +61,9 @@
    "tab": "drinks",
    "name": {
     "en": "Teas",
-    "es": "Tés e infusiones"
+    "es": "Tés e infusiones",
+    "fr": "Teas",
+    "ru": "Teas"
    },
    "sort": 5
   },
@@ -60,7 +72,9 @@
    "tab": "drinks",
    "name": {
     "en": "Soft Drinks",
-    "es": "Refrescos"
+    "es": "Refrescos",
+    "fr": "Soft Drinks",
+    "ru": "Soft Drinks"
    },
    "sort": 6
   },
@@ -69,7 +83,9 @@
    "tab": "drinks",
    "name": {
     "en": "Spritz",
-    "es": "Spritz"
+    "es": "Spritz",
+    "fr": "Spritz",
+    "ru": "Spritz"
    },
    "sort": 7
   },
@@ -78,7 +94,9 @@
    "tab": "drinks",
    "name": {
     "en": "Cocktails",
-    "es": "Cócteles"
+    "es": "Cócteles",
+    "fr": "Cocktails",
+    "ru": "Cocktails"
    },
    "sort": 8
   },
@@ -87,7 +105,9 @@
    "tab": "drinks",
    "name": {
     "en": "Beer",
-    "es": "Cerveza"
+    "es": "Cerveza",
+    "fr": "Beer",
+    "ru": "Beer"
    },
    "sort": 9
   },
@@ -96,7 +116,9 @@
    "tab": "drinks",
    "name": {
     "en": "Wine",
-    "es": "Vino"
+    "es": "Vino",
+    "fr": "Wine",
+    "ru": "Wine"
    },
    "sort": 10
   },
@@ -105,7 +127,9 @@
    "tab": "drinks",
    "name": {
     "en": "Spirits",
-    "es": "Licores"
+    "es": "Licores",
+    "fr": "Spirits",
+    "ru": "Spirits"
    },
    "sort": 11
   },
@@ -114,7 +138,9 @@
    "tab": "drinks",
    "name": {
     "en": "Specials",
-    "es": "Especiales"
+    "es": "Especiales",
+    "fr": "Specials",
+    "ru": "Specials"
    },
    "sort": 12
   },
@@ -123,7 +149,9 @@
    "tab": "food",
    "name": {
     "en": "Brunch",
-    "es": "Brunch"
+    "es": "Brunch",
+    "fr": "Brunch",
+    "ru": "Brunch"
    },
    "sort": 13
   },
@@ -132,7 +160,9 @@
    "tab": "food",
    "name": {
     "en": "Açai",
-    "es": "Açaí & pitaya"
+    "es": "Açaí & pitaya",
+    "fr": "Açai",
+    "ru": "Açai"
    },
    "sort": 14
   },
@@ -141,7 +171,9 @@
    "tab": "food",
    "name": {
     "en": "Bowls",
-    "es": "Bowls"
+    "es": "Bowls",
+    "fr": "Bowls",
+    "ru": "Bowls"
    },
    "sort": 15
   },
@@ -150,7 +182,9 @@
    "tab": "food",
    "name": {
     "en": "Sandwiches",
-    "es": "Sándwiches"
+    "es": "Sándwiches",
+    "fr": "Sandwiches",
+    "ru": "Sandwiches"
    },
    "sort": 16
   },
@@ -159,7 +193,9 @@
    "tab": "food",
    "name": {
     "en": "Smash Burgers",
-    "es": "Hamburguesas Smash"
+    "es": "Hamburguesas Smash",
+    "fr": "Smash Burgers",
+    "ru": "Smash Burgers"
    },
    "sort": 17
   },
@@ -168,7 +204,9 @@
    "tab": "food",
    "name": {
     "en": "Loaded Fries",
-    "es": "Patatas cargadas"
+    "es": "Patatas cargadas",
+    "fr": "Loaded Fries",
+    "ru": "Loaded Fries"
    },
    "sort": 18
   },
@@ -177,7 +215,9 @@
    "tab": "food",
    "name": {
     "en": "Salads",
-    "es": "Ensaladas"
+    "es": "Ensaladas",
+    "fr": "Salads",
+    "ru": "Salads"
    },
    "sort": 19
   },
@@ -186,7 +226,9 @@
    "tab": "food",
    "name": {
     "en": "Desserts",
-    "es": "Postres"
+    "es": "Postres",
+    "fr": "Desserts",
+    "ru": "Desserts"
    },
    "sort": 20
   }
@@ -198,11 +240,15 @@
    "sub": null,
    "name": {
     "en": "Corona",
-    "es": "Corona"
+    "es": "Corona",
+    "fr": "Corona",
+    "ru": "Corona"
    },
    "description": {
     "en": "Bottle 33cl",
-    "es": "Botella 33cl"
+    "es": "Botella 33cl",
+    "fr": "Bouteille 33 cl",
+    "ru": "Бутылка 0,33 л"
    },
    "price": 4.0,
    "photo": null,
@@ -215,11 +261,15 @@
    "sub": null,
    "name": {
     "en": "Estrella Galicia 0.0",
-    "es": "Estrella Galicia 0.0"
+    "es": "Estrella Galicia 0.0",
+    "fr": "Estrella Galicia 0.0",
+    "ru": "Estrella Galicia 0.0"
    },
    "description": {
     "en": "Non-alcoholic 33cl",
-    "es": "Sin alcohol 33cl"
+    "es": "Sin alcohol 33cl",
+    "fr": "Sans alcool, 33 cl",
+    "ru": "Безалкогольное, 0,33 л"
    },
    "price": 3.5,
    "photo": null,
@@ -232,11 +282,15 @@
    "sub": null,
    "name": {
     "en": "Estrella Galicia",
-    "es": "Estrella Galicia"
+    "es": "Estrella Galicia",
+    "fr": "Estrella Galicia",
+    "ru": "Estrella Galicia"
    },
    "description": {
     "en": "Bottle 33cl",
-    "es": "Botella 33cl"
+    "es": "Botella 33cl",
+    "fr": "Bouteille 33 cl",
+    "ru": "Бутылка 0,33 л"
    },
    "price": 3.5,
    "photo": null,
@@ -249,11 +303,15 @@
    "sub": null,
    "name": {
     "en": "Estrella Galicia Gluten Free",
-    "es": "Estrella Galicia Sin Gluten"
+    "es": "Estrella Galicia Sin Gluten",
+    "fr": "Estrella Galicia sans gluten",
+    "ru": "Estrella Galicia без глютена"
    },
    "description": {
     "en": "Gluten free 33cl",
-    "es": "Sin gluten 33cl"
+    "es": "Sin gluten 33cl",
+    "fr": "Sans gluten, 33 cl",
+    "ru": "Без глютена, 0,33 л"
    },
    "price": 3.5,
    "photo": null,
@@ -266,11 +324,15 @@
    "sub": null,
    "name": {
     "en": "Estrella Galicia half pint",
-    "es": "Estrella Galicia caña"
+    "es": "Estrella Galicia caña",
+    "fr": "Estrella Galicia demi",
+    "ru": "Estrella Galicia малая"
    },
    "description": {
-    "en": "Half pint draught beer",
-    "es": "Caña de barril"
+    "en": "Draught half pint",
+    "es": "Caña de barril",
+    "fr": "Demi pression",
+    "ru": "Разливное, малый бокал"
    },
    "price": 3.0,
    "photo": null,
@@ -282,12 +344,16 @@
    "category": "beer",
    "sub": null,
    "name": {
-    "en": "Estrella Galicia draught Pint",
-    "es": "Estrella Galicia de Grifo Pinta"
+    "en": "Estrella Galicia pint",
+    "es": "Estrella Galicia de Grifo Pinta",
+    "fr": "Estrella Galicia pinte",
+    "ru": "Estrella Galicia пинта"
    },
    "description": {
-    "en": "Estrella Galicia pint",
-    "es": "Estrella Galicia jarra"
+    "en": "Draught pint",
+    "es": "Estrella Galicia jarra",
+    "fr": "Pinte pression",
+    "ru": "Разливное, пинта"
    },
    "price": 4.0,
    "photo": null,
@@ -300,11 +366,15 @@
    "sub": null,
    "name": {
     "en": "Sweet Greek",
-    "es": "Sweet Greek"
+    "es": "Sweet Greek",
+    "fr": "Sweet Greek",
+    "ru": "Sweet Greek"
    },
    "description": {
     "en": "Dense Greek yoghurt with red berry compote, fresh seasonal fruit & granola",
-    "es": "Yogur griego espeso con compota de frutos rojos, fruta fresca de temporada & granola"
+    "es": "Yogur griego espeso con compota de frutos rojos, fruta fresca de temporada & granola",
+    "fr": "Yaourt grec dense, compote de fruits rouges, fruits frais de saison & granola",
+    "ru": "Плотный греческий йогурт с пюре из красных ягод, свежими сезонными фруктами и гранолой"
    },
    "price": 9.0,
    "photo": "sweet-greek.jpeg",
@@ -316,11 +386,15 @@
    "sub": null,
    "name": {
     "en": "Açaí Bowl 300g",
-    "es": "Açaí Bowl 300g"
+    "es": "Açaí Bowl 300g",
+    "fr": "Açaí Bowl 300g",
+    "ru": "Açaí Bowl 300g"
    },
    "description": {
     "en": "Açai with a choice of two fruit (strawberry, banana, blueberry, kiwi) granola (unsweetened, chocolate, dried fruit) and sauce (caramel, peanut butter, condensed milk, Nutella, honey)",
-    "es": "Açaí con una elección de dos frutas (fresa, plátano, arándanos o kiwi), granola (sin azúcar, chocolate, frutas deshidratadas) y una salsa (dulce de leche, mantequilla de cacahuete, leche condensada, Nutella, miel)."
+    "es": "Açaí con una elección de dos frutas (fresa, plátano, arándanos o kiwi), granola (sin azúcar, chocolate, frutas deshidratadas) y una salsa (dulce de leche, mantequilla de cacahuete, leche condensada, Nutella, miel).",
+    "fr": "Açaí avec deux fruits au choix (fraise, banane, myrtille, kiwi), granola (nature, chocolat, fruits secs) et une sauce (caramel, beurre de cacahuète, lait concentré, Nutella, miel)",
+    "ru": "Асаи с двумя фруктами на выбор (клубника, банан, черника, киви), гранолой (без сахара, шоколадная, с сухофруктами) и соусом (карамель, арахисовая паста, сгущёнка, Nutella, мёд)"
    },
    "price": 9.0,
    "photo": "acai-bowl.webp",
@@ -332,11 +406,15 @@
    "sub": null,
    "name": {
     "en": "Açaí Bowl 500g",
-    "es": "Açaí Bowl 500g"
+    "es": "Açaí Bowl 500g",
+    "fr": "Açaí Bowl 500g",
+    "ru": "Açaí Bowl 500g"
    },
    "description": {
     "en": "Açai with a choice of two fruit (strawberry, banana, blueberry, kiwi) granola (unsweetened, chocolate, dried fruit) and sauce (caramel, peanut butter, condensed milk, Nutella, honey)",
-    "es": "Açaí con una elección de dos frutas (fresa, plátano, arándanos o kiwi), granola (sin azúcar, chocolate, frutas deshidratadas) y una salsa (dulce de leche, mantequilla de cacahuete, leche condensada, Nutella, miel)."
+    "es": "Açaí con una elección de dos frutas (fresa, plátano, arándanos o kiwi), granola (sin azúcar, chocolate, frutas deshidratadas) y una salsa (dulce de leche, mantequilla de cacahuete, leche condensada, Nutella, miel).",
+    "fr": "Açaí avec deux fruits au choix (fraise, banane, myrtille, kiwi), granola (nature, chocolat, fruits secs) et une sauce (caramel, beurre de cacahuète, lait concentré, Nutella, miel)",
+    "ru": "Асаи с двумя фруктами на выбор (клубника, банан, черника, киви), гранолой (без сахара, шоколадная, с сухофруктами) и соусом (карамель, арахисовая паста, сгущёнка, Nutella, мёд)"
    },
    "price": 13.0,
    "photo": "acai-bowl.webp",
@@ -348,11 +426,15 @@
    "sub": null,
    "name": {
     "en": "Extra Fruit",
-    "es": "Extra Fruta"
+    "es": "Extra Fruta",
+    "fr": "Fruit en plus",
+    "ru": "Дополнительно фрукты"
    },
    "description": {
     "en": "Strawberry / Blueberries / Banana / Kiwi",
-    "es": "Fresa / Arandanos / Banana / Kiwi"
+    "es": "Fresa / Arándanos / Plátano / Kiwi",
+    "fr": "Fraise / Myrtilles / Banane / Kiwi",
+    "ru": "Клубника / Черника / Банан / Киви"
    },
    "price": 1.0,
    "photo": null,
@@ -365,11 +447,15 @@
    "sub": null,
    "name": {
     "en": "Extra sauce",
-    "es": "Extra salsa"
+    "es": "Extra salsa",
+    "fr": "Sauce en plus",
+    "ru": "Дополнительно соус"
    },
    "description": {
     "en": "Honey / peanut butter / Nutella / caramel / condensed milk",
-    "es": "Miel / mantequilla de cacahuete / Nutella / caramelo / leche condensada"
+    "es": "Miel / mantequilla de cacahuete / Nutella / caramelo / leche condensada",
+    "fr": "Miel / beurre de cacahuète / Nutella / caramel / lait concentré",
+    "ru": "Мёд / арахисовая паста / Nutella / карамель / сгущёнка"
    },
    "price": 0.5,
    "photo": null,
@@ -382,11 +468,15 @@
    "sub": null,
    "name": {
     "en": "Toppings",
-    "es": "Toppings"
+    "es": "Toppings",
+    "fr": "Toppings",
+    "ru": "Топпинги"
    },
    "description": {
     "en": "Chia seeds, crunchy almonds, almond flakes, crushed peanuts, goji berries, coconut flakes, chocolate chips, powdered milk",
-    "es": "Semillas de chia, almendra crujiente, laminas de almendra, cacahuete, goji, laminas de coco, pepitos de chocolate, leche en polvo"
+    "es": "Semillas de chía, almendra crujiente, láminas de almendra, cacahuete, goji, láminas de coco, pepitas de chocolate, leche en polvo",
+    "fr": "Graines de chia, amandes croquantes, amandes effilées, cacahuètes concassées, baies de goji, copeaux de coco, pépites de chocolat, lait en poudre",
+    "ru": "Семена чиа, хрустящий миндаль, миндальные лепестки, дроблёный арахис, ягоды годжи, кокосовая стружка, шоколадная крошка, сухое молоко"
    },
    "price": 0.5,
    "photo": null,
@@ -399,11 +489,15 @@
    "sub": "gourmet-toast",
    "name": {
     "en": "Iberia",
-    "es": "Iberia"
+    "es": "Iberia",
+    "fr": "Iberia",
+    "ru": "Iberia"
    },
    "description": {
     "en": "Multigrain toast with tomato, serrano ham, cheese & roasted red pepper",
-    "es": "Tostada multicereales con tomate, jamón serrano, queso & pimiento rojo asado."
+    "es": "Tostada multicereales con tomate, jamón serrano, queso & pimiento rojo asado.",
+    "fr": "Tartine multicéréales, tomate, jambon serrano, fromage & poivron rouge rôti",
+    "ru": "Мультизлаковый тост с томатом, хамоном серрано, сыром и печёным красным перцем"
    },
    "price": 7.5,
    "photo": "iberia.jpeg",
@@ -415,11 +509,15 @@
    "sub": "gourmet-toast",
    "name": {
     "en": "Roma",
-    "es": "Roma"
+    "es": "Roma",
+    "fr": "Roma",
+    "ru": "Roma"
    },
    "description": {
     "en": "Multigrain toast with burrata, spinach, & serrano ham",
-    "es": "Tostada multicereales con burrata, espinacas & jamon serrano"
+    "es": "Tostada multicereales con burrata, espinacas & jamon serrano",
+    "fr": "Tartine multicéréales, burrata, épinards & jambon serrano",
+    "ru": "Мультизлаковый тост с бурратой, шпинатом и хамоном серрано"
    },
    "price": 7.5,
    "photo": "roma.webp",
@@ -431,11 +529,15 @@
    "sub": "gourmet-toast",
    "name": {
     "en": "Santiago",
-    "es": "Santiago"
+    "es": "Santiago",
+    "fr": "Santiago",
+    "ru": "Santiago"
    },
    "description": {
     "en": "Multigrain toast with avocado, candied cherry tomatoes & goat's cheese",
-    "es": "Tostada multicereales con aguacate, tomate cherry confitado & queso de cabra"
+    "es": "Tostada multicereales con aguacate, tomate cherry confitado & queso de cabra",
+    "fr": "Tartine multicéréales, avocat, tomates cerises confites & fromage de chèvre",
+    "ru": "Мультизлаковый тост с авокадо, томатами конфи и козьим сыром"
    },
    "price": 7.5,
    "photo": "santiago.webp",
@@ -447,11 +549,15 @@
    "sub": "eggs",
    "name": {
     "en": "Eggs Benedict",
-    "es": "Huevos Benedictinos"
+    "es": "Huevos Benedictinos",
+    "fr": "Œufs Bénédicte",
+    "ru": "Яйца Бенедикт"
    },
    "description": {
     "en": "Poached eggs, bacon & hollandaise sauce on brioche",
-    "es": "Huevos pochadas, bacon y salsa holandesa sobre brioche"
+    "es": "Huevos pochados, bacon & salsa holandesa sobre brioche",
+    "fr": "Œufs pochés, bacon & sauce hollandaise sur brioche",
+    "ru": "Яйца пашот, бекон и голландский соус на бриоши"
    },
    "price": 12.0,
    "photo": "benedictinos.jpeg",
@@ -463,11 +569,15 @@
    "sub": "eggs",
    "name": {
     "en": "Scrambled Eggs",
-    "es": "Huevos Revueltos"
+    "es": "Huevos Revueltos",
+    "fr": "Œufs brouillés",
+    "ru": "Яичница-болтунья"
    },
    "description": {
     "en": "Scrambled eggs, cream cheese & chives on brioche",
-    "es": "Huevos revueltos, queso crema & cebollino sobre brioche"
+    "es": "Huevos revueltos, queso crema & cebollino sobre brioche",
+    "fr": "Œufs brouillés, cream cheese & ciboulette sur brioche",
+    "ru": "Яичница-болтунья, сливочный сыр и шнитт-лук на бриоши"
    },
    "price": 9.0,
    "photo": "revueltos-2.jpeg",
@@ -479,11 +589,15 @@
    "sub": "eggs",
    "name": {
     "en": "Eggs Royale",
-    "es": "Huevos Royale"
+    "es": "Huevos Royale",
+    "fr": "Œufs Royale",
+    "ru": "Яйца Рояль"
    },
    "description": {
     "en": "Poached eggs, Salmon & hollandaise sauce on brioche",
-    "es": "Huevos pochados, salmón & salsa holandesa sobre brioche"
+    "es": "Huevos pochados, salmón & salsa holandesa sobre brioche",
+    "fr": "Œufs pochés, saumon & sauce hollandaise sur brioche",
+    "ru": "Яйца пашот, лосось и голландский соус на бриоши"
    },
    "price": 15.0,
    "photo": "royale.jpeg",
@@ -495,11 +609,15 @@
    "sub": "eggs",
    "name": {
     "en": "El Crush",
-    "es": "El Crush"
+    "es": "El Crush",
+    "fr": "El Crush",
+    "ru": "El Crush"
    },
    "description": {
     "en": "Fried eggs, avocado, bacon & maple syrup on brioche",
-    "es": "Huevos fritos, aguacate, bacon & sirope de arce sobre brioche"
+    "es": "Huevos fritos, aguacate, bacon & sirope de arce sobre brioche",
+    "fr": "Œufs au plat, avocat, bacon & sirop d’érable sur brioche",
+    "ru": "Глазунья, авокадо, бекон и кленовый сироп на бриоши"
    },
    "price": 12.0,
    "photo": "el-crush.jpeg",
@@ -511,11 +629,15 @@
    "sub": "french-toast",
    "name": {
     "en": "Luna Rosa",
-    "es": "Luna Rosa"
+    "es": "Luna Rosa",
+    "fr": "Luna Rosa",
+    "ru": "Luna Rosa"
    },
    "description": {
     "en": "Brioche soaked in vanilla cream with mascarpone, red berry compote, strawberries & blueberries",
-    "es": "Brioche remojada en crema de vainilla con mascarpone, compota de frutos rojos, fresas y arandanos"
+    "es": "Brioche remojada en crema de vainilla con mascarpone, compota de frutos rojos, fresas y arandanos",
+    "fr": "Brioche imbibée de crème vanille, mascarpone, compote de fruits rouges, fraises & myrtilles",
+    "ru": "Бриошь, пропитанная ванильным кремом, с маскарпоне, пюре из красных ягод, клубникой и черникой"
    },
    "price": 10.0,
    "photo": "luna-rossa-2.jpeg",
@@ -527,11 +649,15 @@
    "sub": "french-toast",
    "name": {
     "en": "Gringo",
-    "es": "Gringo"
+    "es": "Gringo",
+    "fr": "Gringo",
+    "ru": "Gringo"
    },
    "description": {
     "en": "Banana, Nutella, peanut butter & chocolate chips",
-    "es": "Banana, Nutella, mantequilla de cacahuete & pepitas de chocolate"
+    "es": "Banana, Nutella, mantequilla de cacahuete & pepitas de chocolate",
+    "fr": "Banane, Nutella, beurre de cacahuète & pépites de chocolat",
+    "ru": "Банан, Nutella, арахисовая паста и шоколадная крошка"
    },
    "price": 10.0,
    "photo": "gringo.jpeg",
@@ -543,11 +669,15 @@
    "sub": "french-toast",
    "name": {
     "en": "French Kiss",
-    "es": "French Kiss"
+    "es": "French Kiss",
+    "fr": "French Kiss",
+    "ru": "French Kiss"
    },
    "description": {
     "en": "Vanilla curd, red berry compote & banana",
-    "es": "Crema de vainilla, compota de frutos rojos, & banana"
+    "es": "Crema de vainilla, compota de frutos rojos, & banana",
+    "fr": "Crème vanille, compote de fruits rouges & banane",
+    "ru": "Ванильный крем, пюре из красных ягод и банан"
    },
    "price": 10.0,
    "photo": "oh-my-lemon.jpeg",
@@ -559,11 +689,15 @@
    "sub": null,
    "name": {
     "en": "Banana Caramel Split",
-    "es": "Banana Caramel Split"
+    "es": "Banana Caramel Split",
+    "fr": "Banana Caramel Split",
+    "ru": "Banana Caramel Split"
    },
    "description": {
     "en": "Frozen banana & caramel, rum-based cocktail",
-    "es": "Cóctel helado de ron con plátano & caramelo"
+    "es": "Cóctel helado de ron con plátano & caramelo",
+    "fr": "Cocktail frozen au rhum, banane & caramel",
+    "ru": "Frozen-коктейль на роме с бананом и карамелью"
    },
    "price": 10.0,
    "photo": null,
@@ -576,11 +710,15 @@
    "sub": null,
    "name": {
     "en": "Fiery Bloody Mary",
-    "es": "Fiery Bloody Mary"
+    "es": "Fiery Bloody Mary",
+    "fr": "Fiery Bloody Mary",
+    "ru": "Fiery Bloody Mary"
    },
    "description": {
     "en": "Tomato cocktail made with Absolut Tabasco vodka & spices",
-    "es": "Cóctel de tomate elaborado con vodka Absolut Tabasco & especias."
+    "es": "Cóctel de tomate elaborado con vodka Absolut Tabasco & especias.",
+    "fr": "Cocktail à la tomate, vodka Absolut Tabasco & épices",
+    "ru": "Томатный коктейль на водке Absolut Tabasco со специями"
    },
    "price": 9.0,
    "photo": null,
@@ -593,11 +731,15 @@
    "sub": null,
    "name": {
     "en": "Caipirinha",
-    "es": "Caipirinha"
+    "es": "Caipirinha",
+    "fr": "Caipirinha",
+    "ru": "Caipirinha"
    },
    "description": {
-    "en": "Brazilian classic, cachaça & lime cocktail",
-    "es": "Cóctel brasileño de cachaça & lima"
+    "en": "The Brazilian classic: cachaça & lime",
+    "es": "Cóctel brasileño de cachaça & lima",
+    "fr": "Le classique brésilien : cachaça & citron vert",
+    "ru": "Бразильская классика: кашаса и лайм"
    },
    "price": 8.0,
    "photo": null,
@@ -610,11 +752,15 @@
    "sub": null,
    "name": {
     "en": "Espresso Martini",
-    "es": "Espresso Martini"
+    "es": "Espresso Martini",
+    "fr": "Espresso Martini",
+    "ru": "Espresso Martini"
    },
    "description": {
     "en": "Vodka, espresso & coffee liqueur",
-    "es": "Vodka, espresso & licor de café"
+    "es": "Vodka, espresso & licor de café",
+    "fr": "Vodka, espresso & liqueur de café",
+    "ru": "Водка, эспрессо и кофейный ликёр"
    },
    "price": 10.0,
    "photo": null,
@@ -627,11 +773,15 @@
    "sub": null,
    "name": {
     "en": "Frozen Daiquiri",
-    "es": "Daiquiri Frozen"
+    "es": "Daiquiri Frozen",
+    "fr": "Frozen Daiquiri",
+    "ru": "Frozen Daiquiri"
    },
    "description": {
     "en": "Frozen strawberry, mango or passion fruit, rum-based cocktail",
-    "es": "Cóctel a base de ron con fresa, mango o maracuyá"
+    "es": "Cóctel a base de ron con fresa, mango o maracuyá",
+    "fr": "Cocktail frozen au rhum : fraise, mangue ou fruit de la passion",
+    "ru": "Frozen-коктейль на роме: клубника, манго или маракуйя"
    },
    "price": 9.5,
    "photo": null,
@@ -644,11 +794,15 @@
    "sub": null,
    "name": {
     "en": "Frozen Margarita",
-    "es": "Frozen Margarita"
+    "es": "Frozen Margarita",
+    "fr": "Frozen Margarita",
+    "ru": "Frozen Margarita"
    },
    "description": {
-    "en": "Tequila based cocktail with Cointreau & lime. Also available in strawberry, mango or passion fruit",
-    "es": "Coctel de tequila con Cointraeu & lima. Tambien disponible en fresa, mango o maracuyá"
+    "en": "Tequila-based cocktail with Cointreau & lime. Also available in strawberry, mango or passion fruit",
+    "es": "Cóctel de tequila con Cointreau & lima. También disponible en fresa, mango o maracuyá",
+    "fr": "Cocktail à la tequila, Cointreau & citron vert. Aussi en fraise, mangue ou fruit de la passion",
+    "ru": "Коктейль на текиле с Cointreau и лаймом. Также клубника, манго или маракуйя"
    },
    "price": 10.0,
    "photo": null,
@@ -661,11 +815,15 @@
    "sub": null,
    "name": {
     "en": "Frozen Piña Colada",
-    "es": "Frozen Piña Colada"
+    "es": "Frozen Piña Colada",
+    "fr": "Frozen Piña Colada",
+    "ru": "Frozen Piña Colada"
    },
    "description": {
     "en": "Creamy, rum-based cocktail with fresh pineapple & coconut",
-    "es": "Cóctel cremoso a base de ron con piña natural & coco"
+    "es": "Cóctel cremoso a base de ron con piña natural & coco",
+    "fr": "Cocktail crémeux au rhum, ananas frais & coco",
+    "ru": "Кремовый коктейль на роме со свежим ананасом и кокосом"
    },
    "price": 9.5,
    "photo": null,
@@ -678,11 +836,15 @@
    "sub": null,
    "name": {
     "en": "Honeymoon",
-    "es": "Honeymoon"
+    "es": "Honeymoon",
+    "fr": "Honeymoon",
+    "ru": "Honeymoon"
    },
    "description": {
     "en": "Sweet, whisky-based cocktail with orange, ginger & honey",
-    "es": "Cóctel dulce a base de whisky con naranja, jengibre & miel"
+    "es": "Cóctel dulce a base de whisky con naranja, jengibre & miel",
+    "fr": "Cocktail doux au whisky, orange, gingembre & miel",
+    "ru": "Сладкий коктейль на виски с апельсином, имбирём и мёдом"
    },
    "price": 9.5,
    "photo": null,
@@ -695,11 +857,15 @@
    "sub": null,
    "name": {
     "en": "Mojito",
-    "es": "Mojito"
+    "es": "Mojito",
+    "fr": "Mojito",
+    "ru": "Mojito"
    },
    "description": {
     "en": "Classic Cuban, rum-based cocktail with lime and mint. Also available in strawberry, raspberry, coconut, mango, passionfruit or blueberry (+1€)",
-    "es": "Clásico cóctel cubano a base de ron con lima y menta. También disponible en fresa, frambuesa, coco, mango, maracuyá o arándano (+1€)."
+    "es": "Clásico cóctel cubano a base de ron con lima y menta. También disponible en fresa, frambuesa, coco, mango, maracuyá o arándano (+1€).",
+    "fr": "Le classique cubain au rhum, citron vert & menthe. Aussi en fraise, framboise, coco, mangue, fruit de la passion ou myrtille (+1 €)",
+    "ru": "Кубинская классика на роме с лаймом и мятой. Также клубника, малина, кокос, манго, маракуйя или черника (+1 €)"
    },
    "price": 8.0,
    "photo": null,
@@ -712,11 +878,15 @@
    "sub": null,
    "name": {
     "en": "Moscow Mule",
-    "es": "Moscow Mule"
+    "es": "Moscow Mule",
+    "fr": "Moscow Mule",
+    "ru": "Moscow Mule"
    },
    "description": {
     "en": "Vodka-based cocktail with ginger beer & lime",
-    "es": "Cóctel a base de vodka con ginger beer & lima."
+    "es": "Cóctel a base de vodka con ginger beer & lima.",
+    "fr": "Cocktail à la vodka, ginger beer & citron vert",
+    "ru": "Коктейль на водке с имбирным пивом и лаймом"
    },
    "price": 9.5,
    "photo": null,
@@ -729,11 +899,15 @@
    "sub": null,
    "name": {
     "en": "Pornstar Martini",
-    "es": "Pornstar Martini"
+    "es": "Pornstar Martini",
+    "fr": "Pornstar Martini",
+    "ru": "Pornstar Martini"
    },
    "description": {
-    "en": "Tropical cocktail made with vanilla vodka, Passoa & passion fruit. Acompanied by a shot of cava",
-    "es": "Cóctel tropical elaborado con vodka de vainilla, Passoa y maracuyá. Acompañado de un chupito de cava."
+    "en": "Tropical cocktail made with vanilla vodka, Passoã & passion fruit. Served with a shot of cava",
+    "es": "Cóctel tropical elaborado con vodka de vainilla, Passoa y maracuyá. Acompañado de un chupito de cava.",
+    "fr": "Cocktail tropical à la vodka vanille, Passoã & fruit de la passion. Servi avec un shot de cava",
+    "ru": "Тропический коктейль на ванильной водке с Passoã и маракуйей. Подаётся с шотом кавы"
    },
    "price": 10.0,
    "photo": null,
@@ -746,11 +920,15 @@
    "sub": null,
    "name": {
     "en": "Summer Crush",
-    "es": "Summer Crush"
+    "es": "Summer Crush",
+    "fr": "Summer Crush",
+    "ru": "Summer Crush"
    },
    "description": {
     "en": "House special, gin-based cocktail with watermelon & lychee",
-    "es": "Especialidad de la casa, cóctel a base de ginebra con sandía y lichi."
+    "es": "Especialidad de la casa, cóctel a base de ginebra con sandía y lichi.",
+    "fr": "Spécialité maison au gin, pastèque & litchi",
+    "ru": "Фирменный коктейль на джине с арбузом и личи"
    },
    "price": 9.5,
    "photo": null,
@@ -763,11 +941,15 @@
    "sub": null,
    "name": {
     "en": "Paloma Premium",
-    "es": "Paloma Premium"
+    "es": "Paloma Premium",
+    "fr": "Paloma Premium",
+    "ru": "Paloma Premium"
    },
    "description": {
     "en": "Spritz with tequila Altos 100% agave, lime & grapefruit",
-    "es": "Spritz con tequila Altos 100% agave, lima y pomelo."
+    "es": "Spritz con tequila Altos 100% agave, lima y pomelo.",
+    "fr": "Spritz à la tequila Altos 100 % agave, citron vert & pamplemousse",
+    "ru": "Спритц на текиле Altos 100% агава с лаймом и грейпфрутом"
    },
    "price": 12.0,
    "photo": "altos-tequila.webp",
@@ -779,11 +961,15 @@
    "sub": null,
    "name": {
     "en": "Cloud Nine",
-    "es": "Cloud Nine"
+    "es": "Cloud Nine",
+    "fr": "Cloud Nine",
+    "ru": "Cloud Nine"
    },
    "description": {
     "en": "Tequila Altos 100% agave with coconut water, pineapple juice, lime & a hint of agave",
-    "es": "Tequila Altos 100% agave con agua de coco, jugo de piña, lima y un toque de agave."
+    "es": "Tequila Altos 100% agave con agua de coco, jugo de piña, lima y un toque de agave.",
+    "fr": "Tequila Altos 100 % agave, eau de coco, jus d’ananas, citron vert & une pointe d’agave",
+    "ru": "Текила Altos 100% агава с кокосовой водой, ананасовым соком, лаймом и каплей агавы"
    },
    "price": 9.0,
    "photo": "cn.jpeg",
@@ -795,11 +981,15 @@
    "sub": null,
    "name": {
     "en": "Spicy Margarita",
-    "es": "Spicy Margarita"
+    "es": "Spicy Margarita",
+    "fr": "Spicy Margarita",
+    "ru": "Spicy Margarita"
    },
    "description": {
     "en": "Classic Margarita with a chilli pepper kick",
-    "es": "Margarita Clásica con chilis rojos picantes"
+    "es": "Margarita Clásica con chilis rojos picantes",
+    "fr": "La Margarita classique, relevée au piment",
+    "ru": "Классическая «Маргарита» с острым перцем чили"
    },
    "price": 10.0,
    "photo": "spicy-marg-1.webp",
@@ -811,11 +1001,15 @@
    "sub": null,
    "name": {
     "en": "Gin Bramble",
-    "es": "Gin Bramble"
+    "es": "Gin Bramble",
+    "fr": "Gin Bramble",
+    "ru": "Gin Bramble"
    },
    "description": {
     "en": "Blueberry gin & fresh lemon",
-    "es": "Ginebra de arandanos & limon fresca"
+    "es": "Ginebra de arándanos & limón fresco",
+    "fr": "Gin à la myrtille & citron frais",
+    "ru": "Черничный джин и свежий лимон"
    },
    "price": 10.0,
    "photo": "gin-bramble-2.jpg",
@@ -827,11 +1021,15 @@
    "sub": "Cold",
    "name": {
     "en": "Affogato",
-    "es": "Affogato"
+    "es": "Affogato",
+    "fr": "Affogato",
+    "ru": "Affogato"
    },
    "description": {
     "en": "Specialty coffee over vanilla ice cream",
-    "es": "Café de especialidad sobre helado de vainilla"
+    "es": "Café de especialidad sobre helado de vainilla",
+    "fr": "Café de spécialité sur glace vanille",
+    "ru": "Кофе спешелти на ванильном мороженом"
    },
    "price": 4.0,
    "photo": "afogatto_int_3.webp",
@@ -843,11 +1041,15 @@
    "sub": "Hot",
    "name": {
     "en": "Americano",
-    "es": "Americano"
+    "es": "Americano",
+    "fr": "Americano",
+    "ru": "Американо"
    },
    "description": {
     "en": "Specialty coffee with hot water",
-    "es": "Café de especialidad con agua caliente"
+    "es": "Café de especialidad con agua caliente",
+    "fr": "Café de spécialité allongé à l’eau chaude",
+    "ru": "Кофе спешелти с горячей водой"
    },
    "price": 2.5,
    "photo": null,
@@ -860,11 +1062,15 @@
    "sub": "Cold",
    "name": {
     "en": "Espresso & Tonic",
-    "es": "Espresso & Tónica"
+    "es": "Espresso & Tónica",
+    "fr": "Espresso Tonic",
+    "ru": "Эспрессо-тоник"
    },
    "description": {
     "en": "Specialty coffee with tonic water",
-    "es": "Café de especialidad con tónica"
+    "es": "Café de especialidad con tónica",
+    "fr": "Café de spécialité & tonic",
+    "ru": "Кофе спешелти с тоником"
    },
    "price": 5.0,
    "photo": null,
@@ -877,11 +1083,15 @@
    "sub": "Hot",
    "name": {
     "en": "Bombón",
-    "es": "Bombón"
+    "es": "Bombón",
+    "fr": "Bombón",
+    "ru": "Бомбон"
    },
    "description": {
     "en": "Specialty coffee with condensed milk",
-    "es": "Café de especialidad con leche condensada"
+    "es": "Café de especialidad con leche condensada",
+    "fr": "Café de spécialité & lait concentré",
+    "ru": "Кофе спешелти со сгущёнкой"
    },
    "price": 2.5,
    "photo": null,
@@ -894,11 +1104,15 @@
    "sub": "Cold",
    "name": {
     "en": "Ice Cream Latte",
-    "es": "Latte con Helado"
+    "es": "Latte con Helado",
+    "fr": "Latte à la glace",
+    "ru": "Латте с мороженым"
    },
    "description": {
     "en": "Specialty coffee with milk & vanilla ice cream",
-    "es": "Café de especialidad con leche & helado de vainilla"
+    "es": "Café de especialidad con leche & helado de vainilla",
+    "fr": "Café de spécialité, lait & glace vanille",
+    "ru": "Кофе спешелти с молоком и ванильным мороженым"
    },
    "price": 5.5,
    "photo": null,
@@ -911,11 +1125,15 @@
    "sub": "Hot",
    "name": {
     "en": "Cappuccino",
-    "es": "Cappuccino"
+    "es": "Cappuccino",
+    "fr": "Cappuccino",
+    "ru": "Капучино"
    },
    "description": {
     "en": "Specialty coffee with foamed milk",
-    "es": "Café de especialidad con espuma de leche"
+    "es": "Café de especialidad con espuma de leche",
+    "fr": "Café de spécialité & mousse de lait",
+    "ru": "Кофе спешелти с молочной пеной"
    },
    "price": 3.0,
    "photo": null,
@@ -928,11 +1146,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Americano",
-    "es": "Americano Helado"
+    "es": "Americano Helado",
+    "fr": "Americano glacé",
+    "ru": "Айс-американо"
    },
    "description": {
     "en": "Chilled specialty coffee with iced water",
-    "es": "Café de especialidad frío con agua helada"
+    "es": "Café de especialidad frío con agua helada",
+    "fr": "Café de spécialité froid & eau glacée",
+    "ru": "Холодный кофе спешелти с ледяной водой"
    },
    "price": 3.5,
    "photo": null,
@@ -945,11 +1167,15 @@
    "sub": "Hot",
    "name": {
     "en": "Cortado",
-    "es": "Cortado"
+    "es": "Cortado",
+    "fr": "Cortado",
+    "ru": "Кортадо"
    },
    "description": {
     "en": "Specialty coffee with a touch of milk",
-    "es": "Café de especialidad con un toque de leche"
+    "es": "Café de especialidad con un toque de leche",
+    "fr": "Café de spécialité & une touche de lait",
+    "ru": "Кофе спешелти с каплей молока"
    },
    "price": 2.5,
    "photo": null,
@@ -962,11 +1188,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Blueberry Latte",
-    "es": "Iced Latte de Arándano"
+    "es": "Iced Latte de Arándano",
+    "fr": "Iced Latte myrtille",
+    "ru": "Айс-латте черника"
    },
    "description": {
     "en": "Specialty coffee with blueberry & milk",
-    "es": "Café de especialidad con leche & arándanos"
+    "es": "Café de especialidad con leche & arándanos",
+    "fr": "Café de spécialité, myrtille & lait",
+    "ru": "Кофе спешелти с черникой и молоком"
    },
    "price": 5.0,
    "photo": null,
@@ -979,11 +1209,15 @@
    "sub": "Hot",
    "name": {
     "en": "Double Espresso",
-    "es": "Espresso Doble"
+    "es": "Espresso Doble",
+    "fr": "Double espresso",
+    "ru": "Двойной эспрессо"
    },
    "description": {
     "en": "Double shot of Specialty coffee for an energy boost",
-    "es": "Doble shot de café de especialidad para más energía"
+    "es": "Doble shot de café de especialidad para más energía",
+    "fr": "Double dose de café de spécialité pour un coup de fouet",
+    "ru": "Двойная порция кофе спешелти для заряда энергии"
    },
    "price": 2.5,
    "photo": null,
@@ -996,11 +1230,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Coconut Caramel Latte",
-    "es": "Iced Coco Caramelo"
+    "es": "Iced Coco Caramelo",
+    "fr": "Iced Latte coco caramel",
+    "ru": "Айс-латте кокос-карамель"
    },
    "description": {
     "en": "Specialty coffee with milk, coconut & caramel",
-    "es": "Café de especialidad con leche, coco & caramelo"
+    "es": "Café de especialidad con leche, coco & caramelo",
+    "fr": "Café de spécialité, lait, coco & caramel",
+    "ru": "Кофе спешелти с молоком, кокосом и карамелью"
    },
    "price": 5.0,
    "photo": null,
@@ -1013,11 +1251,15 @@
    "sub": "Hot",
    "name": {
     "en": "Espresso",
-    "es": "Espresso"
+    "es": "Espresso",
+    "fr": "Espresso",
+    "ru": "Эспрессо"
    },
    "description": {
     "en": "Single shot of specialty coffee",
-    "es": "Shot de café de especialidad"
+    "es": "Shot de café de especialidad",
+    "fr": "Une dose de café de spécialité",
+    "ru": "Порция кофе спешелти"
    },
    "price": 1.9,
    "photo": null,
@@ -1030,11 +1272,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Latte",
-    "es": "Iced Latte"
+    "es": "Iced Latte",
+    "fr": "Iced Latte",
+    "ru": "Айс-латте"
    },
    "description": {
     "en": "Specialty coffee with iced milk",
-    "es": "Café de especialidad con leche helada"
+    "es": "Café de especialidad con leche helada",
+    "fr": "Café de spécialité & lait glacé",
+    "ru": "Кофе спешелти с холодным молоком"
    },
    "price": 4.5,
    "photo": null,
@@ -1047,11 +1293,15 @@
    "sub": "Hot",
    "name": {
     "en": "Flat White",
-    "es": "Flat White"
+    "es": "Flat White",
+    "fr": "Flat White",
+    "ru": "Флэт уайт"
    },
    "description": {
     "en": "Double shot of Specialty coffee with milk",
-    "es": "Doble shot de café de especialidad con leche"
+    "es": "Doble shot de café de especialidad con leche",
+    "fr": "Double dose de café de spécialité & lait",
+    "ru": "Двойная порция кофе спешелти с молоком"
    },
    "price": 3.5,
    "photo": null,
@@ -1064,11 +1314,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Mocha",
-    "es": "Mocha Helado"
+    "es": "Mocha Helado",
+    "fr": "Moka glacé",
+    "ru": "Айс-мокко"
    },
    "description": {
     "en": "Specialty coffee with milk, chocolate & a scoop of chocolate ice cream",
-    "es": "Café de especialidad con leche, chocolate & una bola de helado de chocolate"
+    "es": "Café de especialidad con leche, chocolate & una bola de helado de chocolate",
+    "fr": "Café de spécialité, lait, chocolat & une boule de glace au chocolat",
+    "ru": "Кофе спешелти с молоком, шоколадом и шариком шоколадного мороженого"
    },
    "price": 5.5,
    "photo": null,
@@ -1081,11 +1335,15 @@
    "sub": "Hot",
    "name": {
     "en": "Latte",
-    "es": "Latte"
+    "es": "Latte",
+    "fr": "Latte",
+    "ru": "Латте"
    },
    "description": {
     "en": "Specialty coffee with steamed milk",
-    "es": "Café de especialidad con leche cremosa"
+    "es": "Café de especialidad con leche cremosa",
+    "fr": "Café de spécialité & lait chaud",
+    "ru": "Кофе спешелти с горячим молоком"
    },
    "price": 3.0,
    "photo": null,
@@ -1098,11 +1356,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Pistachio Latte",
-    "es": "Café de especialidad con leche & pistacho"
+    "es": "Iced Latte de Pistacho",
+    "fr": "Iced Latte pistache",
+    "ru": "Айс-латте фисташка"
    },
    "description": {
     "en": "Specialty coffee with milk & pistachio",
-    "es": "Latte helado de pistacho"
+    "es": "Café de especialidad con leche & pistacho",
+    "fr": "Café de spécialité, lait & pistache",
+    "ru": "Кофе спешелти с молоком и фисташкой"
    },
    "price": 5.0,
    "photo": null,
@@ -1115,11 +1377,15 @@
    "sub": "Hot",
    "name": {
     "en": "Mocha",
-    "es": "Mocha"
+    "es": "Mocha",
+    "fr": "Moka",
+    "ru": "Мокко"
    },
    "description": {
     "en": "Specialty coffee with chocolate & milk",
-    "es": "Café de especialidad con chocolate & leche"
+    "es": "Café de especialidad con chocolate & leche",
+    "fr": "Café de spécialité, chocolat & lait",
+    "ru": "Кофе спешелти с шоколадом и молоком"
    },
    "price": 4.0,
    "photo": null,
@@ -1132,11 +1398,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Strawberry Latte",
-    "es": "Iced Fresa Latte"
+    "es": "Iced Fresa Latte",
+    "fr": "Iced Latte fraise",
+    "ru": "Айс-латте клубника"
    },
    "description": {
     "en": "Specialty coffee with milk & strawberry",
-    "es": "Café de especialidad con leche & fresa"
+    "es": "Café de especialidad con leche & fresa",
+    "fr": "Café de spécialité, lait & fraise",
+    "ru": "Кофе спешелти с молоком и клубникой"
    },
    "price": 5.0,
    "photo": null,
@@ -1149,11 +1419,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Vanilla Latte",
-    "es": "Iced Vainilla Latte"
+    "es": "Iced Vainilla Latte",
+    "fr": "Iced Latte vanille",
+    "ru": "Айс-латте ваниль"
    },
    "description": {
     "en": "Specialty coffee with milk & vanilla",
-    "es": "Café de especialidad con leche & vainilla"
+    "es": "Café de especialidad con leche & vainilla",
+    "fr": "Café de spécialité, lait & vanille",
+    "ru": "Кофе спешелти с молоком и ванилью"
    },
    "price": 5.0,
    "photo": null,
@@ -1166,11 +1440,15 @@
    "sub": null,
    "name": {
     "en": "Cheesecake",
-    "es": "Cheesecake"
+    "es": "Cheesecake",
+    "fr": "Cheesecake",
+    "ru": "Чизкейк"
    },
    "description": {
     "en": "New York style cheesecake",
-    "es": "Tarta de queso estilo New York"
+    "es": "Tarta de queso estilo New York",
+    "fr": "Cheesecake façon New York",
+    "ru": "Чизкейк по-нью-йоркски"
    },
    "price": 6.0,
    "photo": null,
@@ -1183,11 +1461,15 @@
    "sub": null,
    "name": {
     "en": "Cookies",
-    "es": "Cookies"
+    "es": "Cookies",
+    "fr": "Cookies",
+    "ru": "Печенье"
    },
    "description": {
     "en": "Fresh baked cookies",
-    "es": "Galletas recién horneadas"
+    "es": "Galletas recién horneadas",
+    "fr": "Cookies tout juste sortis du four",
+    "ru": "Свежеиспечённое печенье"
    },
    "price": 3.0,
    "photo": null,
@@ -1200,11 +1482,15 @@
    "sub": null,
    "name": {
     "en": "Florida Key Lime Pie",
-    "es": "Tarta de Lima Florida"
+    "es": "Tarta de Lima Florida",
+    "fr": "Key Lime Pie de Floride",
+    "ru": "Флоридский Key Lime Pie"
    },
    "description": {
     "en": "Tangy key lime pie",
-    "es": "Key lime pie"
+    "es": "Key lime pie",
+    "fr": "Tarte au citron vert, bien acidulée",
+    "ru": "Пирог с лаймом, с кислинкой"
    },
    "price": 6.0,
    "photo": null,
@@ -1217,11 +1503,15 @@
    "sub": null,
    "name": {
     "en": "Chocolate Cake",
-    "es": "Tarta de Chocolate"
+    "es": "Tarta de Chocolate",
+    "fr": "Gâteau au chocolat",
+    "ru": "Шоколадный торт"
    },
    "description": {
-    "en": "Homemade chocolate",
-    "es": "Tarta de cocolate casera"
+    "en": "Homemade chocolate cake",
+    "es": "Tarta de chocolate casera",
+    "fr": "Fait maison",
+    "ru": "Домашний"
    },
    "price": 6.0,
    "photo": null,
@@ -1233,11 +1523,15 @@
    "sub": null,
    "name": {
     "en": "Caramel",
-    "es": "Caramelo"
+    "es": "Caramelo",
+    "fr": "Caramel",
+    "ru": "Карамель"
    },
    "description": {
     "en": "Ice cold, thick blend of specialty coffee, milk and caramel",
-    "es": "Una mezcla densa y helada de café de especialidad, leche y caramelo"
+    "es": "Una mezcla densa y helada de café de especialidad, leche y caramelo",
+    "fr": "Mélange glacé et épais de café de spécialité, lait & caramel",
+    "ru": "Густая ледяная смесь кофе спешелти, молока и карамели"
    },
    "price": 6.5,
    "photo": null,
@@ -1250,11 +1544,15 @@
    "sub": null,
    "name": {
     "en": "Chocolate",
-    "es": "Chocolate"
+    "es": "Chocolate",
+    "fr": "Chocolat",
+    "ru": "Шоколад"
    },
    "description": {
     "en": "Ice cold, thick blend of specialty coffee, milk and chocolate",
-    "es": "Una mezcla densa y helada de café de especialidad, leche y chocolate"
+    "es": "Una mezcla densa y helada de café de especialidad, leche y chocolate",
+    "fr": "Mélange glacé et épais de café de spécialité, lait & chocolat",
+    "ru": "Густая ледяная смесь кофе спешелти, молока и шоколада"
    },
    "price": 6.5,
    "photo": null,
@@ -1267,11 +1565,15 @@
    "sub": null,
    "name": {
     "en": "Hazelnut",
-    "es": "Avellana"
+    "es": "Avellana",
+    "fr": "Noisette",
+    "ru": "Фундук"
    },
    "description": {
     "en": "Ice cold, thick blend of specialty coffee, milk and hazelnut",
-    "es": "Una mezcla densa y helada de café de especialidad, leche y Avellana"
+    "es": "Una mezcla densa y helada de café de especialidad, leche y Avellana",
+    "fr": "Mélange glacé et épais de café de spécialité, lait & noisette",
+    "ru": "Густая ледяная смесь кофе спешелти, молока и фундука"
    },
    "price": 6.5,
    "photo": null,
@@ -1284,11 +1586,15 @@
    "sub": null,
    "name": {
     "en": "Vanilla",
-    "es": "Vainilla"
+    "es": "Vainilla",
+    "fr": "Vanille",
+    "ru": "Ваниль"
    },
    "description": {
     "en": "Ice cold, thick blend of specialty coffee, milk and vanilla",
-    "es": "Una mezcla densa y helada de café de especialidad, leche y vainilla"
+    "es": "Una mezcla densa y helada de café de especialidad, leche y vainilla",
+    "fr": "Mélange glacé et épais de café de spécialité, lait & vanille",
+    "ru": "Густая ледяная смесь кофе спешелти, молока и ванили"
    },
    "price": 6.5,
    "photo": null,
@@ -1301,11 +1607,15 @@
    "sub": null,
    "name": {
     "en": "Espresso Shot",
-    "es": "Shot de Espresso"
+    "es": "Shot de Espresso",
+    "fr": "Shot d’espresso",
+    "ru": "Шот эспрессо"
    },
    "description": {
     "en": "Add an extra shot",
-    "es": "Añade un shot extra"
+    "es": "Añade un shot extra",
+    "fr": "Ajoutez une dose",
+    "ru": "Добавьте порцию"
    },
    "price": 0.6,
    "photo": null,
@@ -1318,11 +1628,15 @@
    "sub": null,
    "name": {
     "en": "Syrups",
-    "es": "Siropes"
+    "es": "Siropes",
+    "fr": "Sirops",
+    "ru": "Сиропы"
    },
    "description": {
     "en": "Add flavor syrup",
-    "es": "Añade sirope de sabor"
+    "es": "Añade sirope de sabor",
+    "fr": "Ajoutez un sirop parfumé",
+    "ru": "Добавьте сироп со вкусом"
    },
    "price": 0.6,
    "photo": null,
@@ -1335,11 +1649,15 @@
    "sub": null,
    "name": {
     "en": "Alternative Milk",
-    "es": "Leche Alternativa"
+    "es": "Leche Alternativa",
+    "fr": "Lait végétal",
+    "ru": "Растительное молоко"
    },
    "description": {
     "en": "Oat, almond or soy milk",
-    "es": "Avena, almendra o soja"
+    "es": "Avena, almendra o soja",
+    "fr": "Avoine, amande ou soja",
+    "ru": "Овсяное, миндальное или соевое"
    },
    "price": 0.25,
    "photo": null,
@@ -1352,11 +1670,15 @@
    "sub": null,
    "name": {
     "en": "Chicago",
-    "es": "Chicago"
+    "es": "Chicago",
+    "fr": "Chicago",
+    "ru": "Chicago"
    },
    "description": {
     "en": "Fries loaded with bacon, chives, jalapeños & cheddar cheese sauce",
-    "es": "Patatas fritas cargadas con bacon, cebollino, jalapeños & salsa de queso cheddar"
+    "es": "Patatas fritas cargadas con bacon, cebollino, jalapeños & salsa de queso cheddar",
+    "fr": "Frites garnies de bacon, ciboulette, jalapeños & sauce cheddar",
+    "ru": "Картофель фри с беконом, шнитт-луком, халапеньо и соусом чеддер"
    },
    "price": 7.5,
    "photo": null,
@@ -1368,11 +1690,15 @@
    "sub": null,
    "name": {
     "en": "Texas",
-    "es": "Texas"
+    "es": "Texas",
+    "fr": "Texas",
+    "ru": "Texas"
    },
    "description": {
     "en": "Fries loaded with BBQ pulled pork, red onion, chives & cheddar cheese sauce",
-    "es": "Patatas fritas cargadas con cerdo desmenuzado BBQ, cebolla morada, cebollino & salsa de queso cheddar"
+    "es": "Patatas fritas cargadas con cerdo desmenuzado BBQ, cebolla morada, cebollino & salsa de queso cheddar",
+    "fr": "Frites garnies de porc effiloché BBQ, oignon rouge, ciboulette & sauce cheddar",
+    "ru": "Картофель фри с рваной свининой BBQ, красным луком, шнитт-луком и соусом чеддер"
    },
    "price": 7.5,
    "photo": "texas-2.jpeg",
@@ -1384,11 +1710,15 @@
    "sub": null,
    "name": {
     "en": "Huevos Rotos",
-    "es": "Huevos Rotos"
+    "es": "Huevos Rotos",
+    "fr": "Huevos Rotos",
+    "ru": "Huevos Rotos"
    },
    "description": {
     "en": "Fries loaded with two fried eggs & serrano ham",
-    "es": "Patatas fritas cargadas con 2 huevos fritos & jamón serrano"
+    "es": "Patatas fritas cargadas con 2 huevos fritos & jamón serrano",
+    "fr": "Frites garnies de deux œufs au plat & jambon serrano",
+    "ru": "Картофель фри с двумя яйцами-глазуньей и хамоном серрано"
    },
    "price": 8.0,
    "photo": "huevos-rotos.webp",
@@ -1400,11 +1730,15 @@
    "sub": null,
    "name": {
     "en": "Fries",
-    "es": "Patatas Fritas"
+    "es": "Patatas Fritas",
+    "fr": "Frites",
+    "ru": "Картофель фри"
    },
    "description": {
     "en": "Homemade potato fries",
-    "es": "Patatas fritas caseras"
+    "es": "Patatas fritas caseras",
+    "fr": "Frites maison",
+    "ru": "Домашний картофель фри"
    },
    "price": 5.0,
    "photo": null,
@@ -1416,11 +1750,15 @@
    "sub": "Hot",
    "name": {
     "en": "Matcha Latte",
-    "es": "Matcha Latte"
+    "es": "Matcha Latte",
+    "fr": "Matcha Latte",
+    "ru": "Матча латте"
    },
    "description": {
     "en": "Premium Japanese matcha with steamed milk",
-    "es": "Matcha japonés premium con leche caliente"
+    "es": "Matcha japonés premium con leche caliente",
+    "fr": "Matcha japonais premium & lait chaud",
+    "ru": "Японская матча премиум с горячим молоком"
    },
    "price": 5.0,
    "photo": null,
@@ -1433,11 +1771,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Matcha Latte",
-    "es": "Iced Matcha Latte"
+    "es": "Iced Matcha Latte",
+    "fr": "Matcha Latte glacé",
+    "ru": "Айс матча латте"
    },
    "description": {
     "en": "Matcha with iced milk",
-    "es": "Matcha con leche helada"
+    "es": "Matcha con leche helada",
+    "fr": "Matcha & lait glacé",
+    "ru": "Матча с холодным молоком"
    },
    "price": 5.0,
    "photo": null,
@@ -1450,11 +1792,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Cherry Matcha",
-    "es": "Iced Cereza Matcha"
+    "es": "Iced Cereza Matcha",
+    "fr": "Matcha glacé cerise",
+    "ru": "Айс матча вишня"
    },
    "description": {
     "en": "Matcha with iced milk & cherry",
-    "es": "Matcha con leche helada & cereza"
+    "es": "Matcha con leche helada & cereza",
+    "fr": "Matcha, lait glacé & cerise",
+    "ru": "Матча с холодным молоком и вишней"
    },
    "price": 5.5,
    "photo": null,
@@ -1467,11 +1813,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Mango Matcha",
-    "es": "Iced Mango Matcha"
+    "es": "Iced Mango Matcha",
+    "fr": "Matcha glacé mangue",
+    "ru": "Айс матча манго"
    },
    "description": {
     "en": "Matcha with iced milk & mango",
-    "es": "Matcha con leche helada & mango"
+    "es": "Matcha con leche helada & mango",
+    "fr": "Matcha, lait glacé & mangue",
+    "ru": "Матча с холодным молоком и манго"
    },
    "price": 5.5,
    "photo": null,
@@ -1484,11 +1834,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Passion Fruit Matcha",
-    "es": "Iced Maracuyá Matcha"
+    "es": "Iced Maracuyá Matcha",
+    "fr": "Matcha glacé fruit de la passion",
+    "ru": "Айс матча маракуйя"
    },
    "description": {
     "en": "Matcha with iced milk & passion fruit",
-    "es": "Matcha con leche helada & maracuyá"
+    "es": "Matcha con leche helada & maracuyá",
+    "fr": "Matcha, lait glacé & fruit de la passion",
+    "ru": "Матча с холодным молоком и маракуйей"
    },
    "price": 5.5,
    "photo": null,
@@ -1501,11 +1855,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Strawberry Matcha",
-    "es": "Iced Fresa Matcha"
+    "es": "Iced Fresa Matcha",
+    "fr": "Matcha glacé fraise",
+    "ru": "Айс матча клубника"
    },
    "description": {
     "en": "Matcha with iced milk & strawberry",
-    "es": "Matcha con leche helada & fresa"
+    "es": "Matcha con leche helada & fresa",
+    "fr": "Matcha, lait glacé & fraise",
+    "ru": "Матча с холодным молоком и клубникой"
    },
    "price": 5.5,
    "photo": null,
@@ -1518,11 +1876,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Vanilla Matcha",
-    "es": "Iced Vainilla Matcha"
+    "es": "Iced Vainilla Matcha",
+    "fr": "Matcha glacé vanille",
+    "ru": "Айс матча ваниль"
    },
    "description": {
     "en": "Matcha with iced milk & vanilla",
-    "es": "Matcha con leche helada & vainilla"
+    "es": "Matcha con leche helada & vainilla",
+    "fr": "Matcha, lait glacé & vanille",
+    "ru": "Матча с холодным молоком и ванилью"
    },
    "price": 5.5,
    "photo": null,
@@ -1535,11 +1897,15 @@
    "sub": "Cold",
    "name": {
     "en": "Iced Yuzu Matcha",
-    "es": "Iced Yuzu Matcha"
+    "es": "Iced Yuzu Matcha",
+    "fr": "Matcha glacé yuzu",
+    "ru": "Айс матча юдзу"
    },
    "description": {
     "en": "Matcha with iced milk & citrus yuzu",
-    "es": "Matcha con leche helada & cítrico yuzu"
+    "es": "Matcha con leche helada & cítrico yuzu",
+    "fr": "Matcha, lait glacé & yuzu",
+    "ru": "Матча с холодным молоком и юдзу"
    },
    "price": 5.5,
    "photo": null,
@@ -1552,11 +1918,15 @@
    "sub": null,
    "name": {
     "en": "Aquarius Orange",
-    "es": "Aquarius Naranja"
+    "es": "Aquarius Naranja",
+    "fr": "Aquarius orange",
+    "ru": "Aquarius апельсин"
    },
    "description": {
     "en": "Sports drink",
-    "es": "Bebida deportiva"
+    "es": "Bebida deportiva",
+    "fr": "Boisson isotonique",
+    "ru": "Изотонический напиток"
    },
    "price": 2.6,
    "photo": null,
@@ -1569,11 +1939,15 @@
    "sub": null,
    "name": {
     "en": "Auara Apple Juice",
-    "es": "Auara Zumo de Manzana"
+    "es": "Zumo de manzana Auara",
+    "fr": "Jus de pomme Auara",
+    "ru": "Яблочный сок Auara"
    },
    "description": {
     "en": "",
-    "es": ""
+    "es": "",
+    "fr": "",
+    "ru": ""
    },
    "price": 3.0,
    "photo": null,
@@ -1585,11 +1959,15 @@
    "sub": null,
    "name": {
     "en": "Auara Pineapple Juice",
-    "es": "Zumo Auara Piña"
+    "es": "Zumo de piña Auara",
+    "fr": "Jus d’ananas Auara",
+    "ru": "Ананасовый сок Auara"
    },
    "description": {
     "en": "Premium pineapple juice",
-    "es": "Zumo de piña premium"
+    "es": "Zumo de piña premium",
+    "fr": "Jus d’ananas premium",
+    "ru": "Премиальный ананасовый сок"
    },
    "price": 3.0,
    "photo": null,
@@ -1602,11 +1980,15 @@
    "sub": null,
    "name": {
     "en": "Peach Juice",
-    "es": "Zumo de Melocoton"
+    "es": "Zumo de melocotón",
+    "fr": "Jus de pêche",
+    "ru": "Персиковый сок"
    },
    "description": {
     "en": "",
-    "es": ""
+    "es": "",
+    "fr": "",
+    "ru": ""
    },
    "price": 3.0,
    "photo": null,
@@ -1619,11 +2001,15 @@
    "sub": null,
    "name": {
     "en": "Coca-Cola",
-    "es": "Coca-Cola"
+    "es": "Coca-Cola",
+    "fr": "Coca-Cola",
+    "ru": "Coca-Cola"
    },
    "description": {
     "en": "Classic cola",
-    "es": "Cola clásica"
+    "es": "Cola clásica",
+    "fr": "Le cola classique",
+    "ru": "Классическая кола"
    },
    "price": 2.6,
    "photo": null,
@@ -1636,11 +2022,15 @@
    "sub": null,
    "name": {
     "en": "Coca-Cola Zero",
-    "es": "Coca-Cola Zero"
+    "es": "Coca-Cola Zero",
+    "fr": "Coca-Cola Zero",
+    "ru": "Coca-Cola Zero"
    },
    "description": {
     "en": "Sugar free cola",
-    "es": "Cola sin azúcar"
+    "es": "Cola sin azúcar",
+    "fr": "Cola sans sucre",
+    "ru": "Кола без сахара"
    },
    "price": 2.6,
    "photo": null,
@@ -1653,11 +2043,15 @@
    "sub": null,
    "name": {
     "en": "Cuevas Water",
-    "es": "Agua Cuevas"
+    "es": "Agua Cuevas",
+    "fr": "Eau Cuevas",
+    "ru": "Вода Cuevas"
    },
    "description": {
     "en": "Still mineral water",
-    "es": "Agua mineral"
+    "es": "Agua mineral",
+    "fr": "Eau minérale plate",
+    "ru": "Негазированная минеральная вода"
    },
    "price": 1.6,
    "photo": null,
@@ -1670,11 +2064,15 @@
    "sub": null,
    "name": {
     "en": "Estrella de Galicia 0.0",
-    "es": "Estrella de Galicia 0.0"
+    "es": "Estrella de Galicia 0.0",
+    "fr": "Estrella de Galicia 0.0",
+    "ru": "Estrella de Galicia 0.0"
    },
    "description": {
     "en": "Non-alcoholic beer (33cl)",
-    "es": "Cerveza sin alcohol (33cl)"
+    "es": "Cerveza sin alcohol (33cl)",
+    "fr": "Bière sans alcool (33 cl)",
+    "ru": "Безалкогольное пиво (0,33 л)"
    },
    "price": 3.0,
    "photo": null,
@@ -1687,11 +2085,15 @@
    "sub": null,
    "name": {
     "en": "Fanta Lemon",
-    "es": "Fanta Limón"
+    "es": "Fanta Limón",
+    "fr": "Fanta citron",
+    "ru": "Fanta лимон"
    },
    "description": {
     "en": "Lemon soda",
-    "es": "Refresco de limón"
+    "es": "Refresco de limón",
+    "fr": "Soda au citron",
+    "ru": "Лимонная газировка"
    },
    "price": 2.6,
    "photo": null,
@@ -1704,11 +2106,15 @@
    "sub": null,
    "name": {
     "en": "Fever-Tree Ginger Beer",
-    "es": "Fever-Tree Ginger Beer"
+    "es": "Fever-Tree Ginger Beer",
+    "fr": "Fever-Tree Ginger Beer",
+    "ru": "Fever-Tree Ginger Beer"
    },
    "description": {
     "en": "Premium ginger beer",
-    "es": "Ginger beer premium"
+    "es": "Ginger beer premium",
+    "fr": "Ginger beer premium",
+    "ru": "Премиальное имбирное пиво"
    },
    "price": 4.0,
    "photo": "ginger-beer.jpeg",
@@ -1720,11 +2126,15 @@
    "sub": null,
    "name": {
     "en": "Fever-Tree Tonic",
-    "es": "Fever-Tree Tónica"
+    "es": "Fever-Tree Tónica",
+    "fr": "Fever-Tree Tonic",
+    "ru": "Тоник Fever-Tree"
    },
    "description": {
     "en": "Premium tonic water",
-    "es": "Tónica premium"
+    "es": "Tónica premium",
+    "fr": "Tonic premium",
+    "ru": "Премиальный тоник"
    },
    "price": 2.9,
    "photo": null,
@@ -1737,11 +2147,15 @@
    "sub": null,
    "name": {
     "en": "Natural Orange Juice",
-    "es": "Zumo Naranja Natural"
+    "es": "Zumo Naranja Natural",
+    "fr": "Jus d’orange pressé",
+    "ru": "Свежевыжатый апельсиновый сок"
    },
    "description": {
     "en": "Fresh squeezed (500ml)",
-    "es": "Recién exprimido (500ml)"
+    "es": "Recién exprimido (500ml)",
+    "fr": "Pressé minute (500 ml)",
+    "ru": "Свежевыжатый (500 мл)"
    },
    "price": 4.0,
    "photo": null,
@@ -1754,11 +2168,15 @@
    "sub": null,
    "name": {
     "en": "Nestea Lemon",
-    "es": "Nestea Limón"
+    "es": "Nestea Limón",
+    "fr": "Nestea citron",
+    "ru": "Nestea лимон"
    },
    "description": {
     "en": "Iced lemon tea",
-    "es": "Té helado de limón"
+    "es": "Té helado de limón",
+    "fr": "Thé glacé au citron",
+    "ru": "Холодный чай с лимоном"
    },
    "price": 2.6,
    "photo": null,
@@ -1771,11 +2189,15 @@
    "sub": null,
    "name": {
     "en": "Premium Filtered Water",
-    "es": "Agua Filtrada Premium"
+    "es": "Agua Filtrada Premium",
+    "fr": "Eau filtrée premium",
+    "ru": "Фильтрованная вода премиум"
    },
    "description": {
     "en": "500ml or litre",
-    "es": "500ml o litro"
+    "es": "500ml o litro",
+    "fr": "500 ml ou 1 litre",
+    "ru": "500 мл или литр"
    },
    "price": 2.6,
    "photo": null,
@@ -1788,11 +2210,15 @@
    "sub": null,
    "name": {
     "en": "Red Bull",
-    "es": "Red Bull"
+    "es": "Red Bull",
+    "fr": "Red Bull",
+    "ru": "Red Bull"
    },
    "description": {
     "en": "Classic, Watermelon or Zero",
-    "es": "Clásico, Sandía o Zero"
+    "es": "Clásico, Sandía o Zero",
+    "fr": "Classique, pastèque ou Zero",
+    "ru": "Классический, арбузный или Zero"
    },
    "price": 3.5,
    "photo": null,
@@ -1805,11 +2231,15 @@
    "sub": null,
    "name": {
     "en": "Sprite",
-    "es": "Sprite"
+    "es": "Sprite",
+    "fr": "Sprite",
+    "ru": "Sprite"
    },
    "description": {
     "en": "Lemon-lime soda",
-    "es": "Refresco de lima-limón"
+    "es": "Refresco de lima-limón",
+    "fr": "Soda citron-citron vert",
+    "ru": "Лимонно-лаймовая газировка"
    },
    "price": 2.6,
    "photo": null,
@@ -1822,11 +2252,15 @@
    "sub": null,
    "name": {
     "en": "Virgin Mojito",
-    "es": "Mojito Virgen"
+    "es": "Mojito Virgen",
+    "fr": "Mojito sans alcool",
+    "ru": "Безалкогольный мохито"
    },
    "description": {
     "en": "Non-alcoholic mojito",
-    "es": "Mojito sin alcohol"
+    "es": "Mojito sin alcohol",
+    "fr": "Mojito sans alcool",
+    "ru": "Мохито без алкоголя"
    },
    "price": 5.0,
    "photo": null,
@@ -1839,11 +2273,15 @@
    "sub": null,
    "name": {
     "en": "Yuzu",
-    "es": "Yuzu"
+    "es": "Yuzu",
+    "fr": "Yuzu",
+    "ru": "Юдзу"
    },
    "description": {
     "en": "Japanese citrus drink",
-    "es": "Bebida de cítrico japonés"
+    "es": "Bebida de cítrico japonés",
+    "fr": "Boisson au yuzu, l’agrume japonais",
+    "ru": "Напиток из юдзу, японского цитруса"
    },
    "price": 5.0,
    "photo": null,
@@ -1856,11 +2294,15 @@
    "sub": null,
    "name": {
     "en": "Chicken",
-    "es": "Pollo"
+    "es": "Pollo",
+    "fr": "Poulet",
+    "ru": "С курицей"
    },
    "description": {
     "en": "Chicken, baby spinach, candied cherry tomatoes, goat's cheese, avocado & seeds",
-    "es": "Pollo, espinaca baby, tomate cherry confitado, queso de cabra, aguacate & semillas"
+    "es": "Pollo, espinaca baby, tomate cherry confitado, queso de cabra, aguacate & semillas",
+    "fr": "Poulet, jeunes pousses d’épinards, tomates cerises confites, fromage de chèvre, avocat & graines",
+    "ru": "Курица, молодой шпинат, томаты конфи, козий сыр, авокадо и семечки"
    },
    "price": 12.5,
    "photo": null,
@@ -1873,11 +2315,15 @@
    "sub": null,
    "name": {
     "en": "Mushroom",
-    "es": "Hongos"
+    "es": "Setas",
+    "fr": "Champignons",
+    "ru": "С грибами"
    },
    "description": {
     "en": "Sautèed mushrooms, baby spinach, goat's cheese, roasted red pepper & caramelised onion",
-    "es": "Setas girgolas salteadas, espinacas baby, queso de cabra, pimiento rojo asado & cebolla caramelizada"
+    "es": "Setas gírgolas salteadas, espinacas baby, queso de cabra, pimiento rojo asado & cebolla caramelizada",
+    "fr": "Champignons sautés, jeunes pousses d’épinards, fromage de chèvre, poivron rouge rôti & oignon caramélisé",
+    "ru": "Обжаренные грибы, молодой шпинат, козий сыр, печёный красный перец и карамелизированный лук"
    },
    "price": 14.0,
    "photo": null,
@@ -1890,11 +2336,15 @@
    "sub": null,
    "name": {
     "en": "The Classic",
-    "es": "El Clásico"
+    "es": "El Clásico",
+    "fr": "Le Classique",
+    "ru": "Классический"
    },
    "description": {
     "en": "The traditional Cuban sandwich. Cuban-style artisan bread with our suckling pig marinated for 24 hours in lime, cilantro, mint, and spices. Slow-cooked for 4 hours for exceptional juiciness. Served with the classic combination of ham, pickles, melted cheese, and our signature Crush sauce.",
-    "es": "La bocata cubano tradicional. Pan artesano estilo cubano con nuestro lechón marinado 24h en lima, cilantro, menta y especias. Cocinado a baja temperatura durante 4 horas para lograr una jugosidad extrema. Se acompaña con la combinación clásica de jamón York, pepinillos encurtidos, queso fundido y nuestra emblemática salsa Crush."
+    "es": "La bocata cubano tradicional. Pan artesano estilo cubano con nuestro lechón marinado 24h en lima, cilantro, menta y especias. Cocinado a baja temperatura durante 4 horas para lograr una jugosidad extrema. Se acompaña con la combinación clásica de jamón York, pepinillos encurtidos, queso fundido y nuestra emblemática salsa Crush.",
+    "fr": "Le sandwich cubain traditionnel. Pain artisanal façon cubaine et notre cochon de lait mariné 24 heures au citron vert, coriandre, menthe et épices, cuit lentement 4 heures pour un moelleux exceptionnel. Servi avec la combinaison classique : jambon, cornichons, fromage fondu et notre sauce Crush.",
+    "ru": "Традиционный кубинский сэндвич. Ремесленный хлеб по-кубински и наш молочный поросёнок, маринованный 24 часа в лайме, кинзе, мяте и специях и томлёный 4 часа до исключительной сочности. Подаётся с классическим набором: ветчина, маринованные огурцы, расплавленный сыр и наш фирменный соус Crush."
    },
    "price": 14.0,
    "photo": null,
@@ -1907,11 +2357,15 @@
    "sub": null,
    "name": {
     "en": "BBQ Pulled Pork",
-    "es": "BBQ Pulled Pork"
+    "es": "BBQ Pulled Pork",
+    "fr": "BBQ Pulled Pork",
+    "ru": "BBQ Pulled Pork"
    },
    "description": {
     "en": "Cuban-style artisan bread with our version of pulled pork. Marinated in a rub of select spices, slow-cooked for 6 hours, and finished with Texas-style BBQ sauce. Topped with crispy onions, melted cheese, and Crush sauce.",
-    "es": "Pan artesano estilo cubano con nuestra versión del pulled pork. Cerdo adobado con un \"rub\" de especias seleccionadas, cocinado a baja temperatura durante 6 horas y terminado con salsa BBQ estilo Texas. Culminado con cebolla crujiente, queso fundido y salsa Crush."
+    "es": "Pan artesano estilo cubano con nuestra versión del pulled pork. Cerdo adobado con un \"rub\" de especias seleccionadas, cocinado a baja temperatura durante 6 horas y terminado con salsa BBQ estilo Texas. Culminado con cebolla crujiente, queso fundido y salsa Crush.",
+    "fr": "Pain artisanal façon cubaine et notre version du porc effiloché : mariné dans un rub d’épices choisies, cuit lentement 6 heures et nappé de sauce BBQ façon Texas. Oignons croustillants, fromage fondu et sauce Crush.",
+    "ru": "Ремесленный хлеб по-кубински и наша версия рваной свинины: маринована в смеси отборных специй, томлёная 6 часов и завершённая соусом BBQ по-техасски. Сверху хрустящий лук, расплавленный сыр и соус Crush."
    },
    "price": 14.0,
    "photo": null,
@@ -1924,11 +2378,15 @@
    "sub": null,
    "name": {
     "en": "Cheesesteak",
-    "es": "Cheesesteak"
+    "es": "Cheesesteak",
+    "fr": "Cheesesteak",
+    "ru": "Cheesesteak"
    },
    "description": {
     "en": "Inspired by the Philadelphia classic. Cuban-style artisan bread with beef marinated in our special rub and slow-cooked to melt in your mouth. Served with baby spinach, dill pickles, melted cheese, a touch of spicy mayonnaise, and Crush sauce.",
-    "es": "Inspirado en el clásico de Filadelfia. Pan artesano estilo cubano con ternera adobada con nuestro \"rub\" especial y cocinada a baja temperatura para fundirse en el paladar. Servido con espinacas baby, pepinillos encurtidos, queso derretido, un toque de mayonesa picante y salsa Crush."
+    "es": "Inspirado en el clásico de Filadelfia. Pan artesano estilo cubano con ternera adobada con nuestro \"rub\" especial y cocinada a baja temperatura para fundirse en el paladar. Servido con espinacas baby, pepinillos encurtidos, queso derretido, un toque de mayonesa picante y salsa Crush.",
+    "fr": "Inspiré du classique de Philadelphie. Pain artisanal façon cubaine et bœuf mariné dans notre rub spécial, cuit lentement jusqu’à fondre en bouche. Jeunes pousses d’épinards, cornichons à l’aneth, fromage fondu, une touche de mayonnaise épicée et sauce Crush.",
+    "ru": "Вдохновлён филадельфийской классикой. Ремесленный хлеб по-кубински и говядина, маринованная в нашей особой смеси специй и томлёная до того, что тает во рту. Молодой шпинат, маринованные огурцы с укропом, расплавленный сыр, немного острого майонеза и соус Crush."
    },
    "price": 15.0,
    "photo": null,
@@ -1941,11 +2399,15 @@
    "sub": null,
    "name": {
     "en": "Crush Club",
-    "es": "Crush Club"
+    "es": "Crush Club",
+    "fr": "Crush Club",
+    "ru": "Crush Club"
    },
    "description": {
     "en": "Cuban-style artisan bread with brined chicken breast for maximum juiciness. Topped with baby spinach, roasted peppers, caramelized onions, melted cheese, and our signature Crush sauce. A classic elevated to another level.",
-    "es": "Pan artesano estilo cubano con pechuga de pollo marinada en salmuera para garantizar la máxima jugosidad. Acompañada de espinacas baby, pimientos asados, cebolla caramelizada, queso fundido y nuestra salsa Crush. Un clásico elevado a otro nivel."
+    "es": "Pan artesano estilo cubano con pechuga de pollo marinada en salmuera para garantizar la máxima jugosidad. Acompañada de espinacas baby, pimientos asados, cebolla caramelizada, queso fundido y nuestra salsa Crush. Un clásico elevado a otro nivel.",
+    "fr": "Pain artisanal façon cubaine et blanc de poulet en saumure pour un maximum de moelleux. Jeunes pousses d’épinards, poivrons rôtis, oignons caramélisés, fromage fondu et notre sauce Crush. Un classique porté à un autre niveau.",
+    "ru": "Ремесленный хлеб по-кубински и куриная грудка в рассоле для максимальной сочности. Молодой шпинат, печёные перцы, карамелизированный лук, расплавленный сыр и наш фирменный соус Crush. Классика на новом уровне."
    },
    "price": 14.0,
    "photo": null,
@@ -1958,11 +2420,15 @@
    "sub": null,
    "name": {
     "en": "Veggie",
-    "es": "Veggie"
+    "es": "Veggie",
+    "fr": "Veggie",
+    "ru": "Veggie"
    },
    "description": {
     "en": "Cuban-style artisan bread with oyster mushrooms marinated in spices and herbs, accompanied by baby spinach, roasted peppers, and caramelized onions. Choose between goat cheese or our vegan cheese option.",
-    "es": "Pan artesano estilo cubano con setas gírgolas (setas de ostra) marinadas en especias y hierbas, acompañadas de espinacas baby, pimientos asados y cebolla caramelizada. Elige entre queso de cabra o nuestra opción de queso vegano."
+    "es": "Pan artesano estilo cubano con setas gírgolas (setas de ostra) marinadas en especias y hierbas, acompañadas de espinacas baby, pimientos asados y cebolla caramelizada. Elige entre queso de cabra o nuestra opción de queso vegano.",
+    "fr": "Pain artisanal façon cubaine et pleurotes marinés aux épices et aux herbes, avec jeunes pousses d’épinards, poivrons rôtis et oignons caramélisés. Au choix : fromage de chèvre ou notre fromage végan.",
+    "ru": "Ремесленный хлеб по-кубински и вёшенки, маринованные в специях и травах, с молодым шпинатом, печёными перцами и карамелизированным луком. На выбор: козий сыр или наш веганский сыр."
    },
    "price": 14.0,
    "photo": null,
@@ -1975,11 +2441,15 @@
    "sub": null,
    "name": {
     "en": "Chocolate",
-    "es": "Chocolate"
+    "es": "Chocolate",
+    "fr": "Chocolat",
+    "ru": "Шоколад"
    },
    "description": {
     "en": "Rich chocolate milkshake",
-    "es": "Batido intenso de chocolate"
+    "es": "Batido intenso de chocolate",
+    "fr": "Milkshake au chocolat, bien riche",
+    "ru": "Насыщенный шоколадный милкшейк"
    },
    "price": 6.0,
    "photo": null,
@@ -1992,11 +2462,15 @@
    "sub": null,
    "name": {
     "en": "Vanilla",
-    "es": "Vainilla"
+    "es": "Vainilla",
+    "fr": "Vanille",
+    "ru": "Ваниль"
    },
    "description": {
     "en": "Classic vanilla milkshake",
-    "es": "Batido clásico de vainilla"
+    "es": "Batido clásico de vainilla",
+    "fr": "Le milkshake vanille classique",
+    "ru": "Классический ванильный милкшейк"
    },
    "price": 6.0,
    "photo": null,
@@ -2009,11 +2483,15 @@
    "sub": null,
    "name": {
     "en": "Strawberry",
-    "es": "Fresa"
+    "es": "Fresa",
+    "fr": "Fraise",
+    "ru": "Клубника"
    },
    "description": {
     "en": "Fresh strawberry & ice cream milkshake",
-    "es": "Batido de fresa fresca y helado"
+    "es": "Batido de fresa fresca y helado",
+    "fr": "Milkshake fraise fraîche & glace",
+    "ru": "Милкшейк со свежей клубникой и мороженым"
    },
    "price": 6.0,
    "photo": null,
@@ -2026,11 +2504,15 @@
    "sub": null,
    "name": {
     "en": "Mocha Shake",
-    "es": "Mocha Shake"
+    "es": "Mocha Shake",
+    "fr": "Mocha Shake",
+    "ru": "Мокко-шейк"
    },
    "description": {
     "en": "Chocolate shake with specialty coffee",
-    "es": "Batido de chocolate con café de especialidad"
+    "es": "Batido de chocolate con café de especialidad",
+    "fr": "Milkshake chocolat au café de spécialité",
+    "ru": "Шоколадный шейк с кофе спешелти"
    },
    "price": 6.0,
    "photo": null,
@@ -2043,11 +2525,15 @@
    "sub": null,
    "name": {
     "en": "Vanilla Coffee Shake",
-    "es": "Vanilla Coffee Shake"
+    "es": "Vanilla Coffee Shake",
+    "fr": "Vanilla Coffee Shake",
+    "ru": "Ванильный кофейный шейк"
    },
    "description": {
     "en": "Vanilla shake with specialty coffee",
-    "es": "Batido de vainilla con café de especialidad"
+    "es": "Batido de vainilla con café de especialidad",
+    "fr": "Milkshake vanille au café de spécialité",
+    "ru": "Ванильный шейк с кофе спешелти"
    },
    "price": 6.0,
    "photo": null,
@@ -2060,11 +2546,15 @@
    "sub": null,
    "name": {
     "en": "Cream",
-    "es": "Nata"
+    "es": "Nata",
+    "fr": "Chantilly",
+    "ru": "Сливки"
    },
    "description": {
     "en": "Add whipped cream topping",
-    "es": "Añade nata montada"
+    "es": "Añade nata montada",
+    "fr": "Ajoutez de la crème fouettée",
+    "ru": "Добавьте взбитые сливки"
    },
    "price": 0.25,
    "photo": null,
@@ -2077,11 +2567,15 @@
    "sub": null,
    "name": {
     "en": "Big Smash",
-    "es": "Big Smash"
+    "es": "Big Smash",
+    "fr": "Big Smash",
+    "ru": "Big Smash"
    },
    "description": {
     "en": "Double patty with cheddar, lettuce, pickles, bacon & our homemade Thousand Island sauce on a soft potato roll",
-    "es": "Doble carne con cheddar, lechuga, pepinillos, bacon & nuestra salsa Mil Islas casera en pan de patata"
+    "es": "Doble carne con cheddar, lechuga, pepinillos, bacon & nuestra salsa Mil Islas casera en pan de patata",
+    "fr": "Double steak, cheddar, laitue, cornichons, bacon & notre sauce Thousand Island maison, dans un pain moelleux à la pomme de terre",
+    "ru": "Двойная котлета, чеддер, салат, маринованные огурцы, бекон и наш домашний соус «Тысяча островов» на мягкой картофельной булочке"
    },
    "price": 14.9,
    "photo": "big-smash-2.webp",
@@ -2093,11 +2587,15 @@
    "sub": null,
    "name": {
     "en": "Oklahoma Smash",
-    "es": "Oklahoma Smash"
+    "es": "Oklahoma Smash",
+    "fr": "Oklahoma Smash",
+    "ru": "Oklahoma Smash"
    },
    "description": {
     "en": "Double patty with white onion, cheddar & our homemade Crush sauce on a soft potato roll",
-    "es": "Doble carne con cebolla blanca, cheddar y nuestra salsa Crush en pan de patata"
+    "es": "Doble carne con cebolla blanca, cheddar y nuestra salsa Crush en pan de patata",
+    "fr": "Double steak, oignon blanc, cheddar & notre sauce Crush maison, dans un pain moelleux à la pomme de terre",
+    "ru": "Двойная котлета, белый лук, чеддер и наш домашний соус Crush на мягкой картофельной булочке"
    },
    "price": 14.9,
    "photo": "oklahoma-2.webp",
@@ -2109,11 +2607,15 @@
    "sub": null,
    "name": {
     "en": "Ultra Jack",
-    "es": "Ultra Jack"
+    "es": "Ultra Jack",
+    "fr": "Ultra Jack",
+    "ru": "Ultra Jack"
    },
    "description": {
     "en": "Double patty with pulled pork, cheddar cheese & our homemade BBQ Jack Daniels sauce on a soft potato roll",
-    "es": "Doble carne con cerdo desmenuzado, queso cheddar & nuestra salsa BBQ Jack Daniels casera"
+    "es": "Doble carne con cerdo desmenuzado, queso cheddar & nuestra salsa BBQ Jack Daniels casera",
+    "fr": "Double steak, porc effiloché, cheddar & notre sauce BBQ Jack Daniel’s maison, dans un pain moelleux à la pomme de terre",
+    "ru": "Двойная котлета, рваная свинина, чеддер и наш домашний соус BBQ Jack Daniel’s на мягкой картофельной булочке"
    },
    "price": 16.9,
    "photo": "ultra-jack.jpeg",
@@ -2125,11 +2627,15 @@
    "sub": null,
    "name": {
     "en": "Funky",
-    "es": "Funky"
+    "es": "Funky",
+    "fr": "Funky",
+    "ru": "Funky"
    },
    "description": {
     "en": "VEGETARIAN burger with vegan cheese, lettuce, tomato & our homemade Thousand Island sauce on a soft potato roll",
-    "es": "Hamburguesa VEGETARIANA con queso vegano, lechuga, tomate & nuestra salsa Mil Islas casera en pan de patata"
+    "es": "Hamburguesa VEGETARIANA con queso vegano, lechuga, tomate & nuestra salsa Mil Islas casera en pan de patata",
+    "fr": "Burger VÉGÉTARIEN au fromage végan, laitue, tomate & notre sauce Thousand Island maison, dans un pain moelleux à la pomme de terre",
+    "ru": "ВЕГЕТАРИАНСКИЙ бургер с веганским сыром, салатом, томатом и нашим домашним соусом «Тысяча островов» на мягкой картофельной булочке"
    },
    "price": 14.9,
    "photo": null,
@@ -2141,11 +2647,15 @@
    "sub": null,
    "name": {
     "en": "Double Cheeseburger",
-    "es": "Cheeseburger"
+    "es": "Cheeseburger",
+    "fr": "Double Cheeseburger",
+    "ru": "Двойной чизбургер"
    },
    "description": {
     "en": "Double patty with cheddar cheese on a soft potato roll",
-    "es": "Doble carne con queso cheddar en pan de patata"
+    "es": "Doble carne con queso cheddar en pan de patata",
+    "fr": "Double steak & cheddar dans un pain moelleux à la pomme de terre",
+    "ru": "Двойная котлета с чеддером на мягкой картофельной булочке"
    },
    "price": 12.9,
    "photo": null,
@@ -2157,11 +2667,15 @@
    "sub": null,
    "name": {
     "en": "Bermuda",
-    "es": "Bermuda"
+    "es": "Bermuda",
+    "fr": "Bermuda",
+    "ru": "Bermuda"
    },
    "description": {
     "en": "Strawberry & banana",
-    "es": "Fresa & banana"
+    "es": "Fresa & banana",
+    "fr": "Fraise & banane",
+    "ru": "Клубника и банан"
    },
    "price": 7.5,
    "photo": null,
@@ -2174,11 +2688,15 @@
    "sub": null,
    "name": {
     "en": "Jungle",
-    "es": "Jungle"
+    "es": "Jungle",
+    "fr": "Jungle",
+    "ru": "Jungle"
    },
    "description": {
     "en": "Acai, passion fruit & orange juice",
-    "es": "Acai, Maracuyá & zumo de naranja"
+    "es": "Açaí, maracuyá & zumo de naranja",
+    "fr": "Açaí, fruit de la passion & jus d’orange",
+    "ru": "Асаи, маракуйя и апельсиновый сок"
    },
    "price": 7.5,
    "photo": null,
@@ -2191,11 +2709,15 @@
    "sub": null,
    "name": {
     "en": "Miami",
-    "es": "Miami"
+    "es": "Miami",
+    "fr": "Miami",
+    "ru": "Miami"
    },
    "description": {
     "en": "Red berries & mango",
-    "es": "Frutos rojos & mango"
+    "es": "Frutos rojos & mango",
+    "fr": "Fruits rouges & mangue",
+    "ru": "Красные ягоды и манго"
    },
    "price": 7.5,
    "photo": null,
@@ -2208,11 +2730,15 @@
    "sub": null,
    "name": {
     "en": "Popeye",
-    "es": "Popeye"
+    "es": "Popeye",
+    "fr": "Popeye",
+    "ru": "Popeye"
    },
    "description": {
-    "en": "Pineapple, spinach, banana, mint, vanilla whey protein & almand milk",
-    "es": "Piña, espinacas, banana, menta, proteína de vainilla y leche de almendras"
+    "en": "Pineapple, spinach, banana, mint, vanilla whey protein & almond milk",
+    "es": "Piña, espinacas, banana, menta, proteína de vainilla y leche de almendras",
+    "fr": "Ananas, épinards, banane, menthe, protéine whey vanille & lait d’amande",
+    "ru": "Ананас, шпинат, банан, мята, ванильный сывороточный протеин и миндальное молоко"
    },
    "price": 7.5,
    "photo": null,
@@ -2225,11 +2751,15 @@
    "sub": null,
    "name": {
     "en": "Tio Sam",
-    "es": "Tio Sam"
+    "es": "Tio Sam",
+    "fr": "Tio Sam",
+    "ru": "Tio Sam"
    },
    "description": {
     "en": "Banana, peanut butter, honey, milk & vanilla whey protein",
-    "es": "Banana, mantequilla de cacahuete, miel, leche & proteína de vainilla"
+    "es": "Banana, mantequilla de cacahuete, miel, leche & proteína de vainilla",
+    "fr": "Banane, beurre de cacahuète, miel, lait & protéine whey vanille",
+    "ru": "Банан, арахисовая паста, мёд, молоко и ванильный сывороточный протеин"
    },
    "price": 7.5,
    "photo": "tio-sam.webp",
@@ -2241,11 +2771,15 @@
    "sub": null,
    "name": {
     "en": "Cosmo",
-    "es": "Cosmo"
+    "es": "Cosmo",
+    "fr": "Cosmo",
+    "ru": "Cosmo"
    },
    "description": {
     "en": "Raspberry, banana, Greek yogurt and milk",
-    "es": "Frambuesa, banana, yogur griego & leche"
+    "es": "Frambuesa, banana, yogur griego & leche",
+    "fr": "Framboise, banane, yaourt grec & lait",
+    "ru": "Малина, банан, греческий йогурт и молоко"
    },
    "price": 7.5,
    "photo": "cosmo.webp",
@@ -2257,11 +2791,15 @@
    "sub": null,
    "name": {
     "en": "Carnival",
-    "es": "Carnival"
+    "es": "Carnival",
+    "fr": "Carnival",
+    "ru": "Carnival"
    },
    "description": {
     "en": "Mango, banana, passion fruit & agave",
-    "es": "Mango, banana, maracuyá & agave"
+    "es": "Mango, banana, maracuyá & agave",
+    "fr": "Mangue, banane, fruit de la passion & agave",
+    "ru": "Манго, банан, маракуйя и агава"
    },
    "price": 7.5,
    "photo": "carnival.webp",
@@ -2273,11 +2811,15 @@
    "sub": null,
    "name": {
     "en": "Peach Schnapps",
-    "es": "Peach Schnapps"
+    "es": "Peach Schnapps",
+    "fr": "Peach Schnapps",
+    "ru": "Peach Schnapps"
    },
    "description": {
     "en": "Add a shot of liquor",
-    "es": "Añade un shot de licor"
+    "es": "Añade un shot de licor",
+    "fr": "Ajoutez un shot de liqueur",
+    "ru": "Добавьте шот ликёра"
    },
    "price": 1.5,
    "photo": null,
@@ -2290,11 +2832,15 @@
    "sub": null,
    "name": {
     "en": "Vanilla Protein",
-    "es": "Proteína Vainilla"
+    "es": "Proteína Vainilla",
+    "fr": "Protéine vanille",
+    "ru": "Ванильный протеин"
    },
    "description": {
     "en": "Add protein to any smoothie",
-    "es": "Añade proteína a cualquier smoothie"
+    "es": "Añade proteína a cualquier smoothie",
+    "fr": "Ajoutez des protéines à n’importe quel smoothie",
+    "ru": "Добавьте протеин в любой смузи"
    },
    "price": 1.5,
    "photo": null,
@@ -2307,11 +2853,15 @@
    "sub": null,
    "name": {
     "en": "Corona Bucket",
-    "es": "Cubo Corona"
+    "es": "Cubo Corona",
+    "fr": "Seau Corona",
+    "ru": "Ведро Corona"
    },
    "description": {
     "en": "5 Corona beers on ice",
-    "es": "5 cervezas Corona en hielo"
+    "es": "5 cervezas Corona en hielo",
+    "fr": "5 Corona sur glace",
+    "ru": "5 бутылок Corona во льду"
    },
    "price": 18.0,
    "photo": null,
@@ -2324,11 +2874,15 @@
    "sub": null,
    "name": {
     "en": "Estrella Bucket",
-    "es": "Cubo Estrella"
+    "es": "Cubo Estrella",
+    "fr": "Seau Estrella",
+    "ru": "Ведро Estrella"
    },
    "description": {
     "en": "5 Estrella beers on ice",
-    "es": "5 cervezas Estrella en hielo"
+    "es": "5 cervezas Estrella en hielo",
+    "fr": "5 Estrella sur glace",
+    "ru": "5 бутылок Estrella во льду"
    },
    "price": 12.0,
    "photo": null,
@@ -2341,11 +2895,15 @@
    "sub": null,
    "name": {
     "en": "Absolut",
-    "es": "Absolut"
+    "es": "Absolut",
+    "fr": "Absolut",
+    "ru": "Absolut"
    },
    "description": {
     "en": "Vodka",
-    "es": "Vodka"
+    "es": "Vodka",
+    "fr": "Vodka",
+    "ru": "Водка"
    },
    "price": 6.0,
    "photo": null,
@@ -2358,11 +2916,15 @@
    "sub": null,
    "name": {
     "en": "Baileys",
-    "es": "Baileys"
+    "es": "Baileys",
+    "fr": "Baileys",
+    "ru": "Baileys"
    },
    "description": {
     "en": "Irish cream liqueur",
-    "es": "Crema de whisky irlandesa"
+    "es": "Crema de whisky irlandesa",
+    "fr": "Liqueur de crème irlandaise",
+    "ru": "Ирландский сливочный ликёр"
    },
    "price": 5.0,
    "photo": null,
@@ -2375,11 +2937,15 @@
    "sub": null,
    "name": {
     "en": "Bacardi White",
-    "es": "Bacardi Blanco"
+    "es": "Bacardi Blanco",
+    "fr": "Bacardi Blanc",
+    "ru": "Bacardi белый"
    },
    "description": {
     "en": "White rum",
-    "es": "Ron blanco"
+    "es": "Ron blanco",
+    "fr": "Rhum blanc",
+    "ru": "Белый ром"
    },
    "price": 6.0,
    "photo": null,
@@ -2392,11 +2958,15 @@
    "sub": null,
    "name": {
     "en": "Barceló",
-    "es": "Barceló"
+    "es": "Barceló",
+    "fr": "Barceló",
+    "ru": "Barceló"
    },
    "description": {
     "en": "Dominican rum",
-    "es": "Ron dominicano"
+    "es": "Ron dominicano",
+    "fr": "Rhum dominicain",
+    "ru": "Доминиканский ром"
    },
    "price": 7.0,
    "photo": null,
@@ -2409,11 +2979,15 @@
    "sub": null,
    "name": {
     "en": "Bombay",
-    "es": "Bombay"
+    "es": "Bombay",
+    "fr": "Bombay",
+    "ru": "Bombay"
    },
    "description": {
     "en": "London dry gin",
-    "es": "Ginebra London dry"
+    "es": "Ginebra London dry",
+    "fr": "London dry gin",
+    "ru": "Джин London dry"
    },
    "price": 6.0,
    "photo": null,
@@ -2426,11 +3000,15 @@
    "sub": null,
    "name": {
     "en": "Bombay Sapphire",
-    "es": "Bombay Sapphire"
+    "es": "Bombay Sapphire",
+    "fr": "Bombay Sapphire",
+    "ru": "Bombay Sapphire"
    },
    "description": {
     "en": "Premium gin",
-    "es": "Ginebra premium"
+    "es": "Ginebra premium",
+    "fr": "Gin premium",
+    "ru": "Премиальный джин"
    },
    "price": 7.0,
    "photo": null,
@@ -2443,11 +3021,15 @@
    "sub": null,
    "name": {
     "en": "Brandy Soberano",
-    "es": "Brandy Soberano"
+    "es": "Brandy Soberano",
+    "fr": "Brandy Soberano",
+    "ru": "Brandy Soberano"
    },
    "description": {
     "en": "Spanish brandy",
-    "es": "Brandy español"
+    "es": "Brandy español",
+    "fr": "Brandy espagnol",
+    "ru": "Испанский бренди"
    },
    "price": 5.0,
    "photo": null,
@@ -2460,11 +3042,15 @@
    "sub": null,
    "name": {
     "en": "Brugal",
-    "es": "Brugal"
+    "es": "Brugal",
+    "fr": "Brugal",
+    "ru": "Brugal"
    },
    "description": {
     "en": "Dominican rum",
-    "es": "Ron dominicano"
+    "es": "Ron dominicano",
+    "fr": "Rhum dominicain",
+    "ru": "Доминиканский ром"
    },
    "price": 6.0,
    "photo": null,
@@ -2477,11 +3063,15 @@
    "sub": null,
    "name": {
     "en": "Dewar's White",
-    "es": "Dewar's White"
+    "es": "Dewar's White",
+    "fr": "Dewar's White",
+    "ru": "Dewar's White"
    },
    "description": {
     "en": "Blended scotch",
-    "es": "Whisky escocés"
+    "es": "Whisky escocés",
+    "fr": "Blended scotch",
+    "ru": "Купажированный шотландский виски"
    },
    "price": 6.0,
    "photo": null,
@@ -2494,11 +3084,15 @@
    "sub": null,
    "name": {
     "en": "Gin Mare",
-    "es": "Gin Mare"
+    "es": "Gin Mare",
+    "fr": "Gin Mare",
+    "ru": "Gin Mare"
    },
    "description": {
     "en": "Mediterranean gin",
-    "es": "Ginebra mediterránea"
+    "es": "Ginebra mediterránea",
+    "fr": "Gin méditerranéen",
+    "ru": "Средиземноморский джин"
    },
    "price": 10.0,
    "photo": null,
@@ -2511,11 +3105,15 @@
    "sub": null,
    "name": {
     "en": "Grey Goose",
-    "es": "Grey Goose"
+    "es": "Grey Goose",
+    "fr": "Grey Goose",
+    "ru": "Grey Goose"
    },
    "description": {
     "en": "Premium vodka",
-    "es": "Vodka premium"
+    "es": "Vodka premium",
+    "fr": "Vodka premium",
+    "ru": "Премиальная водка"
    },
    "price": 13.0,
    "photo": null,
@@ -2528,11 +3126,15 @@
    "sub": null,
    "name": {
     "en": "Havana Club 5",
-    "es": "Havana Club 5"
+    "es": "Havana Club 5",
+    "fr": "Havana Club 5",
+    "ru": "Havana Club 5"
    },
    "description": {
     "en": "Cuban rum 5 years",
-    "es": "Ron cubano 5 años"
+    "es": "Ron cubano 5 años",
+    "fr": "Rhum cubain 5 ans",
+    "ru": "Кубинский ром, 5 лет"
    },
    "price": 6.0,
    "photo": null,
@@ -2545,11 +3147,15 @@
    "sub": null,
    "name": {
     "en": "Hennessy",
-    "es": "Hennessy"
+    "es": "Hennessy",
+    "fr": "Hennessy",
+    "ru": "Hennessy"
    },
    "description": {
     "en": "Cognac",
-    "es": "Coñac"
+    "es": "Coñac",
+    "fr": "Cognac",
+    "ru": "Коньяк"
    },
    "price": 15.0,
    "photo": null,
@@ -2562,11 +3168,15 @@
    "sub": null,
    "name": {
     "en": "Jägermeister",
-    "es": "Jägermeister"
+    "es": "Jägermeister",
+    "fr": "Jägermeister",
+    "ru": "Jägermeister"
    },
    "description": {
     "en": "Herbal liqueur",
-    "es": "Licor de hierbas"
+    "es": "Licor de hierbas",
+    "fr": "Liqueur aux herbes",
+    "ru": "Травяной ликёр"
    },
    "price": 5.0,
    "photo": null,
@@ -2579,11 +3189,15 @@
    "sub": null,
    "name": {
     "en": "Jameson",
-    "es": "Jameson"
+    "es": "Jameson",
+    "fr": "Jameson",
+    "ru": "Jameson"
    },
    "description": {
     "en": "Irish whiskey",
-    "es": "Whiskey irlandés"
+    "es": "Whiskey irlandés",
+    "fr": "Whiskey irlandais",
+    "ru": "Ирландский виски"
    },
    "price": 7.0,
    "photo": null,
@@ -2596,11 +3210,15 @@
    "sub": null,
    "name": {
     "en": "Johnnie Walker Red",
-    "es": "Johnnie Walker Red"
+    "es": "Johnnie Walker Red",
+    "fr": "Johnnie Walker Red",
+    "ru": "Johnnie Walker Red"
    },
    "description": {
     "en": "Scotch whisky",
-    "es": "Whisky escocés"
+    "es": "Whisky escocés",
+    "fr": "Scotch whisky",
+    "ru": "Шотландский виски"
    },
    "price": 6.0,
    "photo": null,
@@ -2613,11 +3231,15 @@
    "sub": null,
    "name": {
     "en": "Jose Cuervo Especial",
-    "es": "Jose Cuervo Especial"
+    "es": "Jose Cuervo Especial",
+    "fr": "Jose Cuervo Especial",
+    "ru": "Jose Cuervo Especial"
    },
    "description": {
     "en": "Reposado tequila",
-    "es": "Tequila reposado"
+    "es": "Tequila reposado",
+    "fr": "Tequila reposado",
+    "ru": "Текила репосадо"
    },
    "price": 6.0,
    "photo": null,
@@ -2630,11 +3252,15 @@
    "sub": null,
    "name": {
     "en": "Jose Cuervo Silver",
-    "es": "Jose Cuervo Silver"
+    "es": "Jose Cuervo Silver",
+    "fr": "Jose Cuervo Silver",
+    "ru": "Jose Cuervo Silver"
    },
    "description": {
     "en": "Silver tequila",
-    "es": "Tequila blanco"
+    "es": "Tequila blanco",
+    "fr": "Tequila blanche",
+    "ru": "Серебряная текила"
    },
    "price": 6.0,
    "photo": null,
@@ -2647,11 +3273,15 @@
    "sub": null,
    "name": {
     "en": "Larios",
-    "es": "Larios"
+    "es": "Larios",
+    "fr": "Larios",
+    "ru": "Larios"
    },
    "description": {
     "en": "Spanish gin",
-    "es": "Ginebra española"
+    "es": "Ginebra española",
+    "fr": "Gin espagnol",
+    "ru": "Испанский джин"
    },
    "price": 6.0,
    "photo": null,
@@ -2664,11 +3294,15 @@
    "sub": null,
    "name": {
     "en": "Macallan",
-    "es": "Macallan"
+    "es": "Macallan",
+    "fr": "Macallan",
+    "ru": "Macallan"
    },
    "description": {
     "en": "Single malt scotch",
-    "es": "Single malt escocés"
+    "es": "Single malt escocés",
+    "fr": "Single malt écossais",
+    "ru": "Односолодовый шотландский виски"
    },
    "price": 18.0,
    "photo": null,
@@ -2681,11 +3315,15 @@
    "sub": null,
    "name": {
     "en": "Malibu Coconut",
-    "es": "Malibu Coco"
+    "es": "Malibu Coco",
+    "fr": "Malibu Coco",
+    "ru": "Malibu кокос"
    },
    "description": {
     "en": "Coconut rum",
-    "es": "Ron de coco"
+    "es": "Ron de coco",
+    "fr": "Rhum à la noix de coco",
+    "ru": "Кокосовый ром"
    },
    "price": 6.0,
    "photo": null,
@@ -2698,11 +3336,15 @@
    "sub": null,
    "name": {
     "en": "Martin Miller's",
-    "es": "Martin Miller's"
+    "es": "Martin Miller's",
+    "fr": "Martin Miller's",
+    "ru": "Martin Miller's"
    },
    "description": {
     "en": "English gin",
-    "es": "Ginebra inglesa"
+    "es": "Ginebra inglesa",
+    "fr": "Gin anglais",
+    "ru": "Английский джин"
    },
    "price": 7.0,
    "photo": null,
@@ -2715,11 +3357,15 @@
    "sub": null,
    "name": {
     "en": "Patrón",
-    "es": "Patrón"
+    "es": "Patrón",
+    "fr": "Patrón",
+    "ru": "Patrón"
    },
    "description": {
     "en": "Premium tequila",
-    "es": "Tequila premium"
+    "es": "Tequila premium",
+    "fr": "Tequila premium",
+    "ru": "Премиальная текила"
    },
    "price": 20.0,
    "photo": null,
@@ -2732,11 +3378,15 @@
    "sub": null,
    "name": {
     "en": "Puerto de Indias",
-    "es": "Puerto de Indias"
+    "es": "Puerto de Indias",
+    "fr": "Puerto de Indias",
+    "ru": "Puerto de Indias"
    },
    "description": {
     "en": "Strawberry gin",
-    "es": "Ginebra de fresa"
+    "es": "Ginebra de fresa",
+    "fr": "Gin à la fraise",
+    "ru": "Клубничный джин"
    },
    "price": 7.0,
    "photo": null,
@@ -2749,11 +3399,15 @@
    "sub": null,
    "name": {
     "en": "Santa Teresa",
-    "es": "Santa Teresa"
+    "es": "Santa Teresa",
+    "fr": "Santa Teresa",
+    "ru": "Santa Teresa"
    },
    "description": {
     "en": "Venezuelan rum",
-    "es": "Ron venezolano"
+    "es": "Ron venezolano",
+    "fr": "Rhum vénézuélien",
+    "ru": "Венесуэльский ром"
    },
    "price": 6.0,
    "photo": null,
@@ -2766,11 +3420,15 @@
    "sub": null,
    "name": {
     "en": "Seagram's",
-    "es": "Seagram's"
+    "es": "Seagram's",
+    "fr": "Seagram's",
+    "ru": "Seagram's"
    },
    "description": {
     "en": "American gin",
-    "es": "Ginebra americana"
+    "es": "Ginebra americana",
+    "fr": "Gin américain",
+    "ru": "Американский джин"
    },
    "price": 6.0,
    "photo": null,
@@ -2783,11 +3441,15 @@
    "sub": null,
    "name": {
     "en": "Smirnoff",
-    "es": "Smirnoff"
+    "es": "Smirnoff",
+    "fr": "Smirnoff",
+    "ru": "Smirnoff"
    },
    "description": {
     "en": "Vodka",
-    "es": "Vodka"
+    "es": "Vodka",
+    "fr": "Vodka",
+    "ru": "Водка"
    },
    "price": 6.0,
    "photo": null,
@@ -2800,11 +3462,15 @@
    "sub": null,
    "name": {
     "en": "Tanqueray",
-    "es": "Tanqueray"
+    "es": "Tanqueray",
+    "fr": "Tanqueray",
+    "ru": "Tanqueray"
    },
    "description": {
     "en": "London dry gin",
-    "es": "Ginebra London dry"
+    "es": "Ginebra London dry",
+    "fr": "London dry gin",
+    "ru": "Джин London dry"
    },
    "price": 6.0,
    "photo": null,
@@ -2817,11 +3483,15 @@
    "sub": null,
    "name": {
     "en": "Tanqueray 0.0",
-    "es": "Tanqueray 0.0"
+    "es": "Tanqueray 0.0",
+    "fr": "Tanqueray 0.0",
+    "ru": "Tanqueray 0.0"
    },
    "description": {
     "en": "Non-alcoholic gin",
-    "es": "Ginebra sin alcohol"
+    "es": "Ginebra sin alcohol",
+    "fr": "Gin sans alcool",
+    "ru": "Безалкогольный джин"
    },
    "price": 6.0,
    "photo": null,
@@ -2834,11 +3504,15 @@
    "sub": null,
    "name": {
     "en": "Aperol Spritz",
-    "es": "Aperol Spritz"
+    "es": "Aperol Spritz",
+    "fr": "Aperol Spritz",
+    "ru": "Aperol Spritz"
    },
    "description": {
     "en": "Aperol, prosecco, soda",
-    "es": "Aperol, prosecco, soda"
+    "es": "Aperol, prosecco, soda",
+    "fr": "Aperol, prosecco, eau gazeuse",
+    "ru": "Aperol, просекко, содовая"
    },
    "price": 7.0,
    "photo": null,
@@ -2851,11 +3525,15 @@
    "sub": null,
    "name": {
     "en": "Campari Spritz",
-    "es": "Campari Spritz"
+    "es": "Campari Spritz",
+    "fr": "Campari Spritz",
+    "ru": "Campari Spritz"
    },
    "description": {
     "en": "Campari, prosecco, soda",
-    "es": "Campari, prosecco, soda"
+    "es": "Campari, prosecco, soda",
+    "fr": "Campari, prosecco, eau gazeuse",
+    "ru": "Campari, просекко, содовая"
    },
    "price": 7.0,
    "photo": null,
@@ -2868,11 +3546,15 @@
    "sub": null,
    "name": {
     "en": "Hugo Spritz",
-    "es": "Hugo Spritz"
+    "es": "Hugo Spritz",
+    "fr": "Hugo Spritz",
+    "ru": "Hugo Spritz"
    },
    "description": {
     "en": "Elderflower, prosecco, mint",
-    "es": "Flor de saúco, prosecco, menta"
+    "es": "Flor de saúco, prosecco, menta",
+    "fr": "Fleur de sureau, prosecco, menthe",
+    "ru": "Бузина, просекко, мята"
    },
    "price": 8.0,
    "photo": null,
@@ -2885,11 +3567,15 @@
    "sub": null,
    "name": {
     "en": "Raspberry Spritz",
-    "es": "Raspberry Spritz"
+    "es": "Raspberry Spritz",
+    "fr": "Spritz framboise",
+    "ru": "Малиновый спритц"
    },
    "description": {
     "en": "Raspberry, prosecco, soda",
-    "es": "Frambuesa, prosecco, soda"
+    "es": "Frambuesa, prosecco, soda",
+    "fr": "Framboise, prosecco, eau gazeuse",
+    "ru": "Малина, просекко, содовая"
    },
    "price": 7.0,
    "photo": null,
@@ -2902,11 +3588,15 @@
    "sub": null,
    "name": {
     "en": "Rossini",
-    "es": "Rossini"
+    "es": "Rossini",
+    "fr": "Rossini",
+    "ru": "Rossini"
    },
    "description": {
     "en": "Strawberry purée with prosecco",
-    "es": "Puré de fresa con prosecco"
+    "es": "Puré de fresa con prosecco",
+    "fr": "Purée de fraise & prosecco",
+    "ru": "Клубничное пюре с просекко"
    },
    "price": 7.0,
    "photo": null,
@@ -2919,11 +3609,15 @@
    "sub": null,
    "name": {
     "en": "Petroni Spritz",
-    "es": "Petroni Spritz"
+    "es": "Petroni Spritz",
+    "fr": "Petroni Spritz",
+    "ru": "Petroni Spritz"
    },
    "description": {
     "en": "Petroni, prosecco, soda",
-    "es": "Petroni, prosecco, soda"
+    "es": "Petroni, prosecco, soda",
+    "fr": "Petroni, prosecco, eau gazeuse",
+    "ru": "Petroni, просекко, содовая"
    },
    "price": 7.0,
    "photo": "petroni-spritz.jpg",
@@ -2935,11 +3629,15 @@
    "sub": null,
    "name": {
     "en": "Chai",
-    "es": "Chai"
+    "es": "Chai",
+    "fr": "Chai",
+    "ru": "Чай масала"
    },
    "description": {
     "en": "Spiced chai tea",
-    "es": "Té chai especiado"
+    "es": "Té chai especiado",
+    "fr": "Thé chaï aux épices",
+    "ru": "Пряный чай масала"
    },
    "price": 4.0,
    "photo": null,
@@ -2952,11 +3650,15 @@
    "sub": null,
    "name": {
     "en": "Chamomile",
-    "es": "Manzanilla"
+    "es": "Manzanilla",
+    "fr": "Camomille",
+    "ru": "Ромашка"
    },
    "description": {
     "en": "Calming chamomile infusion",
-    "es": "Infusión relajante"
+    "es": "Infusión relajante",
+    "fr": "Infusion apaisante",
+    "ru": "Успокаивающий травяной настой"
    },
    "price": 4.0,
    "photo": null,
@@ -2969,11 +3671,15 @@
    "sub": null,
    "name": {
     "en": "Tea",
-    "es": "Té"
+    "es": "Té",
+    "fr": "Thé",
+    "ru": "Чай"
    },
    "description": {
     "en": "Black / Green Vanilla",
-    "es": "Negro / Verde Vainilla"
+    "es": "Negro / Verde Vainilla",
+    "fr": "Noir / Vert vanille",
+    "ru": "Чёрный / Зелёный с ванилью"
    },
    "price": 4.0,
    "photo": null,
@@ -2986,11 +3692,15 @@
    "sub": null,
    "name": {
     "en": "Menta Poleo",
-    "es": "Menta Poleo"
+    "es": "Menta Poleo",
+    "fr": "Menta Poleo",
+    "ru": "Menta Poleo"
    },
    "description": {
-    "en": "",
-    "es": ""
+    "en": "Pennyroyal mint infusion",
+    "es": "Infusión de menta poleo",
+    "fr": "Infusion de menthe pouliot",
+    "ru": "Настой мяты полей"
    },
    "price": 4.0,
    "photo": null,
@@ -3002,11 +3712,15 @@
    "sub": null,
    "name": {
     "en": "Red Berry",
-    "es": "Frutos Rojos"
+    "es": "Frutos Rojos",
+    "fr": "Fruits rouges",
+    "ru": "Красные ягоды"
    },
    "description": {
-    "en": "",
-    "es": ""
+    "en": "Red berry infusion",
+    "es": "Infusión de frutos rojos",
+    "fr": "Infusion aux fruits rouges",
+    "ru": "Ягодный настой"
    },
    "price": 3.0,
    "photo": null,
@@ -3019,11 +3733,15 @@
    "sub": null,
    "name": {
     "en": "Bardos Roble",
-    "es": "Bardos Roble"
+    "es": "Bardos Roble",
+    "fr": "Bardos Roble",
+    "ru": "Bardos Roble"
    },
    "description": {
     "en": "Red wine Ribera del Duero",
-    "es": "Tinto Ribera del Duero"
+    "es": "Tinto Ribera del Duero",
+    "fr": "Rouge, Ribera del Duero",
+    "ru": "Красное, Ribera del Duero"
    },
    "price": 8.5,
    "photo": null,
@@ -3036,11 +3754,15 @@
    "sub": null,
    "name": {
     "en": "House Red",
-    "es": "Tinto de la Casa"
+    "es": "Tinto de la Casa",
+    "fr": "Rouge de la maison",
+    "ru": "Красное домашнее"
    },
    "description": {
     "en": "Red wine",
-    "es": "Vino tinto"
+    "es": "Vino tinto",
+    "fr": "Vin rouge",
+    "ru": "Красное вино"
    },
    "price": 5.0,
    "photo": null,
@@ -3053,11 +3775,15 @@
    "sub": null,
    "name": {
     "en": "House Rosé",
-    "es": "Rosado de la Casa"
+    "es": "Rosado de la Casa",
+    "fr": "Rosé de la maison",
+    "ru": "Розовое домашнее"
    },
    "description": {
     "en": "Rosé wine",
-    "es": "Vino rosado"
+    "es": "Vino rosado",
+    "fr": "Vin rosé",
+    "ru": "Розовое вино"
    },
    "price": 5.0,
    "photo": null,
@@ -3070,11 +3796,15 @@
    "sub": null,
    "name": {
     "en": "House White",
-    "es": "Blanco de la Casa"
+    "es": "Blanco de la Casa",
+    "fr": "Blanc de la maison",
+    "ru": "Белое домашнее"
    },
    "description": {
     "en": "White wine",
-    "es": "Vino blanco"
+    "es": "Vino blanco",
+    "fr": "Vin blanc",
+    "ru": "Белое вино"
    },
    "price": 5.0,
    "photo": null,
@@ -3087,11 +3817,15 @@
    "sub": null,
    "name": {
     "en": "Pulpo Albariño",
-    "es": "Pulpo Albariño"
+    "es": "Pulpo Albariño",
+    "fr": "Pulpo Albariño",
+    "ru": "Pulpo Albariño"
    },
    "description": {
     "en": "White wine from Galicia",
-    "es": "Vino blanco de Galicia"
+    "es": "Vino blanco de Galicia",
+    "fr": "Blanc de Galice",
+    "ru": "Белое из Галисии"
    },
    "price": 6.0,
    "photo": null,
@@ -3104,11 +3838,15 @@
    "sub": null,
    "name": {
     "en": "The Pale Rosé",
-    "es": "The Pale Rosé"
+    "es": "The Pale Rosé",
+    "fr": "The Pale Rosé",
+    "ru": "The Pale Rosé"
    },
    "description": {
     "en": "Premium rosé wine",
-    "es": "Rosado premium"
+    "es": "Rosado premium",
+    "fr": "Rosé premium",
+    "ru": "Премиальное розовое"
    },
    "price": 8.0,
    "photo": null,

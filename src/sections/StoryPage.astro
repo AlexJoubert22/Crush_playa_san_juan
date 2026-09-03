@@ -58,7 +58,7 @@ const milestones = [
     <figure class="media story-hero__photo" data-reveal="clip">
       <Image
         src={founder}
-        alt="Paul Shepherd, founder of Crush, in a black Crush t-shirt and backwards cap"
+        alt={c.alt.founder}
         widths={[560, 840, 1122]}
         sizes="(max-width: 900px) 100vw, 40vw"
         class="reveal-scale"
@@ -73,7 +73,7 @@ const milestones = [
     <figure class="media echo" data-reveal="clip">
       <Image
         src={facadeSketch}
-        alt="A pencil drawing of the Crush facade on Avenida de Niza: glass front, bougainvillea over the sign, palms reflected in the windows"
+        alt={c.alt.sketch}
         widths={[800, 1200, 1672]}
         sizes="100vw"
         class="reveal-scale echo__img"
@@ -146,7 +146,7 @@ const milestones = [
           </p>
         </div>
         <figure class="media media--3x4 founder__photo" data-reveal="clip">
-          <Image src={team} alt="Two of the Crush team in blue Crush shirts under the bougainvillea at the entrance" widths={[500, 800, 1086]} sizes="(max-width: 900px) 100vw, 36vw" class="reveal-scale" />
+          <Image src={team} alt={c.alt.team} widths={[500, 800, 1086]} sizes="(max-width: 900px) 100vw, 36vw" class="reveal-scale" />
           <figcaption class="cap"><span>{c.story.capTeamA}</span><span>{c.story.capTeamB}</span></figcaption>
         </figure>
       </div>
@@ -200,7 +200,7 @@ const milestones = [
   <section class="section community">
     <div class="wrap grid community__grid">
       <figure class="media media--16x10 community__photo" data-reveal="clip">
-        <Image src={beachPalms} alt="Palms and sand along the avenue of Playa de San Juan" widths={[600, 1000, 1600]} sizes="(max-width: 900px) 100vw, 58vw" class="reveal-scale" />
+        <Image src={beachPalms} alt={c.alt.palms} widths={[600, 1000, 1600]} sizes="(max-width: 900px) 100vw, 58vw" class="reveal-scale" />
       </figure>
       <div class="community__copy">
         <h2 class="h2" data-reveal="lines">{c.story.moreThanBar}</h2>
@@ -256,6 +256,15 @@ const milestones = [
   }
   .story-hero__copy .page-hero__label {
     margin-bottom: 0;
+  }
+  /* The title lives in a column, so it is sized by that column: a long
+     word in any language shrinks instead of running under the photo. */
+  .story-hero__copy {
+    container-type: inline-size;
+  }
+  .story-hero .page-hero__title {
+    font-size: min(var(--text-display-xl), 17cqi);
+    max-width: none;
   }
   .story-hero__lede {
     max-width: 44ch;

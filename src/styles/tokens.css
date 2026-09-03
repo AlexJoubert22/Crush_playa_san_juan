@@ -45,7 +45,7 @@
 
   /* ---- Type -------------------------------------------------------------- */
   --font-display: 'Unbounded Variable', 'Unbounded', system-ui, sans-serif;
-  --font-serif: 'Instrument Serif', 'Times New Roman', serif;
+  --font-serif: 'Instrument Serif', 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-body: 'Manrope Variable', 'Manrope', system-ui, -apple-system, sans-serif;
 
   --text-display-xl: clamp(3.25rem, 9.5vw, 10.5rem);

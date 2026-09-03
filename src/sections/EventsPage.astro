@@ -173,13 +173,27 @@ const L = (p: string) => localise(lang, p);
         <h2 class="display private__title" data-reveal="lines">
           {c.events.privateTitleA} <span class="em">{c.events.privateTitleEm}</span>
         </h2>
-        <div class="private__side">
-          <p class="body" data-reveal="fade">{c.events.privateText}</p>
-          <div class="private__actions" data-reveal="fade">
-            <a href={L('/book')} class="btn btn--light">{c.events.privateCta} <Arrow /></a>
-            <a href={L('/sound')} class="btn btn--ghost private__ghost">{c.story.theSound}</a>
-          </div>
-        </div>
+        <p class="body private__lede" data-reveal="fade">{c.events.privateText}</p>
+      </div>
+      <ol class="private__points" data-stagger>
+        {
+          [
+            [c.events.p1k, c.events.p1v],
+            [c.events.p2k, c.events.p2v],
+            [c.events.p3k, c.events.p3v],
+          ].map(([k, v], i) => (
+            <li class="private__point">
+              <span class="num private__n">0{i + 1}</span>
+              <span class="private__k">{k}</span>
+              <span class="private__v">{v}</span>
+            </li>
+          ))
+        }
+      </ol>
+      <div class="private__actions" data-reveal="fade">
+        <a href={L('/book')} class="btn btn--light">{c.events.privateCta} <Arrow /></a>
+        <a href={site.phoneHref} class="btn btn--ghost private__ghost">{c.book.callCta}</a>
+        <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener" class="btn btn--ghost private__ghost">WhatsApp</a>
       </div>
     </div>
   </section>
@@ -371,14 +385,43 @@ const L = (p: string) => localise(lang, p);
   .private__title .em {
     color: var(--night-accent-ink);
   }
-  .private__side {
+  .private__lede {
+    color: rgba(244, 239, 230, 0.86);
+  }
+  .private__points {
     display: grid;
-    gap: var(--space-5);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--col-gap);
+    margin-top: var(--space-7);
+  }
+  .private__point {
+    display: grid;
+    gap: 0.45rem;
+    align-content: start;
+    padding-top: var(--space-4);
+    border-top: 1px solid rgba(244, 239, 230, 0.28);
+  }
+  .private__n {
+    font-size: 1.1rem;
+    color: var(--night-accent-ink);
+  }
+  .private__k {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .private__v {
+    font-size: var(--text-small);
+    color: rgba(244, 239, 230, 0.72);
+    max-width: 36ch;
   }
   .private__actions {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
+    margin-top: var(--space-6);
   }
   .private__ghost {
     --btn-fg: var(--night-ink);
@@ -390,6 +433,10 @@ const L = (p: string) => localise(lang, p);
     }
     .private__title {
       max-width: none;
+    }
+    .private__points {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
     }
   }
 </style>

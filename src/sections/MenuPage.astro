@@ -6,7 +6,7 @@ import Strap from '@/components/Strap.astro';
 import Arrow from '@/components/Arrow.astro';
 import DishDialog from '@/components/DishDialog.astro';
 import menu from '@/data/menu.json';
-import { localise, type Lang } from '@/i18n';
+import { languages, localise, type Lang } from '@/i18n';
 import { t } from '@/i18n/copy';
 
 interface Props {
@@ -15,7 +15,8 @@ interface Props {
 const { lang } = Astro.props;
 const c = t(lang);
 const L = (p: string) => localise(lang, p);
-const txt = (v: { en: string; es: string }) => (lang === 'es' && v.es ? v.es : v.en);
+/** A dish's text in the page language, falling back to English. */
+const txt = (v: Record<string, string>) => v[lang] || v.en;
 
 const photos = import.meta.glob<ImageMetadata>('/src/assets/menu/*.{png,jpg,jpeg,webp}', {
   eager: true,
@@ -42,6 +43,19 @@ const tagFor = (i: Item) => {
   if (n === 'The Classic') return c.menuTags.cuban;
   if (n === 'Espresso & Tonic' || n === 'Iced Yuzu Matcha' || n === 'Paloma Premium') return c.menuTags.tryThis;
   return null;
+};
+
+/** "item|items", or "one|few|many" for Russian — pick the form for a count. */
+const plural = (n: number, forms: string) => {
+  const f = forms.split('|');
+  if (f.length === 3) {
+    const m10 = n % 10;
+    const m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return f[0];
+    if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return f[1];
+    return f[2];
+  }
+  return n === 1 ? f[0] : f[f.length - 1];
 };
 
 type CatKey = keyof typeof c.menuCats;
@@ -137,7 +151,7 @@ for (const i of menu.items) {
 }
 
 const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? n : n.toFixed(2)}`);
-const updated = new Date(menu.updatedAt).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-GB', {
+const updated = new Date(menu.updatedAt).toLocaleDateString(languages[lang].htmlLang, {
   month: 'long',
   year: 'numeric',
 });
@@ -237,7 +251,7 @@ const total = menu.items.length;
                     <div class="chapter-head">
                       <span class="num">{String(ci + 1).padStart(2, '0')}</span>
                       <h2 class="h2 cat__title">{cc.label}</h2>
-                      <span class="label muted">{cc.items.length} {c.menu.items}</span>
+                      <span class="label muted">{cc.items.length} {plural(cc.items.length, c.menu.items)}</span>
                     </div>
                     {cc.intro && <p class="cat__intro lede">{cc.intro}</p>}
 

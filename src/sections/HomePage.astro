@@ -18,7 +18,8 @@ interface Props {
 const { lang } = Astro.props;
 const c = t(lang);
 const L = (p: string) => localise(lang, p);
-const txt = (v: { en: string; es: string }) => (lang === 'es' && v.es ? v.es : v.en);
+/** A dish's text in the page language, falling back to English. */
+const txt = (v: Record<string, string>) => v[lang] || v.en;
 /** Dishes come straight from the menu, so names, prices and language never drift. */
 const dish = (nameEn: string) => {
   const found = menu.items.find((i) => i.name.en === nameEn);
@@ -144,7 +145,7 @@ const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? 
         <div class="hero__media-inner" data-parallax="10">
           <Image
             src={towerDay}
-            alt="A lifeguard tower painted in Miami stripes on the sand of Playa de San Juan, Alicante"
+            alt={c.alt.heroTower}
             widths={[640, 960, 1280, 1707]}
             sizes="(max-width: 900px) 100vw, 60vw"
             class="reveal-scale hero__img"
@@ -249,7 +250,7 @@ const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? 
               playsinline
               preload="none"
               poster="/video/morning-poster.jpg"
-              aria-label="An iced strawberry matcha being poured at the Crush bar"
+              aria-label={c.alt.reelMorning}
             >
               <source src="/video/morning.mp4" type="video/mp4" />
             </video>
@@ -360,7 +361,7 @@ const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? 
               playsinline
               preload="none"
               poster="/video/afterbeach-poster.jpg"
-              aria-label="A Crush bartender shaking and pouring a cocktail"
+              aria-label={c.alt.reelBar}
             >
               <source src="/video/afterbeach.mp4" type="video/mp4" />
             </video>
@@ -404,7 +405,7 @@ const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? 
             <figure class="media night__photo" data-reveal="clip">
               <Image
                 src={nightSign}
-                alt="A guest with a cocktail under the pink Crush neon sign at night"
+                alt={c.alt.nightGuest}
                 widths={[540, 800, 1086]}
                 sizes="(max-width: 900px) 100vw, 40vw"
                 class="reveal-scale"
@@ -537,7 +538,7 @@ const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? 
               playsinline
               preload="none"
               poster="/video/belong-poster.jpg"
-              aria-label="Playa de San Juan from above, the beach, the bar and the terrace at Crush"
+              aria-label={c.alt.reelBelong}
             >
               <source src="/video/belong.mp4" type="video/mp4" />
             </video>
@@ -572,9 +573,9 @@ const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? 
             <p class="label muted">{c.footer.hours}</p>
             <ul class="rule-list" data-stagger>
               {
-                site.hours.map((h) => (
+                site.hours.map((h, i) => (
                   <li>
-                    <span class="row__name">{h.days}</span>
+                    <span class="row__name">{c.hoursDays[i] ?? h.days}</span>
                     <span class="row__price">
                       {h.open} – {h.close}
                     </span>

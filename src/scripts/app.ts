@@ -91,7 +91,11 @@ function initReveal() {
       trigger: el,
       start: 'top 92%',
       once: true,
-      onEnter: () => el.classList.add('is-in'),
+      onEnter: () => {
+        el.classList.add('is-in');
+        // after the last line has risen, drop the masks so glows can breathe
+        window.setTimeout(() => el.classList.add('is-done'), 1600);
+      },
     });
   });
 }
@@ -175,13 +179,14 @@ function statusNow(): { text: string; open: boolean } {
   const t = h + min / 60;
   const close = site.closeByDay[wd];
   const weekend = wd === 0 || wd === 6;
-  if (t < site.openHour) return { text: `Opens at 09:00`, open: false };
-  if (t >= close) return { text: `Closed · opens 09:00`, open: false };
-  if (weekend && t >= 10 && t < 16) return { text: 'Open · Cadenza is on', open: true };
-  if (t < 12) return { text: 'Open · Coffee hours', open: true };
-  if (t < 17) return { text: 'Open · Brunch & bowls', open: true };
-  if (t < 20) return { text: 'Open · Sunset drinks', open: true };
-  return { text: 'Open · Night session', open: true };
+  const w = words().status;
+  if (t < site.openHour) return { text: w.opensAt, open: false };
+  if (t >= close) return { text: w.closed, open: false };
+  if (weekend && t >= 10 && t < 16) return { text: w.cadenza, open: true };
+  if (t < 12) return { text: w.coffee, open: true };
+  if (t < 17) return { text: w.brunch, open: true };
+  if (t < 20) return { text: w.sunset, open: true };
+  return { text: w.night, open: true };
 }
 
 /**
@@ -225,54 +230,21 @@ function setChip(chip: HTMLElement, text: string, animate = true) {
  * Warm one-liners the nav chip cycles through as you scroll. Index 0 is always
  * the live open/closed status, so the useful fact is what greets you at the top.
  */
-const CHIP_LINES: Record<string, string[]> = {
-  home: [],
-  menu: [
-    'Order whatever, whenever',
-    'Coffee to cocktails',
-    'Matcha, six ways',
-    'Cuban bread, pressed',
-    'Ask us for the specials',
-    'Save room for key lime pie',
-  ],
-  sound: [
-    'Thirteen residents',
-    'Progressive · deep · minimal',
-    'Cadenza, every weekend',
-    'OPUS, once a month',
-    'Less drama, more dancing',
-    'Last beat at 02:00',
-  ],
-  story: [
-    'A different culture',
-    'It started on South Beach',
-    'Built on Avenida de Niza',
-    'Open since February 2025',
-    'Belong somewhere',
-  ],
-  visit: [
-    'Av. de Niza 12',
-    'Across from the sand',
-    'Pet friendly',
-    'Sand on the floor is fine',
-    'See you in there',
-  ],
-  '404': ['Follow the music'],
-};
+/** The lines the nav chip walks through on an inner page, in the page's language. */
+function chipPool(page: string): string[] {
+  if (page === 'home') return []; // the home chip narrates the scrolled hour instead
+  return words().chip[page] ?? [];
+}
+
+/** Hour boundaries for the home narration; the lines come from the dictionary. */
+const NARRATION_EDGES = [10.5, 12, 14, 16, 17.5, 19, 21, 23, 26, 30];
 
 /** What the home chip says at a given (scrolled) hour. */
 function narration(h: number): string {
-  if (h < 10.5) return 'Coffee o’clock';
-  if (h < 12) return 'First flat white';
-  if (h < 14) return 'Brunch hours';
-  if (h < 16) return 'Bowls & iced matcha';
-  if (h < 17.5) return 'Sand on your feet';
-  if (h < 19) return 'Spritz time';
-  if (h < 21) return 'Cocktail time';
-  if (h < 23) return 'Night session on';
-  if (h < 26) return 'Dancing already';
-  if (h < 30) return 'Last beat at 02:00';
-  return 'Tomorrow, 09:00';
+  const lines = words().chip.home ?? [];
+  let i = NARRATION_EDGES.findIndex((edge) => h < edge);
+  if (i < 0) i = NARRATION_EDGES.length;
+  return lines[i] ?? lines[lines.length - 1] ?? '';
 }
 
 function initNow() {
@@ -281,7 +253,7 @@ function initNow() {
   const navChip = document.querySelector<HTMLElement>('[data-now-nav]');
   const page = document.documentElement.dataset.page ?? '';
   const homeNarrates = !!document.querySelector('[data-arc]');
-  const pool = CHIP_LINES[page] ?? [];
+  const pool = chipPool(page);
 
   let first = true;
   const syncStatus = () => {
@@ -343,6 +315,41 @@ function feed(): FeedSession[] {
 }
 const slugOf = (name: string) => name.toLowerCase().replace(/[^a-z]/g, '') || 'event';
 
+/** The page's own words for everything this script writes into the DOM. */
+type ClientCopy = {
+  status: Record<string, string>;
+  chip: Record<string, string[]>;
+  nowLabel: string;
+  closedLabel: string;
+};
+const FALLBACK_COPY: ClientCopy = {
+  status: {
+    opensAt: 'Opens at 09:00',
+    closed: 'Closed · opens 09:00',
+    cadenza: 'Open · Cadenza is on',
+    coffee: 'Open · Coffee hours',
+    brunch: 'Open · Brunch & bowls',
+    sunset: 'Open · Sunset drinks',
+    night: 'Open · Night session',
+    today: 'Today',
+    tonight: 'Tonight',
+  },
+  chip: {},
+  nowLabel: 'Now · Alicante time',
+  closedLabel: 'Closed · opens 09:00',
+};
+let CLIENT_COPY: ClientCopy | null = null;
+function words(): ClientCopy {
+  if (CLIENT_COPY) return CLIENT_COPY;
+  const el = document.getElementById('crush-copy');
+  try {
+    CLIENT_COPY = el ? { ...FALLBACK_COPY, ...(JSON.parse(el.textContent || '{}') as Partial<ClientCopy>) } : FALLBACK_COPY;
+  } catch {
+    CLIENT_COPY = FALLBACK_COPY;
+  }
+  return CLIENT_COPY;
+}
+
 /** Localised wording for the built-in Cadenza / OPUS rules. */
 type RuleCopy = Record<string, { artist: string; genre: string }>;
 let RULE_COPY: RuleCopy | null = null;
@@ -393,7 +400,8 @@ function upcoming(count = 6): AgendaRow[] {
     for (const s of sessionsOn(d)) {
       // today: hide anything that already finished
       if (i === 0) {
-        const end = parseInt(s.time.split('-')[1], 10);
+        const m = s.time.match(/[-–]\s*(\d{1,2}):/);
+        const end = m ? parseInt(m[1], 10) : 99;
         const endHour = end < 9 ? end + 24 : end;
         if (now.h + now.min / 60 >= endHour) continue;
       }
@@ -452,7 +460,7 @@ function initAgenda() {
         const li = document.createElement('li');
         li.className = `agenda__row${r.today ? ' is-today' : ''}`;
         li.append(
-          cell('agenda__date num', r.today ? (document.documentElement.lang.startsWith('es') ? 'Hoy' : 'Today') : fmt.format(r.date)),
+          cell('agenda__date num', r.today ? words().status.today : fmt.format(r.date)),
           cell('agenda__name', r.name),
           cell('agenda__time num', r.time.replace('-', '–')),
           cell('agenda__meta', [r.artist, r.genre].filter(Boolean).join(' · ')),
@@ -470,7 +478,7 @@ function initAgenda() {
     const [next] = upcoming(1);
     if (next) {
       nextBox.replaceChildren(
-        cell('next__when num', next.today ? (document.documentElement.lang.startsWith('es') ? 'Esta noche' : 'Tonight') : fmt.format(next.date)),
+        cell('next__when num', next.today ? words().status.tonight : fmt.format(next.date)),
         cell('next__name', next.name),
         cell('next__time num', next.time.replace('-', '–')),
         cell('next__meta', [next.artist, next.genre].filter(Boolean).join(' · ')),
@@ -583,9 +591,9 @@ function initDayline() {
     if (inside) {
       marker.style.left = `${(((t - 9) / 17) * 100).toFixed(2)}%`;
       time.textContent = `${String(h).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
-      label.textContent = 'Now · Alicante time';
+      label.textContent = words().nowLabel;
     } else {
-      label.textContent = 'Closed · opens 09:00';
+      label.textContent = words().closedLabel;
     }
   };
   update();
@@ -891,6 +899,43 @@ function initReels() {
   onCleanup(() => io.disconnect());
 }
 
+/* ------------------------------------------------------- mobile menu: next */
+/** The one-line "next session" inside the mobile menu, from the same agenda. */
+function initMiniNext() {
+  const when = document.querySelector<HTMLElement>('[data-mini-when]');
+  const name = document.querySelector<HTMLElement>('[data-mini-name]');
+  const time = document.querySelector<HTMLElement>('[data-mini-time]');
+  if (!when || !name || !time) return;
+  const [next] = upcoming(1);
+  if (!next) return;
+  const fmt = new Intl.DateTimeFormat(pageLocale(), { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long' });
+  when.textContent = next.today ? words().status.today : fmt.format(next.date);
+  name.textContent = next.name;
+  time.textContent = next.time;
+}
+
+/* ------------------------------------------------------- language menu */
+/** The <details> switch works on its own; this only closes it politely. */
+function initLang() {
+  const boxes = document.querySelectorAll<HTMLDetailsElement>('[data-lang]');
+  if (!boxes.length) return;
+  const closeAll = (except?: Element | null) =>
+    boxes.forEach((b) => {
+      if (b !== except) b.open = false;
+    });
+  const onClick = (e: MouseEvent) => closeAll((e.target as Element).closest('[data-lang]'));
+  const onKey = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') closeAll();
+  };
+  document.addEventListener('click', onClick);
+  document.addEventListener('keydown', onKey);
+  onCleanup(() => {
+    document.removeEventListener('click', onClick);
+    document.removeEventListener('keydown', onKey);
+    closeAll();
+  });
+}
+
 /* ------------------------------------------------------- booking form */
 /**
  * The booking request. With no endpoint configured it opens WhatsApp with the
@@ -956,9 +1001,11 @@ function init() {
   document.documentElement.classList.add('js');
   initLenis();
   initNav();
+  initLang();
   initNow();
   initReveal();
   initAgenda();
+  initMiniNext();
   initCalendar();
   initDayline();
   initHome();
@@ -977,6 +1024,7 @@ function init() {
 function teardown() {
   FEED = null;
   RULE_COPY = null;
+  CLIENT_COPY = null;
   cleanups.splice(0).forEach((fn) => fn());
   ScrollTrigger.getAll().forEach((t) => t.kill());
   splits.forEach((s) => s.revert());

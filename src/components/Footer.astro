@@ -16,7 +16,7 @@ const socials = [
   { label: 'Instagram', handle: site.instagramHandle, href: site.instagram, icon: 'instagram' },
   { label: 'TikTok', handle: '@crushplayasanjuan', href: site.tiktok, icon: 'tiktok' },
   { label: 'Facebook', handle: 'Crush Playa de San Juan', href: site.facebook, icon: 'facebook' },
-  { label: 'Tripadvisor', handle: 'Read the reviews', href: site.tripadvisor, icon: 'tripadvisor' },
+  { label: 'Tripadvisor', handle: c.footer.reviews, href: site.tripadvisor, icon: 'tripadvisor' },
 ];
 ---
 
@@ -29,7 +29,7 @@ const socials = [
         <address>
           {site.address.street}<br />
           {site.address.postal} {site.address.area}<br />
-          {site.address.city}, {site.address.country}
+          {site.address.city}, {c.country}
         </address>
         <a class="link-line footer__link" href={site.maps} target="_blank" rel="noopener">{c.footer.directions}</a>
       </div>
@@ -37,9 +37,9 @@ const socials = [
         <p class="label muted">{c.footer.hours}</p>
         <ul class="footer__hours">
           {
-            site.hours.map((h) => (
+            site.hours.map((h, i) => (
               <li>
-                <span>{h.days}</span>
+                <span>{c.hoursDays[i] ?? h.days}</span>
                 <span class="num">
                   {h.open} – {h.close}
                 </span>
@@ -47,7 +47,7 @@ const socials = [
             ))
           }
         </ul>
-        <p class="small muted">{site.hoursNote}</p>
+        <p class="small muted">{c.hoursNote}</p>
       </div>
       <div class="footer__col">
         <p class="label muted">{c.footer.sayHi}</p>
@@ -62,7 +62,7 @@ const socials = [
     </div>
 
     <!-- Where to find us the rest of the time -->
-    <section class="social" aria-label="Crush on social media">
+    <section class="social" aria-label={c.alt.social}>
       <p class="label muted social__label">{c.footer.follow}</p>
       <ul class="social__list">
         {
