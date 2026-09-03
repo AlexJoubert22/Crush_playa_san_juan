@@ -11,7 +11,6 @@ import { t } from '@/i18n/copy';
 import cadenzaArt from '@/assets/events/cadenza-stack.webp';
 import opusArt from '@/assets/events/opus.webp';
 import nightSign from '@/assets/venue/noche1.webp';
-import terraceNight from '@/assets/venue/neon-sign.jpg';
 
 interface Props {
   lang: Lang;
@@ -209,20 +208,45 @@ const L = (p: string) => localise(lang, p);
       </div>
     </div>
 
-    <!-- The sign, at the shape it was shot in -->
-    <figure class="private__media media" data-reveal="clip">
-      <Image
-        src={terraceNight}
-        alt={c.alt.private}
-        widths={[900, 1400, 2000]}
-        sizes="100vw"
-        class="reveal-scale"
-      />
-      <figcaption class="cap wrap">
-        <span>{c.events.privateCap}</span>
-        <span class="num">{c.events.privateKicker}</span>
-      </figcaption>
-    </figure>
+    <!-- When it fits: the venue's own 09:00 → 03:00 axis, three example windows -->
+    <div class="wrap">
+      <div class="when" data-reveal="fade">
+        <div class="when__head">
+          <p class="label">{c.events.whenHead}</p>
+          <p class="label muted">{c.events.whenAxis} · <span class="num">09:00 – 02:00</span></p>
+        </div>
+
+        <ol class="when__list">
+          {
+            [
+              { k: c.events.slot1k, t: '10:00 – 13:00', from: 10, to: 13, tone: 'day' },
+              { k: c.events.slot2k, t: '18:00 – 21:00', from: 18, to: 21, tone: 'sunset' },
+              { k: c.events.slot3k, t: '21:00 – 02:00', from: 21, to: 26, tone: 'night' },
+            ].map((s) => (
+              <li class="when__row">
+                <span class="when__k">{s.k}</span>
+                <span class="when__t num">{s.t}</span>
+                <span class="when__rail">
+                  <span class={`when__seg when__seg--${s.tone}`} style={`--from: ${s.from}; --to: ${s.to}`} />
+                </span>
+              </li>
+            ))
+          }
+        </ol>
+
+        <ol class="when__ticks num" aria-hidden="true">
+          <li style="--h: 9">09</li>
+          <li style="--h: 12">12</li>
+          <li style="--h: 15">15</li>
+          <li style="--h: 18">18</li>
+          <li style="--h: 21">21</li>
+          <li style="--h: 24">00</li>
+          <li style="--h: 27">03</li>
+        </ol>
+
+        <p class="small when__note">{c.events.whenNote}</p>
+      </div>
+    </div>
   </section>
 
   <EventsFeed lang={lang} />
@@ -404,7 +428,7 @@ const L = (p: string) => localise(lang, p);
     gap: var(--space-6) calc(var(--col-gap) * 2);
     align-items: start;
     padding-top: var(--space-7);
-    padding-bottom: var(--space-7);
+    padding-bottom: var(--space-6);
   }
   .private__copy {
     display: grid;
@@ -477,25 +501,6 @@ const L = (p: string) => localise(lang, p);
     text-wrap: pretty;
   }
 
-  /* Full-bleed band: the photograph is 1.95:1, so it is never cropped tall */
-  .private__media {
-    width: 100%;
-    aspect-ratio: 2 / 1;
-  }
-  /* the photo is far brighter than the page: ease the top edge into the ink */
-  .private__media::before {
-    content: '';
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 22%;
-    z-index: 1;
-    background: linear-gradient(180deg, var(--night-canvas), rgba(11, 9, 14, 0));
-    pointer-events: none;
-  }
-  .private__media :global(.cap) {
-    padding-inline: var(--gutter);
-    padding-bottom: var(--space-4);
-  }
   @media (max-width: 1000px) {
     .private {
       grid-template-columns: 1fr;
@@ -504,14 +509,124 @@ const L = (p: string) => localise(lang, p);
     .private__title {
       max-width: none;
     }
-    .private__media {
-      aspect-ratio: 3 / 2;
-    }
   }
   @media (max-width: 620px) {
     .private__point {
       grid-template-columns: 2.25rem minmax(0, 1fr);
       column-gap: var(--space-3);
+    }
+  }
+
+  /* ---- What fits when: the same 09:00 → 03:00 axis the agenda uses ---- */
+  .when {
+    display: grid;
+    gap: var(--space-4);
+    padding-top: var(--space-6);
+    border-top: 1px solid rgba(244, 239, 230, 0.28);
+  }
+  .when__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .when__head .label {
+    color: var(--night-accent-ink);
+  }
+  .when__list {
+    display: grid;
+  }
+  .when__row {
+    display: grid;
+    grid-template-columns: minmax(0, 14rem) 8.5rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.35rem var(--space-5);
+    padding-block: var(--space-4);
+    border-bottom: 1px solid rgba(244, 239, 230, 0.14);
+  }
+  .when__row:first-child {
+    border-top: 1px solid rgba(244, 239, 230, 0.14);
+  }
+  .when__k {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .when__t {
+    font-size: 0.9rem;
+    color: rgba(244, 239, 230, 0.7);
+  }
+  .when__rail {
+    position: relative;
+    display: block;
+    height: 12px;
+  }
+  .when__rail::before {
+    content: '';
+    position: absolute;
+    inset: 5px 0 auto 0;
+    height: 1px;
+    background: rgba(244, 239, 230, 0.22);
+  }
+  .when__seg {
+    position: absolute;
+    top: 3px;
+    height: 5px;
+    border-radius: 3px;
+    left: calc((var(--from) - 9) / 18 * 100%);
+    width: calc((var(--to) - var(--from)) / 18 * 100%);
+  }
+  /* each window takes the colour of its hour, like the rest of the site */
+  .when__seg--day {
+    background: var(--turquoise-lit);
+    box-shadow: 0 0 12px rgba(79, 214, 218, 0.5);
+  }
+  .when__seg--sunset {
+    background: var(--neon-yellow);
+    box-shadow: 0 0 12px var(--neon-yellow-glow);
+  }
+  .when__seg--night {
+    background: var(--night-accent);
+    box-shadow: 0 0 12px var(--glow-mid);
+  }
+  .when__ticks {
+    position: relative;
+    height: 1rem;
+    margin-left: calc(14rem + var(--space-5) + 8.5rem + var(--space-5));
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    color: rgba(244, 239, 230, 0.5);
+  }
+  .when__ticks li {
+    position: absolute;
+    top: 0;
+    left: calc((var(--h) - 9) / 18 * 100%);
+    transform: translateX(-50%);
+  }
+  .when__ticks li:first-child {
+    transform: none;
+  }
+  .when__ticks li:last-child {
+    transform: translateX(-100%);
+  }
+  .when__note {
+    color: rgba(244, 239, 230, 0.6);
+    max-width: 60ch;
+    text-wrap: pretty;
+  }
+  @media (max-width: 900px) {
+    .when__row {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+    .when__rail {
+      grid-column: 1 / -1;
+      margin-top: 0.35rem;
+    }
+    .when__ticks {
+      margin-left: 0;
     }
   }
 </style>

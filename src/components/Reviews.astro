@@ -1,0 +1,188 @@
+---
+/**
+ * Social proof, and only what can be verified.
+ *
+ * The rating and count come from `reviews.json`, checked against the venue's
+ * public Google listing. Quotes render only if that file actually holds some —
+ * an empty list shows the rating alone rather than inventing anything.
+ */
+import reviews from '@/data/reviews.json';
+import type { Lang } from '@/i18n';
+import { t } from '@/i18n/copy';
+import Arrow from './Arrow.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = t(lang);
+
+const nf = new Intl.NumberFormat(lang === 'en' ? 'en-GB' : lang);
+const rating = nf.format(reviews.rating);
+const count = nf.format(reviews.count);
+
+/** "review|reviews", or three forms for Russian. */
+const plural = (n: number, forms: string) => {
+  const f = forms.split('|');
+  if (f.length === 3) {
+    const m10 = n % 10;
+    const m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return f[0];
+    if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return f[1];
+    return f[2];
+  }
+  return n === 1 ? f[0] : f[f.length - 1];
+};
+
+const quotes = (reviews.quotes ?? []) as { author: string; text: string; date?: string }[];
+const pct = Math.max(0, Math.min(100, (reviews.rating / 5) * 100));
+---
+
+<section class="reviews" aria-label={c.reviews.head}>
+  <div class="wrap">
+    <div class="chapter-head" data-reveal="fade">
+      <span class="num">{rating}</span>
+      <span class="label">{c.reviews.head}</span>
+      <a href={reviews.url} target="_blank" rel="noopener" class="label link-line">{c.reviews.cta}</a>
+    </div>
+
+    <div class="reviews__score" data-reveal="fade">
+      <p class="reviews__num num">{rating}</p>
+      <div class="reviews__meta">
+        <span class="reviews__stars" role="img" aria-label={`${rating} / 5`}>
+          <span class="reviews__stars-fill" style={`--pct: ${pct}%`}>★★★★★</span>
+          <span class="reviews__stars-bg" aria-hidden="true">★★★★★</span>
+        </span>
+        <p class="reviews__count">
+          <span class="num">{count}</span>
+          {' '}{plural(reviews.count, c.reviews.reviews)} {c.reviews.onSource} {reviews.source}
+        </p>
+      </div>
+      <a href={reviews.url} target="_blank" rel="noopener" class="btn btn--sm reviews__cta">
+        {c.reviews.cta} <Arrow dir="up-right" />
+      </a>
+    </div>
+
+    {
+      quotes.length > 0 && (
+        <ul class="reviews__list" data-stagger>
+          {quotes.slice(0, 3).map((q) => (
+            <li class="reviews__item">
+              <blockquote class="reviews__quote">“{q.text}”</blockquote>
+              <p class="reviews__by">
+                <span class="reviews__author">{q.author}</span>
+                {q.date && <span class="reviews__date num">{q.date}</span>}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .reviews {
+    padding-block: var(--space-block);
+  }
+  .reviews__score {
+    display: grid;
+    /* the number and its meta hug each other; the link takes the rest */
+    grid-template-columns: auto auto minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-4) var(--space-6);
+    padding-top: var(--space-6);
+  }
+  .reviews__num {
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    font-weight: 600;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+  }
+  .reviews__meta {
+    display: grid;
+    gap: 0.5rem;
+    align-content: center;
+  }
+  /* Five stars, filled to the rating — no rounding up */
+  .reviews__stars {
+    position: relative;
+    /* a grid item stretches by default, and the fill's % would follow it */
+    display: inline-block;
+    justify-self: start;
+    width: max-content;
+    font-size: 1.15rem;
+    letter-spacing: 0.18em;
+    line-height: 1;
+  }
+  .reviews__stars-bg {
+    color: var(--line-strong);
+    opacity: 0.35;
+  }
+  .reviews__stars-fill {
+    position: absolute;
+    inset: 0;
+    width: var(--pct);
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--accent-ink);
+  }
+  .reviews__count {
+    font-size: var(--text-small);
+    color: var(--ink-2);
+  }
+  .reviews__cta {
+    justify-self: end;
+  }
+
+  .reviews__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--col-gap);
+    margin-top: var(--space-6);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--line);
+  }
+  .reviews__item {
+    display: grid;
+    gap: var(--space-4);
+    align-content: start;
+  }
+  .reviews__quote {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    letter-spacing: -0.015em;
+    line-height: 1.35;
+    text-wrap: pretty;
+  }
+  .reviews__by {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    font-size: var(--text-small);
+  }
+  .reviews__author {
+    font-weight: 700;
+  }
+  .reviews__date {
+    color: var(--ink-3);
+  }
+
+  @media (max-width: 860px) {
+    .reviews__score {
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: end;
+    }
+    .reviews__cta {
+      grid-column: 1 / -1;
+      justify-self: start;
+    }
+    .reviews__list {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+  }
+</style>

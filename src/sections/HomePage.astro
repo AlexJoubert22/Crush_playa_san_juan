@@ -6,6 +6,7 @@ import Strap from '@/components/Strap.astro';
 import Arrow from '@/components/Arrow.astro';
 import Beat from '@/components/Beat.astro';
 import EventsFeed from '@/components/EventsFeed.astro';
+import Reviews from '@/components/Reviews.astro';
 import { site, sessions } from '@/data/site';
 import djs from '@/data/djs.json';
 import menu from '@/data/menu.json';
@@ -548,6 +549,8 @@ const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? 
         </div>
       </div>
     </section>
+
+    <Reviews lang={lang} />
 
     <!-- ================================================== 04 · AGAIN -->
     <section class="section visit" id="visit" data-chapter-theme="day" data-hour="33">

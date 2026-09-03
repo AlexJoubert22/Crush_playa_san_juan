@@ -1,6 +1,6 @@
 # Crush — website
 
-Nueva web de **Crush** (Av. de Niza 12, Playa de San Juan, Alicante). Estática, en cuatro idiomas (inglés, español, francés y ruso), siete páginas por idioma, construida con Astro 7.
+Nueva web de **Crush** (Av. de Niza 12, Playa de San Juan, Alicante). Estática, en cuatro idiomas (inglés, español, francés y ruso), ocho páginas por idioma, construida con Astro 7.
 La dirección de arte está en [DESIGN.md](./DESIGN.md).
 
 ## Arrancar
@@ -81,6 +81,36 @@ añade el locale al sitemap en `astro.config.mjs`.
 - `sitemap-index.xml` generado en cada build con alternates `hreflang` para cada URL; `robots.txt` lo referencia.
 - Título y descripción propios por página e idioma, `og:locale` y `og:locale:alternate`, JSON-LD del local con `inLanguage`.
 - Sin cookies de terceros: la analítica solo se carga si se define `PUBLIC_ANALYTICS_DOMAIN`.
+
+## Reseñas
+
+`src/data/reviews.json` guarda la nota media y el número de opiniones, verificados contra las
+fichas públicas que citan a Google. **Solo datos reales**: si alguien inventa una reseña, se cae
+todo el valor de la sección.
+
+- Para añadir citas, cópialas literalmente del perfil de Google Business al array `quotes`
+  (`author`, `text`, `date`, `lang`). Con el array vacío se muestra solo la valoración; la fila de
+  citas simplemente no se pinta.
+- Revisa `rating`, `count` y `verifiedAt` cada pocos meses.
+- No se marca `aggregateRating` en el JSON-LD a propósito: Google ignora (y penaliza) las
+  valoraciones que un negocio se pone a sí mismo en su propia web.
+
+## Página legal
+
+`/legal` reúne aviso legal, política de privacidad y política de cookies, en los cuatro idiomas
+(la versión española es la que tiene validez legal; las otras lo dicen).
+
+**Antes de publicar en el dominio real hay que rellenar dos campos** en `src/data/legal.ts`:
+
+| Campo | Qué es |
+|---|---|
+| `companyName` | Razón social, o el nombre completo del titular si es autónomo |
+| `taxId` | NIF / CIF |
+
+Mientras estén vacíos, el build imprime un aviso y la página muestra *[pendiente de completar]*
+en lugar de inventarse un número. Los textos describen lo que la web hace de verdad: no pone
+cookies propias, no guarda nada en el navegador y no tiene base de datos. Si eso cambia (por
+ejemplo al activar la analítica o añadir otro embed), hay que actualizar `src/i18n/legal.ts`.
 
 ## El calendario
 

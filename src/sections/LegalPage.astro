@@ -1,0 +1,254 @@
+---
+import Base from '@/layouts/Base.astro';
+import Strap from '@/components/Strap.astro';
+import Arrow from '@/components/Arrow.astro';
+import { site } from '@/data/site';
+import { legal, legalReady } from '@/data/legal';
+import { localise, type Lang } from '@/i18n';
+import { t } from '@/i18n/copy';
+import { legalCopy } from '@/i18n/legal';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = t(lang);
+const l = legalCopy[lang];
+const L = (p: string) => localise(lang, p);
+
+const address = `${site.address.street}, ${site.address.postal} ${site.address.area}, ${site.address.city}, ${c.country}`;
+/** The two fields only the owner can supply show a placeholder, never a made-up value. */
+const values = [
+  legal.companyName || l.pending,
+  legal.taxId || l.pending,
+  address,
+  site.email,
+  site.phone,
+  site.url.replace(/^https?:\/\//, ''),
+  `${legal.host.name} — ${legal.host.address}`,
+];
+const rows = l.idRows.map((r, i) => ({ ...r, v: values[i] }));
+const sections = [l.s1, l.s2, l.s3];
+---
+
+<Base
+  title={l.title}
+  description={l.description}
+  theme="day"
+  page="legal"
+  lang={lang}
+  path="/legal"
+>
+  <header class="wrap page-hero legal-hero">
+    <p class="label page-hero__label"><Strap /></p>
+    <h1 class="display page-hero__title" data-reveal="lines">
+      {l.h1a} <span class="em">{l.h1em}</span>
+    </h1>
+    <p class="lede legal-hero__lede" data-reveal="fade">{l.lede}</p>
+    <p class="small muted legal-hero__meta" data-reveal="fade">
+      {l.updatedLabel}: <span class="num">{legal.updated}</span>{l.prevails && <> · {l.prevails}</>}
+    </p>
+  </header>
+
+  <!-- Who runs the site: LSSI-CE art. 10 -->
+  <section class="wrap section section--flush-top">
+    <div class="chapter-head" data-reveal="fade">
+      <span class="num">00</span>
+      <span class="label">{l.idHead}</span>
+      <span class="label label--display">{site.name}</span>
+    </div>
+    <ul class="rule-list legal-id" data-stagger>
+      {
+        rows.map((r) => (
+          <li>
+            <span class="row__name legal-id__k">{r.k}</span>
+            <span class="legal-id__v" class:list={{ 'is-pending': r.v === l.pending }}>{r.v}</span>
+          </li>
+        ))
+      }
+    </ul>
+    {
+      import.meta.env.DEV && !legalReady && (
+        <p class="small legal-warn">
+          <span class="num">!</span>
+          {' '}Dev note: fill <code>companyName</code> and <code>taxId</code> in{' '}
+          <code>src/data/legal.ts</code> before the site goes live. This box is not built into
+          production; the build prints the same warning.
+        </p>
+      )
+    }
+  </section>
+
+  {
+    sections.map((s) => (
+      <section class="wrap section section--flush-top">
+        <div class="chapter-head" data-reveal="fade">
+          <span class="num">{s.n}</span>
+          <span class="label">{s.head}</span>
+          <span />
+        </div>
+        <div class="legal-body">
+          {s.blocks.map((b) => (
+            <article class="legal-block" data-reveal="fade">
+              <h2 class="legal-block__h">{b.h}</h2>
+              <div class="legal-block__body">
+                <p class="body">{b.p}</p>
+                {b.list && (
+                  <ul class="legal-list">
+                    {b.list.map((x) => (
+                      <li>{x}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="wrap section section--flush-top">
+    <div class="chapter-head" data-reveal="fade">
+      <span class="num">04</span>
+      <span class="label">{l.contactHead}</span>
+      <span />
+    </div>
+    <div class="legal-foot" data-reveal="fade">
+      <p class="lede">{l.contactText}</p>
+      <div class="legal-foot__actions">
+        <a href={`mailto:${site.email}`} class="btn">{site.email} <Arrow /></a>
+        <a href={L('/book')} class="btn btn--ghost">{c.nav.book}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal-hero {
+    padding-bottom: var(--space-6);
+  }
+  .legal-hero__lede {
+    margin-top: var(--space-5);
+  }
+  .legal-hero__meta {
+    margin-top: var(--space-4);
+    max-width: 68ch;
+  }
+
+  .legal-id > :global(li) {
+    grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+    align-items: baseline;
+  }
+  .legal-id__k {
+    font-size: var(--text-small) !important;
+    font-family: var(--font-body) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .legal-id__v {
+    grid-column: 2;
+    grid-row: 1;
+    font-weight: 600;
+    text-wrap: pretty;
+  }
+  .legal-id__v.is-pending {
+    color: var(--ink-3);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .legal-warn {
+    margin-top: var(--space-4);
+    padding: 0.75rem 1rem;
+    border: 1px dashed var(--line-strong);
+    border-radius: 10px;
+    color: var(--ink-2);
+  }
+  .legal-warn .num {
+    color: var(--accent-ink);
+    font-weight: 700;
+  }
+  .legal-warn code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.92em;
+  }
+
+  .legal-body {
+    display: grid;
+    gap: 0;
+    padding-top: var(--space-5);
+  }
+  .legal-block {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: var(--space-3) calc(var(--col-gap) * 2);
+    padding-block: var(--space-5);
+    border-bottom: 1px solid var(--line);
+  }
+  .legal-block:first-child {
+    border-top: 1px solid var(--line-strong);
+  }
+  .legal-block__h {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+  .legal-block__body {
+    display: grid;
+    gap: var(--space-3);
+  }
+  .legal-block__body .body {
+    color: var(--ink-2);
+    max-width: 64ch;
+  }
+  .legal-list {
+    display: grid;
+    gap: 0.4rem;
+    max-width: 64ch;
+    font-size: var(--text-small);
+    color: var(--ink-2);
+  }
+  .legal-list li {
+    position: relative;
+    padding-left: 1.15rem;
+  }
+  .legal-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 1px;
+    background: var(--ink-3);
+  }
+
+  .legal-foot {
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+    padding-top: var(--space-5);
+  }
+  .legal-foot__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 860px) {
+    .legal-block {
+      grid-template-columns: 1fr;
+    }
+    .legal-id > :global(li) {
+      grid-template-columns: 1fr;
+    }
+    .legal-id__v {
+      grid-column: 1;
+      grid-row: auto;
+    }
+  }
+</style>

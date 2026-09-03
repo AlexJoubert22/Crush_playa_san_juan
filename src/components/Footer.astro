@@ -58,6 +58,7 @@ const socials = [
         <p class="label muted">{c.footer.pages}</p>
         <a class="link-line footer__link" href={L('/')}>{c.nav.home}</a>
         {nav.map((n) => <a class="link-line footer__link" href={L(n.path)}>{c.nav[n.key]}</a>)}
+        <a class="link-line footer__link footer__legal" href={L('/legal')}>{c.footer.legal}</a>
       </div>
     </div>
 
@@ -149,8 +150,13 @@ const socials = [
   }
   .footer__hours li {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 0.15rem 1rem;
+  }
+  /* "Понедельник – Четверг" is long: the label may wrap, the time never does */
+  .footer__hours .num {
+    white-space: nowrap;
   }
 
   /* ---- social ---- */
