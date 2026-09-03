@@ -1,0 +1,832 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Base from '@/layouts/Base.astro';
+import Strap from '@/components/Strap.astro';
+import Arrow from '@/components/Arrow.astro';
+import DishDialog from '@/components/DishDialog.astro';
+import menu from '@/data/menu.json';
+import { localise, type Lang } from '@/i18n';
+import { t } from '@/i18n/copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = t(lang);
+const L = (p: string) => localise(lang, p);
+const txt = (v: { en: string; es: string }) => (lang === 'es' && v.es ? v.es : v.en);
+
+const photos = import.meta.glob<ImageMetadata>('/src/assets/menu/*.{png,jpg,jpeg,webp}', {
+  eager: true,
+  import: 'default',
+});
+const photoFor = (name?: string | null) => (name ? photos[`/src/assets/menu/${name}`] : undefined);
+
+const thumbs = import.meta.glob<ImageMetadata>('/src/assets/menu/thumbs/*.{png,jpg,jpeg,webp}', {
+  eager: true,
+  import: 'default',
+});
+const thumbFor = (name?: string | null) => (name ? thumbs[`/src/assets/menu/thumbs/${name}`] : undefined);
+
+type Item = (typeof menu.items)[number];
+const tabs = [
+  { id: 'drinks', label: c.menu.drinks },
+  { id: 'food', label: c.menu.food },
+] as const;
+
+const tagFor = (i: Item) => {
+  const n = i.name.en;
+  if (n === 'Summer Crush') return c.menuTags.houseSpecial;
+  if (n === 'El Crush' || n === 'Crush Club') return c.menuTags.signature;
+  if (n === 'The Classic') return c.menuTags.cuban;
+  if (n === 'Espresso & Tonic' || n === 'Iced Yuzu Matcha' || n === 'Paloma Premium') return c.menuTags.tryThis;
+  return null;
+};
+
+type CatKey = keyof typeof c.menuCats;
+const cats = menu.categories.map((cat) => ({
+  ...cat,
+  label: c.menuCats[cat.id as CatKey] ?? txt(cat.name),
+  intro: c.menuIntro[cat.id as CatKey],
+  items: menu.items.filter((i) => i.category === cat.id),
+}));
+
+/** Photos for a category: three at most, and never the same shot twice. */
+const photoSet = (items: Item[]) => {
+  const seen = new Set<string>();
+  return items
+    .filter((i) => {
+      if (!i.photo || seen.has(i.photo)) return false;
+      seen.add(i.photo);
+      return true;
+    })
+    .slice(0, 3);
+};
+
+/**
+ * A category with a single photo gets a written panel beside it instead of a
+ * hole. House notes, in the room's own voice.
+ */
+const SOLO_NOTES = c.menuNotes as Record<string, { note: string; quote: string; by: string }>;
+
+const groups = (items: Item[]) => {
+  const subs = Array.from(new Set(items.map((i) => i.sub).filter(Boolean))) as string[];
+  if (!subs.length) return [{ sub: null, items }];
+  const order = ['Hot', 'Cold'];
+  subs.sort((a, b) => order.indexOf(a) - order.indexOf(b));
+  return subs.map((s) => ({ sub: s, items: items.filter((i) => i.sub === s) }));
+};
+
+const film = [
+  'iberia.jpeg',
+  'cn.jpeg',
+  'gin-bramble-2.jpg',
+  'benedictinos.jpeg',
+  'oklahoma-2.webp',
+  'luna-rossa-2.jpeg',
+  'santiago.webp',
+  'sweet-greek.jpeg',
+  'petroni-spritz.jpg',
+  'spicy-marg-1.webp',
+].map((f) => photoFor(f)!);
+
+/**
+ * What a dish is, in words the kitchen would recognise. Everything here comes
+ * out of the item's own name and description — nothing is invented.
+ */
+const SUBS: Record<string, string> = { Hot: c.menuTags.hot, Cold: c.menuTags.cold };
+const tagsFor = (i: Item, catLabel: string): string[] => {
+  const out = [catLabel];
+  if (i.sub) out.push(SUBS[i.sub] ?? i.sub.replace(/-/g, ' '));
+  const d = `${i.name.en} ${i.description.en}`.toLowerCase();
+  const add = (v: string) => !out.includes(v) && out.push(v);
+  if (d.includes('specialty coffee')) add(c.menuTags.specialtyCoffee);
+  if (d.includes('matcha')) add(c.menuTags.japaneseMatcha);
+  if (d.includes('0.0') || d.includes('non-alcoholic') || d.includes('virgin')) add(c.menuTags.alcoholFree);
+  if (d.includes('vegetarian') || d.includes('veggie')) add(c.menuTags.vegetarian);
+  if (d.includes('gluten free')) add(c.menuTags.glutenFree);
+  if (d.includes('frozen')) add(c.menuTags.frozen);
+  if (d.includes('agave')) add(c.menuTags.agave);
+  if (d.includes('cuban-style artisan bread')) add(c.menuTags.cubanBread);
+  if (d.includes('brioche')) add(c.menuTags.onBrioche);
+  if (d.includes('prosecco')) add(c.menuTags.prosecco);
+  if (d.includes('protein')) add(c.menuTags.protein);
+  return out.slice(0, 5);
+};
+
+/** A photo's own proportions, kept inside a sane band. */
+const ratioOf = (img: ImageMetadata, min = 0.7, max = 1.9) =>
+  Math.min(max, Math.max(min, img.width / img.height)).toFixed(3);
+
+/**
+ * Stills for the dialog. Two grades on purpose: the venue's own 160px menu
+ * thumbnails would fall apart blown up to fill a panel, so those are served at
+ * their native size as a framed inset instead of being stretched.
+ */
+const dialogImages = new Map<string, string>();
+const dialogThumbs = new Map<string, string>();
+for (const i of menu.items) {
+  if (i.photo) {
+    const src = photoFor(i.photo);
+    if (src) dialogImages.set(i.id, (await getImage({ src, width: 900, format: 'webp' })).src);
+  } else if ((i as { thumb?: string }).thumb) {
+    const src = thumbFor((i as { thumb?: string }).thumb);
+    if (src) dialogThumbs.set(i.id, (await getImage({ src, width: 320, format: 'webp' })).src);
+  }
+}
+
+const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? n : n.toFixed(2)}`);
+const updated = new Date(menu.updatedAt).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-GB', {
+  month: 'long',
+  year: 'numeric',
+});
+const total = menu.items.length;
+---
+
+<Base
+  title={c.menu.title}
+  description={c.menu.lede}
+  theme="day"
+  page="menu"
+  lang={lang}
+  path="/menu"
+>
+  <div class="menu-page" data-menu-page data-tab="drinks">
+    <header class="wrap page-hero">
+      <p class="label page-hero__label"><Strap /></p>
+      <div class="page-hero__grid">
+        <h1 class="display-xl page-hero__title" data-reveal="lines">{c.menu.heroA} <span class="em">{c.menu.heroEm}</span></h1>
+        <div>
+          <p class="lede" data-reveal="fade">
+{c.menu.lede}
+          </p>
+          <p class="small muted menu-page__note" data-reveal="fade" style="--reveal-delay: 100ms">
+            {total} {c.menu.note} {updated}
+          </p>
+        </div>
+      </div>
+
+    </header>
+
+    <!-- Film strip: the counter, passing by -->
+    <div class="film" aria-hidden="true" data-reveal="fade">
+      <div class="film__track">
+        {
+          [0, 1].map(() =>
+            film.map((img) => (
+              <figure class="film__item media">
+                <Image src={img} alt="" widths={[520]} sizes="520px" />
+              </figure>
+            )),
+          )
+        }
+      </div>
+    </div>
+
+    <!-- One bar for the whole page, so the switch thumb can actually travel -->
+    <nav class="catnav" aria-label={c.menu.navLabel}>
+      <div class="catnav__inner wrap">
+        <div class="catnav__switch" role="tablist" aria-label={c.menu.sections}>
+          <span class="catnav__thumb" aria-hidden="true"></span>
+          {
+            tabs.map((s) => (
+              <button
+                type="button"
+                role="tab"
+                class="catnav__tab"
+                id={`tab-${s.id}`}
+                data-tab={s.id}
+                aria-controls={`panel-${s.id}`}
+                aria-selected={s.id === 'drinks' ? 'true' : 'false'}
+              >
+                {s.label}
+              </button>
+            ))
+          }
+        </div>
+        <span class="catnav__divider" aria-hidden="true"></span>
+        {
+          tabs.map((t) => (
+            <div class="catnav__scroll" data-scroll-for={t.id}>
+              {cats
+                .filter((cc) => cc.tab === t.id)
+                .map((cc) => (
+                  <a href={`#${cc.id}`} class="catnav__link" data-cat-link>
+                    {cc.label}
+                    <span class="catnav__n num">{cc.items.length}</span>
+                  </a>
+                ))}
+            </div>
+          ))
+        }
+      </div>
+      <span class="catnav__progress" data-menu-progress aria-hidden="true"></span>
+    </nav>
+
+    {
+      tabs.map((t) => {
+        const tabCats = cats.filter((cc) => cc.tab === t.id);
+        return (
+          <div class="panel" data-tab-panel={t.id} id={`panel-${t.id}`} role="tabpanel" aria-labelledby={`tab-${t.id}`}>
+            <div class="wrap">
+              {tabCats.map((cc, ci) => {
+                const withPhoto = photoSet(cc.items);
+                return (
+                  <section class="cat" id={cc.id} data-cat>
+                    <div class="chapter-head">
+                      <span class="num">{String(ci + 1).padStart(2, '0')}</span>
+                      <h2 class="h2 cat__title">{cc.label}</h2>
+                      <span class="label muted">{cc.items.length} {c.menu.items}</span>
+                    </div>
+                    {cc.intro && <p class="cat__intro lede">{cc.intro}</p>}
+
+                    {/* One photo: pair it with the item itself, so nothing floats alone */}
+                    {withPhoto.length === 1 && (
+                      <div class="cat__solo" data-reveal="fade">
+                        <figure
+                          class="media cat__photo"
+                          style={`--ar: ${ratioOf(photoFor(withPhoto[0].photo)!, 0.8, 1.5)}`}
+                        >
+                          <Image
+                            src={photoFor(withPhoto[0].photo)!}
+                            alt={txt(withPhoto[0].name)}
+                            widths={[420, 720, 1096]}
+                            sizes="(max-width: 900px) 100vw, 45vw"
+                          />
+                        </figure>
+                        <div class="cat__solo-copy">
+                          <p class="label muted">{c.menu.worthOrdering}</p>
+                          <h3 class="cat__solo-name">
+                            {txt(withPhoto[0].name)}
+                            <span class="num">{eur(withPhoto[0].price)}</span>
+                          </h3>
+                          {txt(withPhoto[0].description) && (
+                            <p class="small muted cat__solo-sub">{txt(withPhoto[0].description)}</p>
+                          )}
+                          {SOLO_NOTES[withPhoto[0].name.en] && (
+                            <>
+                              <p class="body cat__solo-note">{SOLO_NOTES[withPhoto[0].name.en].note}</p>
+                              <blockquote class="cat__solo-quote">
+                                <p>{SOLO_NOTES[withPhoto[0].name.en].quote}</p>
+                                <footer class="label muted">{SOLO_NOTES[withPhoto[0].name.en].by}</footer>
+                              </blockquote>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {withPhoto.length > 1 && (
+                      <div class={`cat__photos cat__photos--${withPhoto.length}`}>
+                        {withPhoto.map((i, pi) => (
+                          <figure
+                            class="media cat__photo"
+                            data-reveal="clip"
+                            style={`--reveal-delay: ${pi * 90}ms; --ar: ${ratioOf(photoFor(i.photo)!)}`}
+                          >
+                            <Image
+                              src={photoFor(i.photo)!}
+                              alt={txt(i.name)}
+                              widths={[420, 720, 1096]}
+                              sizes="(max-width: 900px) 100vw, 33vw"
+                              class="reveal-scale"
+                            />
+                            <figcaption class="cat__caption">
+                              <span>{txt(i.name)}</span>
+                              <span class="num">{eur(i.price)}</span>
+                            </figcaption>
+                          </figure>
+                        ))}
+                      </div>
+                    )}
+
+                    {groups(cc.items).map((g) => (
+                      <div class="cat__group">
+                        {g.sub && <p class="label muted cat__sub">{SUBS[g.sub] ?? g.sub.replace(/-/g, ' ')}</p>}
+                        <ul class="rule-list cat__list">
+                          {g.items.map((i) => {
+                            const tag = tagFor(i);
+                            const note = SOLO_NOTES[i.name.en];
+                            return (
+                              <li>
+                                <button
+                                  type="button"
+                                  class="row"
+                                  data-dish
+                                  data-name={txt(i.name)}
+                                  data-price={eur(i.price)}
+                                  data-desc={txt(i.description) || ''}
+                                  data-kicker={[cc.label, SUBS[i.sub ?? ''] ?? i.sub?.replace(/-/g, ' ')].filter(Boolean).join(' · ')}
+                                  data-tags={tagsFor(i, cc.label).join('|')}
+                                  data-img={dialogImages.get(i.id) ?? ''}
+                                  data-thumb={dialogThumbs.get(i.id) ?? ''}
+                                  data-note={note?.note ?? ''}
+                                  data-quote={note?.quote ?? ''}
+                                  data-by={note?.by ?? ''}
+                                  data-share={c.dish.shareText}
+                                >
+                                  <span class="row__name">
+                                    {txt(i.name)}
+                                    {tag && <span class="tag">{tag}</span>}
+                                  </span>
+                                  <span class="row__price">{eur(i.price)}</span>
+                                  {txt(i.description) && <span class="row__desc">{txt(i.description)}</span>}
+                                  <span class="row__more" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                      <path d="M4 12h15" />
+                                      <path d="M13 6l6 6-6 6" />
+                                    </svg>
+                                  </span>
+                                </button>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    ))}
+                  </section>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })
+    }
+
+    <section class="wrap section--tight menu-page__foot">
+      <hr class="rule rule--strong" />
+      <div class="menu-page__foot-grid">
+        <p class="small muted">
+{c.menu.foot}
+        </p>
+        <div class="menu-page__cta">
+          <a href={L('/book')} class="btn">{c.menu.findUs} <Arrow /></a>
+          <a href={L('/events')} class="btn btn--ghost">{c.menu.whatsOn}</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <DishDialog lang={lang} />
+</Base>
+
+<style>
+  .menu-page__note {
+    margin-top: var(--space-4);
+  }
+  .film {
+    overflow: hidden;
+    padding-block: var(--space-2) 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .film__track {
+    display: flex;
+    gap: 8px;
+    width: max-content;
+    animation: film 90s linear infinite;
+  }
+  .film:hover .film__track {
+    animation-play-state: paused;
+  }
+  .film__item {
+    flex: 0 0 auto;
+    width: clamp(200px, 22vw, 340px);
+    aspect-ratio: 16 / 11;
+  }
+  @keyframes film {
+    to {
+      transform: translateX(calc(-50% - 4px));
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .film {
+      overflow-x: auto;
+    }
+    .film__track {
+      animation: none;
+    }
+  }
+  .panel {
+    display: none;
+  }
+  [data-tab='drinks'] .panel[data-tab-panel='drinks'],
+  [data-tab='food'] .panel[data-tab-panel='food'] {
+    display: block;
+  }
+
+  .catnav {
+    position: sticky;
+    top: 76px;
+    z-index: 5;
+    isolation: isolate;
+    background: color-mix(in srgb, var(--canvas) 88%, transparent);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-block: 1px solid var(--line);
+    transition: background-color var(--dur-theme) var(--ease-inout);
+  }
+  .catnav__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  /* Two equal halves with a thumb that slides between them */
+  .catnav__switch {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    flex-shrink: 0;
+    width: 10.5rem;
+    padding: 3px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-pill);
+    isolation: isolate;
+  }
+  .catnav__thumb {
+    position: absolute;
+    z-index: -1;
+    top: 3px;
+    bottom: 3px;
+    left: 3px;
+    width: calc(50% - 3px);
+    border-radius: var(--radius-pill);
+    background: var(--ink);
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.28, 1);
+  }
+  [data-tab='food'] .catnav__thumb {
+    transform: translateX(100%);
+  }
+  .catnav__tab {
+    padding: 0.45rem 0.5rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--ink-2);
+    transition: color 0.35s var(--ease-out);
+  }
+  .catnav__tab:hover {
+    color: var(--ink);
+  }
+  .catnav__tab[aria-selected='true'] {
+    color: var(--canvas);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .catnav__thumb {
+      transition: none;
+    }
+  }
+  .catnav__scroll {
+    display: none;
+    gap: 0.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-block: 0.6rem;
+    min-width: 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 3%, #000 93%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 3%, #000 93%, transparent);
+  }
+  [data-tab='drinks'] .catnav__scroll[data-scroll-for='drinks'],
+  [data-tab='food'] .catnav__scroll[data-scroll-for='food'] {
+    display: flex;
+  }
+  .catnav__scroll::-webkit-scrollbar {
+    display: none;
+  }
+  .catnav__divider {
+    flex-shrink: 0;
+    width: 1px;
+    height: 1.5rem;
+    background: var(--line-strong);
+    opacity: 0.5;
+  }
+  .catnav__progress {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 2px;
+    width: 100%;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    will-change: transform;
+  }
+  .catnav__link {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    flex-shrink: 0;
+    padding: 0.5rem 0.9rem;
+    border-radius: var(--radius-pill);
+    font-size: var(--text-small);
+    font-weight: 600;
+    color: var(--ink-2);
+    transition: background-color var(--dur-fast), color var(--dur-fast);
+  }
+  .catnav__n {
+    font-size: 0.66rem;
+    color: var(--ink-3);
+  }
+  .catnav__link.is-active .catnav__n {
+    color: color-mix(in srgb, var(--canvas) 70%, transparent);
+  }
+  .catnav__link:hover {
+    color: var(--ink);
+  }
+  .catnav__link.is-active {
+    background: var(--ink);
+    color: var(--canvas);
+  }
+  @media (max-width: 900px) {
+    .catnav {
+      top: 68px;
+    }
+    .catnav__inner {
+      gap: 0.5rem;
+    }
+    .catnav__tab {
+      padding: 0.35rem 0.6rem;
+      font-size: 0.66rem;
+    }
+  }
+
+  .cat {
+    padding-top: var(--space-8);
+    scroll-margin-top: 140px;
+  }
+  .cat__title {
+    font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+  }
+  .cat__intro {
+    margin-top: var(--space-4);
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
+    max-width: 52ch;
+  }
+  /* A justified row: one height, and every tile as wide as its own photo wants
+     to be. Nothing is squeezed into a foreign shape, so no glass gets cut. */
+  .cat__photos {
+    display: flex;
+    gap: var(--col-gap);
+    margin-top: var(--space-6);
+    height: clamp(250px, 29vw, 440px);
+  }
+  .cat__photo {
+    flex: var(--ar, 1.5) 1 0;
+    min-width: 0;
+    height: 100%;
+  }
+  .cat__photo img {
+    transition: transform 0.9s var(--ease-out);
+  }
+  .cat__photo:hover img {
+    transform: scale(1.05);
+  }
+  .cat__photo:hover .cat__caption {
+    padding-bottom: 1.15rem;
+  }
+  /* A category with a single photo pairs it with a written panel */
+  .cat__solo {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--col-gap);
+    align-items: stretch;
+    margin-top: var(--space-6);
+  }
+  .cat__solo .cat__photo {
+    aspect-ratio: var(--ar, 1.33);
+    height: auto;
+  }
+  .cat__solo-copy {
+    display: grid;
+    align-content: center;
+    gap: 0.75rem;
+    padding: var(--space-6);
+    background: var(--canvas-2);
+    transition: background-color var(--dur-theme) var(--ease-inout);
+  }
+  .cat__solo-name {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .cat__solo-name .num {
+    color: var(--ink-2);
+    font-size: 0.72em;
+  }
+  .cat__solo-sub {
+    margin-top: -0.35rem;
+  }
+  .cat__solo-note {
+    font-size: 0.98rem;
+    max-width: 46ch;
+  }
+  .cat__solo-quote {
+    margin-top: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line-strong);
+    display: grid;
+    gap: 0.5rem;
+  }
+  .cat__solo-quote p {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+    line-height: 1.15;
+    max-width: 28ch;
+  }
+  @media (max-width: 900px) {
+    .cat__solo {
+      grid-template-columns: 1fr;
+    }
+    .cat__solo-copy {
+      padding: var(--space-5);
+    }
+  }
+  .tag {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.6rem;
+    padding: 0.18rem 0.55rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--accent);
+    color: var(--accent-ink);
+    font-family: var(--font-body);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  /* Rows respond: a hairline grows in from the left and the name shifts */
+  .cat__list > li {
+    position: relative;
+    display: block;
+    padding-block: 0;
+  }
+  /* The row itself is the button, so the whole line is the hit area */
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: baseline;
+    column-gap: var(--space-4);
+    width: 100%;
+    padding-block: clamp(0.9rem, 1.4vw, 1.25rem);
+    text-align: left;
+    color: inherit;
+    cursor: pointer;
+  }
+  .row .row__desc {
+    grid-column: 1 / -1;
+  }
+  .row__more {
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    color: var(--accent-ink);
+    opacity: 0;
+    transform: translateX(-5px);
+    transition:
+      opacity var(--dur-standard) var(--ease-out),
+      transform var(--dur-standard) var(--ease-out);
+  }
+  .row__more svg {
+    width: 1rem;
+    height: 1rem;
+  }
+  .cat__list > li:hover .row__more,
+  .row:focus-visible .row__more {
+    opacity: 1;
+    transform: none;
+  }
+  .row:focus-visible {
+    outline-offset: -2px;
+  }
+  .cat__list > li::before {
+    content: '';
+    position: absolute;
+    left: -0.9rem;
+    top: 0.9rem;
+    bottom: 0.9rem;
+    width: 2px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform var(--dur-standard) var(--ease-out);
+  }
+  .cat__list > li:hover::before {
+    transform: scaleY(1);
+  }
+  .cat__list > li:hover .row__name,
+  .cat__list > li:hover .row__price {
+    color: var(--accent-ink);
+  }
+  .cat__list .row__name,
+  .cat__list .row__price {
+    transition: color var(--dur-standard) var(--ease-out);
+  }
+  .cat__caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 2.5rem 1rem 0.9rem;
+    color: #fff;
+    font-size: var(--text-small);
+    font-weight: 600;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.6));
+    transition: padding-bottom var(--dur-standard) var(--ease-out);
+  }
+  .cat__group {
+    margin-top: var(--space-6);
+  }
+  .cat__sub {
+    margin-bottom: var(--space-3);
+  }
+  .cat__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-8);
+    border-top: 0;
+  }
+  .cat__list > li {
+    border-top: 1px solid var(--line);
+    border-bottom: 0;
+  }
+  .cat__list > li:nth-child(-n + 2) {
+    border-top-color: var(--line-strong);
+  }
+  .menu-page__foot {
+    padding-top: var(--space-9);
+  }
+  .menu-page__foot-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-5);
+    align-items: center;
+    padding-top: var(--space-5);
+  }
+  .menu-page__foot p {
+    max-width: 60ch;
+  }
+  .menu-page__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: flex-end;
+  }
+  @media (max-width: 900px) {
+    .menu-page__foot-grid {
+      grid-template-columns: 1fr;
+    }
+    .menu-page__cta {
+      justify-content: flex-start;
+    }
+  }
+  @media (max-width: 900px) {
+    /* Two across on a phone reads better than one giant crop */
+    .cat__photos--2,
+    .cat__photos--3 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      height: auto;
+    }
+    .cat__photos--3 .cat__photo:first-child {
+      grid-column: 1 / -1;
+    }
+    .cat__photo {
+      aspect-ratio: 4 / 3;
+      height: auto;
+    }
+    .cat__photos--3 .cat__photo:first-child {
+      aspect-ratio: 16 / 10;
+    }
+    .cat__caption {
+      font-size: 0.75rem;
+      padding-inline: 0.7rem;
+    }
+    .cat__list {
+      grid-template-columns: 1fr;
+    }
+    .cat__list > li:nth-child(-n + 2) {
+      border-top-color: var(--line);
+    }
+    .cat__list > li:first-child {
+      border-top-color: var(--line-strong);
+    }
+  }
+</style>

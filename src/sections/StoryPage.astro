@@ -1,0 +1,509 @@
+---
+import { Image } from 'astro:assets';
+import Base from '@/layouts/Base.astro';
+import Strap from '@/components/Strap.astro';
+import Arrow from '@/components/Arrow.astro';
+import founder from '@/assets/venue/founder.webp';
+import team from '@/assets/venue/team.webp';
+import facadeSketch from '@/assets/venue/facade-sketch.webp';
+import beachPalms from '@/assets/venue/beach-palms.jpg';
+import { localise, type Lang } from '@/i18n';
+import { t } from '@/i18n/copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = t(lang);
+const L = (p: string) => localise(lang, p);
+
+const words = [
+  { w: c.story.wFood, line: c.story.wFoodL },
+  { w: c.story.wDrinks, line: c.story.wDrinksL },
+  { w: c.story.wMusic, line: c.story.wMusicL },
+  { w: c.story.wPeople, line: c.story.wPeopleL },
+  { w: c.story.wBeach, line: c.story.wBeachL },
+];
+
+const milestones = [
+  { when: c.story.m1, what: c.story.m1v },
+  { when: c.story.m2, what: c.story.m2v },
+  { when: c.story.m3, what: c.story.m3v },
+  { when: c.story.m4, what: c.story.m4v },
+];
+---
+
+<Base
+  title={c.story.title}
+  description={c.story.description}
+  theme="day"
+  page="story"
+  lang={lang}
+  path="/story"
+>
+  <!-- Hero: the words on the left, the man on the right -->
+  <header class="wrap page-hero story-hero">
+    <div class="story-hero__copy">
+      <p class="label page-hero__label"><Strap /></p>
+      <h1 class="display-xl page-hero__title" data-reveal="lines">{c.story.heroA} <span class="em">{c.story.heroEm}</span></h1>
+      <p class="lede story-hero__lede" data-reveal="fade">
+{c.story.lede}
+      </p>
+      <ul class="story-hero__facts" data-stagger>
+        <li><span class="label muted">{c.story.founderLabel}</span><span>Paul Shepherd</span></li>
+        <li><span class="label muted">{c.story.openedLabel}</span><span>{c.story.openedValue}</span></li>
+        <li><span class="label muted">{c.story.addressLabel}</span><span>Av. de Niza 12, Alicante</span></li>
+      </ul>
+    </div>
+    <figure class="media story-hero__photo" data-reveal="clip">
+      <Image
+        src={founder}
+        alt="Paul Shepherd, founder of Crush, in a black Crush t-shirt and backwards cap"
+        widths={[560, 840, 1122]}
+        sizes="(max-width: 900px) 100vw, 40vw"
+        class="reveal-scale"
+        priority
+      />
+      <figcaption class="cap"><span>Paul Shepherd</span><span>{c.story.capFounder}</span></figcaption>
+    </figure>
+  </header>
+
+  <!-- The Miami echo: one wide frame -->
+  <section class="wrap section section--flush-top">
+    <figure class="media echo" data-reveal="clip">
+      <Image
+        src={facadeSketch}
+        alt="A pencil drawing of the Crush facade on Avenida de Niza: glass front, bougainvillea over the sign, palms reflected in the windows"
+        widths={[800, 1200, 1672]}
+        sizes="100vw"
+        class="reveal-scale echo__img"
+      />
+      <figcaption class="cap"><span>{c.story.capSketchA}</span><span>{c.story.capSketchB}</span></figcaption>
+    </figure>
+    <div class="echo__note">
+      <p class="label muted echo__note-label">{c.story.whyHere}</p>
+      <div class="echo__note-body">
+        <div class="echo__cols">
+          <p class="body" data-reveal="fade">
+            {c.story.whyP1}
+          </p>
+          <p class="body" data-reveal="fade">
+            {c.story.whyP2}
+          </p>
+        </div>
+        <ul class="echo__facts" data-stagger>
+          <li>
+            <span class="label muted">{c.story.factBeach}</span>
+            <span class="echo__fact">{c.story.factBeachV}</span>
+          </li>
+          <li>
+            <span class="label muted">{c.story.factGetting}</span>
+            <span class="echo__fact">{c.story.factGettingV}</span>
+          </li>
+          <li>
+            <span class="label muted">{c.story.factOpen}</span>
+            <span class="echo__fact">{c.story.openedValue}</span>
+          </li>
+          <li>
+            <span class="label muted">{c.story.factCoffee}</span>
+            <span class="echo__fact num">{c.story.factCoffeeV}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder's words (verbatim) -->
+  <section class="section founder">
+    <div class="wrap">
+      <div class="chapter-head" data-reveal="fade">
+        <span class="num">01</span>
+        <span class="label">{c.story.wordsLabel}</span>
+        <span class="label label--display">Paul Shepherd</span>
+      </div>
+      <div class="grid founder__grid">
+        <div class="founder__text">
+          <p class="founder__pull" data-reveal="lines">
+            <span class="em">{c.story.pull1}</span>
+          </p>
+          <p class="body" data-reveal="fade">
+            {c.story.w1}
+          </p>
+          <p class="body" data-reveal="fade">{c.story.w2}</p>
+          <p class="body" data-reveal="fade">
+            {c.story.w3}
+          </p>
+          <p class="founder__pull" data-reveal="lines">
+            <span class="em">{c.story.pull2}</span>
+          </p>
+          <p class="body" data-reveal="fade">
+            {c.story.w4}
+          </p>
+          <p class="body" data-reveal="fade">{c.story.w5}</p>
+          <p class="founder__sig" data-reveal="fade">
+            <span class="h3">Paul Shepherd</span>
+            <span class="label muted">{c.story.capFounder}</span>
+          </p>
+        </div>
+        <figure class="media media--3x4 founder__photo" data-reveal="clip">
+          <Image src={team} alt="Two of the Crush team in blue Crush shirts under the bougainvillea at the entrance" widths={[500, 800, 1086]} sizes="(max-width: 900px) 100vw, 36vw" class="reveal-scale" />
+          <figcaption class="cap"><span>{c.story.capTeamA}</span><span>{c.story.capTeamB}</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Five words -->
+  <section class="section section--flush-top">
+    <div class="wrap">
+      <div class="chapter-head" data-reveal="fade">
+        <span class="num">02</span>
+        <span class="label">{c.story.fiveWords}</span>
+        <span class="label label--display">{c.story.dayNight}</span>
+      </div>
+      <ol class="words rule-list" data-stagger>
+        {
+          words.map((x) => (
+            <li class="words__row">
+              <span class="display words__w">{x.w}</span>
+              <span class="words__line body">{x.line}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Milestones -->
+  <section class="section section--flush-top">
+    <div class="wrap grid milestones">
+      <div class="milestones__intro">
+        <h2 class="display" data-reveal="lines">{c.story.hourTitleA} <span class="em">{c.story.hourTitleEm}</span></h2>
+        <p class="body" data-reveal="fade">
+          {c.story.hourText}
+        </p>
+      </div>
+      <ul class="rule-list milestones__list" data-stagger>
+        {
+          milestones.map((m) => (
+            <li>
+              <span class="row__name">{m.when}</span>
+              <span class="row__desc">{m.what}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Community -->
+  <section class="section community">
+    <div class="wrap grid community__grid">
+      <figure class="media media--16x10 community__photo" data-reveal="clip">
+        <Image src={beachPalms} alt="Palms and sand along the avenue of Playa de San Juan" widths={[600, 1000, 1600]} sizes="(max-width: 900px) 100vw, 58vw" class="reveal-scale" />
+      </figure>
+      <div class="community__copy">
+        <h2 class="h2" data-reveal="lines">{c.story.moreThanBar}</h2>
+        <p class="body" data-reveal="fade">
+          {c.story.moreText}
+        </p>
+        <a href={L('/book')} class="btn" data-reveal="fade">{c.story.moreCta} <Arrow /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Night out -->
+  <section class="stage grain theme-night">
+    <div class="wrap stage__content">
+      <span class="stage__neon" aria-hidden="true" data-reveal="fade"></span>
+      <p class="label" data-reveal="fade">{c.story.culture}</p>
+      <h2 class="display stage__title" data-reveal="lines">{c.story.closingA} <span class="em">{c.story.closingEm}</span></h2>
+      <div class="stage__actions" data-reveal="fade">
+        <a href={L('/sound')} class="btn btn--light">{c.story.theSound} <Arrow /></a>
+        <a href={L('/menu')} class="btn btn--ghost stage__ghost">{c.story.theMenu}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 2.5rem 1rem 0.9rem;
+    color: #fff;
+    font-size: var(--text-small);
+    font-weight: 600;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.55));
+  }
+
+  /* ---- hero ---- */
+  .story-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-6) calc(var(--col-gap) * 2);
+    align-items: end;
+  }
+  .story-hero__copy {
+    display: grid;
+    gap: var(--space-5);
+    align-content: end;
+  }
+  .story-hero__copy .page-hero__label {
+    margin-bottom: 0;
+  }
+  .story-hero__lede {
+    max-width: 44ch;
+  }
+  .story-hero__facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, auto));
+    gap: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line-strong);
+    font-size: var(--text-small);
+    font-weight: 600;
+  }
+  .story-hero__facts li {
+    display: grid;
+    gap: 0.3rem;
+  }
+  .story-hero__photo {
+    aspect-ratio: 4 / 5;
+  }
+  @media (max-width: 900px) {
+    .story-hero {
+      grid-template-columns: 1fr;
+    }
+    .story-hero__photo {
+      order: -1;
+      width: min(100%, 420px);
+    }
+    .story-hero__facts {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* ---- Miami echo ---- */
+  /* The drawing is the whole point, so it is never cropped hard */
+  .echo {
+    aspect-ratio: 16 / 9;
+    background: #fff;
+  }
+  .echo__img {
+    object-fit: contain;
+    object-position: center;
+  }
+  .echo .cap {
+    color: var(--day-ink);
+    background: none;
+    padding: 0.9rem 1rem;
+  }
+  .echo__note {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+    gap: var(--space-4) var(--col-gap);
+    padding-top: var(--space-5);
+    margin-top: var(--space-2);
+    border-top: 1px solid var(--line-strong);
+  }
+  .echo__note-body {
+    display: grid;
+    gap: var(--space-6);
+  }
+  .echo__cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--col-gap) calc(var(--col-gap) * 2);
+  }
+  .echo__cols .body {
+    max-width: none;
+  }
+  .echo__facts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--col-gap);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+  }
+  .echo__facts li {
+    display: grid;
+    gap: 0.3rem;
+  }
+  .echo__fact {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  @media (max-width: 900px) {
+    .echo {
+      aspect-ratio: 4 / 3;
+    }
+    .echo__note {
+      grid-template-columns: 1fr;
+    }
+    .echo__cols {
+      grid-template-columns: 1fr;
+      gap: 1em;
+    }
+    .echo__facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-4) var(--col-gap);
+    }
+  }
+
+  /* ---- founder words ---- */
+  .founder__grid {
+    padding-top: var(--space-7);
+    align-items: start;
+  }
+  .founder__text {
+    grid-column: 1 / span 7;
+    display: grid;
+    gap: var(--space-5);
+  }
+  .founder__pull {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.4vw, 3.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    max-width: 22ch;
+    margin-block: var(--space-3);
+    text-wrap: balance;
+  }
+  .founder__pull .em {
+    font-size: 1.06em;
+  }
+  .founder__sig {
+    display: grid;
+    gap: 0.25rem;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line-strong);
+    justify-items: start;
+  }
+  .founder__photo {
+    grid-column: 9 / -1;
+    position: sticky;
+    top: 110px;
+  }
+  @media (max-width: 900px) {
+    .founder__text,
+    .founder__photo {
+      grid-column: 1 / -1;
+      position: static;
+    }
+    .founder__photo {
+      order: -1;
+      width: 70%;
+    }
+  }
+
+  /* ---- five words ---- */
+  .words {
+    margin-top: var(--space-6);
+  }
+  .words__row {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: baseline;
+    padding-block: clamp(1rem, 2vw, 1.75rem);
+  }
+  .words__w {
+    font-size: clamp(2.25rem, 6vw, 5.5rem);
+  }
+  @media (max-width: 760px) {
+    .words__row {
+      grid-template-columns: 1fr;
+      row-gap: 0.4rem;
+    }
+  }
+
+  /* ---- milestones ---- */
+  .milestones {
+    align-items: start;
+  }
+  .milestones__intro {
+    grid-column: 1 / span 6;
+    display: grid;
+    gap: var(--space-5);
+  }
+  .milestones__list {
+    grid-column: 8 / -1;
+  }
+  .milestones__list .row__desc {
+    grid-column: 1 / -1;
+  }
+  @media (max-width: 900px) {
+    .milestones__intro,
+    .milestones__list {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* ---- community ---- */
+  .community__grid {
+    align-items: center;
+  }
+  .community__photo {
+    grid-column: 1 / span 7;
+  }
+  .community__copy {
+    grid-column: 9 / -1;
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+  }
+  @media (max-width: 900px) {
+    .community__photo,
+    .community__copy {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* ---- closing stage ---- */
+  .stage {
+    position: relative;
+    background: var(--night-canvas);
+    color: var(--night-ink);
+  }
+  .stage__content {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--space-section);
+    display: grid;
+    gap: var(--space-5);
+  }
+  .stage__neon {
+    display: block;
+    height: 2px;
+    width: min(100%, 420px);
+    margin-bottom: var(--space-3);
+    background: var(--night-accent);
+    box-shadow:
+      0 0 10px var(--glow),
+      0 0 28px var(--glow-mid);
+  }
+  .stage__title {
+    max-width: 12ch;
+    text-shadow: 0 0 44px var(--glow-soft);
+  }
+  .stage__title .em {
+    color: var(--night-accent-ink);
+  }
+  .stage__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: var(--space-3);
+  }
+  .stage__ghost {
+    --btn-fg: var(--night-ink);
+    border-color: rgba(244, 239, 230, 0.5);
+  }
+</style>

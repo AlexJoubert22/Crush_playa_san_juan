@@ -28,6 +28,8 @@ export const site = {
   instagramHandle: '@crushplayasanjuan',
   facebook: 'https://www.facebook.com/crushplayadesanjuan/',
   tiktok: 'https://www.tiktok.com/@crushplayasanjuan',
+  /** Digits only, for wa.me links. */
+  whatsapp: '34649265900',
   tripadvisor:
     'https://www.tripadvisor.com/Restaurant_Review-g1064230-d32995806-Reviews-Crush-Alicante_Costa_Blanca_Province_of_Alicante_Valencian_Community.html',
   hours: [
@@ -41,14 +43,24 @@ export const site = {
   openHour: 9,
 };
 
-/** `match` is the pathname that lights the link up. Anchors leave it empty. */
+/** Canonical (English) paths. `key` looks the label up in the dictionary. */
 export const nav = [
-  { href: '/menu', label: 'Menu', match: '/menu' },
-  { href: '/sound', label: 'The Sound', match: '/sound' },
-  { href: '/sound#agenda', label: 'Events', match: '' },
-  { href: '/story', label: 'Story', match: '/story' },
-  { href: '/visit', label: 'Contact', match: '/visit' },
-];
+  { path: '/menu', key: 'menu' },
+  { path: '/sound', key: 'sound' },
+  { path: '/events', key: 'events' },
+  { path: '/story', key: 'story' },
+  { path: '/book', key: 'book' },
+] as const;
+
+/**
+ * Cookieless analytics. Set PUBLIC_ANALYTICS_DOMAIN (and optionally
+ * PUBLIC_ANALYTICS_SRC for a self-hosted Plausible/Umami) and the script is
+ * added; leave it empty and no third-party script is loaded at all.
+ */
+export const analytics = {
+  domain: import.meta.env.PUBLIC_ANALYTICS_DOMAIN ?? '',
+  src: import.meta.env.PUBLIC_ANALYTICS_SRC ?? 'https://plausible.io/js/script.js',
+};
 
 /**
  * Where the agenda comes from. Point `ics` at a public Google Calendar iCal
@@ -63,22 +75,6 @@ export const calendarFeed = {
 };
 
 export const sessions = {
-  cadenza: {
-    name: 'Cadenza',
-    when: 'Saturday & Sunday',
-    time: '10:00 – 16:00',
-    artist: 'Resident DJs',
-    genre: 'Daytime sessions',
-    blurb:
-      'The daytime session. High-energy brunch: organic and progressive house with the coffee, bowls on the table and the sea across the road.',
-  },
-  opus: {
-    name: 'OPUS',
-    when: 'Second Saturday of the month',
-    time: '21:00 – 02:00',
-    artist: 'Many DJs',
-    genre: 'Progressive house',
-    blurb:
-      'The night session. The lights go down, several residents share the booth and the terrace runs until two in the morning.',
-  },
+  cadenza: { name: 'Cadenza', time: '10:00 – 16:00' },
+  opus: { name: 'OPUS', time: '21:00 – 02:00' },
 };

@@ -1,0 +1,395 @@
+---
+import { Image } from 'astro:assets';
+import Base from '@/layouts/Base.astro';
+import Strap from '@/components/Strap.astro';
+import Arrow from '@/components/Arrow.astro';
+import Beat from '@/components/Beat.astro';
+import EventsFeed from '@/components/EventsFeed.astro';
+import { site, sessions } from '@/data/site';
+import { localise, type Lang } from '@/i18n';
+import { t } from '@/i18n/copy';
+import cadenzaArt from '@/assets/events/cadenza-stack.webp';
+import opusArt from '@/assets/events/opus.webp';
+import nightSign from '@/assets/venue/noche1.webp';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = t(lang);
+const L = (p: string) => localise(lang, p);
+---
+
+<Base
+  title={c.events.title}
+  description={c.events.description}
+  theme="night"
+  page="events"
+  lang={lang}
+  path="/events"
+>
+  <!-- Hero: type on ink, the sign held to one side -->
+  <header class="ev-hero grain">
+    <div class="ev-hero__bg">
+      <Image
+        src={nightSign}
+        alt=""
+        widths={[540, 800, 1086]}
+        sizes="(max-width: 900px) 100vw, 42vw"
+        class="ev-hero__img"
+        priority
+      />
+    </div>
+    <div class="ev-hero__scrim" aria-hidden="true"></div>
+    <div class="wrap ev-hero__content">
+      <div class="ev-hero__copy">
+        <p class="label ev-hero__label"><Strap /></p>
+        <h1 class="display-xl ev-hero__title" data-reveal="lines">
+          {c.events.heroA} <span class="em">{c.events.heroEm}</span>
+        </h1>
+        <span class="neon-rule" aria-hidden="true"></span>
+        <p class="lede ev-hero__lede" data-reveal="fade">{c.events.lede}</p>
+        <a href="#agenda" class="btn btn--light ev-hero__cta" data-reveal="fade">
+          {c.events.agenda} <Arrow dir="down" />
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- The calendar -->
+  <section class="section" id="agenda">
+    <div class="wrap">
+      <div class="chapter-head" data-reveal="fade">
+        <span class="num">01</span>
+        <span class="label">{c.events.agenda}</span>
+        <a href={site.instagram} target="_blank" rel="noopener" class="label link-line">{c.events.lineups}</a>
+      </div>
+
+      <div class="agenda__grid">
+        <div class="cal" data-calendar data-reveal="fade">
+          <div class="cal__head">
+            <p class="cal__title" data-cal-title>{c.events.thisMonth}</p>
+            <div class="cal__nav">
+              <button class="cal__btn" type="button" data-cal-prev aria-label={c.events.calPrev}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M15 6l-6 6 6 6"></path>
+                </svg>
+              </button>
+              <button class="cal__btn" type="button" data-cal-next aria-label={c.events.calNext}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <ol class="cal__week" aria-hidden="true">
+            {c.weekdays.map((d) => <li>{d}</li>)}
+          </ol>
+          <ol class="cal__grid" data-cal-grid aria-label={c.events.calLabel}></ol>
+          <ul class="cal__legend">
+            <li><i class="is-cadenza" aria-hidden="true"></i>Cadenza · <span class="num">{sessions.cadenza.time}</span></li>
+            <li><i class="is-opus" aria-hidden="true"></i>OPUS · <span class="num">{sessions.opus.time}</span></li>
+            <li class="cal__count"><span class="num" data-cal-count>—</span> {c.events.thisMonth}</li>
+          </ul>
+
+          <div class="daybar">
+            <p class="label muted">{c.events.whereInDay}</p>
+            <div class="daybar__rail">
+              <span class="daybar__seg daybar__seg--cadenza" style="--from: 10; --to: 16"></span>
+              <span class="daybar__seg daybar__seg--opus" style="--from: 21; --to: 26"></span>
+            </div>
+            <ol class="daybar__ticks num" aria-hidden="true">
+              <li style="--h: 9">09</li>
+              <li style="--h: 13">13</li>
+              <li style="--h: 17">17</li>
+              <li style="--h: 21">21</li>
+              <li style="--h: 27">03</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="agenda__next">
+          <p class="label muted agenda__next-label">{c.events.nextUp}</p>
+          <ul class="rule-list agenda__list" data-agenda="7">
+            <li class="agenda__row">
+              <span class="agenda__date num">{c.sessions.cadenzaWhen}</span>
+              <span class="agenda__name">Cadenza</span>
+              <span class="agenda__time num">{sessions.cadenza.time}</span>
+              <span class="agenda__meta">{c.sessions.cadenzaArtist} · {c.sessions.cadenzaGenre}</span>
+            </li>
+            <li class="agenda__row">
+              <span class="agenda__date num">{c.sessions.opusWhen}</span>
+              <span class="agenda__name">OPUS</span>
+              <span class="agenda__time num">{sessions.opus.time}</span>
+              <span class="agenda__meta">{c.sessions.opusArtist} · {c.sessions.opusGenre}</span>
+            </li>
+          </ul>
+          <p class="small muted agenda__note">{c.events.note}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The two residencies -->
+  <section class="section section--flush-top">
+    <div class="wrap">
+      <div class="chapter-head" data-reveal="fade">
+        <span class="num">02</span>
+        <span class="label">{c.events.sessionsHead}</span>
+        <span class="label label--display">{c.sound.dayNight}</span>
+      </div>
+      <div class="grid sessions__grid">
+        <article class="session" data-reveal="fade">
+          <figure class="media media--16x10 session__art">
+            <Image src={cadenzaArt} alt="Cadenza" widths={[400, 600]} sizes="(max-width: 900px) 100vw, 45vw" />
+          </figure>
+          <p class="label muted">{c.sessions.cadenzaWhen} · <span class="num">{sessions.cadenza.time}</span></p>
+          <h2 class="display session__name">Cadenza</h2>
+          <p class="body">{c.sessions.cadenzaBlurb}</p>
+          <p class="small muted">{c.sessions.cadenzaArtist} · {c.sessions.cadenzaGenre}</p>
+        </article>
+        <article class="session" data-reveal="fade" style="--reveal-delay: 120ms">
+          <figure class="media media--16x10 session__art session__art--opus">
+            <Image src={opusArt} alt="OPUS" widths={[600, 1137]} sizes="(max-width: 900px) 100vw, 45vw" />
+          </figure>
+          <p class="label muted">{c.sessions.opusWhen} · <span class="num">{sessions.opus.time}</span></p>
+          <h2 class="display session__name session__name--beat">OPUS <Beat /></h2>
+          <p class="body">{c.sessions.opusBlurb}</p>
+          <p class="small muted">{c.sessions.opusArtist} · {c.sessions.opusGenre}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Your own thing -->
+  <section class="section section--flush-top">
+    <div class="wrap">
+      <div class="chapter-head" data-reveal="fade">
+        <span class="num">03</span>
+        <span class="label">{c.events.privateHead}</span>
+        <span class="label label--display">{c.nav.book}</span>
+      </div>
+      <div class="private">
+        <h2 class="display private__title" data-reveal="lines">
+          {c.events.privateTitleA} <span class="em">{c.events.privateTitleEm}</span>
+        </h2>
+        <div class="private__side">
+          <p class="body" data-reveal="fade">{c.events.privateText}</p>
+          <div class="private__actions" data-reveal="fade">
+            <a href={L('/book')} class="btn btn--light">{c.events.privateCta} <Arrow /></a>
+            <a href={L('/sound')} class="btn btn--ghost private__ghost">{c.story.theSound}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <EventsFeed lang={lang} />
+</Base>
+
+<style>
+  /* ---------------- HERO ---------------- */
+  .ev-hero {
+    position: relative;
+    display: grid;
+    align-items: center;
+    min-height: min(80svh, 780px);
+    background: var(--night-canvas);
+    overflow: hidden;
+  }
+  .ev-hero__bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 42%;
+  }
+  .ev-hero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 45% 40%;
+  }
+  .ev-hero__scrim {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    background:
+      linear-gradient(90deg, var(--night-canvas) 0%, rgba(11, 9, 14, 0.6) 24%, rgba(11, 9, 14, 0) 58%),
+      linear-gradient(180deg, rgba(11, 9, 14, 0.5) 0%, rgba(11, 9, 14, 0) 32%, rgba(11, 9, 14, 0.5) 100%);
+  }
+  .ev-hero__content {
+    position: relative;
+    z-index: 1;
+    padding-block: 150px var(--space-8);
+    color: var(--night-ink);
+  }
+  .ev-hero__copy {
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+    max-width: 56%;
+  }
+  .ev-hero__label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    width: 100%;
+    color: rgba(244, 239, 230, 0.85);
+  }
+  .ev-hero__label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(244, 239, 230, 0.4);
+  }
+  .ev-hero__title {
+    max-width: 12ch;
+    text-shadow: 0 0 60px var(--glow-soft);
+  }
+  .neon-rule {
+    display: block;
+    height: 2px;
+    width: min(100%, 220px);
+    background: var(--night-accent);
+    box-shadow: 0 0 10px var(--glow), 0 0 28px var(--glow-mid);
+  }
+  .ev-hero__lede {
+    max-width: 46ch;
+    color: rgba(244, 239, 230, 0.88);
+  }
+  @media (max-width: 900px) {
+    .ev-hero {
+      min-height: 0;
+    }
+    .ev-hero__copy {
+      max-width: none;
+    }
+    .ev-hero__content {
+      padding-block: 130px var(--space-7);
+    }
+    .ev-hero__bg,
+    .ev-hero__scrim {
+      width: 100%;
+      opacity: 0.4;
+    }
+    .ev-hero__scrim {
+      opacity: 1;
+      background: linear-gradient(180deg, rgba(11, 9, 14, 0.85), rgba(11, 9, 14, 0.6));
+    }
+  }
+
+  /* ---------------- AGENDA ---------------- */
+  .agenda__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+    gap: var(--space-7) calc(var(--col-gap) * 2);
+    padding-top: var(--space-7);
+    align-items: start;
+  }
+  .agenda__next {
+    display: grid;
+    gap: var(--space-4);
+    align-content: start;
+  }
+  .agenda__next-label {
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .agenda__note {
+    max-width: 42ch;
+  }
+  @media (min-width: 901px) {
+    .agenda__next :global(.agenda__row) {
+      grid-template-columns: 7.5rem minmax(0, 1fr) 8rem;
+      column-gap: var(--space-4);
+    }
+    .agenda__next :global(.agenda__meta) {
+      grid-column: 1 / -1;
+    }
+  }
+  .agenda__next :global(.agenda__name) {
+    font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+  }
+  @media (max-width: 900px) {
+    .agenda__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ---------------- SESSIONS ---------------- */
+  .sessions__grid {
+    padding-top: var(--space-7);
+    align-items: start;
+  }
+  .session {
+    grid-column: span 6;
+    display: grid;
+    gap: var(--space-4);
+  }
+  .session__art {
+    background: #000;
+    margin-bottom: var(--space-3);
+  }
+  .session__art img {
+    object-fit: contain;
+    padding: 6%;
+  }
+  .session__art--opus img {
+    object-fit: cover;
+    padding: 0;
+    object-position: center 45%;
+  }
+  .session__name {
+    font-size: clamp(2.25rem, 4.4vw, 3.75rem);
+  }
+  .session__name--beat {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  @media (max-width: 900px) {
+    .session {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* ---------------- PRIVATE ---------------- */
+  .private {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+    gap: var(--space-6) calc(var(--col-gap) * 2);
+    align-items: end;
+    padding-top: var(--space-7);
+  }
+  .private__title {
+    max-width: 11ch;
+    text-shadow: 0 0 44px var(--glow-soft);
+  }
+  .private__title .em {
+    color: var(--night-accent-ink);
+  }
+  .private__side {
+    display: grid;
+    gap: var(--space-5);
+  }
+  .private__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .private__ghost {
+    --btn-fg: var(--night-ink);
+    border-color: rgba(244, 239, 230, 0.5);
+  }
+  @media (max-width: 900px) {
+    .private {
+      grid-template-columns: 1fr;
+    }
+    .private__title {
+      max-width: none;
+    }
+  }
+</style>

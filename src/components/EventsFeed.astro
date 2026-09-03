@@ -8,9 +8,25 @@
  */
 import { calendarFeed } from '@/data/site';
 import { loadIcsFeed } from '@/lib/ics';
+import type { Lang } from '@/i18n';
+import { t } from '@/i18n/copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = t(lang);
 
 const sessions = await loadIcsFeed(calendarFeed.ics, calendarFeed.horizonDays);
+
+/** Labels for the built-in recurring rules, so the fallback agenda speaks the page language. */
+const ruleCopy = {
+  cadenza: { artist: c.sessions.cadenzaArtist, genre: c.sessions.cadenzaGenre },
+  opus: { artist: c.sessions.opusArtist, genre: c.sessions.opusGenre },
+};
 ---
+
+<script type="application/json" id="crush-session-copy" set:html={JSON.stringify(ruleCopy)} />
 
 {
   sessions.length > 0 && (

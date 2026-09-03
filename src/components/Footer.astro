@@ -1,6 +1,15 @@
 ---
 import { nav, site } from '@/data/site';
+import { localise, type Lang } from '@/i18n';
+import { t } from '@/i18n/copy';
 import Strap from './Strap.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = t(lang);
+const L = (p: string) => localise(lang, p);
 const year = new Date().getFullYear();
 
 const socials = [
@@ -16,16 +25,16 @@ const socials = [
     <hr class="rule rule--strong" />
     <div class="footer__grid">
       <div class="footer__col">
-        <p class="label muted">Visit</p>
+        <p class="label muted">{c.footer.visit}</p>
         <address>
           {site.address.street}<br />
           {site.address.postal} {site.address.area}<br />
           {site.address.city}, {site.address.country}
         </address>
-        <a class="link-line footer__link" href={site.maps} target="_blank" rel="noopener">Get directions</a>
+        <a class="link-line footer__link" href={site.maps} target="_blank" rel="noopener">{c.footer.directions}</a>
       </div>
       <div class="footer__col">
-        <p class="label muted">Hours</p>
+        <p class="label muted">{c.footer.hours}</p>
         <ul class="footer__hours">
           {
             site.hours.map((h) => (
@@ -41,20 +50,20 @@ const socials = [
         <p class="small muted">{site.hoursNote}</p>
       </div>
       <div class="footer__col">
-        <p class="label muted">Say hi</p>
+        <p class="label muted">{c.footer.sayHi}</p>
         <a class="link-line footer__link" href={`mailto:${site.email}`}>{site.email}</a>
         <a class="link-line footer__link" href={site.phoneHref}>{site.phone}</a>
       </div>
       <div class="footer__col">
-        <p class="label muted">Pages</p>
-        <a class="link-line footer__link" href="/">Home</a>
-        {nav.map((n) => <a class="link-line footer__link" href={n.href}>{n.label}</a>)}
+        <p class="label muted">{c.footer.pages}</p>
+        <a class="link-line footer__link" href={L('/')}>{c.nav.home}</a>
+        {nav.map((n) => <a class="link-line footer__link" href={L(n.path)}>{c.nav[n.key]}</a>)}
       </div>
     </div>
 
     <!-- Where to find us the rest of the time -->
     <section class="social" aria-label="Crush on social media">
-      <p class="label muted social__label">Follow us</p>
+      <p class="label muted social__label">{c.footer.follow}</p>
       <ul class="social__list">
         {
           socials.map((s) => (
@@ -103,7 +112,7 @@ const socials = [
 
     <div class="footer__bottom">
       <Strap />
-      <p class="small muted">© {year} {site.legalName}. Todos los derechos reservados.</p>
+      <p class="small muted">© {year} {site.legalName}. {c.footer.rights}</p>
     </div>
   </div>
 </footer>

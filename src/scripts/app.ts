@@ -13,6 +13,9 @@ import { site } from '@/data/site';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
+/** Dates follow the page, not the browser. */
+const pageLocale = () => (document.documentElement.lang || 'en-GB');
+
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ------------------------------------------------------------------ state */
@@ -340,6 +343,20 @@ function feed(): FeedSession[] {
 }
 const slugOf = (name: string) => name.toLowerCase().replace(/[^a-z]/g, '') || 'event';
 
+/** Localised wording for the built-in Cadenza / OPUS rules. */
+type RuleCopy = Record<string, { artist: string; genre: string }>;
+let RULE_COPY: RuleCopy | null = null;
+function ruleCopy(): RuleCopy {
+  if (RULE_COPY) return RULE_COPY;
+  const el = document.getElementById('crush-session-copy');
+  try {
+    RULE_COPY = el ? (JSON.parse(el.textContent || '{}') as RuleCopy) : {};
+  } catch {
+    RULE_COPY = {};
+  }
+  return RULE_COPY;
+}
+
 /** Every session on one calendar day: the connected calendar wins, rules fill in. */
 function sessionsOn(d: Date): Session[] {
   const iso = isoOf(d);
@@ -357,7 +374,8 @@ function sessionsOn(d: Date): Session[] {
     if (!r.weekday.includes(WEEKDAY_KEYS[wd])) continue;
     if (r.monthWeek && Math.ceil(dom / 7) !== r.monthWeek) continue;
     if (SKIP.has(`${r.id}:${iso}`)) continue;
-    out.push({ id: r.id, name: r.name, time: r.time, artist: r.artist, genre: r.genre });
+    const w = ruleCopy()[r.id];
+    out.push({ id: r.id, name: r.name, time: r.time, artist: w?.artist ?? r.artist, genre: w?.genre ?? r.genre });
   }
   for (const o of ONE_OFF) {
     if (o.active === false || o.date !== iso) continue;
@@ -417,7 +435,7 @@ function initAgenda() {
   const lists = document.querySelectorAll<HTMLElement>('[data-agenda]');
   const nextBox = document.querySelector<HTMLElement>('[data-next-session]');
   if (!lists.length && !nextBox) return;
-  const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'short', day: '2-digit', month: 'short' });
+  const fmt = new Intl.DateTimeFormat(pageLocale(), { timeZone: 'UTC', weekday: 'short', day: '2-digit', month: 'short' });
   const cell = (cls: string, text: string) => {
     const s = document.createElement('span');
     s.className = cls;
@@ -434,7 +452,7 @@ function initAgenda() {
         const li = document.createElement('li');
         li.className = `agenda__row${r.today ? ' is-today' : ''}`;
         li.append(
-          cell('agenda__date num', r.today ? 'Today' : fmt.format(r.date)),
+          cell('agenda__date num', r.today ? (document.documentElement.lang.startsWith('es') ? 'Hoy' : 'Today') : fmt.format(r.date)),
           cell('agenda__name', r.name),
           cell('agenda__time num', r.time.replace('-', '–')),
           cell('agenda__meta', [r.artist, r.genre].filter(Boolean).join(' · ')),
@@ -452,7 +470,7 @@ function initAgenda() {
     const [next] = upcoming(1);
     if (next) {
       nextBox.replaceChildren(
-        cell('next__when num', next.today ? 'Tonight' : fmt.format(next.date)),
+        cell('next__when num', next.today ? (document.documentElement.lang.startsWith('es') ? 'Esta noche' : 'Tonight') : fmt.format(next.date)),
         cell('next__name', next.name),
         cell('next__time num', next.time.replace('-', '–')),
         cell('next__meta', [next.artist, next.genre].filter(Boolean).join(' · ')),
@@ -482,8 +500,8 @@ function initCalendar() {
   const todayIso = `${now.y}-${String(now.m).padStart(2, '0')}-${String(now.d).padStart(2, '0')}`;
   let view = { y: now.y, m: now.m - 1 }; // m is 0-indexed here
 
-  const monthName = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', month: 'long', year: 'numeric' });
-  const dayName = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long' });
+  const monthName = new Intl.DateTimeFormat(pageLocale(), { timeZone: 'UTC', month: 'long', year: 'numeric' });
+  const dayName = new Intl.DateTimeFormat(pageLocale(), { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long' });
 
   const counter = root.querySelector<HTMLElement>('[data-cal-count]');
 
@@ -751,6 +769,7 @@ function initDishDialog() {
   const media = q('[data-dish-media]');
   const img = q<HTMLImageElement>('[data-dish-img]');
   const thumb = q<HTMLImageElement>('[data-dish-thumb]');
+  const haze = q<HTMLImageElement>('[data-dish-haze]');
   const kicker = q('[data-dish-kicker]');
   const name = q('[data-dish-name]');
   const price = q('[data-dish-price]');
@@ -761,6 +780,7 @@ function initDishDialog() {
   const quote = q('[data-dish-quote]');
   const quoteText = q('[data-dish-quote-text]');
   const quoteBy = q('[data-dish-quote-by]');
+  const share = q<HTMLAnchorElement>('[data-dish-share]');
 
   const open = (row: HTMLElement) => {
     const d = row.dataset;
@@ -781,10 +801,11 @@ function initDishDialog() {
         img.removeAttribute('src');
         img.alt = '';
       }
-      if (thumb) {
-        thumb.hidden = !!src || !small;
-        if (!src && small) thumb.src = small;
-        else thumb.removeAttribute('src');
+      for (const el of [thumb, haze]) {
+        if (!el) continue;
+        el.hidden = !!src || !small;
+        if (!src && small) el.src = small;
+        else el.removeAttribute('src');
       }
     }
 
@@ -808,6 +829,12 @@ function initDishDialog() {
     if (quote) quote.hidden = !hasQuote;
     if (quoteText) quoteText.textContent = d.quote ?? '';
     if (quoteBy) quoteBy.textContent = d.by ?? '';
+
+    if (share) {
+      const line = [d.name, d.price].filter(Boolean).join(' — ');
+      const text = [d.share, line, location.href].filter(Boolean).join(' ');
+      share.href = 'https://wa.me/?text=' + encodeURIComponent(text);
+    }
 
     dialog.showModal();
     document.body.style.overflow = 'hidden';
@@ -864,35 +891,58 @@ function initReels() {
   onCleanup(() => io.disconnect());
 }
 
-/* ------------------------------------------------------- contact form */
+/* ------------------------------------------------------- booking form */
+/**
+ * The booking request. With no endpoint configured it opens WhatsApp with the
+ * message already written, which is the fastest free way for a venue to take a
+ * table request; e-mail is the fallback when there is no WhatsApp number.
+ */
 function initForm() {
   const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
   if (!form) return;
   const status = form.querySelector<HTMLElement>('[data-form-status]');
+  const d = form.dataset;
+  const say = (msg: string) => {
+    if (status) status.textContent = msg;
+  };
+
+  const compose = (data: Record<string, string>) => {
+    const lines = [d.waIntro ?? ''];
+    if (data.when) lines.push(`· ${data.when}`);
+    if (data.people) lines.push(`· ${d.waFor ?? ''} ${data.people} ${d.waPeople ?? ''}`.trim());
+    if (data.name) lines.push(`· ${data.name}`);
+    if (data.phone) lines.push(`· ${data.phone}`);
+    if (data.message) lines.push('', data.message);
+    return lines.filter(Boolean).join('\n');
+  };
+
   const onSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
+    if (!form.reportValidity()) return;
     const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
-    const endpoint = form.dataset.endpoint;
     const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
     if (btn) btn.disabled = true;
-    if (status) status.textContent = 'Sending…';
+
     try {
-      if (endpoint) {
-        const res = await fetch(endpoint, {
+      if (d.endpoint) {
+        say(d.msgSending ?? 'Sending…');
+        const res = await fetch(d.endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify(data),
         });
         if (!res.ok) throw new Error(String(res.status));
-        if (status) status.textContent = 'Sent. We read everything — expect a reply soon.';
+        say(d.msgSent ?? 'Sent.');
         form.reset();
+      } else if (d.whatsapp) {
+        window.open(`https://wa.me/${d.whatsapp}?text=${encodeURIComponent(compose(data))}`, '_blank', 'noopener');
+        say(d.msgSent ?? 'Sent.');
       } else {
-        const body = `${data.message}\n\n— ${data.name || 'No name'}${data.phone ? ` · ${data.phone}` : ''}`;
-        location.href = `mailto:${site.email}?subject=${encodeURIComponent('Hello from the website')}&body=${encodeURIComponent(body)}`;
-        if (status) status.textContent = 'Opening your email app…';
+        location.href = `mailto:${site.email}?subject=${encodeURIComponent('Crush')}&body=${encodeURIComponent(compose(data))}`;
+        say(d.msgOpening ?? 'Opening your email app…');
       }
     } catch {
-      if (status) status.textContent = `Something went wrong. Write to ${site.email} instead.`;
+      say(d.msgFailed ?? `Something went wrong. Write to ${site.email}.`);
     } finally {
       if (btn) btn.disabled = false;
     }
@@ -926,6 +976,7 @@ function init() {
 
 function teardown() {
   FEED = null;
+  RULE_COPY = null;
   cleanups.splice(0).forEach((fn) => fn());
   ScrollTrigger.getAll().forEach((t) => t.kill());
   splits.forEach((s) => s.revert());

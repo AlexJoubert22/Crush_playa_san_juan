@@ -323,7 +323,7 @@
     "es": "Açaí con una elección de dos frutas (fresa, plátano, arándanos o kiwi), granola (sin azúcar, chocolate, frutas deshidratadas) y una salsa (dulce de leche, mantequilla de cacahuete, leche condensada, Nutella, miel)."
    },
    "price": 9.0,
-   "photo": "acai-bowl.png",
+   "photo": "acai-bowl.webp",
    "sort": 1
   },
   {
@@ -339,7 +339,7 @@
     "es": "Açaí con una elección de dos frutas (fresa, plátano, arándanos o kiwi), granola (sin azúcar, chocolate, frutas deshidratadas) y una salsa (dulce de leche, mantequilla de cacahuete, leche condensada, Nutella, miel)."
    },
    "price": 13.0,
-   "photo": "acai-bowl.png",
+   "photo": "acai-bowl.webp",
    "sort": 2
   },
   {
@@ -422,7 +422,7 @@
     "es": "Tostada multicereales con burrata, espinacas & jamon serrano"
    },
    "price": 7.5,
-   "photo": "roma.png",
+   "photo": "roma.webp",
    "sort": 5
   },
   {
@@ -438,7 +438,7 @@
     "es": "Tostada multicereales con aguacate, tomate cherry confitado & queso de cabra"
    },
    "price": 7.5,
-   "photo": "santiago.png",
+   "photo": "santiago.webp",
    "sort": 6
   },
   {
@@ -802,7 +802,7 @@
     "es": "Margarita Clásica con chilis rojos picantes"
    },
    "price": 10.0,
-   "photo": "spicy-marg-1.png",
+   "photo": "spicy-marg-1.webp",
    "sort": 15
   },
   {
@@ -869,7 +869,7 @@
    "price": 5.0,
    "photo": null,
    "sort": 2,
-   "thumb": "coffee-espresso-tonic.png"
+   "thumb": "coffee-espresso-tonic.webp"
   },
   {
    "id": "coffee-bombon",
@@ -1391,7 +1391,7 @@
     "es": "Patatas fritas cargadas con 2 huevos fritos & jamón serrano"
    },
    "price": 8.0,
-   "photo": "huevos-rotos.png",
+   "photo": "huevos-rotos.webp",
    "sort": 3
   },
   {
@@ -2084,7 +2084,7 @@
     "es": "Doble carne con cheddar, lechuga, pepinillos, bacon & nuestra salsa Mil Islas casera en pan de patata"
    },
    "price": 14.9,
-   "photo": "big-smash-2.png",
+   "photo": "big-smash-2.webp",
    "sort": 1
   },
   {
@@ -2100,7 +2100,7 @@
     "es": "Doble carne con cebolla blanca, cheddar y nuestra salsa Crush en pan de patata"
    },
    "price": 14.9,
-   "photo": "oklahoma-2.png",
+   "photo": "oklahoma-2.webp",
    "sort": 2
   },
   {
@@ -2232,7 +2232,7 @@
     "es": "Banana, mantequilla de cacahuete, miel, leche & proteína de vainilla"
    },
    "price": 7.5,
-   "photo": "tio-sam.png",
+   "photo": "tio-sam.webp",
    "sort": 8
   },
   {
@@ -2248,7 +2248,7 @@
     "es": "Frambuesa, banana, yogur griego & leche"
    },
    "price": 7.5,
-   "photo": "cosmo.png",
+   "photo": "cosmo.webp",
    "sort": 9
   },
   {
@@ -2264,7 +2264,7 @@
     "es": "Mango, banana, maracuyá & agave"
    },
    "price": 7.5,
-   "photo": "carnival.png",
+   "photo": "carnival.webp",
    "sort": 10
   },
   {

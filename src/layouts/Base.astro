@@ -6,7 +6,9 @@ import '@/styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import Nav from '@/components/Nav.astro';
 import Footer from '@/components/Footer.astro';
-import { site } from '@/data/site';
+import { site, analytics } from '@/data/site';
+import { languages, localise, type Lang } from '@/i18n';
+import { t } from '@/i18n/copy';
 
 interface Props {
   title: string;
@@ -14,6 +16,9 @@ interface Props {
   theme?: 'day' | 'night' | 'sunset';
   page?: string;
   ogImage?: string;
+  lang?: Lang;
+  /** Canonical (English) path of this page, for the hreflang pair. */
+  path?: string;
 }
 
 const {
@@ -22,11 +27,15 @@ const {
   theme = 'day',
   page = '',
   ogImage = '/og.jpg',
+  lang = 'en',
+  path = '/',
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
-const ogUrl = new URL(ogImage, Astro.site ?? site.url).href;
-const themeColor = theme === 'night' ? '#0b0910' : theme === 'sunset' ? '#f3e4dd' : '#f4efe6';
+const c = t(lang);
+const base = Astro.site ?? new URL(site.url);
+const canonical = new URL(localise(lang, path), base).href;
+const ogUrl = new URL(ogImage, base).href;
+const themeColor = theme === 'night' ? '#0b090e' : theme === 'sunset' ? '#f3e4dd' : '#f4efe6';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -45,7 +54,7 @@ const jsonLd = {
     postalCode: site.address.postal,
     addressCountry: 'ES',
   },
-  sameAs: [site.instagram, site.facebook],
+  sameAs: [site.instagram, site.facebook, site.tiktok, site.tripadvisor],
   openingHoursSpecification: [
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'], opens: '09:00', closes: '20:00' },
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Friday', 'Saturday', 'Sunday'], opens: '09:00', closes: '23:00' },
@@ -54,13 +63,16 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="en" data-theme={theme} data-page={page}>
+<html lang={languages[lang].htmlLang} data-theme={theme} data-page={page}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={new URL(path, base).href} />
+    <link rel="alternate" hreflang="es" href={new URL(localise('es', path), base).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(path, base).href} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -71,22 +83,27 @@ const jsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogUrl} />
-    <meta property="og:locale" content="en_GB" />
+    <meta property="og:locale" content={languages[lang].locale} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogUrl} />
     <script is:inline data-astro-rerun>document.documentElement.classList.add('js');</script>
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {
+      analytics.domain && (
+        <script defer data-domain={analytics.domain} src={analytics.src} is:inline />
+      )
+    }
     <ClientRouter />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <Nav />
+    <a class="skip-link" href="#main">{c.nav.skip}</a>
+    <Nav lang={lang} path={path} />
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
     <script>
       import '@/scripts/app';
     </script>

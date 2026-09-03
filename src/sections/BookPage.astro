@@ -1,0 +1,441 @@
+---
+import Base from '@/layouts/Base.astro';
+import Strap from '@/components/Strap.astro';
+import Arrow from '@/components/Arrow.astro';
+import { site } from '@/data/site';
+import { localise, type Lang } from '@/i18n';
+import { t } from '@/i18n/copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = t(lang);
+const L = (p: string) => localise(lang, p);
+
+const steps = [
+  { n: '01', k: c.book.step1, v: c.book.step1v },
+  { n: '02', k: c.book.step2, v: c.book.step2v },
+  { n: '03', k: c.book.step3, v: c.book.step3v },
+];
+
+const facts = [
+  { k: c.book.fOpen, v: c.book.fOpenV },
+  { k: c.book.fWeekend, v: c.book.fWeekendV },
+  { k: c.book.fNight, v: c.book.fNightV },
+  { k: c.book.fPets, v: c.book.fPetsV },
+  { k: c.book.fBeach, v: c.book.fBeachV },
+];
+
+const waHref = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(c.book.whatsappIntro)}`;
+---
+
+<Base
+  title={c.book.title}
+  description={c.book.description}
+  theme="day"
+  page="book"
+  lang={lang}
+  path="/book"
+>
+  <header class="wrap page-hero">
+    <p class="label page-hero__label"><Strap /></p>
+    <div class="page-hero__grid">
+      <h1 class="display-xl page-hero__title" data-reveal="lines">
+        {c.book.heroA} <span class="em">{c.book.heroEm}</span>
+      </h1>
+      <div class="hero-side">
+        <address class="lede" data-reveal="fade">
+          {site.address.street}<br />
+          {site.address.postal} {site.address.area}<br />
+          {site.address.city}, {site.address.country}
+        </address>
+        <div class="chip" data-now data-reveal="fade" style="--reveal-delay: 80ms">
+          <span class="chip__dot" aria-hidden="true"></span>
+          <span class="chip__swap"><span class="chip__line" data-now-text>{c.status.openDaily}</span></span>
+        </div>
+        <div class="hero-side__actions" data-reveal="fade" style="--reveal-delay: 140ms">
+          <a href={waHref} target="_blank" rel="noopener" class="btn btn--wa">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="btn__wa">
+              <path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a12 12 0 0 1-6.9-6c-.5-.8-.8-1.7-.8-2.6 0-1 .5-1.5.8-1.8.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3 0 .5.7 1.2 1.6 2 2.8 2.6.2.1.4.1.5 0l.7-.8c.2-.2.3-.2.5-.1l2 .9c.2.1.3.2.4.3v.9z" />
+            </svg>
+            {c.book.bookCta}
+          </a>
+          <a href={site.phoneHref} class="btn btn--ghost">{c.book.callCta}</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- How it works -->
+  <section class="wrap section section--flush-top">
+    <div class="chapter-head" data-reveal="fade">
+      <span class="num">01</span>
+      <span class="label">{c.book.how}</span>
+      <span class="label label--display">{c.nav.book}</span>
+    </div>
+    <div class="how">
+      <p class="lede how__text" data-reveal="fade">{c.book.howText}</p>
+      <ol class="how__steps" data-stagger>
+        {
+          steps.map((s) => (
+            <li class="how__step">
+              <span class="num how__n">{s.n}</span>
+              <span class="how__k">{s.k}</span>
+              <span class="how__v muted">{s.v}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- The form -->
+  <section class="section" id="request">
+    <div class="wrap grid contact__grid">
+      <div class="contact__copy">
+        <div class="chapter-head" data-reveal="fade">
+          <span class="num">02</span>
+          <span class="label">{c.book.groupsHead}</span>
+          <span class="label label--display">{c.book.sayHi}</span>
+        </div>
+        <h2 class="display contact__title" data-reveal="lines">
+          {c.book.formTitleA} <span class="em">{c.book.formTitleEm}</span>
+        </h2>
+        <p class="body" data-reveal="fade">{c.book.formText}</p>
+        <ul class="contact__list" data-stagger>
+          <li><span class="label muted">WhatsApp</span><a class="link-line" href={waHref} target="_blank" rel="noopener">{site.phone}</a></li>
+          <li><span class="label muted">Email</span><a class="link-line" href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><span class="label muted">Instagram</span><a class="link-line" href={site.instagram} target="_blank" rel="noopener">{site.instagramHandle}</a></li>
+        </ul>
+      </div>
+
+      <form
+        class="form"
+        data-contact-form
+        data-endpoint=""
+        data-whatsapp={site.whatsapp}
+        data-wa-intro={c.book.whatsappIntro}
+        data-wa-for={c.book.whatsappFor}
+        data-wa-people={c.book.whatsappPeople}
+        data-msg-sending={c.book.sending}
+        data-msg-sent={c.book.sent}
+        data-msg-failed={`${c.book.failed} ${site.email}`}
+        data-msg-opening={c.book.opening}
+        novalidate
+        data-reveal="fade"
+      >
+        <p class="label muted form__title">{c.book.sayHi}</p>
+        <div class="form__grid">
+          <label class="field">
+            <span class="field__label">{c.book.fieldWhen} <i aria-hidden="true">*</i></span>
+            <input type="text" name="when" required placeholder={c.book.placeholderWhen} />
+          </label>
+          <label class="field">
+            <span class="field__label">{c.book.fieldPeople} <i aria-hidden="true">*</i></span>
+            <input type="number" name="people" min="1" max="60" required placeholder={c.book.placeholderPeople} />
+          </label>
+          <label class="field">
+            <span class="field__label">{c.book.fieldName}</span>
+            <input type="text" name="name" autocomplete="name" placeholder={c.book.optional} />
+          </label>
+          <label class="field">
+            <span class="field__label">{c.book.fieldPhone}</span>
+            <input type="tel" name="phone" autocomplete="tel" placeholder={c.book.optional} />
+          </label>
+          <label class="field field--full">
+            <span class="field__label">{c.book.fieldEmail}</span>
+            <input type="email" name="email" autocomplete="email" placeholder={c.book.placeholderEmail} />
+          </label>
+          <label class="field field--full">
+            <span class="field__label">{c.book.fieldMessage}</span>
+            <textarea name="message" rows="3" maxlength="1000" placeholder={c.book.placeholderMessage}></textarea>
+          </label>
+        </div>
+        <div class="form__foot">
+          <button type="submit" class="btn">{c.book.send} <Arrow /></button>
+          <p class="small muted" data-form-status aria-live="polite">{c.book.replyFrom} {site.email}.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Hours, facts, map -->
+  <section class="wrap section section--flush-top">
+    <div class="grid where">
+      <div class="where__info">
+        <div class="chapter-head" data-reveal="fade">
+          <span class="num">03</span>
+          <span class="label">{c.book.hoursHead}</span>
+          <span class="label label--display">{c.book.everyDay}</span>
+        </div>
+        <ul class="rule-list where__hours" data-stagger>
+          {
+            site.hours.map((h) => (
+              <li>
+                <span class="row__name">{h.days}</span>
+                <span class="row__price">
+                  {h.open} – {h.close}
+                </span>
+              </li>
+            ))
+          }
+          <li>
+            <span class="row__name">{c.home.hoursEvents}</span>
+            <span class="row__price muted">{c.home.hoursExtended}</span>
+            <span class="row__desc">
+              {c.home.hoursEventsNote} <a class="link-line" href={L('/events')}>{c.sound.seeAgenda}</a>.
+            </span>
+          </li>
+        </ul>
+
+        <div class="chapter-head where__head2" data-reveal="fade">
+          <span class="num">04</span>
+          <span class="label">{c.book.goodToKnow}</span>
+          <span></span>
+        </div>
+        <ul class="rule-list" data-stagger>
+          {
+            facts.map((f) => (
+              <li>
+                <span class="row__name">{f.k}</span>
+                <span class="row__price where__fact">{f.v}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="where__map">
+        <div class="media where__embed" data-reveal="fade">
+          <iframe
+            src={site.mapEmbed}
+            title={c.book.mapTitle}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+        <div class="where__foot">
+          <p class="small muted">{c.book.transport}</p>
+          <a href={site.maps} target="_blank" rel="noopener" class="link-line small">{c.book.directions}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero-side {
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+  }
+  .hero-side__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .btn--wa :global(.btn__wa) {
+    width: 1.1em;
+    height: 1.1em;
+  }
+
+  /* ---- how it works ---- */
+  .how {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: var(--space-6) calc(var(--col-gap) * 2);
+    padding-top: var(--space-6);
+  }
+  .how__text {
+    max-width: 38ch;
+  }
+  .how__steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--col-gap);
+  }
+  .how__step {
+    display: grid;
+    gap: 0.4rem;
+    align-content: start;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line-strong);
+  }
+  .how__n {
+    font-size: 1.1rem;
+    color: var(--accent-ink);
+  }
+  .how__k {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+  }
+  .how__v {
+    font-size: var(--text-small);
+  }
+  @media (max-width: 900px) {
+    .how {
+      grid-template-columns: 1fr;
+    }
+    .how__steps {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+  }
+
+  /* ---- where ---- */
+  .where {
+    align-items: start;
+  }
+  .where__info {
+    grid-column: 1 / span 6;
+    display: grid;
+    gap: var(--space-5);
+  }
+  .where__head2 {
+    margin-top: var(--space-6);
+  }
+  .where__fact {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-body);
+    color: var(--ink-2);
+  }
+  .where__map {
+    grid-column: 8 / -1;
+    display: grid;
+    gap: var(--space-4);
+  }
+  .where__embed {
+    aspect-ratio: 3 / 4;
+  }
+  .where__embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(0.2) contrast(1.05);
+  }
+  .where__foot {
+    display: grid;
+    gap: 0.6rem;
+    justify-items: start;
+  }
+  @media (max-width: 900px) {
+    .where__info,
+    .where__map {
+      grid-column: 1 / -1;
+    }
+    .where__embed {
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  /* ---- form ---- */
+  .contact__grid {
+    align-items: start;
+  }
+  .contact__copy {
+    grid-column: 1 / span 6;
+    display: grid;
+    gap: var(--space-5);
+  }
+  .contact__title {
+    margin-top: var(--space-3);
+  }
+  .contact__list {
+    display: grid;
+    gap: 0.9rem;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line-strong);
+  }
+  .contact__list li {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    align-items: baseline;
+    gap: 1rem;
+    font-weight: 600;
+  }
+  .form {
+    grid-column: 8 / -1;
+    display: grid;
+    gap: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line-strong);
+  }
+  .form__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-6);
+    row-gap: var(--space-5);
+  }
+  .field {
+    display: grid;
+    gap: 0.35rem;
+  }
+  .field--full {
+    grid-column: 1 / -1;
+  }
+  .field__label {
+    font-size: var(--text-label);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    transition: color var(--dur-fast);
+  }
+  .field__label i {
+    font-style: normal;
+    color: var(--accent-ink);
+  }
+  .field:focus-within .field__label {
+    color: var(--ink);
+  }
+  .field input,
+  .field textarea {
+    width: 100%;
+    padding: 0.7rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--line-strong);
+    border-radius: 0;
+    background: transparent;
+    color: var(--ink);
+    font-size: 1.125rem;
+    line-height: 1.4;
+    transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+  }
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: var(--ink-3);
+    opacity: 0.8;
+  }
+  .field input:focus-visible,
+  .field textarea:focus-visible {
+    outline: 0;
+    border-bottom-color: var(--ink);
+    box-shadow: 0 1px 0 0 var(--ink);
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 5rem;
+  }
+  .form__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+    padding-top: var(--space-2);
+  }
+  @media (max-width: 900px) {
+    .contact__copy,
+    .form {
+      grid-column: 1 / -1;
+    }
+    .form__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

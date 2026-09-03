@@ -1,6 +1,6 @@
 # Crush — website
 
-Nueva web de **Crush** (Av. de Niza 12, Playa de San Juan, Alicante). Estática, cinco páginas, construida con Astro 7.
+Nueva web de **Crush** (Av. de Niza 12, Playa de San Juan, Alicante). Estática, bilingüe (inglés y español), siete páginas por idioma, construida con Astro 7.
 La dirección de arte está en [DESIGN.md](./DESIGN.md).
 
 ## Arrancar
@@ -18,7 +18,10 @@ Requiere Node 22 (Astro pide ≥ 22.19; con 22.17 funciona con un aviso).
 
 ```
 src/
-  pages/        index · menu · sound · story · visit · 404
+  pages/        envoltorios: index · menu · sound · events · story · book · 404
+                y su espejo en es/ (mismo contenido, otro idioma)
+  sections/     las páginas de verdad; cada una recibe la prop `lang`
+  i18n/         index.ts (rutas y helpers) · copy.ts (todos los textos, EN + ES)
   layouts/      Base.astro  (head, fuentes, nav, footer, JSON-LD, ClientRouter)
   components/   Nav · Footer · Strap (FOOD · DRINKS · BEATS) · Arrow
   scripts/      app.ts  (Lenis, GSAP ScrollTrigger + SplitText, reveals, arco solar,
@@ -46,12 +49,26 @@ public/         favicons, og.jpg
 | Redes sociales del pie | `src/data/site.ts` (`instagram`, `facebook`, `tiktok`, `tripadvisor`) |
 | Reglas de eventos (días, horas, fechas saltadas, eventos puntuales) | `src/data/events.source.json` (mismo formato que el API actual) |
 | **Agenda desde Google Calendar** | variable `PUBLIC_CRUSH_ICS` — ver abajo |
-| Textos de cada página | el `.astro` correspondiente en `src/pages/` |
+| Textos de cada página, en los dos idiomas | `src/i18n/copy.ts` |
+| Reserva por WhatsApp | `site.whatsapp` en `src/data/site.ts`. Para pasar a un endpoint real (Formspree, TheFork…), pon la URL en `data-endpoint` del `<form>` de `src/sections/BookPage.astro` |
+| Analítica sin cookies | variables `PUBLIC_ANALYTICS_DOMAIN` y `PUBLIC_ANALYTICS_SRC`. Sin ellas no se carga ningún script de terceros y no hace falta banner de cookies |
 | Colores, tipografías, ritmos | `src/styles/tokens.css` |
 | Reels de la home (mañana, afterbeach, fundador) | `public/video/morning.*`, `afterbeach.*`, `belong.mp4` + pósters `.jpg`. Son reels de @crushplayasanjuan recodificados a 720×1280, sin audio. Para cambiarlos: `yt-dlp <url>` y `ffmpeg -an -vf scale=720:1280 -c:v libx264 -crf 27` |
 | Mensajes del chip de la nav en la home (Coffee o'clock, Spritz time…) | función `narration()` en `src/scripts/app.ts` |
 
 La agenda ("Next up") se calcula en el navegador con la hora de Alicante a partir de las reglas: Cadenza sábados y domingos 10:00–16:00; OPUS segundo sábado del mes 21:00–02:00. El chip "Open · …" también.
+
+## Idiomas
+
+Inglés en la raíz (`/menu`) y español bajo prefijo (`/es/menu`). Cada página de `src/pages/` es
+un envoltorio de tres líneas que renderiza la sección correspondiente con `lang="en"` o `lang="es"`,
+así que el maquetado existe una sola vez.
+
+Para cambiar un texto, edítalo en `src/i18n/copy.ts` — están los dos idiomas uno al lado del otro.
+Los nombres y descripciones de los platos salen de `menu.json`, que ya trae `en` y `es`.
+
+Para añadir un idioma: añádelo a `languages` en `src/i18n/index.ts`, duplica un bloque en
+`copy.ts` y crea la carpeta `src/pages/<código>/` con los mismos envoltorios.
 
 ## Agenda conectada a Google Calendar
 
@@ -105,6 +122,5 @@ Cada `git push` a `main` publica una versión nueva. Para que los eventos nuevos
 
 1. **Formulario de contacto**: hoy abre el cliente de correo con el mensaje. Para envío directo, poner un endpoint (Formspree, Netlify Forms, Web3Forms…) en `data-endpoint` del `<form>` en `src/pages/visit.astro`.
 2. **Horarios**: la web oficial dice L–J 09–20 y V–D 09–23; Google y prensa hablan de 09:00–01:30. Se ha usado el horario oficial. Confirmar y corregir en `site.ts`.
-3. **Español**: la web es en inglés (público internacional, como la actual). `menu.json` ya lleva los nombres en ES; añadir `/es` con `astro i18n` es el siguiente paso natural.
 4. **Vídeo**: el "vídeo de OPUS" del API actual es un clip de stock (un perro en un prado), no del local. No se ha usado. Un clip real de 10–15 s del local de noche encajaría en el capítulo Night de la home.
 5. **Fotos de 7 DJs** (Ale Marin, BASSTIANZ, Bel, Exequiel, Greg Downey, Ivvan, Zeta) son de 100 px en la web actual; se muestran como avatar. Con fotos grandes, el roster las enseña al pasar el ratón.

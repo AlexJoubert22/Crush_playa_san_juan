@@ -376,6 +376,16 @@ address {
   --btn-bg: var(--day-canvas);
   --btn-fg: var(--day-ink);
 }
+.btn--wa {
+  --btn-bg: #25d366;
+  --btn-fg: #06301a;
+}
+.btn--wa::before {
+  background: #1ebe5b;
+}
+.btn--wa:hover {
+  color: #06301a;
+}
 .btn--sm {
   min-height: 2.5rem;
   padding: 0.6rem 1.1rem;

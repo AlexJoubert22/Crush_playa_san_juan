@@ -1,0 +1,52 @@
+---
+import Base from '@/layouts/Base.astro';
+import Arrow from '@/components/Arrow.astro';
+import Strap from '@/components/Strap.astro';
+import { localise, type Lang } from '@/i18n';
+import { t } from '@/i18n/copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = t(lang);
+const L = (p: string) => localise(lang, p);
+---
+
+<Base
+  title={c.notFound.title}
+  description={c.notFound.description}
+  theme="night"
+  page="404"
+  lang={lang}
+  path="/404"
+>
+  <section class="wrap lost">
+    <p class="label page-hero__label"><Strap /></p>
+    <p class="num lost__code">404</p>
+    <h1 class="display-xl" data-reveal="lines">{c.notFound.heroA} <span class="em">{c.notFound.heroEm}</span></h1>
+    <div class="lost__actions" data-reveal="fade">
+      <a href={L('/')} class="btn btn--light">{c.notFound.back} <Arrow /></a>
+      <a href={L('/book')} class="btn btn--ghost">{c.notFound.directions}</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lost {
+    min-height: 100svh;
+    display: grid;
+    align-content: center;
+    gap: var(--space-6);
+    padding-block: 140px var(--space-9);
+  }
+  .lost__code {
+    font-size: 1rem;
+    color: var(--accent);
+  }
+  .lost__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+</style>
