@@ -1,0 +1,69 @@
+---
+/** A four-bar meter pulsing at 124 BPM — the only looping motion allowed at night. */
+interface Props {
+  bpm?: number;
+  label?: boolean;
+}
+const { bpm = 124, label = true } = Astro.props;
+const beat = (60 / bpm).toFixed(3);
+---
+
+<span class="beat" style={`--beat:${beat}s`} aria-label={`${bpm} beats per minute`} role="img">
+  <i></i><i></i><i></i><i></i>
+  {label && <span class="beat__label num">{bpm} BPM</span>}
+</span>
+
+<style>
+  .beat {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 1em;
+    vertical-align: middle;
+  }
+  .beat i {
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transform-origin: bottom;
+    animation: beat var(--beat) var(--ease-inout) infinite;
+  }
+  .beat i:nth-child(1) {
+    animation-delay: 0s;
+    transform: scaleY(0.4);
+  }
+  .beat i:nth-child(2) {
+    animation-delay: calc(var(--beat) * -0.25);
+  }
+  .beat i:nth-child(3) {
+    animation-delay: calc(var(--beat) * -0.5);
+  }
+  .beat i:nth-child(4) {
+    animation-delay: calc(var(--beat) * -0.75);
+  }
+  .beat__label {
+    margin-left: 0.6rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    align-self: center;
+  }
+  @keyframes beat {
+    0% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(0.25);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .beat i {
+      animation: none;
+      transform: scaleY(0.6);
+    }
+  }
+</style>

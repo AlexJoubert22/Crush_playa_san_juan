@@ -1,0 +1,132 @@
+[
+ {
+  "id": "ale-marin",
+  "name": "Ale Marin",
+  "genre": "Progressive / Organic House",
+  "origin": "Argentina",
+  "instagram": "https://www.instagram.com/alemarindj",
+  "soundcloud": "https://soundcloud.com/ale-marin-289298516",
+  "photo": "ale-marin.jpg",
+  "small": true
+ },
+ {
+  "id": "basstianz",
+  "name": "BASSTIANZ",
+  "genre": "Minimal / House",
+  "origin": "Spain",
+  "instagram": "https://www.instagram.com/basstianz",
+  "soundcloud": "https://soundcloud.com/basstianz",
+  "photo": "basstianz.jpg",
+  "small": true
+ },
+ {
+  "id": "bel",
+  "name": "Bel González",
+  "genre": "Deep House / Minimal",
+  "origin": "Argentina",
+  "instagram": "https://www.instagram.com/belgonzalez___",
+  "soundcloud": "https://soundcloud.com/beel-gonzalez-759795379",
+  "photo": "bel.jpg",
+  "small": true
+ },
+ {
+  "id": "exequiel-tapia",
+  "name": "Exequiel Tapia",
+  "genre": "Progressive House / Deep House",
+  "origin": "Argentina",
+  "instagram": "https://www.instagram.com/exetapia19",
+  "soundcloud": "https://soundcloud.com/exequiel-tapia-1",
+  "photo": "exequiel-tapia.jpg",
+  "small": true
+ },
+ {
+  "id": "greg-downey",
+  "name": "Greg Downey",
+  "genre": "Techno",
+  "origin": "Ireland",
+  "instagram": "https://www.instagram.com/gregdowney",
+  "soundcloud": "https://soundcloud.com/gregdowneymusic",
+  "photo": "greg-downey.jpg",
+  "small": true
+ },
+ {
+  "id": "ivvan",
+  "name": "Ivvan",
+  "genre": "House / Deep Tech",
+  "origin": "Argentina",
+  "instagram": "https://www.instagram.com/ivvan.sound",
+  "soundcloud": "https://soundcloud.com/ivvanmusic",
+  "photo": "ivvan.jpg",
+  "small": true
+ },
+ {
+  "id": "zeta",
+  "name": "Zeta",
+  "genre": "Deep House / Minimal House",
+  "origin": "Argentina",
+  "instagram": "https://www.instagram.com/tomaszarate",
+  "soundcloud": "https://on.soundcloud.com/39VZkqiSk0WXm5wIJm",
+  "photo": "zeta.jpg",
+  "small": true
+ },
+ {
+  "id": "sun-melody",
+  "name": "Sun Melody",
+  "genre": "House / Techno",
+  "origin": "Russia",
+  "instagram": "https://www.instagram.com/sun_melody_",
+  "soundcloud": "https://soundcloud.com/sun_melody",
+  "photo": "sun-melody.jpg",
+  "small": false
+ },
+ {
+  "id": "manu-lagos",
+  "name": "Manu Lagos",
+  "genre": "Minimal / Deep Tech",
+  "origin": "Argentina",
+  "instagram": "https://www.instagram.com/manuulagos",
+  "soundcloud": null,
+  "photo": "manu-lagos.jpg",
+  "small": false
+ },
+ {
+  "id": "manija",
+  "name": "MANIJA",
+  "genre": "House",
+  "origin": "Argentina",
+  "instagram": "https://www.instagram.com/MANIJA_DJ",
+  "soundcloud": null,
+  "photo": "manija.jpg",
+  "small": false
+ },
+ {
+  "id": "rios-lakes",
+  "name": "Rios&Lakes",
+  "genre": "Progressive",
+  "origin": "Argentina",
+  "instagram": "https://www.instagram.com/riosandlakes",
+  "soundcloud": "https://soundcloud.com/riosandlakes",
+  "photo": "rios-lakes.jpg",
+  "small": false
+ },
+ {
+  "id": "ccollado",
+  "name": "CCollado",
+  "genre": "House / Soulful",
+  "origin": "Spain",
+  "instagram": "https://www.instagram.com/cacolboy",
+  "soundcloud": null,
+  "photo": "ccollado.jpg",
+  "small": false
+ },
+ {
+  "id": "spowy",
+  "name": "Spowy",
+  "genre": "House / Deep Tech",
+  "origin": "Spain",
+  "instagram": "https://www.instagram.com/_spowy",
+  "soundcloud": null,
+  "photo": "spowy.jpg",
+  "small": false
+ }
+]

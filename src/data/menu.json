@@ -1,0 +1,2980 @@
+{
+ "updatedAt": "2026-06-11T17:52:22.903Z",
+ "categories": [
+  {
+   "id": "coffee",
+   "tab": "drinks",
+   "name": {
+    "en": "Coffee",
+    "es": "Café"
+   },
+   "sort": 0
+  },
+  {
+   "id": "matcha",
+   "tab": "drinks",
+   "name": {
+    "en": "Matcha",
+    "es": "Matcha"
+   },
+   "sort": 1
+  },
+  {
+   "id": "frappes",
+   "tab": "drinks",
+   "name": {
+    "en": "Frappés",
+    "es": "Frappés"
+   },
+   "sort": 2
+  },
+  {
+   "id": "smoothies",
+   "tab": "drinks",
+   "name": {
+    "en": "Smoothies",
+    "es": "Smoothies"
+   },
+   "sort": 3
+  },
+  {
+   "id": "shakes",
+   "tab": "drinks",
+   "name": {
+    "en": "Shakes",
+    "es": "Batidos"
+   },
+   "sort": 4
+  },
+  {
+   "id": "teas",
+   "tab": "drinks",
+   "name": {
+    "en": "Teas",
+    "es": "Tés e infusiones"
+   },
+   "sort": 5
+  },
+  {
+   "id": "nonAlcoholic",
+   "tab": "drinks",
+   "name": {
+    "en": "Soft Drinks",
+    "es": "Refrescos"
+   },
+   "sort": 6
+  },
+  {
+   "id": "spritz",
+   "tab": "drinks",
+   "name": {
+    "en": "Spritz",
+    "es": "Spritz"
+   },
+   "sort": 7
+  },
+  {
+   "id": "cocktails",
+   "tab": "drinks",
+   "name": {
+    "en": "Cocktails",
+    "es": "Cócteles"
+   },
+   "sort": 8
+  },
+  {
+   "id": "beer",
+   "tab": "drinks",
+   "name": {
+    "en": "Beer",
+    "es": "Cerveza"
+   },
+   "sort": 9
+  },
+  {
+   "id": "wine",
+   "tab": "drinks",
+   "name": {
+    "en": "Wine",
+    "es": "Vino"
+   },
+   "sort": 10
+  },
+  {
+   "id": "spirits",
+   "tab": "drinks",
+   "name": {
+    "en": "Spirits",
+    "es": "Licores"
+   },
+   "sort": 11
+  },
+  {
+   "id": "specials",
+   "tab": "drinks",
+   "name": {
+    "en": "Specials",
+    "es": "Especiales"
+   },
+   "sort": 12
+  },
+  {
+   "id": "brunch",
+   "tab": "food",
+   "name": {
+    "en": "Brunch",
+    "es": "Brunch"
+   },
+   "sort": 13
+  },
+  {
+   "id": "bowls",
+   "tab": "food",
+   "name": {
+    "en": "Açai",
+    "es": "Açaí & pitaya"
+   },
+   "sort": 14
+  },
+  {
+   "id": "bowles",
+   "tab": "food",
+   "name": {
+    "en": "Bowls",
+    "es": "Bowls"
+   },
+   "sort": 15
+  },
+  {
+   "id": "sandwiches",
+   "tab": "food",
+   "name": {
+    "en": "Sandwiches",
+    "es": "Sándwiches"
+   },
+   "sort": 16
+  },
+  {
+   "id": "smash-burgers",
+   "tab": "food",
+   "name": {
+    "en": "Smash Burgers",
+    "es": "Hamburguesas Smash"
+   },
+   "sort": 17
+  },
+  {
+   "id": "loaded-fries",
+   "tab": "food",
+   "name": {
+    "en": "Loaded Fries",
+    "es": "Patatas cargadas"
+   },
+   "sort": 18
+  },
+  {
+   "id": "salads",
+   "tab": "food",
+   "name": {
+    "en": "Salads",
+    "es": "Ensaladas"
+   },
+   "sort": 19
+  },
+  {
+   "id": "desserts",
+   "tab": "food",
+   "name": {
+    "en": "Desserts",
+    "es": "Postres"
+   },
+   "sort": 20
+  }
+ ],
+ "items": [
+  {
+   "id": "beer-corona",
+   "category": "beer",
+   "sub": null,
+   "name": {
+    "en": "Corona",
+    "es": "Corona"
+   },
+   "description": {
+    "en": "Bottle 33cl",
+    "es": "Botella 33cl"
+   },
+   "price": 4.0,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "beer-estrella-00",
+   "category": "beer",
+   "sub": null,
+   "name": {
+    "en": "Estrella Galicia 0.0",
+    "es": "Estrella Galicia 0.0"
+   },
+   "description": {
+    "en": "Non-alcoholic 33cl",
+    "es": "Sin alcohol 33cl"
+   },
+   "price": 3.5,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "beer-estrella-de-galicia",
+   "category": "beer",
+   "sub": null,
+   "name": {
+    "en": "Estrella Galicia",
+    "es": "Estrella Galicia"
+   },
+   "description": {
+    "en": "Bottle 33cl",
+    "es": "Botella 33cl"
+   },
+   "price": 3.5,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "beer-estrella-gluten-free",
+   "category": "beer",
+   "sub": null,
+   "name": {
+    "en": "Estrella Galicia Gluten Free",
+    "es": "Estrella Galicia Sin Gluten"
+   },
+   "description": {
+    "en": "Gluten free 33cl",
+    "es": "Sin gluten 33cl"
+   },
+   "price": 3.5,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "beer-estrella-tap-half-pint",
+   "category": "beer",
+   "sub": null,
+   "name": {
+    "en": "Estrella Galicia half pint",
+    "es": "Estrella Galicia caña"
+   },
+   "description": {
+    "en": "Half pint draught beer",
+    "es": "Caña de barril"
+   },
+   "price": 3.0,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "beer-estrella-tap-pint",
+   "category": "beer",
+   "sub": null,
+   "name": {
+    "en": "Estrella Galicia draught Pint",
+    "es": "Estrella Galicia de Grifo Pinta"
+   },
+   "description": {
+    "en": "Estrella Galicia pint",
+    "es": "Estrella Galicia jarra"
+   },
+   "price": 4.0,
+   "photo": null,
+   "sort": 6
+  },
+  {
+   "id": "bowles-sweet-greek",
+   "category": "bowles",
+   "sub": null,
+   "name": {
+    "en": "Sweet Greek",
+    "es": "Sweet Greek"
+   },
+   "description": {
+    "en": "Dense Greek yoghurt with red berry compote, fresh seasonal fruit & granola",
+    "es": "Yogur griego espeso con compota de frutos rojos, fruta fresca de temporada & granola"
+   },
+   "price": 9.0,
+   "photo": "sweet-greek.jpeg",
+   "sort": 1
+  },
+  {
+   "id": "bowls-acai-bowl-300g",
+   "category": "bowls",
+   "sub": null,
+   "name": {
+    "en": "Açaí Bowl 300g",
+    "es": "Açaí Bowl 300g"
+   },
+   "description": {
+    "en": "Açai with a choice of two fruit (strawberry, banana, blueberry, kiwi) granola (unsweetened, chocolate, dried fruit) and sauce (caramel, peanut butter, condensed milk, Nutella, honey)",
+    "es": "Açaí con una elección de dos frutas (fresa, plátano, arándanos o kiwi), granola (sin azúcar, chocolate, frutas deshidratadas) y una salsa (dulce de leche, mantequilla de cacahuete, leche condensada, Nutella, miel)."
+   },
+   "price": 9.0,
+   "photo": "acai-bowl.png",
+   "sort": 1
+  },
+  {
+   "id": "bowls-acai-bowl-500g",
+   "category": "bowls",
+   "sub": null,
+   "name": {
+    "en": "Açaí Bowl 500g",
+    "es": "Açaí Bowl 500g"
+   },
+   "description": {
+    "en": "Açai with a choice of two fruit (strawberry, banana, blueberry, kiwi) granola (unsweetened, chocolate, dried fruit) and sauce (caramel, peanut butter, condensed milk, Nutella, honey)",
+    "es": "Açaí con una elección de dos frutas (fresa, plátano, arándanos o kiwi), granola (sin azúcar, chocolate, frutas deshidratadas) y una salsa (dulce de leche, mantequilla de cacahuete, leche condensada, Nutella, miel)."
+   },
+   "price": 13.0,
+   "photo": "acai-bowl.png",
+   "sort": 2
+  },
+  {
+   "id": "bowls-fruits",
+   "category": "bowls",
+   "sub": null,
+   "name": {
+    "en": "Extra Fruit",
+    "es": "Extra Fruta"
+   },
+   "description": {
+    "en": "Strawberry / Blueberries / Banana / Kiwi",
+    "es": "Fresa / Arandanos / Banana / Kiwi"
+   },
+   "price": 1.0,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "bowls-sauces",
+   "category": "bowls",
+   "sub": null,
+   "name": {
+    "en": "Extra sauce",
+    "es": "Extra salsa"
+   },
+   "description": {
+    "en": "Honey / peanut butter / Nutella / caramel / condensed milk",
+    "es": "Miel / mantequilla de cacahuete / Nutella / caramelo / leche condensada"
+   },
+   "price": 0.5,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "bowls-toppings",
+   "category": "bowls",
+   "sub": null,
+   "name": {
+    "en": "Toppings",
+    "es": "Toppings"
+   },
+   "description": {
+    "en": "Chia seeds, crunchy almonds, almond flakes, crushed peanuts, goji berries, coconut flakes, chocolate chips, powdered milk",
+    "es": "Semillas de chia, almendra crujiente, laminas de almendra, cacahuete, goji, laminas de coco, pepitos de chocolate, leche en polvo"
+   },
+   "price": 0.5,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "brunch-iberia",
+   "category": "brunch",
+   "sub": "gourmet-toast",
+   "name": {
+    "en": "Iberia",
+    "es": "Iberia"
+   },
+   "description": {
+    "en": "Multigrain toast with tomato, serrano ham, cheese & roasted red pepper",
+    "es": "Tostada multicereales con tomate, jamón serrano, queso & pimiento rojo asado."
+   },
+   "price": 7.5,
+   "photo": "iberia.jpeg",
+   "sort": 4
+  },
+  {
+   "id": "brunch-roma",
+   "category": "brunch",
+   "sub": "gourmet-toast",
+   "name": {
+    "en": "Roma",
+    "es": "Roma"
+   },
+   "description": {
+    "en": "Multigrain toast with burrata, spinach, & serrano ham",
+    "es": "Tostada multicereales con burrata, espinacas & jamon serrano"
+   },
+   "price": 7.5,
+   "photo": "roma.png",
+   "sort": 5
+  },
+  {
+   "id": "brunch-santiago",
+   "category": "brunch",
+   "sub": "gourmet-toast",
+   "name": {
+    "en": "Santiago",
+    "es": "Santiago"
+   },
+   "description": {
+    "en": "Multigrain toast with avocado, candied cherry tomatoes & goat's cheese",
+    "es": "Tostada multicereales con aguacate, tomate cherry confitado & queso de cabra"
+   },
+   "price": 7.5,
+   "photo": "santiago.png",
+   "sort": 6
+  },
+  {
+   "id": "brunch-eggs-benedict",
+   "category": "brunch",
+   "sub": "eggs",
+   "name": {
+    "en": "Eggs Benedict",
+    "es": "Huevos Benedictinos"
+   },
+   "description": {
+    "en": "Poached eggs, bacon & hollandaise sauce on brioche",
+    "es": "Huevos pochadas, bacon y salsa holandesa sobre brioche"
+   },
+   "price": 12.0,
+   "photo": "benedictinos.jpeg",
+   "sort": 7
+  },
+  {
+   "id": "brunch-scrambled-eggs",
+   "category": "brunch",
+   "sub": "eggs",
+   "name": {
+    "en": "Scrambled Eggs",
+    "es": "Huevos Revueltos"
+   },
+   "description": {
+    "en": "Scrambled eggs, cream cheese & chives on brioche",
+    "es": "Huevos revueltos, queso crema & cebollino sobre brioche"
+   },
+   "price": 9.0,
+   "photo": "revueltos-2.jpeg",
+   "sort": 8
+  },
+  {
+   "id": "brunch-eggs-royale",
+   "category": "brunch",
+   "sub": "eggs",
+   "name": {
+    "en": "Eggs Royale",
+    "es": "Huevos Royale"
+   },
+   "description": {
+    "en": "Poached eggs, Salmon & hollandaise sauce on brioche",
+    "es": "Huevos pochados, salmón & salsa holandesa sobre brioche"
+   },
+   "price": 15.0,
+   "photo": "royale.jpeg",
+   "sort": 9
+  },
+  {
+   "id": "brunch-el-crush",
+   "category": "brunch",
+   "sub": "eggs",
+   "name": {
+    "en": "El Crush",
+    "es": "El Crush"
+   },
+   "description": {
+    "en": "Fried eggs, avocado, bacon & maple syrup on brioche",
+    "es": "Huevos fritos, aguacate, bacon & sirope de arce sobre brioche"
+   },
+   "price": 12.0,
+   "photo": "el-crush.jpeg",
+   "sort": 10
+  },
+  {
+   "id": "brunch-luna-rosa",
+   "category": "brunch",
+   "sub": "french-toast",
+   "name": {
+    "en": "Luna Rosa",
+    "es": "Luna Rosa"
+   },
+   "description": {
+    "en": "Brioche soaked in vanilla cream with mascarpone, red berry compote, strawberries & blueberries",
+    "es": "Brioche remojada en crema de vainilla con mascarpone, compota de frutos rojos, fresas y arandanos"
+   },
+   "price": 10.0,
+   "photo": "luna-rossa-2.jpeg",
+   "sort": 10
+  },
+  {
+   "id": "brunch-gringo",
+   "category": "brunch",
+   "sub": "french-toast",
+   "name": {
+    "en": "Gringo",
+    "es": "Gringo"
+   },
+   "description": {
+    "en": "Banana, Nutella, peanut butter & chocolate chips",
+    "es": "Banana, Nutella, mantequilla de cacahuete & pepitas de chocolate"
+   },
+   "price": 10.0,
+   "photo": "gringo.jpeg",
+   "sort": 11
+  },
+  {
+   "id": "brunch-french-kiss",
+   "category": "brunch",
+   "sub": "french-toast",
+   "name": {
+    "en": "French Kiss",
+    "es": "French Kiss"
+   },
+   "description": {
+    "en": "Vanilla curd, red berry compote & banana",
+    "es": "Crema de vainilla, compota de frutos rojos, & banana"
+   },
+   "price": 10.0,
+   "photo": "oh-my-lemon.jpeg",
+   "sort": 12
+  },
+  {
+   "id": "cocktails-banana-caramel-split",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Banana Caramel Split",
+    "es": "Banana Caramel Split"
+   },
+   "description": {
+    "en": "Frozen banana & caramel, rum-based cocktail",
+    "es": "Cóctel helado de ron con plátano & caramelo"
+   },
+   "price": 10.0,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "cocktails-bloody-mary",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Fiery Bloody Mary",
+    "es": "Fiery Bloody Mary"
+   },
+   "description": {
+    "en": "Tomato cocktail made with Absolut Tabasco vodka & spices",
+    "es": "Cóctel de tomate elaborado con vodka Absolut Tabasco & especias."
+   },
+   "price": 9.0,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "cocktails-caipirinha",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Caipirinha",
+    "es": "Caipirinha"
+   },
+   "description": {
+    "en": "Brazilian classic, cachaça & lime cocktail",
+    "es": "Cóctel brasileño de cachaça & lima"
+   },
+   "price": 8.0,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "cocktails-espresso-martini",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Espresso Martini",
+    "es": "Espresso Martini"
+   },
+   "description": {
+    "en": "Vodka, espresso & coffee liqueur",
+    "es": "Vodka, espresso & licor de café"
+   },
+   "price": 10.0,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "cocktails-frozen-daiquiri",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Frozen Daiquiri",
+    "es": "Daiquiri Frozen"
+   },
+   "description": {
+    "en": "Frozen strawberry, mango or passion fruit, rum-based cocktail",
+    "es": "Cóctel a base de ron con fresa, mango o maracuyá"
+   },
+   "price": 9.5,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "cocktails-frozen-margarita",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Frozen Margarita",
+    "es": "Frozen Margarita"
+   },
+   "description": {
+    "en": "Tequila based cocktail with Cointreau & lime. Also available in strawberry, mango or passion fruit",
+    "es": "Coctel de tequila con Cointraeu & lima. Tambien disponible en fresa, mango o maracuyá"
+   },
+   "price": 10.0,
+   "photo": null,
+   "sort": 6
+  },
+  {
+   "id": "cocktails-frozen-pina-colada",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Frozen Piña Colada",
+    "es": "Frozen Piña Colada"
+   },
+   "description": {
+    "en": "Creamy, rum-based cocktail with fresh pineapple & coconut",
+    "es": "Cóctel cremoso a base de ron con piña natural & coco"
+   },
+   "price": 9.5,
+   "photo": null,
+   "sort": 7
+  },
+  {
+   "id": "cocktails-honeymoon",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Honeymoon",
+    "es": "Honeymoon"
+   },
+   "description": {
+    "en": "Sweet, whisky-based cocktail with orange, ginger & honey",
+    "es": "Cóctel dulce a base de whisky con naranja, jengibre & miel"
+   },
+   "price": 9.5,
+   "photo": null,
+   "sort": 8
+  },
+  {
+   "id": "cocktails-mojito",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Mojito",
+    "es": "Mojito"
+   },
+   "description": {
+    "en": "Classic Cuban, rum-based cocktail with lime and mint. Also available in strawberry, raspberry, coconut, mango, passionfruit or blueberry (+1€)",
+    "es": "Clásico cóctel cubano a base de ron con lima y menta. También disponible en fresa, frambuesa, coco, mango, maracuyá o arándano (+1€)."
+   },
+   "price": 8.0,
+   "photo": null,
+   "sort": 9
+  },
+  {
+   "id": "cocktails-moscow-mule",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Moscow Mule",
+    "es": "Moscow Mule"
+   },
+   "description": {
+    "en": "Vodka-based cocktail with ginger beer & lime",
+    "es": "Cóctel a base de vodka con ginger beer & lima."
+   },
+   "price": 9.5,
+   "photo": null,
+   "sort": 10
+  },
+  {
+   "id": "cocktails-pornstar-martini",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Pornstar Martini",
+    "es": "Pornstar Martini"
+   },
+   "description": {
+    "en": "Tropical cocktail made with vanilla vodka, Passoa & passion fruit. Acompanied by a shot of cava",
+    "es": "Cóctel tropical elaborado con vodka de vainilla, Passoa y maracuyá. Acompañado de un chupito de cava."
+   },
+   "price": 10.0,
+   "photo": null,
+   "sort": 11
+  },
+  {
+   "id": "cocktails-summer-crush",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Summer Crush",
+    "es": "Summer Crush"
+   },
+   "description": {
+    "en": "House special, gin-based cocktail with watermelon & lychee",
+    "es": "Especialidad de la casa, cóctel a base de ginebra con sandía y lichi."
+   },
+   "price": 9.5,
+   "photo": null,
+   "sort": 12
+  },
+  {
+   "id": "cocktails-paloma-premium",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Paloma Premium",
+    "es": "Paloma Premium"
+   },
+   "description": {
+    "en": "Spritz with tequila Altos 100% agave, lime & grapefruit",
+    "es": "Spritz con tequila Altos 100% agave, lima y pomelo."
+   },
+   "price": 12.0,
+   "photo": "altos-tequila.webp",
+   "sort": 13
+  },
+  {
+   "id": "cocktails-cloud-nine",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Cloud Nine",
+    "es": "Cloud Nine"
+   },
+   "description": {
+    "en": "Tequila Altos 100% agave with coconut water, pineapple juice, lime & a hint of agave",
+    "es": "Tequila Altos 100% agave con agua de coco, jugo de piña, lima y un toque de agave."
+   },
+   "price": 9.0,
+   "photo": "cn.jpeg",
+   "sort": 14
+  },
+  {
+   "id": "cocktails-spicy-margarita",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Spicy Margarita",
+    "es": "Spicy Margarita"
+   },
+   "description": {
+    "en": "Classic Margarita with a chilli pepper kick",
+    "es": "Margarita Clásica con chilis rojos picantes"
+   },
+   "price": 10.0,
+   "photo": "spicy-marg-1.png",
+   "sort": 15
+  },
+  {
+   "id": "cocktails-gin-bramble",
+   "category": "cocktails",
+   "sub": null,
+   "name": {
+    "en": "Gin Bramble",
+    "es": "Gin Bramble"
+   },
+   "description": {
+    "en": "Blueberry gin & fresh lemon",
+    "es": "Ginebra de arandanos & limon fresca"
+   },
+   "price": 10.0,
+   "photo": "gin-bramble-2.jpg",
+   "sort": 16
+  },
+  {
+   "id": "coffee-affogato",
+   "category": "coffee",
+   "sub": "Cold",
+   "name": {
+    "en": "Affogato",
+    "es": "Affogato"
+   },
+   "description": {
+    "en": "Specialty coffee over vanilla ice cream",
+    "es": "Café de especialidad sobre helado de vainilla"
+   },
+   "price": 4.0,
+   "photo": "afogatto_int_3.webp",
+   "sort": 1
+  },
+  {
+   "id": "coffee-americano",
+   "category": "coffee",
+   "sub": "Hot",
+   "name": {
+    "en": "Americano",
+    "es": "Americano"
+   },
+   "description": {
+    "en": "Specialty coffee with hot water",
+    "es": "Café de especialidad con agua caliente"
+   },
+   "price": 2.5,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "coffee-espresso-tonic",
+   "category": "coffee",
+   "sub": "Cold",
+   "name": {
+    "en": "Espresso & Tonic",
+    "es": "Espresso & Tónica"
+   },
+   "description": {
+    "en": "Specialty coffee with tonic water",
+    "es": "Café de especialidad con tónica"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "coffee-bombon",
+   "category": "coffee",
+   "sub": "Hot",
+   "name": {
+    "en": "Bombón",
+    "es": "Bombón"
+   },
+   "description": {
+    "en": "Specialty coffee with condensed milk",
+    "es": "Café de especialidad con leche condensada"
+   },
+   "price": 2.5,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "coffee-ice-cream-latte",
+   "category": "coffee",
+   "sub": "Cold",
+   "name": {
+    "en": "Ice Cream Latte",
+    "es": "Latte con Helado"
+   },
+   "description": {
+    "en": "Specialty coffee with milk & vanilla ice cream",
+    "es": "Café de especialidad con leche & helado de vainilla"
+   },
+   "price": 5.5,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "coffee-cappuccino",
+   "category": "coffee",
+   "sub": "Hot",
+   "name": {
+    "en": "Cappuccino",
+    "es": "Cappuccino"
+   },
+   "description": {
+    "en": "Specialty coffee with foamed milk",
+    "es": "Café de especialidad con espuma de leche"
+   },
+   "price": 3.0,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "coffee-iced-americano",
+   "category": "coffee",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Americano",
+    "es": "Americano Helado"
+   },
+   "description": {
+    "en": "Chilled specialty coffee with iced water",
+    "es": "Café de especialidad frío con agua helada"
+   },
+   "price": 3.5,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "coffee-cortado",
+   "category": "coffee",
+   "sub": "Hot",
+   "name": {
+    "en": "Cortado",
+    "es": "Cortado"
+   },
+   "description": {
+    "en": "Specialty coffee with a touch of milk",
+    "es": "Café de especialidad con un toque de leche"
+   },
+   "price": 2.5,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "coffee-iced-arandano-latte",
+   "category": "coffee",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Blueberry Latte",
+    "es": "Iced Latte de Arándano"
+   },
+   "description": {
+    "en": "Specialty coffee with blueberry & milk",
+    "es": "Café de especialidad con leche & arándanos"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "coffee-double-espresso",
+   "category": "coffee",
+   "sub": "Hot",
+   "name": {
+    "en": "Double Espresso",
+    "es": "Espresso Doble"
+   },
+   "description": {
+    "en": "Double shot of Specialty coffee for an energy boost",
+    "es": "Doble shot de café de especialidad para más energía"
+   },
+   "price": 2.5,
+   "photo": null,
+   "sort": 6
+  },
+  {
+   "id": "coffee-iced-coconut-caramel",
+   "category": "coffee",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Coconut Caramel Latte",
+    "es": "Iced Coco Caramelo"
+   },
+   "description": {
+    "en": "Specialty coffee with milk, coconut & caramel",
+    "es": "Café de especialidad con leche, coco & caramelo"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 6
+  },
+  {
+   "id": "coffee-espresso",
+   "category": "coffee",
+   "sub": "Hot",
+   "name": {
+    "en": "Espresso",
+    "es": "Espresso"
+   },
+   "description": {
+    "en": "Single shot of specialty coffee",
+    "es": "Shot de café de especialidad"
+   },
+   "price": 1.9,
+   "photo": null,
+   "sort": 7
+  },
+  {
+   "id": "coffee-iced-latte",
+   "category": "coffee",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Latte",
+    "es": "Iced Latte"
+   },
+   "description": {
+    "en": "Specialty coffee with iced milk",
+    "es": "Café de especialidad con leche helada"
+   },
+   "price": 4.5,
+   "photo": null,
+   "sort": 7
+  },
+  {
+   "id": "coffee-flat-white",
+   "category": "coffee",
+   "sub": "Hot",
+   "name": {
+    "en": "Flat White",
+    "es": "Flat White"
+   },
+   "description": {
+    "en": "Double shot of Specialty coffee with milk",
+    "es": "Doble shot de café de especialidad con leche"
+   },
+   "price": 3.5,
+   "photo": null,
+   "sort": 8
+  },
+  {
+   "id": "coffee-iced-mocha",
+   "category": "coffee",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Mocha",
+    "es": "Mocha Helado"
+   },
+   "description": {
+    "en": "Specialty coffee with milk, chocolate & a scoop of chocolate ice cream",
+    "es": "Café de especialidad con leche, chocolate & una bola de helado de chocolate"
+   },
+   "price": 5.5,
+   "photo": null,
+   "sort": 8
+  },
+  {
+   "id": "coffee-latte",
+   "category": "coffee",
+   "sub": "Hot",
+   "name": {
+    "en": "Latte",
+    "es": "Latte"
+   },
+   "description": {
+    "en": "Specialty coffee with steamed milk",
+    "es": "Café de especialidad con leche cremosa"
+   },
+   "price": 3.0,
+   "photo": null,
+   "sort": 9
+  },
+  {
+   "id": "coffee-iced-pistachio-latte",
+   "category": "coffee",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Pistachio Latte",
+    "es": "Café de especialidad con leche & pistacho"
+   },
+   "description": {
+    "en": "Specialty coffee with milk & pistachio",
+    "es": "Latte helado de pistacho"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 9
+  },
+  {
+   "id": "coffee-mocha",
+   "category": "coffee",
+   "sub": "Hot",
+   "name": {
+    "en": "Mocha",
+    "es": "Mocha"
+   },
+   "description": {
+    "en": "Specialty coffee with chocolate & milk",
+    "es": "Café de especialidad con chocolate & leche"
+   },
+   "price": 4.0,
+   "photo": null,
+   "sort": 10
+  },
+  {
+   "id": "coffee-iced-strawberry-latte",
+   "category": "coffee",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Strawberry Latte",
+    "es": "Iced Fresa Latte"
+   },
+   "description": {
+    "en": "Specialty coffee with milk & strawberry",
+    "es": "Café de especialidad con leche & fresa"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 10
+  },
+  {
+   "id": "coffee-iced-vanilla-latte",
+   "category": "coffee",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Vanilla Latte",
+    "es": "Iced Vainilla Latte"
+   },
+   "description": {
+    "en": "Specialty coffee with milk & vanilla",
+    "es": "Café de especialidad con leche & vainilla"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 11
+  },
+  {
+   "id": "desserts-cheesecake",
+   "category": "desserts",
+   "sub": null,
+   "name": {
+    "en": "Cheesecake",
+    "es": "Cheesecake"
+   },
+   "description": {
+    "en": "New York style cheesecake",
+    "es": "Tarta de queso estilo New York"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "desserts-cookies",
+   "category": "desserts",
+   "sub": null,
+   "name": {
+    "en": "Cookies",
+    "es": "Cookies"
+   },
+   "description": {
+    "en": "Fresh baked cookies",
+    "es": "Galletas recién horneadas"
+   },
+   "price": 3.0,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "desserts-florida-key-lime-pie",
+   "category": "desserts",
+   "sub": null,
+   "name": {
+    "en": "Florida Key Lime Pie",
+    "es": "Tarta de Lima Florida"
+   },
+   "description": {
+    "en": "Tangy key lime pie",
+    "es": "Key lime pie"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "desserts-chocolate-cake",
+   "category": "desserts",
+   "sub": null,
+   "name": {
+    "en": "Chocolate Cake",
+    "es": "Tarta de Chocolate"
+   },
+   "description": {
+    "en": "Homemade chocolate",
+    "es": "Tarta de cocolate casera"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "frappes-caramel",
+   "category": "frappes",
+   "sub": null,
+   "name": {
+    "en": "Caramel",
+    "es": "Caramelo"
+   },
+   "description": {
+    "en": "Ice cold, thick blend of specialty coffee, milk and caramel",
+    "es": "Una mezcla densa y helada de café de especialidad, leche y caramelo"
+   },
+   "price": 6.5,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "frappes-chocolate",
+   "category": "frappes",
+   "sub": null,
+   "name": {
+    "en": "Chocolate",
+    "es": "Chocolate"
+   },
+   "description": {
+    "en": "Ice cold, thick blend of specialty coffee, milk and chocolate",
+    "es": "Una mezcla densa y helada de café de especialidad, leche y chocolate"
+   },
+   "price": 6.5,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "frappes-hazelnut",
+   "category": "frappes",
+   "sub": null,
+   "name": {
+    "en": "Hazelnut",
+    "es": "Avellana"
+   },
+   "description": {
+    "en": "Ice cold, thick blend of specialty coffee, milk and hazelnut",
+    "es": "Una mezcla densa y helada de café de especialidad, leche y Avellana"
+   },
+   "price": 6.5,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "frappes-vanilla",
+   "category": "frappes",
+   "sub": null,
+   "name": {
+    "en": "Vanilla",
+    "es": "Vainilla"
+   },
+   "description": {
+    "en": "Ice cold, thick blend of specialty coffee, milk and vanilla",
+    "es": "Una mezcla densa y helada de café de especialidad, leche y vainilla"
+   },
+   "price": 6.5,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "frappes-espresso-shot",
+   "category": "frappes",
+   "sub": null,
+   "name": {
+    "en": "Espresso Shot",
+    "es": "Shot de Espresso"
+   },
+   "description": {
+    "en": "Add an extra shot",
+    "es": "Añade un shot extra"
+   },
+   "price": 0.6,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "frappes-syrups",
+   "category": "frappes",
+   "sub": null,
+   "name": {
+    "en": "Syrups",
+    "es": "Siropes"
+   },
+   "description": {
+    "en": "Add flavor syrup",
+    "es": "Añade sirope de sabor"
+   },
+   "price": 0.6,
+   "photo": null,
+   "sort": 6
+  },
+  {
+   "id": "frappes-alternative-milk",
+   "category": "frappes",
+   "sub": null,
+   "name": {
+    "en": "Alternative Milk",
+    "es": "Leche Alternativa"
+   },
+   "description": {
+    "en": "Oat, almond or soy milk",
+    "es": "Avena, almendra o soja"
+   },
+   "price": 0.25,
+   "photo": null,
+   "sort": 7
+  },
+  {
+   "id": "loaded-fries-chicago",
+   "category": "loaded-fries",
+   "sub": null,
+   "name": {
+    "en": "Chicago",
+    "es": "Chicago"
+   },
+   "description": {
+    "en": "Fries loaded with bacon, chives, jalapeños & cheddar cheese sauce",
+    "es": "Patatas fritas cargadas con bacon, cebollino, jalapeños & salsa de queso cheddar"
+   },
+   "price": 7.5,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "loaded-fries-texas",
+   "category": "loaded-fries",
+   "sub": null,
+   "name": {
+    "en": "Texas",
+    "es": "Texas"
+   },
+   "description": {
+    "en": "Fries loaded with BBQ pulled pork, red onion, chives & cheddar cheese sauce",
+    "es": "Patatas fritas cargadas con cerdo desmenuzado BBQ, cebolla morada, cebollino & salsa de queso cheddar"
+   },
+   "price": 7.5,
+   "photo": "texas-2.jpeg",
+   "sort": 2
+  },
+  {
+   "id": "loaded-fries-huevos-rotos",
+   "category": "loaded-fries",
+   "sub": null,
+   "name": {
+    "en": "Huevos Rotos",
+    "es": "Huevos Rotos"
+   },
+   "description": {
+    "en": "Fries loaded with two fried eggs & serrano ham",
+    "es": "Patatas fritas cargadas con 2 huevos fritos & jamón serrano"
+   },
+   "price": 8.0,
+   "photo": "huevos-rotos.png",
+   "sort": 3
+  },
+  {
+   "id": "loaded-fries-fries",
+   "category": "loaded-fries",
+   "sub": null,
+   "name": {
+    "en": "Fries",
+    "es": "Patatas Fritas"
+   },
+   "description": {
+    "en": "Homemade potato fries",
+    "es": "Patatas fritas caseras"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "matcha-matcha-latte",
+   "category": "matcha",
+   "sub": "Hot",
+   "name": {
+    "en": "Matcha Latte",
+    "es": "Matcha Latte"
+   },
+   "description": {
+    "en": "Premium Japanese matcha with steamed milk",
+    "es": "Matcha japonés premium con leche caliente"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "matcha-iced-matcha-latte",
+   "category": "matcha",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Matcha Latte",
+    "es": "Iced Matcha Latte"
+   },
+   "description": {
+    "en": "Matcha with iced milk",
+    "es": "Matcha con leche helada"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "matcha-iced-cherry-matcha",
+   "category": "matcha",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Cherry Matcha",
+    "es": "Iced Cereza Matcha"
+   },
+   "description": {
+    "en": "Matcha with iced milk & cherry",
+    "es": "Matcha con leche helada & cereza"
+   },
+   "price": 5.5,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "matcha-iced-mango-matcha",
+   "category": "matcha",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Mango Matcha",
+    "es": "Iced Mango Matcha"
+   },
+   "description": {
+    "en": "Matcha with iced milk & mango",
+    "es": "Matcha con leche helada & mango"
+   },
+   "price": 5.5,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "matcha-iced-passion-matcha",
+   "category": "matcha",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Passion Fruit Matcha",
+    "es": "Iced Maracuyá Matcha"
+   },
+   "description": {
+    "en": "Matcha with iced milk & passion fruit",
+    "es": "Matcha con leche helada & maracuyá"
+   },
+   "price": 5.5,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "matcha-iced-strawberry-matcha",
+   "category": "matcha",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Strawberry Matcha",
+    "es": "Iced Fresa Matcha"
+   },
+   "description": {
+    "en": "Matcha with iced milk & strawberry",
+    "es": "Matcha con leche helada & fresa"
+   },
+   "price": 5.5,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "matcha-iced-vanilla-matcha",
+   "category": "matcha",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Vanilla Matcha",
+    "es": "Iced Vainilla Matcha"
+   },
+   "description": {
+    "en": "Matcha with iced milk & vanilla",
+    "es": "Matcha con leche helada & vainilla"
+   },
+   "price": 5.5,
+   "photo": null,
+   "sort": 6
+  },
+  {
+   "id": "matcha-iced-yuzu-matcha",
+   "category": "matcha",
+   "sub": "Cold",
+   "name": {
+    "en": "Iced Yuzu Matcha",
+    "es": "Iced Yuzu Matcha"
+   },
+   "description": {
+    "en": "Matcha with iced milk & citrus yuzu",
+    "es": "Matcha con leche helada & cítrico yuzu"
+   },
+   "price": 5.5,
+   "photo": null,
+   "sort": 7
+  },
+  {
+   "id": "nonAlcoholic-aquarius-orange",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Aquarius Orange",
+    "es": "Aquarius Naranja"
+   },
+   "description": {
+    "en": "Sports drink",
+    "es": "Bebida deportiva"
+   },
+   "price": 2.6,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "nonAlcoholic-auara-apple-juice",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Auara Apple Juice",
+    "es": "Auara Zumo de Manzana"
+   },
+   "description": {
+    "en": "",
+    "es": ""
+   },
+   "price": 3.0,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "nonAlcoholic-aura-pineapple-juice",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Auara Pineapple Juice",
+    "es": "Zumo Auara Piña"
+   },
+   "description": {
+    "en": "Premium pineapple juice",
+    "es": "Zumo de piña premium"
+   },
+   "price": 3.0,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "nonAlcoholic-peach-juice",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Peach Juice",
+    "es": "Zumo de Melocoton"
+   },
+   "description": {
+    "en": "",
+    "es": ""
+   },
+   "price": 3.0,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "nonAlcoholic-coca-cola",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Coca-Cola",
+    "es": "Coca-Cola"
+   },
+   "description": {
+    "en": "Classic cola",
+    "es": "Cola clásica"
+   },
+   "price": 2.6,
+   "photo": null,
+   "sort": 6
+  },
+  {
+   "id": "nonAlcoholic-coca-cola-zero",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Coca-Cola Zero",
+    "es": "Coca-Cola Zero"
+   },
+   "description": {
+    "en": "Sugar free cola",
+    "es": "Cola sin azúcar"
+   },
+   "price": 2.6,
+   "photo": null,
+   "sort": 7
+  },
+  {
+   "id": "nonAlcoholic-cuevas-water",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Cuevas Water",
+    "es": "Agua Cuevas"
+   },
+   "description": {
+    "en": "Still mineral water",
+    "es": "Agua mineral"
+   },
+   "price": 1.6,
+   "photo": null,
+   "sort": 8
+  },
+  {
+   "id": "nonAlcoholic-estrella-de-galicia-00",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Estrella de Galicia 0.0",
+    "es": "Estrella de Galicia 0.0"
+   },
+   "description": {
+    "en": "Non-alcoholic beer (33cl)",
+    "es": "Cerveza sin alcohol (33cl)"
+   },
+   "price": 3.0,
+   "photo": null,
+   "sort": 9
+  },
+  {
+   "id": "nonAlcoholic-fanta-lemon",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Fanta Lemon",
+    "es": "Fanta Limón"
+   },
+   "description": {
+    "en": "Lemon soda",
+    "es": "Refresco de limón"
+   },
+   "price": 2.6,
+   "photo": null,
+   "sort": 10
+  },
+  {
+   "id": "nonAlcoholic-fever-tree-ginger-beer",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Fever-Tree Ginger Beer",
+    "es": "Fever-Tree Ginger Beer"
+   },
+   "description": {
+    "en": "Premium ginger beer",
+    "es": "Ginger beer premium"
+   },
+   "price": 4.0,
+   "photo": "ginger-beer.jpeg",
+   "sort": 11
+  },
+  {
+   "id": "nonAlcoholic-fever-tree-tonic",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Fever-Tree Tonic",
+    "es": "Fever-Tree Tónica"
+   },
+   "description": {
+    "en": "Premium tonic water",
+    "es": "Tónica premium"
+   },
+   "price": 2.9,
+   "photo": null,
+   "sort": 12
+  },
+  {
+   "id": "nonAlcoholic-natural-orange-juice",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Natural Orange Juice",
+    "es": "Zumo Naranja Natural"
+   },
+   "description": {
+    "en": "Fresh squeezed (500ml)",
+    "es": "Recién exprimido (500ml)"
+   },
+   "price": 4.0,
+   "photo": null,
+   "sort": 14
+  },
+  {
+   "id": "nonAlcoholic-nestea-lemon",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Nestea Lemon",
+    "es": "Nestea Limón"
+   },
+   "description": {
+    "en": "Iced lemon tea",
+    "es": "Té helado de limón"
+   },
+   "price": 2.6,
+   "photo": null,
+   "sort": 15
+  },
+  {
+   "id": "nonAlcoholic-premium-filtered-water",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Premium Filtered Water",
+    "es": "Agua Filtrada Premium"
+   },
+   "description": {
+    "en": "500ml or litre",
+    "es": "500ml o litro"
+   },
+   "price": 2.6,
+   "photo": null,
+   "sort": 16
+  },
+  {
+   "id": "nonAlcoholic-red-bull",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Red Bull",
+    "es": "Red Bull"
+   },
+   "description": {
+    "en": "Classic, Watermelon or Zero",
+    "es": "Clásico, Sandía o Zero"
+   },
+   "price": 3.5,
+   "photo": null,
+   "sort": 17
+  },
+  {
+   "id": "nonAlcoholic-sprite",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Sprite",
+    "es": "Sprite"
+   },
+   "description": {
+    "en": "Lemon-lime soda",
+    "es": "Refresco de lima-limón"
+   },
+   "price": 2.6,
+   "photo": null,
+   "sort": 18
+  },
+  {
+   "id": "nonAlcoholic-virgin-mojito",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Virgin Mojito",
+    "es": "Mojito Virgen"
+   },
+   "description": {
+    "en": "Non-alcoholic mojito",
+    "es": "Mojito sin alcohol"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 20
+  },
+  {
+   "id": "nonAlcoholic-yuzu",
+   "category": "nonAlcoholic",
+   "sub": null,
+   "name": {
+    "en": "Yuzu",
+    "es": "Yuzu"
+   },
+   "description": {
+    "en": "Japanese citrus drink",
+    "es": "Bebida de cítrico japonés"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 21
+  },
+  {
+   "id": "salads-chicken",
+   "category": "salads",
+   "sub": null,
+   "name": {
+    "en": "Chicken",
+    "es": "Pollo"
+   },
+   "description": {
+    "en": "Chicken, baby spinach, candied cherry tomatoes, goat's cheese, avocado & seeds",
+    "es": "Pollo, espinaca baby, tomate cherry confitado, queso de cabra, aguacate & semillas"
+   },
+   "price": 12.5,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "salads-mushroom",
+   "category": "salads",
+   "sub": null,
+   "name": {
+    "en": "Mushroom",
+    "es": "Hongos"
+   },
+   "description": {
+    "en": "Sautèed mushrooms, baby spinach, goat's cheese, roasted red pepper & caramelised onion",
+    "es": "Setas girgolas salteadas, espinacas baby, queso de cabra, pimiento rojo asado & cebolla caramelizada"
+   },
+   "price": 14.0,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "sandwiches-the-classic",
+   "category": "sandwiches",
+   "sub": null,
+   "name": {
+    "en": "The Classic",
+    "es": "El Clásico"
+   },
+   "description": {
+    "en": "The traditional Cuban sandwich. Cuban-style artisan bread with our suckling pig marinated for 24 hours in lime, cilantro, mint, and spices. Slow-cooked for 4 hours for exceptional juiciness. Served with the classic combination of ham, pickles, melted cheese, and our signature Crush sauce.",
+    "es": "La bocata cubano tradicional. Pan artesano estilo cubano con nuestro lechón marinado 24h en lima, cilantro, menta y especias. Cocinado a baja temperatura durante 4 horas para lograr una jugosidad extrema. Se acompaña con la combinación clásica de jamón York, pepinillos encurtidos, queso fundido y nuestra emblemática salsa Crush."
+   },
+   "price": 14.0,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "sandwiches-bbq-pulled-pork",
+   "category": "sandwiches",
+   "sub": null,
+   "name": {
+    "en": "BBQ Pulled Pork",
+    "es": "BBQ Pulled Pork"
+   },
+   "description": {
+    "en": "Cuban-style artisan bread with our version of pulled pork. Marinated in a rub of select spices, slow-cooked for 6 hours, and finished with Texas-style BBQ sauce. Topped with crispy onions, melted cheese, and Crush sauce.",
+    "es": "Pan artesano estilo cubano con nuestra versión del pulled pork. Cerdo adobado con un \"rub\" de especias seleccionadas, cocinado a baja temperatura durante 6 horas y terminado con salsa BBQ estilo Texas. Culminado con cebolla crujiente, queso fundido y salsa Crush."
+   },
+   "price": 14.0,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "sandwiches-cheesesteak",
+   "category": "sandwiches",
+   "sub": null,
+   "name": {
+    "en": "Cheesesteak",
+    "es": "Cheesesteak"
+   },
+   "description": {
+    "en": "Inspired by the Philadelphia classic. Cuban-style artisan bread with beef marinated in our special rub and slow-cooked to melt in your mouth. Served with baby spinach, dill pickles, melted cheese, a touch of spicy mayonnaise, and Crush sauce.",
+    "es": "Inspirado en el clásico de Filadelfia. Pan artesano estilo cubano con ternera adobada con nuestro \"rub\" especial y cocinada a baja temperatura para fundirse en el paladar. Servido con espinacas baby, pepinillos encurtidos, queso derretido, un toque de mayonesa picante y salsa Crush."
+   },
+   "price": 15.0,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "sandwiches-crush-club",
+   "category": "sandwiches",
+   "sub": null,
+   "name": {
+    "en": "Crush Club",
+    "es": "Crush Club"
+   },
+   "description": {
+    "en": "Cuban-style artisan bread with brined chicken breast for maximum juiciness. Topped with baby spinach, roasted peppers, caramelized onions, melted cheese, and our signature Crush sauce. A classic elevated to another level.",
+    "es": "Pan artesano estilo cubano con pechuga de pollo marinada en salmuera para garantizar la máxima jugosidad. Acompañada de espinacas baby, pimientos asados, cebolla caramelizada, queso fundido y nuestra salsa Crush. Un clásico elevado a otro nivel."
+   },
+   "price": 14.0,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "sandwiches-vegetarian",
+   "category": "sandwiches",
+   "sub": null,
+   "name": {
+    "en": "Veggie",
+    "es": "Veggie"
+   },
+   "description": {
+    "en": "Cuban-style artisan bread with oyster mushrooms marinated in spices and herbs, accompanied by baby spinach, roasted peppers, and caramelized onions. Choose between goat cheese or our vegan cheese option.",
+    "es": "Pan artesano estilo cubano con setas gírgolas (setas de ostra) marinadas en especias y hierbas, acompañadas de espinacas baby, pimientos asados y cebolla caramelizada. Elige entre queso de cabra o nuestra opción de queso vegano."
+   },
+   "price": 14.0,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "shakes-chocolate",
+   "category": "shakes",
+   "sub": null,
+   "name": {
+    "en": "Chocolate",
+    "es": "Chocolate"
+   },
+   "description": {
+    "en": "Rich chocolate milkshake",
+    "es": "Batido intenso de chocolate"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "shakes-vanilla",
+   "category": "shakes",
+   "sub": null,
+   "name": {
+    "en": "Vanilla",
+    "es": "Vainilla"
+   },
+   "description": {
+    "en": "Classic vanilla milkshake",
+    "es": "Batido clásico de vainilla"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "shakes-strawberry",
+   "category": "shakes",
+   "sub": null,
+   "name": {
+    "en": "Strawberry",
+    "es": "Fresa"
+   },
+   "description": {
+    "en": "Fresh strawberry & ice cream milkshake",
+    "es": "Batido de fresa fresca y helado"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "shakes-ice-cream-mocha",
+   "category": "shakes",
+   "sub": null,
+   "name": {
+    "en": "Mocha Shake",
+    "es": "Mocha Shake"
+   },
+   "description": {
+    "en": "Chocolate shake with specialty coffee",
+    "es": "Batido de chocolate con café de especialidad"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "shakes-vanilla-ice-cream-latte",
+   "category": "shakes",
+   "sub": null,
+   "name": {
+    "en": "Vanilla Coffee Shake",
+    "es": "Vanilla Coffee Shake"
+   },
+   "description": {
+    "en": "Vanilla shake with specialty coffee",
+    "es": "Batido de vainilla con café de especialidad"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "shakes-cream",
+   "category": "shakes",
+   "sub": null,
+   "name": {
+    "en": "Cream",
+    "es": "Nata"
+   },
+   "description": {
+    "en": "Add whipped cream topping",
+    "es": "Añade nata montada"
+   },
+   "price": 0.25,
+   "photo": null,
+   "sort": 6
+  },
+  {
+   "id": "smash-burgers-big-smash",
+   "category": "smash-burgers",
+   "sub": null,
+   "name": {
+    "en": "Big Smash",
+    "es": "Big Smash"
+   },
+   "description": {
+    "en": "Double patty with cheddar, lettuce, pickles, bacon & our homemade Thousand Island sauce on a soft potato roll",
+    "es": "Doble carne con cheddar, lechuga, pepinillos, bacon & nuestra salsa Mil Islas casera en pan de patata"
+   },
+   "price": 14.9,
+   "photo": "big-smash-2.png",
+   "sort": 1
+  },
+  {
+   "id": "smash-burgers-oklahoma-smash",
+   "category": "smash-burgers",
+   "sub": null,
+   "name": {
+    "en": "Oklahoma Smash",
+    "es": "Oklahoma Smash"
+   },
+   "description": {
+    "en": "Double patty with white onion, cheddar & our homemade Crush sauce on a soft potato roll",
+    "es": "Doble carne con cebolla blanca, cheddar y nuestra salsa Crush en pan de patata"
+   },
+   "price": 14.9,
+   "photo": "oklahoma-2.png",
+   "sort": 2
+  },
+  {
+   "id": "smash-burgers-ultra-jack",
+   "category": "smash-burgers",
+   "sub": null,
+   "name": {
+    "en": "Ultra Jack",
+    "es": "Ultra Jack"
+   },
+   "description": {
+    "en": "Double patty with pulled pork, cheddar cheese & our homemade BBQ Jack Daniels sauce on a soft potato roll",
+    "es": "Doble carne con cerdo desmenuzado, queso cheddar & nuestra salsa BBQ Jack Daniels casera"
+   },
+   "price": 16.9,
+   "photo": "ultra-jack.jpeg",
+   "sort": 3
+  },
+  {
+   "id": "smash-burgers-funky",
+   "category": "smash-burgers",
+   "sub": null,
+   "name": {
+    "en": "Funky",
+    "es": "Funky"
+   },
+   "description": {
+    "en": "VEGETARIAN burger with vegan cheese, lettuce, tomato & our homemade Thousand Island sauce on a soft potato roll",
+    "es": "Hamburguesa VEGETARIANA con queso vegano, lechuga, tomate & nuestra salsa Mil Islas casera en pan de patata"
+   },
+   "price": 14.9,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "smash-burgers-cheeseburger",
+   "category": "smash-burgers",
+   "sub": null,
+   "name": {
+    "en": "Double Cheeseburger",
+    "es": "Cheeseburger"
+   },
+   "description": {
+    "en": "Double patty with cheddar cheese on a soft potato roll",
+    "es": "Doble carne con queso cheddar en pan de patata"
+   },
+   "price": 12.9,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "smoothies-bermuda",
+   "category": "smoothies",
+   "sub": null,
+   "name": {
+    "en": "Bermuda",
+    "es": "Bermuda"
+   },
+   "description": {
+    "en": "Strawberry & banana",
+    "es": "Fresa & banana"
+   },
+   "price": 7.5,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "smoothies-jungle",
+   "category": "smoothies",
+   "sub": null,
+   "name": {
+    "en": "Jungle",
+    "es": "Jungle"
+   },
+   "description": {
+    "en": "Acai, passion fruit & orange juice",
+    "es": "Acai, Maracuyá & zumo de naranja"
+   },
+   "price": 7.5,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "smoothies-miami",
+   "category": "smoothies",
+   "sub": null,
+   "name": {
+    "en": "Miami",
+    "es": "Miami"
+   },
+   "description": {
+    "en": "Red berries & mango",
+    "es": "Frutos rojos & mango"
+   },
+   "price": 7.5,
+   "photo": null,
+   "sort": 6
+  },
+  {
+   "id": "smoothies-popeye",
+   "category": "smoothies",
+   "sub": null,
+   "name": {
+    "en": "Popeye",
+    "es": "Popeye"
+   },
+   "description": {
+    "en": "Pineapple, spinach, banana, mint, vanilla whey protein & almand milk",
+    "es": "Piña, espinacas, banana, menta, proteína de vainilla y leche de almendras"
+   },
+   "price": 7.5,
+   "photo": null,
+   "sort": 7
+  },
+  {
+   "id": "smoothies-tio-sam",
+   "category": "smoothies",
+   "sub": null,
+   "name": {
+    "en": "Tio Sam",
+    "es": "Tio Sam"
+   },
+   "description": {
+    "en": "Banana, peanut butter, honey, milk & vanilla whey protein",
+    "es": "Banana, mantequilla de cacahuete, miel, leche & proteína de vainilla"
+   },
+   "price": 7.5,
+   "photo": "tio-sam-2.jpg",
+   "sort": 8
+  },
+  {
+   "id": "smoothies-cosmo",
+   "category": "smoothies",
+   "sub": null,
+   "name": {
+    "en": "Cosmo",
+    "es": "Cosmo"
+   },
+   "description": {
+    "en": "Raspberry, banana, Greek yogurt and milk",
+    "es": "Frambuesa, banana, yogur griego & leche"
+   },
+   "price": 7.5,
+   "photo": "cosmo.png",
+   "sort": 9
+  },
+  {
+   "id": "smoothies-lotus",
+   "category": "smoothies",
+   "sub": null,
+   "name": {
+    "en": "Carnival",
+    "es": "Carnival"
+   },
+   "description": {
+    "en": "Mango, banana, passion fruit & agave",
+    "es": "Mango, banana, maracuyá & agave"
+   },
+   "price": 7.5,
+   "photo": "lotus.jpg",
+   "sort": 10
+  },
+  {
+   "id": "smoothies-liquor-shot",
+   "category": "smoothies",
+   "sub": null,
+   "name": {
+    "en": "Peach Schnapps",
+    "es": "Peach Schnapps"
+   },
+   "description": {
+    "en": "Add a shot of liquor",
+    "es": "Añade un shot de licor"
+   },
+   "price": 1.5,
+   "photo": null,
+   "sort": 11
+  },
+  {
+   "id": "smoothies-vanilla-protein",
+   "category": "smoothies",
+   "sub": null,
+   "name": {
+    "en": "Vanilla Protein",
+    "es": "Proteína Vainilla"
+   },
+   "description": {
+    "en": "Add protein to any smoothie",
+    "es": "Añade proteína a cualquier smoothie"
+   },
+   "price": 1.5,
+   "photo": null,
+   "sort": 12
+  },
+  {
+   "id": "specials-corona-bucket",
+   "category": "specials",
+   "sub": null,
+   "name": {
+    "en": "Corona Bucket",
+    "es": "Cubo Corona"
+   },
+   "description": {
+    "en": "5 Corona beers on ice",
+    "es": "5 cervezas Corona en hielo"
+   },
+   "price": 18.0,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "specials-estrella-bucket",
+   "category": "specials",
+   "sub": null,
+   "name": {
+    "en": "Estrella Bucket",
+    "es": "Cubo Estrella"
+   },
+   "description": {
+    "en": "5 Estrella beers on ice",
+    "es": "5 cervezas Estrella en hielo"
+   },
+   "price": 12.0,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "spirits-absolut",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Absolut",
+    "es": "Absolut"
+   },
+   "description": {
+    "en": "Vodka",
+    "es": "Vodka"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "spirits-baileys",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Baileys",
+    "es": "Baileys"
+   },
+   "description": {
+    "en": "Irish cream liqueur",
+    "es": "Crema de whisky irlandesa"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "spirits-bacardi-white",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Bacardi White",
+    "es": "Bacardi Blanco"
+   },
+   "description": {
+    "en": "White rum",
+    "es": "Ron blanco"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "spirits-barcelo",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Barceló",
+    "es": "Barceló"
+   },
+   "description": {
+    "en": "Dominican rum",
+    "es": "Ron dominicano"
+   },
+   "price": 7.0,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "spirits-bombay",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Bombay",
+    "es": "Bombay"
+   },
+   "description": {
+    "en": "London dry gin",
+    "es": "Ginebra London dry"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "spirits-bombay-sapphire",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Bombay Sapphire",
+    "es": "Bombay Sapphire"
+   },
+   "description": {
+    "en": "Premium gin",
+    "es": "Ginebra premium"
+   },
+   "price": 7.0,
+   "photo": null,
+   "sort": 6
+  },
+  {
+   "id": "spirits-brandy-soberano",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Brandy Soberano",
+    "es": "Brandy Soberano"
+   },
+   "description": {
+    "en": "Spanish brandy",
+    "es": "Brandy español"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 7
+  },
+  {
+   "id": "spirits-brugal",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Brugal",
+    "es": "Brugal"
+   },
+   "description": {
+    "en": "Dominican rum",
+    "es": "Ron dominicano"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 8
+  },
+  {
+   "id": "spirits-dewars-white",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Dewar's White",
+    "es": "Dewar's White"
+   },
+   "description": {
+    "en": "Blended scotch",
+    "es": "Whisky escocés"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 9
+  },
+  {
+   "id": "spirits-gin-mare",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Gin Mare",
+    "es": "Gin Mare"
+   },
+   "description": {
+    "en": "Mediterranean gin",
+    "es": "Ginebra mediterránea"
+   },
+   "price": 10.0,
+   "photo": null,
+   "sort": 10
+  },
+  {
+   "id": "spirits-grey-goose",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Grey Goose",
+    "es": "Grey Goose"
+   },
+   "description": {
+    "en": "Premium vodka",
+    "es": "Vodka premium"
+   },
+   "price": 13.0,
+   "photo": null,
+   "sort": 11
+  },
+  {
+   "id": "spirits-havana-club-5",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Havana Club 5",
+    "es": "Havana Club 5"
+   },
+   "description": {
+    "en": "Cuban rum 5 years",
+    "es": "Ron cubano 5 años"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 12
+  },
+  {
+   "id": "spirits-hennessy",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Hennessy",
+    "es": "Hennessy"
+   },
+   "description": {
+    "en": "Cognac",
+    "es": "Coñac"
+   },
+   "price": 15.0,
+   "photo": null,
+   "sort": 13
+  },
+  {
+   "id": "spirits-jagermeister",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Jägermeister",
+    "es": "Jägermeister"
+   },
+   "description": {
+    "en": "Herbal liqueur",
+    "es": "Licor de hierbas"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 14
+  },
+  {
+   "id": "spirits-jameson",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Jameson",
+    "es": "Jameson"
+   },
+   "description": {
+    "en": "Irish whiskey",
+    "es": "Whiskey irlandés"
+   },
+   "price": 7.0,
+   "photo": null,
+   "sort": 15
+  },
+  {
+   "id": "spirits-johnnie-walker-red",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Johnnie Walker Red",
+    "es": "Johnnie Walker Red"
+   },
+   "description": {
+    "en": "Scotch whisky",
+    "es": "Whisky escocés"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 16
+  },
+  {
+   "id": "spirits-jose-cuervo-especial",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Jose Cuervo Especial",
+    "es": "Jose Cuervo Especial"
+   },
+   "description": {
+    "en": "Reposado tequila",
+    "es": "Tequila reposado"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 17
+  },
+  {
+   "id": "spirits-jose-cuervo-silver",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Jose Cuervo Silver",
+    "es": "Jose Cuervo Silver"
+   },
+   "description": {
+    "en": "Silver tequila",
+    "es": "Tequila blanco"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 18
+  },
+  {
+   "id": "spirits-larios",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Larios",
+    "es": "Larios"
+   },
+   "description": {
+    "en": "Spanish gin",
+    "es": "Ginebra española"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 19
+  },
+  {
+   "id": "spirits-macallan",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Macallan",
+    "es": "Macallan"
+   },
+   "description": {
+    "en": "Single malt scotch",
+    "es": "Single malt escocés"
+   },
+   "price": 18.0,
+   "photo": null,
+   "sort": 20
+  },
+  {
+   "id": "spirits-malibu-coconut",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Malibu Coconut",
+    "es": "Malibu Coco"
+   },
+   "description": {
+    "en": "Coconut rum",
+    "es": "Ron de coco"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 21
+  },
+  {
+   "id": "spirits-martin-millers",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Martin Miller's",
+    "es": "Martin Miller's"
+   },
+   "description": {
+    "en": "English gin",
+    "es": "Ginebra inglesa"
+   },
+   "price": 7.0,
+   "photo": null,
+   "sort": 22
+  },
+  {
+   "id": "spirits-patron",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Patrón",
+    "es": "Patrón"
+   },
+   "description": {
+    "en": "Premium tequila",
+    "es": "Tequila premium"
+   },
+   "price": 20.0,
+   "photo": null,
+   "sort": 23
+  },
+  {
+   "id": "spirits-puerto-de-indias",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Puerto de Indias",
+    "es": "Puerto de Indias"
+   },
+   "description": {
+    "en": "Strawberry gin",
+    "es": "Ginebra de fresa"
+   },
+   "price": 7.0,
+   "photo": null,
+   "sort": 24
+  },
+  {
+   "id": "spirits-santa-teresa",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Santa Teresa",
+    "es": "Santa Teresa"
+   },
+   "description": {
+    "en": "Venezuelan rum",
+    "es": "Ron venezolano"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 25
+  },
+  {
+   "id": "spirits-seagrams",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Seagram's",
+    "es": "Seagram's"
+   },
+   "description": {
+    "en": "American gin",
+    "es": "Ginebra americana"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 26
+  },
+  {
+   "id": "spirits-smirnoff",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Smirnoff",
+    "es": "Smirnoff"
+   },
+   "description": {
+    "en": "Vodka",
+    "es": "Vodka"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 27
+  },
+  {
+   "id": "spirits-tanqueray",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Tanqueray",
+    "es": "Tanqueray"
+   },
+   "description": {
+    "en": "London dry gin",
+    "es": "Ginebra London dry"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 28
+  },
+  {
+   "id": "spirits-tanqueray-00",
+   "category": "spirits",
+   "sub": null,
+   "name": {
+    "en": "Tanqueray 0.0",
+    "es": "Tanqueray 0.0"
+   },
+   "description": {
+    "en": "Non-alcoholic gin",
+    "es": "Ginebra sin alcohol"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 29
+  },
+  {
+   "id": "spritz-aperol-spritz",
+   "category": "spritz",
+   "sub": null,
+   "name": {
+    "en": "Aperol Spritz",
+    "es": "Aperol Spritz"
+   },
+   "description": {
+    "en": "Aperol, prosecco, soda",
+    "es": "Aperol, prosecco, soda"
+   },
+   "price": 7.0,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "spritz-campari-spritz",
+   "category": "spritz",
+   "sub": null,
+   "name": {
+    "en": "Campari Spritz",
+    "es": "Campari Spritz"
+   },
+   "description": {
+    "en": "Campari, prosecco, soda",
+    "es": "Campari, prosecco, soda"
+   },
+   "price": 7.0,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "spritz-hugo-spritz",
+   "category": "spritz",
+   "sub": null,
+   "name": {
+    "en": "Hugo Spritz",
+    "es": "Hugo Spritz"
+   },
+   "description": {
+    "en": "Elderflower, prosecco, mint",
+    "es": "Flor de saúco, prosecco, menta"
+   },
+   "price": 8.0,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "spritz-raspberry-spritz",
+   "category": "spritz",
+   "sub": null,
+   "name": {
+    "en": "Raspberry Spritz",
+    "es": "Raspberry Spritz"
+   },
+   "description": {
+    "en": "Raspberry, prosecco, soda",
+    "es": "Frambuesa, prosecco, soda"
+   },
+   "price": 7.0,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "spritz-rossini",
+   "category": "spritz",
+   "sub": null,
+   "name": {
+    "en": "Rossini",
+    "es": "Rossini"
+   },
+   "description": {
+    "en": "Strawberry purée with prosecco",
+    "es": "Puré de fresa con prosecco"
+   },
+   "price": 7.0,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "spritz-petroni-spritz",
+   "category": "spritz",
+   "sub": null,
+   "name": {
+    "en": "Petroni Spritz",
+    "es": "Petroni Spritz"
+   },
+   "description": {
+    "en": "Petroni, prosecco, soda",
+    "es": "Petroni, prosecco, soda"
+   },
+   "price": 7.0,
+   "photo": "petroni-spritz.jpg",
+   "sort": 6
+  },
+  {
+   "id": "teas-chai",
+   "category": "teas",
+   "sub": null,
+   "name": {
+    "en": "Chai",
+    "es": "Chai"
+   },
+   "description": {
+    "en": "Spiced chai tea",
+    "es": "Té chai especiado"
+   },
+   "price": 4.0,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "teas-chamomile",
+   "category": "teas",
+   "sub": null,
+   "name": {
+    "en": "Chamomile",
+    "es": "Manzanilla"
+   },
+   "description": {
+    "en": "Calming chamomile infusion",
+    "es": "Infusión relajante"
+   },
+   "price": 4.0,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "teas-tea",
+   "category": "teas",
+   "sub": null,
+   "name": {
+    "en": "Tea",
+    "es": "Té"
+   },
+   "description": {
+    "en": "Black / Green Vanilla",
+    "es": "Negro / Verde Vainilla"
+   },
+   "price": 4.0,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "teas-menta-poleo",
+   "category": "teas",
+   "sub": null,
+   "name": {
+    "en": "Menta Poleo",
+    "es": "Menta Poleo"
+   },
+   "description": {
+    "en": "",
+    "es": ""
+   },
+   "price": 4.0,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "teas-red-fruit",
+   "category": "teas",
+   "sub": null,
+   "name": {
+    "en": "Red Berry",
+    "es": "Frutos Rojos"
+   },
+   "description": {
+    "en": "",
+    "es": ""
+   },
+   "price": 3.0,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "wine-bardos-roble",
+   "category": "wine",
+   "sub": null,
+   "name": {
+    "en": "Bardos Roble",
+    "es": "Bardos Roble"
+   },
+   "description": {
+    "en": "Red wine Ribera del Duero",
+    "es": "Tinto Ribera del Duero"
+   },
+   "price": 8.5,
+   "photo": null,
+   "sort": 1
+  },
+  {
+   "id": "wine-house-red",
+   "category": "wine",
+   "sub": null,
+   "name": {
+    "en": "House Red",
+    "es": "Tinto de la Casa"
+   },
+   "description": {
+    "en": "Red wine",
+    "es": "Vino tinto"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 2
+  },
+  {
+   "id": "wine-house-rose",
+   "category": "wine",
+   "sub": null,
+   "name": {
+    "en": "House Rosé",
+    "es": "Rosado de la Casa"
+   },
+   "description": {
+    "en": "Rosé wine",
+    "es": "Vino rosado"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 3
+  },
+  {
+   "id": "wine-house-white",
+   "category": "wine",
+   "sub": null,
+   "name": {
+    "en": "House White",
+    "es": "Blanco de la Casa"
+   },
+   "description": {
+    "en": "White wine",
+    "es": "Vino blanco"
+   },
+   "price": 5.0,
+   "photo": null,
+   "sort": 4
+  },
+  {
+   "id": "wine-pulpo-albarino",
+   "category": "wine",
+   "sub": null,
+   "name": {
+    "en": "Pulpo Albariño",
+    "es": "Pulpo Albariño"
+   },
+   "description": {
+    "en": "White wine from Galicia",
+    "es": "Vino blanco de Galicia"
+   },
+   "price": 6.0,
+   "photo": null,
+   "sort": 5
+  },
+  {
+   "id": "wine-the-pale-rose",
+   "category": "wine",
+   "sub": null,
+   "name": {
+    "en": "The Pale Rosé",
+    "es": "The Pale Rosé"
+   },
+   "description": {
+    "en": "Premium rosé wine",
+    "es": "Rosado premium"
+   },
+   "price": 8.0,
+   "photo": null,
+   "sort": 6
+  }
+ ]
+}

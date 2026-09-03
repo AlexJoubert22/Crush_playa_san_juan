@@ -1,0 +1,511 @@
+---
+import { Image } from 'astro:assets';
+import Base from '@/layouts/Base.astro';
+import Strap from '@/components/Strap.astro';
+import Arrow from '@/components/Arrow.astro';
+import founder from '@/assets/venue/founder.png';
+import team from '@/assets/venue/team.png';
+import facadeSketch from '@/assets/venue/facade-sketch.png';
+import beachPalms from '@/assets/venue/beach-palms.jpg';
+
+const words = [
+  { w: 'Food', line: 'Açaí, eggs on brioche, Cuban sandwiches, smash burgers. Fresh in the morning, indulgent by night.' },
+  { w: 'Drinks', line: 'Specialty coffee and matcha in the sun. Spritz and tropical cocktails when it sets.' },
+  { w: 'Music', line: 'Thirteen resident DJs. Organic house at brunch, progressive and techno after dark.' },
+  { w: 'People', line: 'Locals, people passing through, creators, founders. Regulars within a week.' },
+  { w: 'Beach', line: 'Playa de San Juan across the road. Sand on the floor is fine.' },
+];
+
+const milestones = [
+  { when: 'February 2025', what: 'Crush opens on Avenida de Niza, Playa de San Juan.' },
+  { when: 'Weekends', what: 'Cadenza, the daytime session, becomes the ritual: resident DJs from 10:00 to 16:00.' },
+  { when: 'Monthly', what: 'OPUS, the night session, on the second Saturday of the month until 02:00.' },
+  { when: '2026', what: 'The venue is renovated. Same corner, more of everything.' },
+];
+---
+
+<Base
+  title="Story — From South Beach to Playa de San Juan | Crush"
+  description="Crush started as a place that didn't exist yet: something its founder imagined walking down South Beach, Miami, and built on Playa de San Juan, Alicante. A place to belong."
+  theme="day"
+  page="story"
+>
+  <!-- Hero: the words on the left, the man on the right -->
+  <header class="wrap page-hero story-hero">
+    <div class="story-hero__copy">
+      <p class="label page-hero__label"><Strap /></p>
+      <h1 class="display-xl page-hero__title" data-reveal="lines">Belong <span class="em">somewhere.</span></h1>
+      <p class="lede story-hero__lede" data-reveal="fade">
+        Crush started as a place that didn't exist yet. Something its founder imagined walking down South
+        Beach, Miami, and built on Playa de San Juan, Alicante.
+      </p>
+      <ul class="story-hero__facts" data-stagger>
+        <li><span class="label muted">Founder</span><span>Paul Shepherd</span></li>
+        <li><span class="label muted">Opened</span><span>February 2025</span></li>
+        <li><span class="label muted">Address</span><span>Av. de Niza 12, Alicante</span></li>
+      </ul>
+    </div>
+    <figure class="media story-hero__photo" data-reveal="clip">
+      <Image
+        src={founder}
+        alt="Paul Shepherd, founder of Crush, in a black Crush t-shirt and backwards cap"
+        widths={[560, 840, 1122]}
+        sizes="(max-width: 900px) 100vw, 40vw"
+        class="reveal-scale"
+        priority
+      />
+      <figcaption class="cap"><span>Paul Shepherd</span><span>Founder</span></figcaption>
+    </figure>
+  </header>
+
+  <!-- The Miami echo: one wide frame -->
+  <section class="wrap section section--flush-top">
+    <figure class="media echo" data-reveal="clip">
+      <Image
+        src={facadeSketch}
+        alt="A pencil drawing of the Crush facade on Avenida de Niza: glass front, bougainvillea over the sign, palms reflected in the windows"
+        widths={[800, 1200, 1672]}
+        sizes="100vw"
+        class="reveal-scale echo__img"
+      />
+      <figcaption class="cap"><span>Av. de Niza 12</span><span>Drawn before it existed</span></figcaption>
+    </figure>
+    <div class="echo__note">
+      <p class="label muted echo__note-label">Why here</p>
+      <div class="echo__note-body">
+        <div class="echo__cols">
+          <p class="body" data-reveal="fade">
+            Striped lifeguard towers, palms, a long straight beach that runs for kilometres. If Alicante ever
+            reminded anyone of Miami, it was here. Which is where this starts: a glass front on Avenida de
+            Niza, bougainvillea over the sign, and the sea close enough that people walk in with sand on their
+            feet.
+          </p>
+          <p class="body" data-reveal="fade">
+            The drawing above came before the venue did. Same corner, same glass, same flowers falling over
+            the top. It was the reference the build was measured against, and looking at it now, remarkably
+            little was lost between the paper and the pavement.
+          </p>
+        </div>
+        <ul class="echo__facts" data-stagger>
+          <li>
+            <span class="label muted">The beach</span>
+            <span class="echo__fact">Across the road</span>
+          </li>
+          <li>
+            <span class="label muted">Getting here</span>
+            <span class="echo__fact">TRAM lines 3 &amp; 4</span>
+          </li>
+          <li>
+            <span class="label muted">Open since</span>
+            <span class="echo__fact">February 2025</span>
+          </li>
+          <li>
+            <span class="label muted">First coffee</span>
+            <span class="echo__fact num">09:00, every day</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder's words (verbatim) -->
+  <section class="section founder">
+    <div class="wrap">
+      <div class="chapter-head" data-reveal="fade">
+        <span class="num">01</span>
+        <span class="label">In the founder's words</span>
+        <span class="label label--display">Paul Shepherd</span>
+      </div>
+      <div class="grid founder__grid">
+        <div class="founder__text">
+          <p class="founder__pull" data-reveal="lines">
+            <span class="em">It's often hard to describe something when you're so embedded in it, even though you know it inside out.</span>
+          </p>
+          <p class="body" data-reveal="fade">
+            When you truly know someone or something on a deeper level, you see them or it in a very different
+            way than anyone looking in from the outside. It's like there aren't enough words, there's a lack of
+            vocabulary to really describe it.
+          </p>
+          <p class="body" data-reveal="fade">For me, Crush is like this.</p>
+          <p class="body" data-reveal="fade">
+            Crush was a development of desires. Something I used to imagine to remove the pain of a void.
+            Something I would pretend existed while walking down South Beach in Miami.
+          </p>
+          <p class="founder__pull" data-reveal="lines">
+            <span class="em">Crush would be a place where I could really feel like I belonged.</span>
+          </p>
+          <p class="body" data-reveal="fade">
+            A place where my favourite products would be aligned with my favourite music and an amazing,
+            energetic atmosphere. A place that would look amazing and feel even better, like anything was
+            possible.
+          </p>
+          <p class="body" data-reveal="fade">Welcome to Crush. I can't wait to see you in there.</p>
+          <p class="founder__sig" data-reveal="fade">
+            <span class="h3">Paul Shepherd</span>
+            <span class="label muted">Founder</span>
+          </p>
+        </div>
+        <figure class="media media--3x4 founder__photo" data-reveal="clip">
+          <Image src={team} alt="Two of the Crush team in blue Crush shirts under the bougainvillea at the entrance" widths={[500, 800, 1086]} sizes="(max-width: 900px) 100vw, 36vw" class="reveal-scale" />
+          <figcaption class="cap"><span>The crew, under the flowers</span><span>Av. de Niza 12</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Five words -->
+  <section class="section section--flush-top">
+    <div class="wrap">
+      <div class="chapter-head" data-reveal="fade">
+        <span class="num">02</span>
+        <span class="label">Crush in five words</span>
+        <span class="label label--display">Day → Night</span>
+      </div>
+      <ol class="words rule-list" data-stagger>
+        {
+          words.map((x) => (
+            <li class="words__row">
+              <span class="display words__w">{x.w}</span>
+              <span class="words__line body">{x.line}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Milestones -->
+  <section class="section section--flush-top">
+    <div class="wrap grid milestones">
+      <div class="milestones__intro">
+        <h2 class="display" data-reveal="lines">A place that changes with the <span class="em">hour.</span></h2>
+        <p class="body" data-reveal="fade">
+          Coffee at nine, brunch at noon, spritz at six, house music at midnight. Crush doesn't sell a time
+          slot. It sells the whole day, and a reason to come back for the next one.
+        </p>
+      </div>
+      <ul class="rule-list milestones__list" data-stagger>
+        {
+          milestones.map((m) => (
+            <li>
+              <span class="row__name">{m.when}</span>
+              <span class="row__desc">{m.what}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Community -->
+  <section class="section community">
+    <div class="wrap grid community__grid">
+      <figure class="media media--16x10 community__photo" data-reveal="clip">
+        <Image src={beachPalms} alt="Palms and sand along the avenue of Playa de San Juan" widths={[600, 1000, 1600]} sizes="(max-width: 900px) 100vw, 58vw" class="reveal-scale" />
+      </figure>
+      <div class="community__copy">
+        <h2 class="h2" data-reveal="lines">More than a bar.</h2>
+        <p class="body" data-reveal="fade">
+          Networking brunches for founders and creators, launches, private sessions, birthdays that end on the
+          dancefloor. If it fits between coffee and the last beat, it fits at Crush.
+        </p>
+        <a href="/visit#events" class="btn" data-reveal="fade">Plan something with us <Arrow /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Night out -->
+  <section class="stage grain theme-night">
+    <div class="wrap stage__content">
+      <span class="stage__neon" aria-hidden="true" data-reveal="fade"></span>
+      <p class="label" data-reveal="fade">A different culture</p>
+      <h2 class="display stage__title" data-reveal="lines">Start with coffee. <span class="em">End up dancing.</span></h2>
+      <div class="stage__actions" data-reveal="fade">
+        <a href="/sound" class="btn btn--light">The Sound <Arrow /></a>
+        <a href="/menu" class="btn btn--ghost stage__ghost">The menu</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 2.5rem 1rem 0.9rem;
+    color: #fff;
+    font-size: var(--text-small);
+    font-weight: 600;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.55));
+  }
+
+  /* ---- hero ---- */
+  .story-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-6) calc(var(--col-gap) * 2);
+    align-items: end;
+  }
+  .story-hero__copy {
+    display: grid;
+    gap: var(--space-5);
+    align-content: end;
+  }
+  .story-hero__copy .page-hero__label {
+    margin-bottom: 0;
+  }
+  .story-hero__lede {
+    max-width: 44ch;
+  }
+  .story-hero__facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, auto));
+    gap: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line-strong);
+    font-size: var(--text-small);
+    font-weight: 600;
+  }
+  .story-hero__facts li {
+    display: grid;
+    gap: 0.3rem;
+  }
+  .story-hero__photo {
+    aspect-ratio: 4 / 5;
+  }
+  @media (max-width: 900px) {
+    .story-hero {
+      grid-template-columns: 1fr;
+    }
+    .story-hero__photo {
+      order: -1;
+      width: min(100%, 420px);
+    }
+    .story-hero__facts {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* ---- Miami echo ---- */
+  /* The drawing is the whole point, so it is never cropped hard */
+  .echo {
+    aspect-ratio: 16 / 9;
+    background: #fff;
+  }
+  .echo__img {
+    object-fit: contain;
+    object-position: center;
+  }
+  .echo .cap {
+    color: var(--day-ink);
+    background: none;
+    padding: 0.9rem 1rem;
+  }
+  .echo__note {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+    gap: var(--space-4) var(--col-gap);
+    padding-top: var(--space-5);
+    margin-top: var(--space-2);
+    border-top: 1px solid var(--line-strong);
+  }
+  .echo__note-body {
+    display: grid;
+    gap: var(--space-6);
+  }
+  .echo__cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--col-gap) calc(var(--col-gap) * 2);
+  }
+  .echo__cols .body {
+    max-width: none;
+  }
+  .echo__facts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--col-gap);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+  }
+  .echo__facts li {
+    display: grid;
+    gap: 0.3rem;
+  }
+  .echo__fact {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  @media (max-width: 900px) {
+    .echo {
+      aspect-ratio: 4 / 3;
+    }
+    .echo__note {
+      grid-template-columns: 1fr;
+    }
+    .echo__cols {
+      grid-template-columns: 1fr;
+      gap: 1em;
+    }
+    .echo__facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-4) var(--col-gap);
+    }
+  }
+
+  /* ---- founder words ---- */
+  .founder__grid {
+    padding-top: var(--space-7);
+    align-items: start;
+  }
+  .founder__text {
+    grid-column: 1 / span 7;
+    display: grid;
+    gap: var(--space-5);
+  }
+  .founder__pull {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.4vw, 3.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    max-width: 22ch;
+    margin-block: var(--space-3);
+    text-wrap: balance;
+  }
+  .founder__pull .em {
+    font-size: 1.06em;
+  }
+  .founder__sig {
+    display: grid;
+    gap: 0.25rem;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line-strong);
+    justify-items: start;
+  }
+  .founder__photo {
+    grid-column: 9 / -1;
+    position: sticky;
+    top: 110px;
+  }
+  @media (max-width: 900px) {
+    .founder__text,
+    .founder__photo {
+      grid-column: 1 / -1;
+      position: static;
+    }
+    .founder__photo {
+      order: -1;
+      width: 70%;
+    }
+  }
+
+  /* ---- five words ---- */
+  .words {
+    margin-top: var(--space-6);
+  }
+  .words__row {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: baseline;
+    padding-block: clamp(1rem, 2vw, 1.75rem);
+  }
+  .words__w {
+    font-size: clamp(2.25rem, 6vw, 5.5rem);
+  }
+  @media (max-width: 760px) {
+    .words__row {
+      grid-template-columns: 1fr;
+      row-gap: 0.4rem;
+    }
+  }
+
+  /* ---- milestones ---- */
+  .milestones {
+    align-items: start;
+  }
+  .milestones__intro {
+    grid-column: 1 / span 6;
+    display: grid;
+    gap: var(--space-5);
+  }
+  .milestones__list {
+    grid-column: 8 / -1;
+  }
+  .milestones__list .row__desc {
+    grid-column: 1 / -1;
+  }
+  @media (max-width: 900px) {
+    .milestones__intro,
+    .milestones__list {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* ---- community ---- */
+  .community__grid {
+    align-items: center;
+  }
+  .community__photo {
+    grid-column: 1 / span 7;
+  }
+  .community__copy {
+    grid-column: 9 / -1;
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+  }
+  @media (max-width: 900px) {
+    .community__photo,
+    .community__copy {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* ---- closing stage ---- */
+  .stage {
+    position: relative;
+    background: var(--night-canvas);
+    color: var(--night-ink);
+  }
+  .stage__content {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--space-section);
+    display: grid;
+    gap: var(--space-5);
+  }
+  .stage__neon {
+    display: block;
+    height: 2px;
+    width: min(100%, 420px);
+    margin-bottom: var(--space-3);
+    background: var(--night-accent);
+    box-shadow:
+      0 0 10px var(--glow),
+      0 0 28px var(--glow-mid);
+  }
+  .stage__title {
+    max-width: 12ch;
+    text-shadow: 0 0 44px var(--glow-soft);
+  }
+  .stage__title .em {
+    color: var(--night-accent-ink);
+  }
+  .stage__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: var(--space-3);
+  }
+  .stage__ghost {
+    --btn-fg: var(--night-ink);
+    border-color: rgba(244, 239, 230, 0.5);
+  }
+</style>

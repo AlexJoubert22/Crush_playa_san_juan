@@ -1,0 +1,17 @@
+---
+/** FOOD · DRINKS · BEATS — the strap from the logotype, used as the brand's eyebrow. */
+import { site } from '@/data/site';
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<span class:list={['strap', className]} aria-label="Food, drinks, beats">
+  {site.strap.map((w, i) => (
+    <>
+      {i > 0 && <i aria-hidden="true"></i>}
+      <span>{w}</span>
+    </>
+  ))}
+</span>

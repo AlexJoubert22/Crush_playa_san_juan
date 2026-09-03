@@ -1,0 +1,1504 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Base from '@/layouts/Base.astro';
+import Strap from '@/components/Strap.astro';
+import Arrow from '@/components/Arrow.astro';
+import Beat from '@/components/Beat.astro';
+import EventsFeed from '@/components/EventsFeed.astro';
+import { site, sessions } from '@/data/site';
+import djs from '@/data/djs.json';
+
+import towerDay from '@/assets/venue/tower-day.jpg';
+import nightSign from '@/assets/venue/noche1.png';
+import cadenzaArt from '@/assets/events/cadenza.png';
+import opusArt from '@/assets/events/opus.png';
+
+const menuPhotos = import.meta.glob<ImageMetadata>('/src/assets/menu/*.{png,jpg,jpeg,webp}', {
+  eager: true,
+  import: 'default',
+});
+const pic = (name: string) => menuPhotos[`/src/assets/menu/${name}`];
+
+/** The morning rail: what's actually on the tables before four. */
+const rail = [
+  { file: 'acai-bowl.png', name: 'Açaí Bowl', price: '€9' },
+  { file: 'el-crush.jpeg', name: 'El Crush', price: '€12' },
+  { file: 'benedictinos.jpeg', name: 'Eggs Benedict', price: '€12' },
+  { file: 'roma.png', name: 'Roma toast', price: '€7.50' },
+  { file: 'revueltos-2.jpeg', name: 'Scrambled eggs', price: '€9' },
+  { file: 'sweet-greek.jpeg', name: 'Sweet Greek', price: '€9' },
+  { file: 'oh-my-lemon.jpeg', name: 'French Kiss', price: '€10' },
+  { file: 'santiago.png', name: 'Santiago toast', price: '€7.50' },
+  { file: 'tio-sam-2.jpg', name: 'Tio Sam', price: '€7.50' },
+  { file: 'cosmo.png', name: 'Cosmo', price: '€7.50' },
+];
+
+/** Three ways to start, one per column. */
+const triptych = [
+  {
+    file: 'iberia.jpeg',
+    kicker: 'Gourmet toast',
+    name: 'Iberia',
+    price: '€7.50',
+    desc: 'Multigrain toast with tomato, serrano ham, cheese & roasted red pepper.',
+  },
+  {
+    file: 'royale.jpeg',
+    kicker: 'Eggs',
+    name: 'Eggs Royale',
+    price: '€15',
+    desc: 'Poached eggs, salmon & hollandaise sauce on brioche.',
+  },
+  {
+    file: 'luna-rossa-2.jpeg',
+    kicker: 'French toast',
+    name: 'Luna Rosa',
+    price: '€10',
+    desc: 'Brioche soaked in vanilla cream, mascarpone & red berry compote.',
+  },
+];
+
+const dayEssentials = [
+  { name: 'Açaí Bowl 300g', desc: 'Açaí, two fruits, granola', price: 9 },
+  { name: 'Iced Strawberry Matcha', desc: 'Matcha with iced milk & strawberry', price: 5.5 },
+  { name: 'El Crush', desc: 'Fried eggs, avocado, bacon & maple syrup on brioche', price: 12 },
+  { name: 'Flat White', desc: 'Double shot of specialty coffee with milk', price: 3.5 },
+  { name: 'Eggs Benedict', desc: 'Poached eggs, bacon & hollandaise on brioche', price: 12 },
+  { name: 'Brunch Combo', desc: 'Toast + coffee + juice', price: 10 },
+  { name: 'Espresso & Tonic', desc: 'Specialty coffee with tonic water', price: 5 },
+  { name: 'Sweet Greek', desc: 'Greek yoghurt, red berry compote, seasonal fruit', price: 9 },
+  { name: 'Crush Club', desc: 'Cuban bread, brined chicken breast, pressed', price: 14 },
+];
+const lattes = [
+  { name: 'Blueberry', c: '#6b5aa6' },
+  { name: 'Coconut caramel', c: '#c9a27e' },
+  { name: 'Pistachio', c: '#9fbd7c' },
+  { name: 'Strawberry', c: '#e9748d' },
+  { name: 'Vanilla', c: '#efe0bd' },
+  { name: 'Mocha', c: '#6a4838' },
+  { name: 'Ice cream', c: '#f6efe0' },
+];
+const matchas = [
+  { name: 'Cherry', c: '#b4304f' },
+  { name: 'Mango', c: '#f2b544' },
+  { name: 'Passion fruit', c: '#e58a2a' },
+  { name: 'Strawberry', c: '#e9748d' },
+  { name: 'Vanilla', c: '#efe0bd' },
+  { name: 'Yuzu', c: '#d9d94a' },
+];
+const sunsetPours = [
+  { name: 'Aperol Spritz', desc: 'Aperol, prosecco, soda', price: 7 },
+  { name: 'Hugo Spritz', desc: 'Elderflower, prosecco, mint', price: 8 },
+  { name: 'Paloma Premium', desc: 'Altos 100% agave tequila, lime & grapefruit', price: 12 },
+  { name: 'Summer Crush', desc: 'House special: gin, watermelon & lychee', price: 9.5 },
+  { name: 'Cloud Nine', desc: 'Altos tequila, coconut water, pineapple', price: 9 },
+  { name: 'Espresso Martini', desc: 'Vodka, espresso & coffee liqueur', price: 10 },
+];
+const nightFacts = [
+  { k: 'Residents', v: '13 DJs' },
+  { k: 'Sessions', v: 'Cadenza · OPUS' },
+  { k: 'Sound', v: 'Progressive · Deep house · Minimal · Techno' },
+  { k: 'Last beat', v: '02:00' },
+];
+const dayline = [
+  { id: 'day', from: 9, to: 17, label: 'Day', sub: 'Coffee · brunch · bowls' },
+  { id: 'sunset', from: 17, to: 21, label: 'Afterbeach', sub: 'Spritz · cocktails · first records' },
+  { id: 'night', from: 21, to: 26, label: 'Night', sub: 'DJs · OPUS · until 02:00' },
+];
+const ticks = ['09:00', '12:00', '17:00', '21:00', '02:00'];
+const eur = (n: number) => `€${Number.isInteger(n) ? n : n.toFixed(2)}`;
+---
+
+<Base
+  title="Crush — Food, drinks & beats on Playa de San Juan, Alicante"
+  description={site.description}
+  theme="day"
+  page="home"
+>
+  <div data-arc>
+    <!-- ========================================================= HERO -->
+    <section class="hero" data-chapter-theme="day" data-hour="9">
+      <div class="hero__copy">
+        <Strap class="hero__strap" data-reveal="fade" />
+        <h1 class="display-xl hero__title" data-reveal="lines">
+          From first <span class="em">coffee</span> to last <span class="em">beat.</span>
+        </h1>
+        <p class="lede hero__lede" data-reveal="fade" style="--reveal-delay: 380ms">
+          Specialty coffee, brunch, tropical cocktails and resident DJs, steps from the sand on Playa de San
+          Juan. One place that changes with the hour.
+        </p>
+        <div class="hero__actions" data-reveal="fade" style="--reveal-delay: 520ms">
+          <a href="/sound#agenda" class="btn">What's on this weekend <Arrow /></a>
+          <a href="/menu" class="btn btn--ghost">See the menu</a>
+        </div>
+        <div class="hero__meta" data-reveal="fade" style="--reveal-delay: 700ms">
+          <span>{site.address.street} · {site.address.area}, {site.address.city}</span>
+          <span class="num">Open daily from 09:00</span>
+        </div>
+      </div>
+
+      <div class="hero__media media" data-reveal="clip">
+        <div class="hero__media-inner" data-parallax="10">
+          <Image
+            src={towerDay}
+            alt="A lifeguard tower painted in Miami stripes on the sand of Playa de San Juan, Alicante"
+            widths={[640, 960, 1280, 1707]}
+            sizes="(max-width: 900px) 100vw, 60vw"
+            class="reveal-scale hero__img"
+            priority
+          />
+        </div>
+        <div class="hero__scroll" aria-hidden="true">
+          <span class="num hero__scroll-clock" data-hero-clock>09:00</span>
+          <span class="label">Scroll through the day</span>
+          <Arrow dir="down" class="hero__scroll-arrow" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================ A DAY AT CRUSH -->
+    <section class="dayline" aria-label="A day at Crush">
+      <div class="wrap">
+        <div class="dayline__head">
+          <p class="label">A day at Crush</p>
+          <p class="label dayline__now-label" data-dayline-label>Alicante time</p>
+        </div>
+        <div class="dayline__track" data-dayline>
+          {
+            dayline.map((s) => (
+              <a
+                href={`#${s.id}`}
+                class={`dayline__seg dayline__seg--${s.id}`}
+                style={`--from:${s.from};--to:${s.to}`}
+              >
+                <span class="dayline__seg-label">{s.label}</span>
+                <span class="dayline__seg-sub">{s.sub}</span>
+              </a>
+            ))
+          }
+          <span class="dayline__marker" data-dayline-marker hidden>
+            <span class="dayline__marker-time num" data-dayline-time>17:00</span>
+          </span>
+        </div>
+        <ol class="dayline__ticks num" aria-hidden="true">
+          {ticks.map((t, i) => <li style={`--h:${[9, 12, 17, 21, 26][i]}`}>{t}</li>)}
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================================================== 01 · DAY -->
+    <section class="chapter section" id="day" data-chapter-theme="day" data-hour="11">
+      <div class="wrap">
+        <div class="chapter-head" data-reveal="fade">
+          <span class="num">01</span>
+          <span class="label">09:00 — Sun · Coffee · Food · Chill</span>
+          <span class="label label--display">Day</span>
+        </div>
+
+        <div class="grid day__grid">
+          <!-- Left: everything editorial. Right: the reel, whole, untouched. -->
+          <div class="day__left">
+            <h2 class="display" data-reveal="lines">Mornings that <span class="em">stay.</span></h2>
+            <div class="chapter__text" data-reveal="fade">
+              <p class="body">
+                Espresso pulled from specialty beans. Flat whites, cortados, a bombón for the locals. Iced
+                lattes in seven flavours and matcha six ways, with yuzu, mango or passion fruit when the
+                morning is already warm.
+              </p>
+              <p class="body">
+                Açaí bowls built to order. Eggs on brioche, gourmet toast with burrata or serrano, French
+                toast when the day calls for it. Breakfast slides into brunch, brunch into a long lunch, and
+                nobody asks you to leave.
+              </p>
+            </div>
+            <a href="/menu" class="link-line chapter__link" data-reveal="fade">Full menu, 170 items</a>
+
+            <div class="flavours" data-reveal="fade">
+              <div class="flavours__group">
+                <p class="label muted">Iced lattes, seven ways <span class="num">· €4.50 – 5.50</span></p>
+                <ul class="flavours__list">
+                  {lattes.map((f) => <li style={`--c:${f.c}`}><i></i>{f.name}</li>)}
+                </ul>
+              </div>
+              <div class="flavours__group">
+                <p class="label muted">Matcha, six ways <span class="num">· €5.50</span></p>
+                <ul class="flavours__list">
+                  {matchas.map((f) => <li style={`--c:${f.c}`}><i></i>{f.name}</li>)}
+                </ul>
+              </div>
+            </div>
+
+            <div class="house" data-reveal="fade">
+              <p class="label muted house__label">How the morning works</p>
+              <p class="body">
+                There is no rush and no second sitting. The kitchen runs straight through, so a coffee at ten
+                can turn into eggs at noon and a bowl at three without anyone clearing your table. Beans are
+                specialty and ground to order, the matcha is ceremonial grade, and the fruit is cut that
+                morning because it has to be.
+              </p>
+              <p class="body">
+                Prices are what you pay at the counter, with no terrace surcharge for sitting where the sea
+                is. Alternative milks, gluten-free bread and vegan options run across the whole menu, and the
+                team would rather you asked than guessed.
+              </p>
+            </div>
+          </div>
+
+          <figure class="reel day__reel" data-reveal="clip">
+            <video
+              class="reveal-scale"
+              data-reel
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              poster="/video/morning-poster.jpg"
+              aria-label="An iced strawberry matcha being poured at the Crush bar"
+            >
+              <source src="/video/morning.webm" type="video/webm" />
+              <source src="/video/morning.mp4" type="video/mp4" />
+            </video>
+            <span class="reel__tag" aria-hidden="true"><i></i>From the bar</span>
+            <figcaption class="reel__cap"><span>Iced Strawberry Matcha, poured</span><span class="num">€5.50</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="listing">
+          <div class="listing__head">
+            <p class="label muted">Day essentials · the nine people come back for</p>
+            <a href="/menu#food" class="link-line small listing__link">See all 174 items</a>
+          </div>
+          <ul class="rule-list listing__list" data-stagger>
+            {
+              dayEssentials.map((i) => (
+                <li>
+                  <span class="row__name">{i.name}</span>
+                  <span class="row__price">{eur(i.price)}</span>
+                  <span class="row__desc">{i.desc}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- The rail: the counter, passing by -->
+      <div class="rail" aria-label="More from the kitchen">
+        <div class="rail__track">
+          {
+            [0, 1].map((dup) => (
+              <ul class="rail__list" aria-hidden={dup === 1 ? 'true' : undefined}>
+                {rail.map((r) => (
+                  <li class="rail__item">
+                    <figure class="media rail__media">
+                      <Image src={pic(r.file)} alt={r.name} widths={[280, 480]} sizes="260px" />
+                    </figure>
+                    <figcaption class="rail__cap">
+                      <span>{r.name}</span>
+                      <span class="num">{r.price}</span>
+                    </figcaption>
+                  </li>
+                ))}
+              </ul>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="triptych">
+          <div class="triptych__head">
+            <p class="label muted">Three ways to start</p>
+            <a href="/menu#brunch" class="link-line small">All brunch</a>
+          </div>
+          <div class="triptych__grid">
+            {
+              triptych.map((t, i) => (
+                <article class="tri" data-reveal="fade" style={`--reveal-delay: ${i * 110}ms`}>
+                  <figure class="media tri__media">
+                    <Image
+                      src={pic(t.file)}
+                      alt={t.name}
+                      widths={[420, 700, 1000]}
+                      sizes="(max-width: 900px) 100vw, 31vw"
+                    />
+                  </figure>
+                  <p class="label muted tri__kicker">{t.kicker}</p>
+                  <h3 class="tri__name">
+                    {t.name}
+                    <span class="num tri__price">{t.price}</span>
+                  </h3>
+                  <p class="small muted tri__desc">{t.desc}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== 02 · SUNSET -->
+    <section class="chapter section" id="sunset" data-chapter-theme="sunset" data-hour="17">
+      <div class="wrap">
+        <div class="chapter-head" data-reveal="fade">
+          <span class="num">02</span>
+          <span class="label">17:00 — Social · Drinks · Music</span>
+          <span class="label label--display">Afterbeach</span>
+        </div>
+
+        <div class="sunset__intro">
+          <h2 class="display sunset__title" data-reveal="lines">
+            Sand on your feet. <span class="em">Spritz</span> in your hand.
+          </h2>
+          <p class="lede sunset__lede" data-reveal="fade">
+            From five the terrace turns. Groups back from the beach, the first spritz, tropical cocktails and
+            the booth waking up under the bougainvillea. Tardeo, the Alicante way.
+          </p>
+        </div>
+
+        <div class="sunset__grid">
+          <figure class="reel sunset__reel" data-reveal="clip">
+            <video
+              class="reveal-scale"
+              data-reel
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              poster="/video/afterbeach-poster.jpg"
+              aria-label="A Crush bartender shaking and pouring a cocktail"
+            >
+              <source src="/video/afterbeach.webm" type="video/webm" />
+              <source src="/video/afterbeach.mp4" type="video/mp4" />
+            </video>
+            <span class="reel__tag" aria-hidden="true"><i></i>Behind the bar</span>
+            <figcaption class="reel__cap"><span>Shaken, not hurried</span><span class="num">17:00 →</span></figcaption>
+          </figure>
+
+          <div class="sunset__side">
+            <p class="label muted">Sunset pours</p>
+            <ul class="rule-list sunset__list" data-stagger>
+              {
+                sunsetPours.map((i) => (
+                  <li>
+                    <span class="row__name">{i.name}</span>
+                    <span class="row__price">{eur(i.price)}</span>
+                    <span class="row__desc">{i.desc}</span>
+                  </li>
+                ))
+              }
+            </ul>
+            <div class="sunset__foot">
+              <p class="small muted">Spritz from €7. Cocktails €8 – 12. Happy hour on selected drinks.</p>
+              <a href="/menu#cocktails" class="link-line small">All cocktails</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================== 03 · NIGHT -->
+    <section class="night" id="night" data-chapter-theme="night" data-hour="21">
+      <div class="night__stage grain">
+        <div class="wrap night__content">
+          <div class="chapter-head chapter-head--night" data-reveal="fade">
+            <span class="num">03</span>
+            <span class="label">21:00 — Dark · Sound · Energy · Community</span>
+            <span class="label label--display">Night</span>
+          </div>
+
+          <div class="night__grid">
+            <figure class="media night__photo" data-reveal="clip">
+              <Image
+                src={nightSign}
+                alt="A guest with a cocktail under the pink Crush neon sign at night"
+                widths={[540, 800, 1086]}
+                sizes="(max-width: 900px) 100vw, 40vw"
+                class="reveal-scale"
+              />
+              <figcaption class="cap"><span>Under the sign</span><span class="num">23:40</span></figcaption>
+            </figure>
+
+            <div class="night__copy">
+              <span class="neon-rule" aria-hidden="true" data-reveal="fade"></span>
+              <h2 class="display night__title" data-reveal="lines">
+                Stay for one. <span class="em">Leave after midnight.</span>
+              </h2>
+              <p class="body night__text" data-reveal="fade">
+                Progressive, deep house, minimal, techno. Thirteen resident DJs, a daytime session every
+                weekend and OPUS, our night session, once a month until two. The lights go down, the terrace
+                doesn't.
+              </p>
+              <ul class="rule-list night__facts" data-stagger>
+                {
+                  nightFacts.map((f) => (
+                    <li>
+                      <span class="row__name">{f.k}</span>
+                      <span class="row__price night__fact">{f.v}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+              <a href="/sound" class="btn btn--light" data-reveal="fade">Meet the residents <Arrow /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Line-up board -->
+      <div class="ticker" aria-label="Resident DJs">
+        <div class="ticker__track">
+          {
+            [0, 1].map((dup) => (
+              <ul class="ticker__list" aria-hidden={dup === 1 ? 'true' : undefined}>
+                {djs.map((d) => (
+                  <li class="ticker__item">
+                    <span class="ticker__name">{d.name}</span>
+                    <span class="ticker__genre">{d.genre}</span>
+                  </li>
+                ))}
+              </ul>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== SESSIONS + AGENDA -->
+    <section class="section sessions" id="sessions" data-hour="23">
+      <div class="wrap">
+        <div class="grid sessions__grid">
+          <article class="session" data-reveal="fade">
+            <figure class="media media--16x10 session__art">
+              <Image src={cadenzaArt} alt="Cadenza" widths={[400, 600]} sizes="(max-width: 900px) 100vw, 45vw" />
+            </figure>
+            <div class="session__body">
+              <p class="label muted">{sessions.cadenza.when} · <span class="num">{sessions.cadenza.time}</span></p>
+              <h3 class="h2">{sessions.cadenza.name}</h3>
+              <p class="body">{sessions.cadenza.blurb}</p>
+              <p class="small muted">{sessions.cadenza.artist} · {sessions.cadenza.genre}</p>
+            </div>
+          </article>
+          <article class="session session--opus" data-reveal="fade" style="--reveal-delay: 120ms">
+            <figure class="media media--16x10 session__art session__art--opus">
+              <Image src={opusArt} alt="OPUS" widths={[600, 1137]} sizes="(max-width: 900px) 100vw, 45vw" />
+            </figure>
+            <div class="session__body">
+              <p class="label muted">{sessions.opus.when} · <span class="num">{sessions.opus.time}</span></p>
+              <h3 class="h2 session__title">{sessions.opus.name} <Beat /></h3>
+              <p class="body">{sessions.opus.blurb}</p>
+              <p class="small muted">{sessions.opus.artist} · {sessions.opus.genre}</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="agenda" id="agenda">
+          <div class="chapter-head" data-reveal="fade">
+            <span class="num">→</span>
+            <span class="label">Next up</span>
+            <a href="/sound#agenda" class="label link-line">Full agenda</a>
+          </div>
+          <ul class="rule-list agenda__list" data-agenda="4">
+            <li class="agenda__row">
+              <span class="agenda__date num">Sat & Sun</span>
+              <span class="agenda__name">Cadenza</span>
+              <span class="agenda__time num">10:00 – 16:00</span>
+              <span class="agenda__meta">Resident DJs · Daytime sessions</span>
+            </li>
+            <li class="agenda__row">
+              <span class="agenda__date num">2nd Saturday</span>
+              <span class="agenda__name">OPUS</span>
+              <span class="agenda__time num">21:00 – 02:00</span>
+              <span class="agenda__meta">Many DJs · Progressive house</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================ THE FOUNDER -->
+    <section class="section story-teaser" data-chapter-theme="night" data-hour="26">
+      <div class="wrap">
+        <div class="chapter-head" data-reveal="fade">
+          <span class="num">PS</span>
+          <span class="label">The founder</span>
+          <span class="label label--display">South Beach → Playa de San Juan</span>
+        </div>
+        <div class="story-teaser__grid">
+          <blockquote class="story-teaser__quote">
+            <span class="story-teaser__mark" aria-hidden="true">“</span>
+            <p class="story-teaser__text" data-reveal="lines">
+              Crush was a development of desires. Something I would pretend existed while walking down South
+              Beach in Miami. A place where I could really feel like I belonged.
+            </p>
+            <footer class="story-teaser__cite" data-reveal="fade">
+              <p class="story-teaser__kicker">The man who imagined it</p>
+              <span class="story-teaser__name">Paul Shepherd</span>
+              <span class="muted small">Founder. Imagined on South Beach, Miami. Built on Avenida de Niza.</span>
+            </footer>
+            <a href="/story" class="btn btn--ghost story-teaser__btn" data-reveal="fade" style="--reveal-delay: 120ms">Read the story <Arrow /></a>
+          </blockquote>
+          <figure class="reel story-teaser__reel" data-reveal="clip">
+            <video
+              class="reveal-scale"
+              data-reel
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              poster="/video/belong-poster.jpg"
+              aria-label="Playa de San Juan from above, the beach, the bar and the terrace at Crush"
+            >
+              <source src="/video/belong.mp4" type="video/mp4" />
+            </video>
+            <span class="reel__tag" aria-hidden="true"><i></i>Playa de San Juan</span>
+            <figcaption class="reel__cap"><span>The beach, the bar, the terrace</span><span>Or South Beach?</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================== 04 · AGAIN -->
+    <section class="section visit" id="visit" data-chapter-theme="day" data-hour="33">
+      <div class="wrap">
+        <div class="chapter-head" data-reveal="fade">
+          <span class="num">04</span>
+          <span class="label">09:00 — Tomorrow, again</span>
+          <span class="label label--display">Visit</span>
+        </div>
+        <div class="grid visit__grid">
+          <div class="visit__copy">
+            <h2 class="display" data-reveal="lines">Meet me at <span class="em">Crush.</span></h2>
+            <address class="visit__address lede" data-reveal="fade">
+              {site.address.street}<br />
+              {site.address.postal} {site.address.area}, {site.address.city}
+            </address>
+            <div class="visit__actions" data-reveal="fade" style="--reveal-delay: 120ms">
+              <a href="/visit" class="btn">Get directions <Arrow /></a>
+              <a href={site.instagram} target="_blank" rel="noopener" class="btn btn--ghost">{site.instagramHandle}</a>
+            </div>
+          </div>
+          <div class="visit__hours">
+            <p class="label muted">Hours</p>
+            <ul class="rule-list" data-stagger>
+              {
+                site.hours.map((h) => (
+                  <li>
+                    <span class="row__name">{h.days}</span>
+                    <span class="row__price">
+                      {h.open} – {h.close}
+                    </span>
+                  </li>
+                ))
+              }
+              <li>
+                <span class="row__name">Events</span>
+                <span class="row__price muted">Extended</span>
+                <span class="row__desc">Cadenza and OPUS run on their own clock. Check the agenda.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <EventsFeed />
+</Base>
+
+<style>
+  /* ---------------- shared bits ---------------- */
+  .cap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 2.5rem 1rem 0.9rem;
+    color: #fff;
+    font-size: var(--text-small);
+    font-weight: 600;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.55));
+  }
+  .listing {
+    padding-top: var(--space-8);
+  }
+  .listing__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding-bottom: var(--space-4);
+    margin-bottom: var(--space-2);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .listing__link {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .listing__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: calc(var(--col-gap) * 3);
+    border-top: 0;
+  }
+  .listing__list > li {
+    border-top: 1px solid var(--line-strong);
+    border-bottom: 0;
+  }
+  .listing__list > li:nth-child(n + 4) {
+    border-top-color: var(--line);
+  }
+  @media (max-width: 1100px) {
+    .listing__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: calc(var(--col-gap) * 2);
+    }
+    .listing__list > li:nth-child(3) {
+      border-top-color: var(--line);
+    }
+  }
+  @media (max-width: 900px) {
+    .listing {
+      padding-top: var(--space-7);
+    }
+    .listing__list {
+      grid-template-columns: 1fr;
+    }
+    .listing__list > li:nth-child(n + 2) {
+      border-top-color: var(--line);
+    }
+  }
+
+  /* ---------------- HERO ---------------- */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+    min-height: 100svh;
+    align-items: stretch;
+  }
+  .hero__copy {
+    display: grid;
+    align-content: end;
+    gap: var(--space-5);
+    padding: 120px var(--space-7) var(--space-7) var(--gutter);
+  }
+  .hero__strap {
+    color: var(--ink-2);
+  }
+  .hero__title {
+    font-size: clamp(2.75rem, 5.7vw, 6.25rem);
+    max-width: 10ch;
+  }
+  .hero__lede {
+    max-width: 44ch;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+    font-size: var(--text-small);
+    color: var(--ink-2);
+  }
+  .hero__media {
+    position: relative;
+    min-height: 100svh;
+  }
+  .hero__media-inner {
+    position: absolute;
+    inset: -6% 0;
+  }
+  .hero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 38% 55%;
+  }
+  .hero__scroll {
+    position: absolute;
+    right: var(--gutter);
+    bottom: var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.55rem 0.9rem 0.55rem 1rem;
+    border-radius: var(--radius-pill);
+    background: rgba(20, 18, 26, 0.55);
+    color: var(--day-canvas);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    font-size: 0.8rem;
+  }
+  .hero__scroll-clock {
+    font-size: 1rem;
+  }
+  .hero__scroll .label {
+    color: rgba(244, 239, 230, 0.8);
+  }
+  .hero__scroll :global(.hero__scroll-arrow) {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    animation: nudge 2.2s var(--ease-inout) infinite;
+  }
+  @keyframes nudge {
+    0%,
+    100% {
+      transform: rotate(90deg) translateX(0);
+    }
+    50% {
+      transform: rotate(90deg) translateX(4px);
+    }
+  }
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: 0;
+    }
+    .hero__media {
+      order: -1;
+      min-height: 0;
+      height: 66svh;
+      margin-top: 68px;
+    }
+    .hero__copy {
+      padding: var(--space-6) var(--gutter) var(--space-7);
+      gap: var(--space-4);
+    }
+    .hero__title {
+      max-width: none;
+      font-size: clamp(2.75rem, 12vw, 4.5rem);
+    }
+    .hero__scroll {
+      bottom: var(--space-4);
+      right: var(--gutter);
+    }
+  }
+
+  /* ---------------- DAYLINE ---------------- */
+  .dayline {
+    padding-block: var(--space-6) var(--space-3);
+    border-top: 1px solid var(--line-strong);
+  }
+  .dayline__head {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+    color: var(--ink-2);
+  }
+  .dayline__track {
+    position: relative;
+    display: grid;
+    grid-template-columns: 8fr 4fr 5fr; /* 9→17, 17→21, 21→02 */
+    gap: 6px;
+    height: 88px;
+  }
+  .dayline__seg {
+    position: relative;
+    display: grid;
+    align-content: end;
+    gap: 0.2rem;
+    padding: 0.7rem 0.9rem;
+    border-top: 3px solid var(--seg);
+    color: var(--ink);
+  }
+  .dayline__seg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--seg);
+    opacity: 0.08;
+    transition: opacity var(--dur-standard) var(--ease-out);
+  }
+  .dayline__seg:hover::before {
+    opacity: 0.18;
+  }
+  .dayline__seg--day {
+    --seg: var(--turquoise);
+  }
+  .dayline__seg--sunset {
+    --seg: var(--magenta);
+  }
+  .dayline__seg--night {
+    --seg: var(--glow);
+  }
+  .dayline__seg-label {
+    position: relative;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .dayline__seg-sub {
+    position: relative;
+    font-size: var(--text-small);
+    color: var(--ink-3);
+  }
+  .dayline__marker {
+    position: absolute;
+    top: -3px;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    background: var(--ink);
+    transform: translateX(-50%);
+    transition: left 1s var(--ease-inout);
+  }
+  .dayline__marker[hidden] {
+    display: none;
+  }
+  .dayline__marker::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--ink);
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 4px var(--canvas);
+  }
+  .dayline__marker-time {
+    position: absolute;
+    top: -34px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-pill);
+    background: var(--ink);
+    color: var(--canvas);
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+  .dayline__ticks {
+    position: relative;
+    height: 1.2rem;
+    margin-top: 0.6rem;
+    font-size: 0.75rem;
+    color: var(--ink-3);
+  }
+  .dayline__ticks li {
+    position: absolute;
+    top: 0;
+    left: calc((var(--h) - 9) / 17 * 100%);
+    transform: translateX(-50%);
+  }
+  .dayline__ticks li:first-child {
+    transform: none;
+  }
+  .dayline__ticks li:last-child {
+    transform: translateX(-100%);
+  }
+  @media (max-width: 760px) {
+    .dayline__track {
+      height: 76px;
+    }
+    .dayline__seg {
+      padding: 0.5rem 0.6rem;
+    }
+    .dayline__seg-sub {
+      display: none;
+    }
+    .dayline__seg-label {
+      font-size: 0.85rem;
+    }
+    .dayline__ticks li:nth-child(2) {
+      display: none;
+    }
+  }
+
+  /* ---------------- DAY ---------------- */
+  .day__grid {
+    padding-top: var(--space-7);
+    align-items: start;
+  }
+  .day__left {
+    grid-column: 1 / span 6;
+    display: grid;
+    gap: var(--space-5);
+    align-content: start;
+  }
+  .chapter__text {
+    display: grid;
+    gap: 1em;
+  }
+  .chapter__text .body {
+    max-width: none;
+  }
+  .chapter__link {
+    font-weight: 600;
+    justify-self: start;
+  }
+  .day__reel {
+    grid-column: 8 / -1;
+    aspect-ratio: 9 / 16;
+    align-self: start;
+  }
+  .flavours {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5) var(--col-gap);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--line-strong);
+  }
+  .flavours__group:first-child {
+    padding-top: var(--space-3);
+  }
+  .flavours__group:last-child {
+    padding-top: var(--space-3);
+  }
+  .flavours__group {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+  }
+  .flavours__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.1rem;
+  }
+  .flavours__list li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--text-small);
+    font-weight: 600;
+  }
+  .flavours__list i {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--c);
+    box-shadow: inset 0 0 0 1px rgba(20, 18, 26, 0.12);
+    transition: transform var(--dur-standard) var(--ease-out);
+  }
+  .flavours__list li:hover i {
+    transform: scale(1.35);
+  }
+  /* The written note that closes the left column */
+  .house {
+    display: grid;
+    gap: 1em;
+    padding-top: var(--space-5);
+    margin-top: var(--space-2);
+    border-top: 1px solid var(--line);
+  }
+  .house__label {
+    margin-bottom: 0.2rem;
+  }
+  /* Same measure and size as the paragraphs above, so the column reads as one */
+  .house .body {
+    max-width: none;
+  }
+  @media (max-width: 900px) {
+    .day__left,
+    .day__reel {
+      grid-column: 1 / -1;
+    }
+    .day__reel {
+      order: -1;
+      width: min(100%, 420px);
+      justify-self: center;
+    }
+  }
+  @media (max-width: 560px) {
+    .flavours {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ---------------- RAIL (infinite product marquee) ---------------- */
+  .rail {
+    overflow: hidden;
+    margin-top: var(--space-8);
+    padding-block: var(--space-5);
+    border-block: 1px solid var(--line);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .rail__track {
+    display: flex;
+    width: max-content;
+    animation: rail 64s linear infinite;
+  }
+  .rail:hover .rail__track {
+    animation-play-state: paused;
+  }
+  .rail__list {
+    display: flex;
+    flex-shrink: 0;
+  }
+  .rail__item {
+    flex: 0 0 auto;
+    width: clamp(190px, 17vw, 260px);
+    margin-right: var(--col-gap);
+  }
+  .rail__media {
+    aspect-ratio: 4 / 3;
+  }
+  .rail__media img {
+    transition: transform 0.7s var(--ease-out);
+  }
+  .rail__item:hover .rail__media img {
+    transform: scale(1.06);
+  }
+  .rail__cap {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-top: 0.6rem;
+    font-size: var(--text-small);
+    font-weight: 600;
+  }
+  .rail__cap .num {
+    color: var(--ink-2);
+  }
+  @keyframes rail {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rail {
+      overflow-x: auto;
+    }
+    .rail__track {
+      animation: none;
+    }
+    .rail__list[aria-hidden] {
+      display: none;
+    }
+  }
+
+  /* ---------------- TRIPTYCH ---------------- */
+  .triptych {
+    padding-top: var(--space-7);
+  }
+  .triptych__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .triptych__head .link-line {
+    font-weight: 600;
+  }
+  .triptych__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6) calc(var(--col-gap) * 2);
+    padding-top: var(--space-6);
+  }
+  .tri {
+    display: grid;
+    gap: 0.5rem;
+    align-content: start;
+  }
+  .tri__media {
+    aspect-ratio: 4 / 5;
+    margin-bottom: var(--space-3);
+  }
+  .tri__media img {
+    transition: transform 0.8s var(--ease-out);
+  }
+  .tri:hover .tri__media img {
+    transform: scale(1.04);
+  }
+  .tri__kicker {
+    color: var(--accent-ink);
+  }
+  .tri__name {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.9vw, 1.6rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .tri__price {
+    color: var(--ink-2);
+    font-size: 0.9em;
+  }
+  .tri__desc {
+    max-width: 34ch;
+  }
+  @media (max-width: 900px) {
+    .triptych__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+    .tri__media {
+      aspect-ratio: 16 / 10;
+    }
+  }
+
+  /* ---------------- SUNSET ---------------- */
+  .sunset__intro {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-6);
+    align-items: end;
+    padding-top: var(--space-7);
+  }
+  .sunset__title {
+    max-width: 12ch;
+  }
+  .sunset__lede {
+    max-width: 40ch;
+    padding-bottom: 0.35em;
+  }
+  .sunset__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-6) calc(var(--col-gap) * 2);
+    align-items: start;
+    margin-top: var(--space-7);
+  }
+  .sunset__reel {
+    aspect-ratio: 4 / 5;
+  }
+  .sunset__side {
+    display: grid;
+    gap: var(--space-4);
+    padding-top: var(--space-2);
+  }
+  .sunset__list .row__name {
+    font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+  }
+  .sunset__foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding-top: var(--space-2);
+  }
+  .sunset__foot .link-line {
+    font-weight: 600;
+  }
+  @media (max-width: 900px) {
+    .sunset__intro,
+    .sunset__grid {
+      grid-template-columns: 1fr;
+    }
+    .sunset__title {
+      max-width: none;
+    }
+    .sunset__reel {
+      width: 80%;
+    }
+  }
+
+  /* ---------------- NIGHT ---------------- */
+  .night {
+    color: var(--night-ink);
+  }
+  .night__stage {
+    position: relative;
+    background: var(--night-canvas);
+    overflow: hidden;
+  }
+  .night__content {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--space-section) var(--space-8);
+    display: grid;
+    gap: var(--space-7);
+  }
+  .chapter-head--night {
+    border-color: rgba(244, 239, 230, 0.45);
+  }
+  .chapter-head--night .label {
+    color: rgba(244, 239, 230, 0.8);
+  }
+  .chapter-head--night .num {
+    color: var(--night-accent);
+  }
+  .night__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-6) calc(var(--col-gap) * 2);
+    align-items: center;
+  }
+  .night__photo {
+    aspect-ratio: 3 / 4;
+  }
+  .night__copy {
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+    padding-inline-start: clamp(0px, 3vw, 40px);
+  }
+  .neon-rule {
+    display: block;
+    height: 2px;
+    width: min(100%, 220px);
+    background: var(--night-accent);
+    box-shadow:
+      0 0 10px var(--glow),
+      0 0 28px var(--glow-mid);
+  }
+  .night__title {
+    max-width: 11ch;
+    text-shadow: 0 0 44px var(--glow-soft);
+  }
+  .night__title .em {
+    color: var(--night-accent-ink);
+  }
+  .night__text {
+    color: rgba(244, 239, 230, 0.85);
+    max-width: 48ch;
+  }
+  .night__facts {
+    width: 100%;
+    border-top-color: rgba(244, 239, 230, 0.45);
+  }
+  .night__facts > li {
+    padding-block: 0.8rem;
+    border-bottom-color: var(--night-line);
+  }
+  .night__facts .row__name {
+    font-size: 0.95rem;
+    color: var(--night-ink-2);
+  }
+  .night__fact {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: right;
+  }
+  @media (max-width: 900px) {
+    .night__grid {
+      grid-template-columns: 1fr;
+    }
+    .night__photo {
+      width: 80%;
+    }
+    .night__copy {
+      padding-inline-start: 0;
+    }
+    .night__title {
+      max-width: none;
+    }
+  }
+
+  /* line-up board */
+  .ticker {
+    overflow: hidden;
+    border-block: 1px solid var(--night-line);
+    background: var(--night-canvas);
+    padding-block: 1.1rem;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .ticker__track {
+    display: flex;
+    width: max-content;
+    animation: ticker 70s linear infinite;
+  }
+  .ticker:hover .ticker__track {
+    animation-play-state: paused;
+  }
+  .ticker__list {
+    display: flex;
+    flex-shrink: 0;
+  }
+  .ticker__item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    padding-inline: 2.2rem;
+    white-space: nowrap;
+    border-right: 1px solid var(--night-line);
+  }
+  .ticker__name {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .ticker__genre {
+    font-size: var(--text-small);
+    color: var(--night-ink-3);
+  }
+  @keyframes ticker {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker__track {
+      animation: none;
+      flex-wrap: wrap;
+      width: auto;
+    }
+    .ticker__list[aria-hidden] {
+      display: none;
+    }
+    .ticker__list {
+      flex-wrap: wrap;
+      row-gap: 0.6rem;
+    }
+  }
+
+  /* ---------------- SESSIONS + AGENDA ---------------- */
+  .sessions__grid {
+    align-items: start;
+  }
+  .session {
+    grid-column: span 6;
+    display: grid;
+    gap: var(--space-5);
+  }
+  .session__art {
+    background: #000;
+  }
+  .session__art img {
+    object-fit: contain;
+    padding: 6%;
+  }
+  .session__art--opus img {
+    object-fit: cover;
+    padding: 0;
+    object-position: center 45%;
+  }
+  .session__body {
+    display: grid;
+    gap: var(--space-3);
+  }
+  .session__body .h2 {
+    margin-top: 0.25rem;
+  }
+  .session__title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .agenda {
+    padding-top: var(--space-8);
+  }
+  @media (max-width: 900px) {
+    .session {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* ---------------- THE FOUNDER ---------------- */
+  .story-teaser__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    gap: var(--space-6) calc(var(--col-gap) * 1.5);
+    align-items: center;
+    padding-top: var(--space-7);
+  }
+  .story-teaser__quote {
+    position: relative;
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+    padding-top: var(--space-6);
+  }
+  .story-teaser__mark {
+    position: absolute;
+    top: -0.25em;
+    left: -0.08em;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(6rem, 10vw, 11rem);
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.9;
+    pointer-events: none;
+  }
+  .story-teaser__text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.9rem, 3.6vw, 3.5rem);
+    line-height: 1.06;
+    letter-spacing: -0.015em;
+    max-width: 30ch;
+    text-wrap: pretty;
+  }
+  .story-teaser__cite {
+    display: grid;
+    gap: 0.3rem;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line-strong);
+    min-width: min(100%, 36ch);
+  }
+  .story-teaser__kicker {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin-bottom: 0.15rem;
+  }
+  .story-teaser__name {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+  }
+  .story-teaser__reel {
+    aspect-ratio: 4 / 5;
+    width: 100%;
+  }
+  @media (max-width: 900px) {
+    .story-teaser__grid {
+      grid-template-columns: 1fr;
+    }
+    .story-teaser__reel {
+      width: min(100%, 420px);
+    }
+  }
+
+  /* ---------------- VISIT ---------------- */
+  .visit__grid {
+    padding-top: var(--space-7);
+    align-items: start;
+  }
+  .visit__copy {
+    grid-column: 1 / span 6;
+    display: grid;
+    gap: var(--space-5);
+  }
+  .visit__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .visit__hours {
+    grid-column: 8 / -1;
+    display: grid;
+    gap: var(--space-4);
+    justify-items: start;
+  }
+  .visit__hours .rule-list {
+    width: 100%;
+  }
+  @media (max-width: 900px) {
+    .visit__copy,
+    .visit__hours {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

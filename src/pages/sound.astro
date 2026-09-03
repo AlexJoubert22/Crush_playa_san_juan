@@ -1,0 +1,753 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Base from '@/layouts/Base.astro';
+import Strap from '@/components/Strap.astro';
+import Arrow from '@/components/Arrow.astro';
+import Beat from '@/components/Beat.astro';
+import { site, sessions } from '@/data/site';
+import djs from '@/data/djs.json';
+import EventsFeed from '@/components/EventsFeed.astro';
+import cadenzaArt from '@/assets/events/cadenza-stack.png';
+import opusArt from '@/assets/events/opus.png';
+
+const photos = import.meta.glob<ImageMetadata>('/src/assets/djs/*.jpg', { eager: true, import: 'default' });
+const roster = djs.map((d) => ({ ...d, img: photos[`/src/assets/djs/${d.photo}`] }));
+
+const genres = Array.from(new Set(djs.flatMap((d) => d.genre.split('/').map((g) => g.trim())))).sort();
+
+const weekend = [
+  { t: '10:00', what: 'Cadenza opens', how: 'Coffee, bowls, organic house. Saturday and Sunday.' },
+  { t: '16:00', what: 'Afterbeach', how: 'Spritz, cocktails, the terrace fills up.' },
+  { t: '21:00', what: 'OPUS', how: 'Second Saturday of the month. Progressive house, several residents.' },
+  { t: '02:00', what: 'Last beat', how: 'Then coffee again at 09:00.' },
+];
+
+const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+---
+
+<Base
+  title="The Sound — Resident DJs, Cadenza & OPUS | Crush Alicante"
+  description="Thirteen resident DJs, a daytime session every weekend (Cadenza) and a monthly night session (OPUS). Progressive, deep house, minimal and techno on Playa de San Juan."
+  theme="night"
+  page="sound"
+>
+  <!-- Hero: the sign, cropped wide, with the claim anchored to it -->
+  <header class="sound-hero grain">
+    <div class="sound-hero__bg">
+      <video
+        class="sound-hero__img"
+        data-reel
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="/video/sound-poster.jpg"
+        aria-label="Resident DJs playing an Afterbeach session at Crush"
+      >
+        <source src="/video/sound.webm" type="video/webm" />
+        <source src="/video/sound.mp4" type="video/mp4" />
+      </video>
+      <span class="reel__tag sound-hero__tag" aria-hidden="true"><i></i>Afterbeach</span>
+    </div>
+    <div class="sound-hero__scrim" aria-hidden="true"></div>
+    <div class="wrap sound-hero__content">
+      <div class="sound-hero__copy">
+        <p class="label sound-hero__label"><Strap /></p>
+        <h1 class="display-xl sound-hero__title" data-reveal="lines">
+          Music is half the <span class="em">product.</span>
+        </h1>
+        <span class="neon-rule" aria-hidden="true"></span>
+        <p class="lede sound-hero__lede" data-reveal="fade">
+          Not a playlist in the background. A resident roster, two sessions and a sound that moves from organic
+          house at brunch to techno after midnight.
+        </p>
+        <ul class="sound-hero__facts" data-stagger>
+          <li><span class="num">13</span><span class="label">Residents</span></li>
+          <li><span class="num">2</span><span class="label">Sessions</span></li>
+          <li><span class="num">02:00</span><span class="label">Last beat</span></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Roster -->
+  <section class="wrap section" id="residents">
+    <div class="chapter-head" data-reveal="fade">
+      <span class="num">01</span>
+      <span class="label">Resident DJs · tap a name for their Instagram</span>
+      <span class="label label--display">{djs.length}</span>
+    </div>
+    <ol class="roster rule-list" data-stagger>
+      {
+        roster.map((d, i) => (
+          <li class="roster__row">
+            <span class="roster__n num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="roster__avatar media">
+              <Image src={d.img} alt="" width={112} height={112} />
+            </span>
+            {d.instagram ? (
+              <a class="roster__link" href={d.instagram} target="_blank" rel="noopener">
+                <span class="roster__name">{d.name}</span>
+                <span class="sr-only">on Instagram</span>
+              </a>
+            ) : (
+              <span class="roster__link">
+                <span class="roster__name">{d.name}</span>
+              </span>
+            )}
+            <span class="roster__genre">{d.genre}</span>
+            <span class="roster__origin muted">{d.origin}</span>
+            <span class="roster__links">
+              {d.soundcloud && (
+                <a href={d.soundcloud} target="_blank" rel="noopener" aria-label={`${d.name} on SoundCloud`}>
+                  SC
+                </a>
+              )}
+              <span class="roster__go" aria-hidden="true">
+                <Arrow dir="up-right" />
+              </span>
+            </span>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="small muted roster__note" data-reveal="fade">Genres on the roster: {genres.join(' · ')}.</p>
+  </section>
+
+  <!-- Sessions -->
+  <section class="section sessions" id="sessions">
+    <div class="wrap">
+      <div class="chapter-head" data-reveal="fade">
+        <span class="num">02</span>
+        <span class="label">Two sessions, one venue</span>
+        <span class="label label--display">Day / Night</span>
+      </div>
+      <div class="grid sessions__grid">
+        <article class="session" data-reveal="fade">
+          <figure class="media media--16x10 session__art">
+            <Image src={cadenzaArt} alt="Cadenza" widths={[400, 600]} sizes="(max-width: 900px) 100vw, 45vw" />
+          </figure>
+          <p class="label muted">{sessions.cadenza.when} · <span class="num">{sessions.cadenza.time}</span></p>
+          <h2 class="display session__name">{sessions.cadenza.name}</h2>
+          <p class="body">{sessions.cadenza.blurb}</p>
+          <p class="small muted">{sessions.cadenza.artist} · {sessions.cadenza.genre}</p>
+        </article>
+        <article class="session session--opus" data-reveal="fade" style="--reveal-delay: 120ms">
+          <figure class="media media--16x10 session__art session__art--opus">
+            <Image src={opusArt} alt="OPUS" widths={[600, 1137]} sizes="(max-width: 900px) 100vw, 45vw" />
+          </figure>
+          <p class="label muted">{sessions.opus.when} · <span class="num">{sessions.opus.time}</span></p>
+          <h2 class="display session__name session__name--beat">{sessions.opus.name} <Beat /></h2>
+          <p class="body">{sessions.opus.blurb}</p>
+          <p class="small muted">{sessions.opus.artist} · {sessions.opus.genre}</p>
+        </article>
+      </div>
+
+      <div class="weekend">
+        <p class="label muted">How a weekend runs</p>
+        <ol class="weekend__list" data-stagger>
+          {
+            weekend.map((w) => (
+              <li class="weekend__item">
+                <span class="num weekend__time">{w.t}</span>
+                <span class="weekend__what">{w.what}</span>
+                <span class="weekend__how muted">{w.how}</span>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agenda: a real month -->
+  <section class="section section--flush-top" id="agenda">
+    <div class="wrap">
+      <div class="chapter-head" data-reveal="fade">
+        <span class="num">03</span>
+        <span class="label">Agenda · Alicante time</span>
+        <a href={site.instagram} target="_blank" rel="noopener" class="label link-line">Line-ups on Instagram</a>
+      </div>
+
+      <div class="agenda__grid">
+        <div class="cal" data-calendar data-reveal="fade">
+          <div class="cal__head">
+            <p class="cal__title" data-cal-title>This month</p>
+            <div class="cal__nav">
+              <button class="cal__btn" type="button" data-cal-prev aria-label="Previous month">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M15 6l-6 6 6 6"></path>
+                </svg>
+              </button>
+              <button class="cal__btn" type="button" data-cal-next aria-label="Next month">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <ol class="cal__week" aria-hidden="true">
+            {weekdays.map((d) => <li>{d}</li>)}
+          </ol>
+          <ol class="cal__grid" data-cal-grid aria-label="Sessions this month"></ol>
+          <ul class="cal__legend">
+            <li><i class="is-cadenza" aria-hidden="true"></i>Cadenza · <span class="num">10:00 – 16:00</span></li>
+            <li><i class="is-opus" aria-hidden="true"></i>OPUS · <span class="num">21:00 – 02:00</span></li>
+            <li class="cal__count"><span class="num" data-cal-count>—</span> this month</li>
+          </ul>
+
+          <!-- One day, drawn to scale -->
+          <div class="daybar">
+            <p class="label muted">Where they sit in the day</p>
+            <div class="daybar__rail">
+              <span class="daybar__seg daybar__seg--cadenza" style="--from: 10; --to: 16"></span>
+              <span class="daybar__seg daybar__seg--opus" style="--from: 21; --to: 26"></span>
+            </div>
+            <ol class="daybar__ticks num" aria-hidden="true">
+              <li style="--h: 9">09</li>
+              <li style="--h: 13">13</li>
+              <li style="--h: 17">17</li>
+              <li style="--h: 21">21</li>
+              <li style="--h: 27">03</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="agenda__next">
+          <p class="label muted agenda__next-label">Next up</p>
+          <ul class="rule-list agenda__list" data-agenda="6">
+            <li class="agenda__row">
+              <span class="agenda__date num">Sat & Sun</span>
+              <span class="agenda__name">Cadenza</span>
+              <span class="agenda__time num">10:00 – 16:00</span>
+              <span class="agenda__meta">Resident DJs · Daytime sessions</span>
+            </li>
+            <li class="agenda__row">
+              <span class="agenda__date num">2nd Saturday</span>
+              <span class="agenda__name">OPUS</span>
+              <span class="agenda__time num">21:00 – 02:00</span>
+              <span class="agenda__meta">Many DJs · Progressive house</span>
+            </li>
+          </ul>
+          <p class="small muted agenda__note">
+            Line-ups are announced on Instagram a few days ahead. Hours stretch for events.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing stage -->
+  <section class="stage grain">
+    <div class="wrap stage__content">
+      <div class="stage__grid">
+        <div class="stage__copy">
+          <span class="stage__neon" aria-hidden="true" data-reveal="fade"></span>
+          <h2 class="display stage__title" data-reveal="lines">Less drama. <span class="em">More dancing.</span></h2>
+          <div class="stage__actions" data-reveal="fade">
+            <a href="/visit" class="btn btn--light">Find us <Arrow /></a>
+            <a href={site.instagram} target="_blank" rel="noopener" class="btn btn--ghost stage__ghost">{site.instagramHandle}</a>
+          </div>
+        </div>
+
+        <aside class="stage__card" data-reveal="fade" style="--reveal-delay: 120ms">
+          <p class="label muted">Next session</p>
+          <div class="next" data-next-session>
+            <span class="next__when num">Sat & Sun</span>
+            <span class="next__name">Cadenza</span>
+            <span class="next__time num">10:00 – 16:00</span>
+            <span class="next__meta">Resident DJs · Daytime sessions</span>
+          </div>
+          <a href="#agenda" class="link-line small stage__card-link">See the full month</a>
+        </aside>
+      </div>
+
+      <ul class="stage__genres" aria-label="What gets played">
+        {genres.map((g) => <li>{g}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <EventsFeed />
+</Base>
+
+<style>
+  /* ---------------- HERO ---------------- */
+  /* Type on a clean field, the sign as a hard-edged band bleeding off-screen */
+  .sound-hero {
+    position: relative;
+    display: grid;
+    align-items: center;
+    min-height: min(88svh, 860px);
+    background: var(--night-canvas);
+    overflow: hidden;
+  }
+  .sound-hero__bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 46%;
+  }
+  .sound-hero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 45%;
+    display: block;
+  }
+  .sound-hero__tag {
+    top: auto;
+    bottom: var(--space-5);
+    left: var(--space-5);
+  }
+  .sound-hero__scrim {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 52%;
+    background:
+      linear-gradient(90deg, var(--night-canvas) 0%, rgba(11, 9, 14, 0.55) 22%, rgba(11, 9, 14, 0) 55%),
+      linear-gradient(180deg, rgba(11, 9, 14, 0.55) 0%, rgba(11, 9, 14, 0) 30%, rgba(11, 9, 14, 0.5) 100%);
+  }
+  .sound-hero__content {
+    position: relative;
+    z-index: 1;
+    padding-block: 150px var(--space-8);
+    color: var(--night-ink);
+  }
+  .sound-hero__copy {
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+    max-width: 54%;
+  }
+  .sound-hero__label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    width: 100%;
+    color: rgba(244, 239, 230, 0.85);
+  }
+  .sound-hero__label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(244, 239, 230, 0.4);
+  }
+  .sound-hero__title {
+    max-width: 11ch;
+    text-shadow: 0 0 60px var(--glow-soft);
+  }
+  .sound-hero__lede {
+    max-width: 42ch;
+  }
+  .neon-rule {
+    display: block;
+    height: 2px;
+    width: min(100%, 220px);
+    background: var(--night-accent);
+    box-shadow:
+      0 0 10px var(--glow),
+      0 0 28px var(--glow-mid);
+  }
+  .sound-hero__lede {
+    color: rgba(244, 239, 230, 0.88);
+  }
+  .sound-hero__facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, auto));
+    gap: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid rgba(244, 239, 230, 0.28);
+    width: 100%;
+  }
+  .sound-hero__facts li {
+    display: grid;
+    gap: 0.2rem;
+  }
+  .sound-hero__facts .num {
+    font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+    color: var(--night-accent-ink);
+  }
+  .sound-hero__facts .label {
+    color: var(--night-ink-2);
+  }
+  @media (max-width: 900px) {
+    .sound-hero {
+      min-height: 0;
+      align-items: end;
+    }
+    .sound-hero__bg {
+      width: 100%;
+      bottom: auto;
+      height: 46svh;
+    }
+    .sound-hero__scrim {
+      width: 100%;
+      height: 52svh;
+      bottom: auto;
+      background: linear-gradient(180deg, rgba(11, 9, 14, 0.55) 0%, rgba(11, 9, 14, 0.1) 34%, var(--night-canvas) 92%);
+    }
+    .sound-hero__copy {
+      max-width: none;
+    }
+    .sound-hero__content {
+      padding-block: calc(46svh + var(--space-5)) var(--space-7);
+    }
+    .sound-hero__title {
+      max-width: none;
+    }
+  }
+
+  /* ---------------- ROSTER ---------------- */
+  .roster {
+    margin-top: var(--space-6);
+  }
+  .roster__row {
+    position: relative;
+    grid-template-columns: 2.5rem 3.5rem minmax(0, 1.6fr) minmax(0, 1.3fr) minmax(0, 0.8fr) auto;
+    align-items: center;
+    transition: background-color var(--dur-standard) var(--ease-out);
+  }
+  .roster__row::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--gutter) * -0.4);
+    right: calc(var(--gutter) * -0.4);
+    top: 0;
+    bottom: 0;
+    background: var(--accent-soft);
+    opacity: 0;
+    transition: opacity var(--dur-standard) var(--ease-out);
+    pointer-events: none;
+  }
+  .roster__row:hover::before,
+  .roster__row:focus-within::before {
+    opacity: 1;
+  }
+  .roster__n {
+    font-size: 0.85rem;
+    color: var(--ink-3);
+    position: relative;
+  }
+  .roster__avatar {
+    width: 3.25rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    position: relative;
+  }
+  .roster__avatar img {
+    transition: transform var(--dur-scene) var(--ease-out);
+  }
+  .roster__row:hover .roster__avatar img {
+    transform: scale(1.12);
+  }
+  /* The name is the link. Its ::after resolves against .roster__row (the nearest
+     positioned ancestor), so the whole row is clickable without overflowing. */
+  .roster__link {
+    display: inline-block;
+  }
+  a.roster__link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .roster__name {
+    position: relative;
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.15rem, 2vw, 1.9rem);
+    letter-spacing: -0.03em;
+    transition:
+      color var(--dur-fast),
+      transform var(--dur-standard) var(--ease-out);
+  }
+  .roster__row:hover .roster__name {
+    color: var(--accent-ink);
+    transform: translateX(6px);
+  }
+  .roster__genre,
+  .roster__origin {
+    position: relative;
+    font-size: var(--text-small);
+  }
+  .roster__links {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .roster__links a {
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    transition: background-color var(--dur-fast), color var(--dur-fast);
+  }
+  .roster__links a:hover {
+    background: var(--ink);
+    color: var(--canvas);
+  }
+  .roster__go {
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    color: var(--accent-ink);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition:
+      opacity var(--dur-standard) var(--ease-out),
+      transform var(--dur-standard) var(--ease-out);
+  }
+  .roster__go svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .roster__row:hover .roster__go,
+  .roster__row:focus-within .roster__go {
+    opacity: 1;
+    transform: none;
+  }
+  .roster__note {
+    margin-top: var(--space-5);
+  }
+  @media (max-width: 760px) {
+    .roster__row {
+      grid-template-columns: 3rem minmax(0, 1fr) auto;
+      row-gap: 0.15rem;
+    }
+    .roster__n {
+      display: none;
+    }
+    .roster__avatar {
+      grid-row: 1 / span 3;
+      width: 2.75rem;
+    }
+    .roster__genre,
+    .roster__origin {
+      grid-column: 2;
+    }
+    .roster__links {
+      grid-column: 3;
+      grid-row: 1 / span 3;
+    }
+    .roster__go {
+      opacity: 1;
+      transform: none;
+      width: 1.75rem;
+    }
+  }
+
+  /* ---------------- SESSIONS ---------------- */
+  .sessions__grid {
+    padding-top: var(--space-7);
+    align-items: start;
+  }
+  .session {
+    grid-column: span 6;
+    display: grid;
+    gap: var(--space-4);
+  }
+  .session__art {
+    background: #000;
+    margin-bottom: var(--space-3);
+  }
+  .session__art img {
+    object-fit: contain;
+    padding: 6%;
+  }
+  .session__art--opus img {
+    object-fit: cover;
+    padding: 0;
+    object-position: center 45%;
+  }
+  .session__name {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+  }
+  .session__name--beat {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .weekend {
+    margin-top: var(--space-8);
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+    gap: var(--space-5);
+  }
+  .weekend__list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--col-gap);
+    border-top: 1px solid var(--line-strong);
+  }
+  .weekend__item {
+    display: grid;
+    gap: 0.4rem;
+    padding-top: var(--space-4);
+  }
+  .weekend__time {
+    font-size: clamp(1.5rem, 2.4vw, 2.25rem);
+    color: var(--accent);
+  }
+  .weekend__what {
+    font-weight: 700;
+  }
+  .weekend__how {
+    font-size: var(--text-small);
+  }
+  @media (max-width: 900px) {
+    .session {
+      grid-column: 1 / -1;
+    }
+    .weekend {
+      grid-template-columns: 1fr;
+    }
+    .weekend__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  /* ---------------- AGENDA ---------------- */
+  .agenda__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+    gap: var(--space-7) calc(var(--col-gap) * 2);
+    padding-top: var(--space-7);
+    align-items: start;
+  }
+  .agenda__next {
+    display: grid;
+    gap: var(--space-4);
+    align-content: start;
+  }
+  .agenda__next-label {
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .agenda__note {
+    max-width: 42ch;
+  }
+  /* Calmer rows in the narrow column beside the calendar */
+  @media (min-width: 901px) {
+    .agenda__next :global(.agenda__row) {
+      grid-template-columns: 7.5rem minmax(0, 1fr) 8.5rem;
+      column-gap: var(--space-4);
+    }
+    .agenda__next :global(.agenda__date),
+    .agenda__next :global(.agenda__time) {
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    .agenda__next :global(.agenda__meta) {
+      grid-column: 1 / -1;
+    }
+  }
+  .agenda__next :global(.agenda__name) {
+    font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+  }
+  @media (max-width: 900px) {
+    .agenda__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ---------------- CLOSING STAGE ---------------- */
+  .stage {
+    position: relative;
+    background: var(--night-canvas);
+    border-top: 1px solid var(--night-line);
+  }
+  .stage__content {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--space-section);
+    display: grid;
+    gap: var(--space-8);
+    color: var(--night-ink);
+  }
+  .stage__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-6) calc(var(--col-gap) * 2);
+    align-items: end;
+  }
+  .stage__copy {
+    display: grid;
+    gap: var(--space-6);
+  }
+  .stage__card {
+    display: grid;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    border: 1px solid var(--night-line);
+    background: color-mix(in srgb, var(--night-canvas-2) 70%, transparent);
+  }
+  .stage__card-link {
+    font-weight: 600;
+    justify-self: start;
+  }
+  .stage__genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--night-line);
+  }
+  .stage__genres li {
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--night-line);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-small);
+    font-weight: 600;
+    color: var(--night-ink-2);
+    transition: border-color var(--dur-fast), color var(--dur-fast);
+  }
+  .stage__genres li:hover {
+    border-color: var(--night-accent);
+    color: var(--night-accent-ink);
+  }
+  @media (max-width: 900px) {
+    .stage__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .stage__neon {
+    display: block;
+    height: 2px;
+    width: min(100%, 420px);
+    background: var(--night-accent);
+    box-shadow:
+      0 0 10px var(--glow),
+      0 0 28px var(--glow-mid);
+  }
+  .stage__title {
+    max-width: 12ch;
+    text-shadow: 0 0 44px var(--glow-soft);
+  }
+  .stage__title .em {
+    color: var(--night-accent-ink);
+  }
+  .stage__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .stage__ghost {
+    --btn-fg: var(--night-ink);
+    border-color: rgba(244, 239, 230, 0.5);
+  }
+</style>

@@ -1,0 +1,19 @@
+---
+/**
+ * Bakes the venue's calendar into the page at build time.
+ *
+ * With PUBLIC_CRUSH_ICS pointing at a public Google Calendar, the events the
+ * team creates there appear here. With no feed configured this renders nothing
+ * and the client falls back to the recurring Cadenza / OPUS rules.
+ */
+import { calendarFeed } from '@/data/site';
+import { loadIcsFeed } from '@/lib/ics';
+
+const sessions = await loadIcsFeed(calendarFeed.ics, calendarFeed.horizonDays);
+---
+
+{
+  sessions.length > 0 && (
+    <script type="application/json" id="crush-events" set:html={JSON.stringify(sessions)} />
+  )
+}

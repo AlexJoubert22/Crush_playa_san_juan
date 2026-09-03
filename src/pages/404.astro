@@ -1,0 +1,36 @@
+---
+import Base from '@/layouts/Base.astro';
+import Arrow from '@/components/Arrow.astro';
+import Strap from '@/components/Strap.astro';
+---
+
+<Base title="Page not found | Crush" description="This page doesn't exist. The venue does." theme="night" page="404">
+  <section class="wrap lost">
+    <p class="label page-hero__label"><Strap /></p>
+    <p class="num lost__code">404</p>
+    <h1 class="display-xl" data-reveal="lines">Lost? Follow the <span class="em">music.</span></h1>
+    <div class="lost__actions" data-reveal="fade">
+      <a href="/" class="btn btn--light">Back to Crush <Arrow /></a>
+      <a href="/visit" class="btn btn--ghost">Directions</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lost {
+    min-height: 100svh;
+    display: grid;
+    align-content: center;
+    gap: var(--space-6);
+    padding-block: 140px var(--space-9);
+  }
+  .lost__code {
+    font-size: 1rem;
+    color: var(--accent);
+  }
+  .lost__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+</style>

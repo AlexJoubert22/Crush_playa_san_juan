@@ -1,0 +1,343 @@
+---
+import { Image } from 'astro:assets';
+import logo from '@/assets/brand/logo-circle.png';
+import { nav, site } from '@/data/site';
+import Strap from './Strap.astro';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="nav" data-nav>
+  <div class="nav__inner">
+    <a href="/" class="nav__brand" aria-label="Crush — home">
+      <Image src={logo} alt="" width={88} height={88} class="nav__mark" loading="eager" />
+      <span class="nav__word">Crush</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={['nav__link', { 'is-active': !!item.match && path === item.match }]}
+            aria-current={item.match && path === item.match ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="nav__right">
+      <div class="nav__clock" data-clock hidden aria-hidden="true">
+        <svg class="nav__sun" viewBox="0 0 24 24" fill="currentColor" data-sun>
+          <circle cx="12" cy="12" r="5"></circle>
+        </svg>
+        <span class="num" data-clock-text>09:00</span>
+      </div>
+      <div class="chip nav__now" data-now data-now-nav title="Live status, Alicante time" aria-live="polite">
+        <span class="chip__dot" aria-hidden="true"></span>
+        <span class="chip__swap"><span class="chip__line" data-now-text>Open daily from 09:00</span></span>
+      </div>
+      <a href="/sound#agenda" class="btn btn--sm nav__cta">What's on</a>
+      <button
+        class="nav__burger"
+        type="button"
+        data-menu-toggle
+        aria-expanded="false"
+        aria-controls="site-menu"
+        aria-label="Open menu"
+      >
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav__progress" data-progress aria-hidden="true"></div>
+</header>
+
+<div class="menu theme-night" id="site-menu" data-menu hidden>
+  <div class="menu__inner">
+    <nav class="menu__links" aria-label="Menu">
+      <a href="/" class="menu__link"><span class="menu__num num">00</span>Home</a>
+      {
+        nav.map((item, i) => (
+          <a href={item.href} class="menu__link">
+            <span class="menu__num num">0{i + 1}</span>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="menu__meta">
+      <Strap />
+      <address class="menu__address">
+        {site.address.street}<br />
+        {site.address.postal} {site.address.area}, {site.address.city}
+      </address>
+      <div class="chip nav__now" data-now>
+        <span class="chip__dot" aria-hidden="true"></span>
+        <span class="chip__swap"><span class="chip__line" data-now-text>Open daily from 09:00</span></span>
+      </div>
+      <div class="menu__social">
+        <a class="link-line" href={site.instagram} target="_blank" rel="noopener">Instagram</a>
+        <a class="link-line" href={site.facebook} target="_blank" rel="noopener">Facebook</a>
+        <a class="link-line" href={site.maps} target="_blank" rel="noopener">Directions</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: var(--z-nav);
+    color: var(--ink);
+    transition: color var(--dur-theme) var(--ease-inout);
+  }
+  .nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--canvas) 82%, transparent);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--line);
+    opacity: 0;
+    transition: opacity var(--dur-standard) var(--ease-out), background-color var(--dur-theme) var(--ease-inout);
+  }
+  .nav.is-scrolled::before {
+    opacity: 1;
+  }
+  .nav__inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    height: 76px;
+    padding-inline: var(--gutter);
+  }
+  .nav__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    justify-self: start;
+  }
+  .nav__mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    background: #fff;
+  }
+  .nav__word {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+  }
+  .nav__links {
+    display: flex;
+    gap: clamp(1.25rem, 2.4vw, 2.5rem);
+    justify-self: start;
+  }
+  .nav__link {
+    position: relative;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding-block: 0.35rem;
+  }
+  .nav__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--dur-standard) var(--ease-out);
+  }
+  .nav__link:hover::after,
+  .nav__link.is-active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  .nav__right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+  .nav__clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.25rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.95rem;
+    letter-spacing: 0;
+    color: var(--ink);
+    background: color-mix(in srgb, var(--canvas) 72%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: background-color var(--dur-theme) var(--ease-inout);
+  }
+  .nav__now {
+    background: color-mix(in srgb, var(--canvas) 72%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: background-color var(--dur-theme) var(--ease-inout);
+  }
+  .nav__clock[hidden] {
+    display: none;
+  }
+  .nav__sun {
+    width: 14px;
+    height: 14px;
+    color: var(--chapter);
+    transition: color var(--dur-theme) var(--ease-inout);
+  }
+  .nav__now {
+    font-size: 0.8rem;
+    min-height: 2.25rem;
+  }
+  .nav__progress {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 2px;
+    width: 100%;
+    background: var(--chapter);
+    transform: scaleX(0);
+    transform-origin: left;
+    opacity: 0;
+    transition: background-color var(--dur-theme) var(--ease-inout), opacity var(--dur-standard);
+  }
+  .nav.has-arc .nav__progress {
+    opacity: 1;
+  }
+  .nav__burger {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    place-items: center;
+    align-content: center;
+    gap: 5px;
+  }
+  .nav__burger span {
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform var(--dur-standard) var(--ease-out);
+  }
+  .nav__burger[aria-expanded='true'] span:first-child {
+    transform: translateY(3.25px) rotate(45deg);
+  }
+  .nav__burger[aria-expanded='true'] span:last-child {
+    transform: translateY(-3.25px) rotate(-45deg);
+  }
+
+  @media (max-width: 1100px) {
+    .nav__now {
+      display: none;
+    }
+  }
+  @media (max-width: 900px) {
+    .nav__inner {
+      grid-template-columns: 1fr auto;
+      height: 68px;
+    }
+    .nav__links,
+    .nav__cta {
+      display: none;
+    }
+    .nav__burger {
+      display: grid;
+    }
+    .nav__clock {
+      font-size: 0.85rem;
+    }
+  }
+
+  /* ---- Full-screen menu ---- */
+  .menu {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-menu);
+    background: var(--canvas);
+    color: var(--ink);
+    overflow: auto;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path var(--dur-scene) var(--ease-inout);
+  }
+  .menu[hidden] {
+    display: block;
+    visibility: hidden;
+  }
+  .menu.is-open {
+    clip-path: inset(0 0 0 0);
+  }
+  .menu__inner {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: var(--space-8);
+    padding: 110px var(--gutter) var(--space-7);
+  }
+  .menu__links {
+    display: grid;
+    align-content: center;
+    gap: 0.35rem;
+  }
+  .menu__link {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 9vw, 5rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--dur-scene) var(--ease-out), transform var(--dur-scene) var(--ease-out), color var(--dur-fast);
+  }
+  .menu__link:hover {
+    color: var(--accent);
+  }
+  .menu.is-open .menu__link {
+    opacity: 1;
+    transform: none;
+  }
+  .menu.is-open .menu__link:nth-child(2) { transition-delay: 60ms; }
+  .menu.is-open .menu__link:nth-child(3) { transition-delay: 120ms; }
+  .menu.is-open .menu__link:nth-child(4) { transition-delay: 180ms; }
+  .menu.is-open .menu__link:nth-child(5) { transition-delay: 240ms; }
+  .menu__num {
+    font-size: 0.85rem;
+    color: var(--ink-3);
+    letter-spacing: 0;
+  }
+  .menu__meta {
+    display: grid;
+    gap: var(--space-4);
+    color: var(--ink-2);
+  }
+  .menu__address {
+    line-height: 1.4;
+  }
+  .menu__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    font-weight: 600;
+  }
+</style>

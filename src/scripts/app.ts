@@ -1,0 +1,831 @@
+/**
+ * CRUSH — client runtime
+ * One module for the whole site. It (re)initialises on every Astro page load
+ * (astro:page-load) and tears down on astro:before-swap, so view transitions
+ * never leak ScrollTriggers, observers or timers.
+ */
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
+import Lenis from 'lenis';
+import eventsSource from '@/data/events.source.json';
+import { site } from '@/data/site';
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
+const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ------------------------------------------------------------------ state */
+let lenis: Lenis | null = null;
+const cleanups: Array<() => void> = [];
+const splits = new Map<HTMLElement, SplitText>();
+
+function onCleanup(fn: () => void) {
+  cleanups.push(fn);
+}
+
+/* ------------------------------------------------------------------ lenis */
+function initLenis() {
+  if (lenis || reduced()) return;
+  lenis = new Lenis({ lerp: 0.11, smoothWheel: true, autoRaf: false });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((t) => lenis?.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+}
+
+/* ------------------------------------------------------------ text splits */
+async function splitLines() {
+  await document.fonts.ready;
+  document
+    .querySelectorAll<HTMLElement>('[data-reveal="lines"]:not(.is-split)')
+    .forEach((el) => splitOne(el));
+}
+
+function splitOne(el: HTMLElement) {
+  // aria: 'none' — the text stays as real text nodes, so no aria-label is needed
+  // (and aria-label is prohibited on <p>/<h*> generic roles).
+  const split = new SplitText(el, { type: 'lines', linesClass: 'line-inner', aria: 'none' });
+  split.lines.forEach((line) => {
+    const mask = document.createElement('span');
+    mask.className = 'line';
+    mask.style.display = 'block';
+    line.parentNode?.insertBefore(mask, line);
+    mask.appendChild(line);
+  });
+  splits.set(el, split);
+  el.classList.add('is-split');
+}
+
+function resplitOnResize() {
+  let w = window.innerWidth;
+  let raf = 0;
+  const handler = () => {
+    if (Math.abs(window.innerWidth - w) < 40) return;
+    w = window.innerWidth;
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      splits.forEach((split, el) => {
+        split.revert();
+        el.classList.remove('is-split');
+        splitOne(el);
+      });
+      ScrollTrigger.refresh();
+    });
+  };
+  window.addEventListener('resize', handler);
+  onCleanup(() => window.removeEventListener('resize', handler));
+}
+
+/* ------------------------------------------------------------- reveals */
+/**
+ * Uses ScrollTrigger rather than IntersectionObserver on purpose: elements
+ * hidden with `clip-path: inset(100% …)` report no intersection in Chromium,
+ * so an observer would never reveal them. ScrollTrigger measures layout boxes.
+ */
+function initReveal() {
+  document.querySelectorAll<HTMLElement>('[data-reveal], [data-stagger]').forEach((el) => {
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 92%',
+      once: true,
+      onEnter: () => el.classList.add('is-in'),
+    });
+  });
+}
+
+/* ----------------------------------------------------------------- nav */
+function initNav() {
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  if (!nav) return;
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onCleanup(() => window.removeEventListener('scroll', onScroll));
+
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-menu]');
+  if (!toggle || !menu) return;
+
+  let open = false;
+  const setOpen = (v: boolean) => {
+    open = v;
+    toggle.setAttribute('aria-expanded', String(v));
+    toggle.setAttribute('aria-label', v ? 'Close menu' : 'Open menu');
+    if (v) {
+      menu.hidden = false;
+      requestAnimationFrame(() => menu.classList.add('is-open'));
+      document.body.style.overflow = 'hidden';
+      lenis?.stop();
+    } else {
+      menu.classList.remove('is-open');
+      document.body.style.overflow = '';
+      lenis?.start();
+      window.setTimeout(() => {
+        if (!open) menu.hidden = true;
+      }, 700);
+    }
+  };
+  const onToggle = () => setOpen(!open);
+  const onKey = (e: KeyboardEvent) => {
+    if (e.key === 'Escape' && open) setOpen(false);
+  };
+  const onLink = () => setOpen(false);
+  toggle.addEventListener('click', onToggle);
+  document.addEventListener('keydown', onKey);
+  menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', onLink));
+  onCleanup(() => {
+    toggle.removeEventListener('click', onToggle);
+    document.removeEventListener('keydown', onKey);
+    document.body.style.overflow = '';
+    lenis?.start();
+  });
+}
+
+/* --------------------------------------------------------- "now" chip */
+type Parts = { y: number; m: number; d: number; h: number; min: number; wd: number };
+
+function madridNow(date = new Date()): Parts {
+  const f = new Intl.DateTimeFormat('en-GB', {
+    timeZone: site.timezone,
+    hour12: false,
+    weekday: 'short',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+  const p: Record<string, string> = {};
+  f.formatToParts(date).forEach((x) => (p[x.type] = x.value));
+  return {
+    y: +p.year,
+    m: +p.month,
+    d: +p.day,
+    h: +p.hour % 24,
+    min: +p.minute,
+    wd: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(p.weekday),
+  };
+}
+
+function statusNow(): { text: string; open: boolean } {
+  const { h, min, wd } = madridNow();
+  const t = h + min / 60;
+  const close = site.closeByDay[wd];
+  const weekend = wd === 0 || wd === 6;
+  if (t < site.openHour) return { text: `Opens at 09:00`, open: false };
+  if (t >= close) return { text: `Closed · opens 09:00`, open: false };
+  if (weekend && t >= 10 && t < 16) return { text: 'Open · Cadenza is on', open: true };
+  if (t < 12) return { text: 'Open · Coffee hours', open: true };
+  if (t < 17) return { text: 'Open · Brunch & bowls', open: true };
+  if (t < 20) return { text: 'Open · Sunset drinks', open: true };
+  return { text: 'Open · Night session', open: true };
+}
+
+/**
+ * Swap a chip's text. The outgoing line lifts and blurs away, the incoming one
+ * rises into place, and the pill's width eases between the two so nothing jumps.
+ */
+function setChip(chip: HTMLElement, text: string, animate = true) {
+  const swap = chip.querySelector<HTMLElement>('.chip__swap');
+  const cur = chip.querySelector<HTMLElement>('[data-now-text]');
+  if (!cur || cur.textContent === text) return;
+  if (!swap || !animate || reduced()) {
+    if (cur.textContent !== text) cur.textContent = text;
+    return;
+  }
+  // A swap already in flight: drop the stale outgoing line first.
+  swap.querySelectorAll('.chip__line.is-leave').forEach((n) => n.remove());
+
+  const from = swap.getBoundingClientRect().width;
+  const next = document.createElement('span');
+  next.className = 'chip__line is-enter';
+  next.setAttribute('data-now-text', '');
+  next.textContent = text;
+  cur.removeAttribute('data-now-text');
+  cur.classList.add('is-leave');
+  swap.appendChild(next);
+
+  const to = next.getBoundingClientRect().width;
+  swap.style.width = `${from}px`;
+  requestAnimationFrame(() => {
+    swap.style.width = `${to}px`;
+    next.classList.add('is-in');
+  });
+  window.setTimeout(() => {
+    cur.remove();
+    swap.style.width = '';
+    next.classList.remove('is-enter', 'is-in');
+  }, 720);
+}
+
+/**
+ * Warm one-liners the nav chip cycles through as you scroll. Index 0 is always
+ * the live open/closed status, so the useful fact is what greets you at the top.
+ */
+const CHIP_LINES: Record<string, string[]> = {
+  home: [],
+  menu: [
+    'Order whatever, whenever',
+    'Coffee to cocktails',
+    'Matcha, six ways',
+    'Cuban bread, pressed',
+    'Ask us for the specials',
+    'Save room for key lime pie',
+  ],
+  sound: [
+    'Thirteen residents',
+    'Progressive · deep · minimal',
+    'Cadenza, every weekend',
+    'OPUS, once a month',
+    'Less drama, more dancing',
+    'Last beat at 02:00',
+  ],
+  story: [
+    'A different culture',
+    'It started on South Beach',
+    'Built on Avenida de Niza',
+    'Open since February 2025',
+    'Belong somewhere',
+  ],
+  visit: [
+    'Av. de Niza 12',
+    'Across from the sand',
+    'Pet friendly',
+    'Sand on the floor is fine',
+    'See you in there',
+  ],
+  '404': ['Follow the music'],
+};
+
+/** What the home chip says at a given (scrolled) hour. */
+function narration(h: number): string {
+  if (h < 10.5) return 'Coffee o’clock';
+  if (h < 12) return 'First flat white';
+  if (h < 14) return 'Brunch hours';
+  if (h < 16) return 'Bowls & iced matcha';
+  if (h < 17.5) return 'Sand on your feet';
+  if (h < 19) return 'Spritz time';
+  if (h < 21) return 'Cocktail time';
+  if (h < 23) return 'Night session on';
+  if (h < 26) return 'Dancing already';
+  if (h < 30) return 'Last beat at 02:00';
+  return 'Tomorrow, 09:00';
+}
+
+function initNow() {
+  const chips = document.querySelectorAll<HTMLElement>('[data-now]');
+  if (!chips.length) return;
+  const navChip = document.querySelector<HTMLElement>('[data-now-nav]');
+  const page = document.documentElement.dataset.page ?? '';
+  const homeNarrates = !!document.querySelector('[data-arc]');
+  const pool = CHIP_LINES[page] ?? [];
+
+  let first = true;
+  const syncStatus = () => {
+    const s = statusNow();
+    chips.forEach((c) => {
+      c.classList.toggle('chip--live', s.open);
+      // The nav chip on a page with its own narration is driven by scroll.
+      if (c === navChip && (homeNarrates || pool.length)) return;
+      setChip(c, s.text, !first);
+    });
+    first = false;
+  };
+  syncStatus();
+  const id = window.setInterval(syncStatus, 30_000);
+  onCleanup(() => window.clearInterval(id));
+
+  // Inner pages: the nav chip walks the pool as the page scrolls.
+  if (!navChip || homeNarrates || !pool.length) return;
+  const lines = [statusNow().text, ...pool];
+  let last = -1;
+  const onScroll = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    const i = Math.min(lines.length - 1, Math.floor(p * lines.length));
+    if (i === last) return;
+    last = i;
+    lines[0] = statusNow().text;
+    setChip(navChip, lines[i]);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onCleanup(() => window.removeEventListener('scroll', onScroll));
+}
+
+/* ------------------------------------------------------------ agenda */
+type Session = { id: string; name: string; time: string; artist: string; genre: string };
+type AgendaRow = Session & { date: Date; today: boolean };
+
+const WEEKDAY_KEYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+const RECURRING = (eventsSource as any).recurring as Array<any>;
+const ONE_OFF = ((eventsSource as any).oneOff || []) as Array<any>;
+const SKIP = new Set<string>();
+RECURRING.forEach((r) => (r.skipDates || []).forEach((s: string) => SKIP.add(`${r.id}:${s}`)));
+
+const isoOf = (d: Date) => d.toISOString().slice(0, 10);
+
+/** Events baked in from the venue's Google Calendar, if one is connected. */
+type FeedSession = { date: string; name: string; time: string; artist: string; genre: string };
+let FEED: FeedSession[] | null = null;
+function feed(): FeedSession[] {
+  if (FEED) return FEED;
+  const el = document.getElementById('crush-events');
+  try {
+    FEED = el ? (JSON.parse(el.textContent || '[]') as FeedSession[]) : [];
+  } catch {
+    FEED = [];
+  }
+  return FEED;
+}
+const slugOf = (name: string) => name.toLowerCase().replace(/[^a-z]/g, '') || 'event';
+
+/** Every session on one calendar day: the connected calendar wins, rules fill in. */
+function sessionsOn(d: Date): Session[] {
+  const iso = isoOf(d);
+  const connected = feed();
+  if (connected.length) {
+    return connected
+      .filter((e) => e.date === iso)
+      .map((e) => ({ id: slugOf(e.name), name: e.name, time: e.time, artist: e.artist, genre: e.genre }));
+  }
+  const wd = d.getUTCDay();
+  const dom = d.getUTCDate();
+  const out: Session[] = [];
+  for (const r of RECURRING) {
+    if (r.active === false) continue;
+    if (!r.weekday.includes(WEEKDAY_KEYS[wd])) continue;
+    if (r.monthWeek && Math.ceil(dom / 7) !== r.monthWeek) continue;
+    if (SKIP.has(`${r.id}:${iso}`)) continue;
+    out.push({ id: r.id, name: r.name, time: r.time, artist: r.artist, genre: r.genre });
+  }
+  for (const o of ONE_OFF) {
+    if (o.active === false || o.date !== iso) continue;
+    out.push({ id: o.id ?? 'oneoff', name: o.name, time: o.time, artist: o.artist, genre: o.genre });
+  }
+  return out;
+}
+
+function upcoming(count = 6): AgendaRow[] {
+  const now = madridNow();
+  const start = new Date(Date.UTC(now.y, now.m - 1, now.d));
+  const rows: AgendaRow[] = [];
+  for (let i = 0; i < 70 && rows.length < count; i++) {
+    const d = new Date(start.getTime() + i * 86_400_000);
+    for (const s of sessionsOn(d)) {
+      // today: hide anything that already finished
+      if (i === 0) {
+        const end = parseInt(s.time.split('-')[1], 10);
+        const endHour = end < 9 ? end + 24 : end;
+        if (now.h + now.min / 60 >= endHour) continue;
+      }
+      rows.push({ ...s, date: d, today: i === 0 });
+    }
+  }
+  return rows.slice(0, count);
+}
+
+/** "21:00 - 02:00" → hours on a 09:00→03:00 axis, for the hairline rails. */
+function spanOf(time: string): { from: number; to: number } | null {
+  const m = time.match(/(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})/);
+  if (!m) return null;
+  let from = +m[1] + +m[2] / 60;
+  let to = +m[3] + +m[4] / 60;
+  if (from < 6) from += 24;
+  if (to <= from) to += 24;
+  return { from, to };
+}
+
+/** A 1px rail showing where a session sits inside the venue's day. */
+function railFor(time: string): HTMLElement | null {
+  const s = spanOf(time);
+  if (!s) return null;
+  const AXIS_FROM = 9;
+  const AXIS_TO = 27; // 03:00
+  const clamp = (v: number) => Math.min(100, Math.max(0, ((v - AXIS_FROM) / (AXIS_TO - AXIS_FROM)) * 100));
+  const rail = document.createElement('span');
+  rail.className = 'span-rail';
+  rail.setAttribute('aria-hidden', 'true');
+  const seg = document.createElement('i');
+  seg.style.left = `${clamp(s.from).toFixed(2)}%`;
+  seg.style.width = `${(clamp(s.to) - clamp(s.from)).toFixed(2)}%`;
+  rail.append(seg);
+  return rail;
+}
+
+function initAgenda() {
+  const lists = document.querySelectorAll<HTMLElement>('[data-agenda]');
+  const nextBox = document.querySelector<HTMLElement>('[data-next-session]');
+  if (!lists.length && !nextBox) return;
+  const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'short', day: '2-digit', month: 'short' });
+  const cell = (cls: string, text: string) => {
+    const s = document.createElement('span');
+    s.className = cls;
+    s.textContent = text;
+    return s;
+  };
+
+  lists.forEach((list) => {
+    const count = Number(list.dataset.agenda || 6);
+    const rows = upcoming(count);
+    if (!rows.length) return;
+    list.replaceChildren(
+      ...rows.map((r) => {
+        const li = document.createElement('li');
+        li.className = `agenda__row${r.today ? ' is-today' : ''}`;
+        li.append(
+          cell('agenda__date num', r.today ? 'Today' : fmt.format(r.date)),
+          cell('agenda__name', r.name),
+          cell('agenda__time num', r.time.replace('-', '–')),
+          cell('agenda__meta', [r.artist, r.genre].filter(Boolean).join(' · ')),
+        );
+        const rail = railFor(r.time);
+        if (rail) li.append(rail);
+        return li;
+      }),
+    );
+    list.classList.add('is-live');
+  });
+
+  // The closing band's "next session" line
+  if (nextBox) {
+    const [next] = upcoming(1);
+    if (next) {
+      nextBox.replaceChildren(
+        cell('next__when num', next.today ? 'Tonight' : fmt.format(next.date)),
+        cell('next__name', next.name),
+        cell('next__time num', next.time.replace('-', '–')),
+        cell('next__meta', [next.artist, next.genre].filter(Boolean).join(' · ')),
+      );
+      const rail = railFor(next.time);
+      if (rail) nextBox.append(rail);
+      nextBox.classList.add('is-live');
+    }
+  }
+}
+
+/* ---------------------------------------------------------- calendar */
+/**
+ * A real month grid for /sound. Days with sessions carry a dot per session
+ * type; the current day is ringed. Prev/next walk the months.
+ */
+function initCalendar() {
+  const root = document.querySelector<HTMLElement>('[data-calendar]');
+  if (!root) return;
+  const grid = root.querySelector<HTMLElement>('[data-cal-grid]');
+  const title = root.querySelector<HTMLElement>('[data-cal-title]');
+  const prev = root.querySelector<HTMLButtonElement>('[data-cal-prev]');
+  const next = root.querySelector<HTMLButtonElement>('[data-cal-next]');
+  if (!grid || !title) return;
+
+  const now = madridNow();
+  const todayIso = `${now.y}-${String(now.m).padStart(2, '0')}-${String(now.d).padStart(2, '0')}`;
+  let view = { y: now.y, m: now.m - 1 }; // m is 0-indexed here
+
+  const monthName = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', month: 'long', year: 'numeric' });
+  const dayName = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long' });
+
+  const counter = root.querySelector<HTMLElement>('[data-cal-count]');
+
+  const render = () => {
+    const first = new Date(Date.UTC(view.y, view.m, 1));
+    const days = new Date(Date.UTC(view.y, view.m + 1, 0)).getUTCDate();
+    const lead = (first.getUTCDay() + 6) % 7; // week starts Monday
+    title.textContent = monthName.format(first);
+
+    let total = 0;
+    const cells: HTMLElement[] = [];
+    for (let i = 0; i < lead; i++) {
+      const li = document.createElement('li');
+      li.className = 'cal__cell cal__cell--pad';
+      li.setAttribute('aria-hidden', 'true');
+      cells.push(li);
+    }
+    for (let d = 1; d <= days; d++) {
+      const date = new Date(Date.UTC(view.y, view.m, d));
+      const iso = isoOf(date);
+      const list = sessionsOn(date);
+      const li = document.createElement('li');
+      li.className = 'cal__cell';
+      if (iso === todayIso) li.classList.add('is-today');
+      if (list.length) li.classList.add('has-event');
+
+      const num = document.createElement('span');
+      num.className = 'cal__num num';
+      num.textContent = String(d);
+      li.append(num);
+
+      if (list.length) {
+        total += list.length;
+        const dots = document.createElement('span');
+        dots.className = 'cal__dots';
+        list.forEach((s) => {
+          const dot = document.createElement('i');
+          dot.className = `cal__dot cal__dot--${s.name.toLowerCase().replace(/[^a-z]/g, '') || 'event'}`;
+          dots.append(dot);
+        });
+        li.append(dots);
+        li.title = `${dayName.format(date)} · ${list.map((s) => `${s.name} ${s.time}`).join(' · ')}`;
+        li.setAttribute('aria-label', li.title);
+      }
+      cells.push(li);
+    }
+    grid.replaceChildren(...cells);
+    if (counter) counter.textContent = String(total);
+  };
+
+  const step = (delta: number) => {
+    const d = new Date(Date.UTC(view.y, view.m + delta, 1));
+    view = { y: d.getUTCFullYear(), m: d.getUTCMonth() };
+    render();
+  };
+  const onPrev = () => step(-1);
+  const onNext = () => step(1);
+  prev?.addEventListener('click', onPrev);
+  next?.addEventListener('click', onNext);
+  render();
+  onCleanup(() => {
+    prev?.removeEventListener('click', onPrev);
+    next?.removeEventListener('click', onNext);
+  });
+}
+
+/* ------------------------------------------------------ home: dayline */
+function initDayline() {
+  const marker = document.querySelector<HTMLElement>('[data-dayline-marker]');
+  const time = document.querySelector<HTMLElement>('[data-dayline-time]');
+  const label = document.querySelector<HTMLElement>('[data-dayline-label]');
+  if (!marker || !time || !label) return;
+  const update = () => {
+    const { h, min } = madridNow();
+    let t = h + min / 60;
+    if (t < 3) t += 24; // 00:00–02:59 belongs to the night before
+    const inside = t >= 9 && t < 26;
+    marker.hidden = !inside;
+    if (inside) {
+      marker.style.left = `${(((t - 9) / 17) * 100).toFixed(2)}%`;
+      time.textContent = `${String(h).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
+      label.textContent = 'Now · Alicante time';
+    } else {
+      label.textContent = 'Closed · opens 09:00';
+    }
+  };
+  update();
+  const id = window.setInterval(update, 60_000);
+  onCleanup(() => window.clearInterval(id));
+}
+
+/* ------------------------------------------------------- home: sun arc */
+const THEME_COLOR: Record<string, string> = { day: '#f4efe6', sunset: '#f3e4dd', night: '#0b0910' };
+
+function setTheme(t: string) {
+  const html = document.documentElement;
+  if (html.dataset.theme === t) return;
+  html.dataset.theme = t;
+  const meta = document.querySelector<HTMLMetaElement>('meta[data-theme-color]');
+  if (meta) meta.content = THEME_COLOR[t] ?? THEME_COLOR.day;
+}
+
+function initHome() {
+  const arc = document.querySelector<HTMLElement>('[data-arc]');
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const clock = document.querySelector<HTMLElement>('[data-clock]');
+  if (!arc) {
+    nav?.classList.remove('has-arc');
+    if (clock) clock.hidden = true;
+    return;
+  }
+  nav?.classList.add('has-arc');
+  if (clock) clock.hidden = false;
+  const clockText = document.querySelector<HTMLElement>('[data-clock-text]');
+  const sun = document.querySelector<HTMLElement>('[data-sun]');
+  const bar = document.querySelector<HTMLElement>('[data-progress]');
+  const heroClock = document.querySelector<HTMLElement>('[data-hero-clock]');
+  const navChip = document.querySelector<HTMLElement>('[data-now-nav]');
+  let lastNarration = '';
+  if (navChip) {
+    setChip(navChip, narration(9), false);
+    lastNarration = narration(9);
+  }
+
+  // Theme per chapter
+  document.querySelectorAll<HTMLElement>('[data-chapter-theme]').forEach((sec) => {
+    const t = sec.dataset.chapterTheme!;
+    ScrollTrigger.create({
+      trigger: sec,
+      start: 'top 58%',
+      end: 'bottom 58%',
+      onEnter: () => setTheme(t),
+      onEnterBack: () => setTheme(t),
+    });
+  });
+
+  // Clock: interpolate between [data-hour] anchors (hours may exceed 24 for "next day")
+  const anchors = Array.from(document.querySelectorAll<HTMLElement>('[data-hour]'));
+  const fmt = (h: number) => {
+    const hh = Math.floor(h) % 24;
+    const mm = Math.floor((h % 1) * 60);
+    return `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
+  };
+  const update = () => {
+    if (!anchors.length) return;
+    const y = window.scrollY + 1;
+    const tops = anchors.map((a) => a.getBoundingClientRect().top + window.scrollY);
+    let hour = Number(anchors[0].dataset.hour);
+    for (let i = 0; i < anchors.length; i++) {
+      const next = anchors[i + 1];
+      const h0 = Number(anchors[i].dataset.hour);
+      if (!next) {
+        if (y >= tops[i]) hour = h0;
+        break;
+      }
+      const h1 = Number(next.dataset.hour);
+      if (y >= tops[i] && y < tops[i + 1]) {
+        const t = (y - tops[i]) / Math.max(1, tops[i + 1] - tops[i]);
+        hour = h0 + (h1 - h0) * t;
+        break;
+      }
+      if (y < tops[0]) hour = Number(anchors[0].dataset.hour);
+    }
+    const text = fmt(hour);
+    if (clockText) clockText.textContent = text;
+    if (heroClock) heroClock.textContent = text;
+    const p = Math.min(1, Math.max(0, (hour - 9) / 24));
+    if (bar) bar.style.transform = `scaleX(${p})`;
+    if (sun) sun.style.transform = `rotate(${p * 360}deg) scale(${hour % 24 >= 20 || hour % 24 < 7 ? 0.7 : 1})`;
+    if (navChip) {
+      const n = narration(hour);
+      if (n !== lastNarration) {
+        lastNarration = n;
+        setChip(navChip, n);
+      }
+    }
+  };
+  update();
+  const st = ScrollTrigger.create({ trigger: arc, start: 'top bottom', end: 'bottom top', onUpdate: update });
+  onCleanup(() => st.kill());
+
+  // Parallax (depth only, never on text)
+  if (!reduced()) {
+    document.querySelectorAll<HTMLElement>('[data-parallax]').forEach((el) => {
+      const amt = Number(el.dataset.parallax || 10);
+      gsap.fromTo(
+        el,
+        { yPercent: -amt / 2 },
+        {
+          yPercent: amt / 2,
+          ease: 'none',
+          scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true },
+        },
+      );
+    });
+  }
+}
+
+/* ------------------------------------------------------- menu page */
+function initMenuPage() {
+  const root = document.querySelector<HTMLElement>('[data-menu-page]');
+  if (!root) return;
+  const tabs = root.querySelectorAll<HTMLButtonElement>('[data-tab]');
+  const setTab = (tab: string, push = true) => {
+    root.dataset.tab = tab;
+    tabs.forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === tab)));
+    if (push) history.replaceState(null, '', `#${tab}`);
+  };
+  const initial = location.hash.replace('#', '');
+  if (initial === 'drinks' || initial === 'food') setTab(initial, false);
+  tabs.forEach((b) => b.addEventListener('click', () => setTab(b.dataset.tab!)));
+
+  // active category chip
+  const links = root.querySelectorAll<HTMLAnchorElement>('[data-cat-link]');
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const id = (e.target as HTMLElement).id;
+        links.forEach((l) => {
+          const on = l.getAttribute('href') === `#${id}`;
+          l.classList.toggle('is-active', on);
+          if (on) l.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+        });
+      });
+    },
+    { rootMargin: '-30% 0px -60% 0px' },
+  );
+  root.querySelectorAll<HTMLElement>('[data-cat]').forEach((s) => io.observe(s));
+  onCleanup(() => io.disconnect());
+
+  // hairline progress across the sticky bar
+  const progress = root.querySelector<HTMLElement>('[data-menu-progress]');
+  if (progress) {
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      progress.style.transform = `scaleX(${p.toFixed(4)})`;
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onCleanup(() => window.removeEventListener('scroll', onScroll));
+  }
+
+  // deep link to a category inside a tab
+  if (initial && !['drinks', 'food'].includes(initial)) {
+    const target = document.getElementById(initial);
+    const tab = target?.closest<HTMLElement>('[data-tab-panel]')?.dataset.tabPanel;
+    if (tab) setTab(tab, false);
+  }
+}
+
+/* ------------------------------------------------------------ reels */
+/** Self-hosted, muted reels: play only while on screen, never with reduced motion. */
+function initReels() {
+  const reels = document.querySelectorAll<HTMLVideoElement>('video[data-reel]');
+  if (!reels.length) return;
+  if (reduced()) {
+    reels.forEach((v) => v.removeAttribute('autoplay'));
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        const v = e.target as HTMLVideoElement;
+        if (e.isIntersecting) v.play().catch(() => {});
+        else v.pause();
+      });
+    },
+    { threshold: 0.2 },
+  );
+  reels.forEach((v) => io.observe(v));
+  onCleanup(() => io.disconnect());
+}
+
+/* ------------------------------------------------------- contact form */
+function initForm() {
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+  if (!form) return;
+  const status = form.querySelector<HTMLElement>('[data-form-status]');
+  const onSubmit = async (e: SubmitEvent) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+    const endpoint = form.dataset.endpoint;
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (btn) btn.disabled = true;
+    if (status) status.textContent = 'Sending…';
+    try {
+      if (endpoint) {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        if (status) status.textContent = 'Sent. We read everything — expect a reply soon.';
+        form.reset();
+      } else {
+        const body = `${data.message}\n\n— ${data.name || 'No name'}${data.phone ? ` · ${data.phone}` : ''}`;
+        location.href = `mailto:${site.email}?subject=${encodeURIComponent('Hello from the website')}&body=${encodeURIComponent(body)}`;
+        if (status) status.textContent = 'Opening your email app…';
+      }
+    } catch {
+      if (status) status.textContent = `Something went wrong. Write to ${site.email} instead.`;
+    } finally {
+      if (btn) btn.disabled = false;
+    }
+  };
+  form.addEventListener('submit', onSubmit);
+  onCleanup(() => form.removeEventListener('submit', onSubmit));
+}
+
+/* ------------------------------------------------------- lifecycle */
+function init() {
+  document.documentElement.classList.add('js');
+  initLenis();
+  initNav();
+  initNow();
+  initReveal();
+  initAgenda();
+  initCalendar();
+  initDayline();
+  initHome();
+  initMenuPage();
+  initReels();
+  initForm();
+  splitLines().then(() => {
+    resplitOnResize();
+    ScrollTrigger.refresh();
+  });
+  lenis?.resize();
+  window.setTimeout(() => ScrollTrigger.refresh(), 600);
+}
+
+function teardown() {
+  FEED = null;
+  cleanups.splice(0).forEach((fn) => fn());
+  ScrollTrigger.getAll().forEach((t) => t.kill());
+  splits.forEach((s) => s.revert());
+  splits.clear();
+}
+
+document.addEventListener('astro:page-load', init);
+document.addEventListener('astro:before-swap', teardown);
+document.addEventListener('astro:after-swap', () => document.documentElement.classList.add('js'));
