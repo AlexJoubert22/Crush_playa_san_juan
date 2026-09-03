@@ -11,6 +11,7 @@ import { t } from '@/i18n/copy';
 import cadenzaArt from '@/assets/events/cadenza-stack.webp';
 import opusArt from '@/assets/events/opus.webp';
 import nightSign from '@/assets/venue/noche1.webp';
+import terraceNight from '@/assets/venue/neon-sign.jpg';
 
 interface Props {
   lang: Lang;
@@ -170,32 +171,58 @@ const L = (p: string) => localise(lang, p);
         <span class="label label--display">{c.nav.book}</span>
       </div>
       <div class="private">
-        <h2 class="display private__title" data-reveal="lines">
-          {c.events.privateTitleA} <span class="em">{c.events.privateTitleEm}</span>
-        </h2>
-        <p class="body private__lede" data-reveal="fade">{c.events.privateText}</p>
-      </div>
-      <ol class="private__points" data-stagger>
-        {
-          [
-            [c.events.p1k, c.events.p1v],
-            [c.events.p2k, c.events.p2v],
-            [c.events.p3k, c.events.p3v],
-          ].map(([k, v], i) => (
-            <li class="private__point">
-              <span class="num private__n">0{i + 1}</span>
-              <span class="private__k">{k}</span>
-              <span class="private__v">{v}</span>
-            </li>
-          ))
-        }
-      </ol>
-      <div class="private__actions" data-reveal="fade">
-        <a href={L('/book')} class="btn btn--light">{c.events.privateCta} <Arrow /></a>
-        <a href={site.phoneHref} class="btn btn--ghost private__ghost">{c.book.callCta}</a>
-        <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener" class="btn btn--ghost private__ghost">WhatsApp</a>
+        <div class="private__copy">
+          <h2 class="display private__title" data-reveal="lines">
+            {c.events.privateTitleA} <span class="em">{c.events.privateTitleEm}</span>
+          </h2>
+          <p class="lede private__lede" data-reveal="fade">{c.events.privateText}</p>
+          <div class="private__actions" data-reveal="fade">
+            <a href={L('/book')} class="btn btn--light">{c.events.privateCta} <Arrow /></a>
+            <span class="private__alt">
+              <a href={site.phoneHref} class="btn btn--sm btn--ghost private__ghost">{c.book.callCta}</a>
+              <a
+                href={`https://wa.me/${site.whatsapp}`}
+                target="_blank"
+                rel="noopener"
+                class="btn btn--sm btn--ghost private__ghost">WhatsApp</a
+              >
+            </span>
+          </div>
+          <p class="small private__note" data-reveal="fade">{c.events.privateNote}</p>
+        </div>
+
+        <ol class="private__points" data-stagger>
+          {
+            [
+              [c.events.p1k, c.events.p1v],
+              [c.events.p2k, c.events.p2v],
+              [c.events.p3k, c.events.p3v],
+            ].map(([k, v], i) => (
+              <li class="private__point">
+                <span class="num private__n">0{i + 1}</span>
+                <span class="private__k">{k}</span>
+                <span class="private__v">{v}</span>
+              </li>
+            ))
+          }
+        </ol>
       </div>
     </div>
+
+    <!-- The sign, at the shape it was shot in -->
+    <figure class="private__media media" data-reveal="clip">
+      <Image
+        src={terraceNight}
+        alt={c.alt.private}
+        widths={[900, 1400, 2000]}
+        sizes="100vw"
+        class="reveal-scale"
+      />
+      <figcaption class="cap wrap">
+        <span>{c.events.privateCap}</span>
+        <span class="num">{c.events.privateKicker}</span>
+      </figcaption>
+    </figure>
   </section>
 
   <EventsFeed lang={lang} />
@@ -375,68 +402,116 @@ const L = (p: string) => localise(lang, p);
     display: grid;
     grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
     gap: var(--space-6) calc(var(--col-gap) * 2);
-    align-items: end;
+    align-items: start;
     padding-top: var(--space-7);
+    padding-bottom: var(--space-7);
+  }
+  .private__copy {
+    display: grid;
+    gap: var(--space-5);
+    align-content: start;
   }
   .private__title {
-    max-width: 11ch;
+    max-width: 12ch;
     text-shadow: 0 0 44px var(--glow-soft);
   }
   .private__title .em {
     color: var(--night-accent-ink);
   }
   .private__lede {
+    max-width: 42ch;
     color: rgba(244, 239, 230, 0.86);
   }
-  .private__points {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--col-gap);
-    margin-top: var(--space-7);
-  }
-  .private__point {
-    display: grid;
-    gap: 0.45rem;
-    align-content: start;
-    padding-top: var(--space-4);
-    border-top: 1px solid rgba(244, 239, 230, 0.28);
-  }
-  .private__n {
-    font-size: 1.1rem;
-    color: var(--night-accent-ink);
-  }
-  .private__k {
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 1.15rem;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-  }
-  .private__v {
-    font-size: var(--text-small);
-    color: rgba(244, 239, 230, 0.72);
-    max-width: 36ch;
-  }
   .private__actions {
+    display: grid;
+    justify-items: start;
+    gap: 0.85rem;
+  }
+  .private__alt {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: var(--space-6);
+    gap: 0.6rem;
   }
   .private__ghost {
     --btn-fg: var(--night-ink);
     border-color: rgba(244, 239, 230, 0.5);
   }
-  @media (max-width: 900px) {
+  .private__note {
+    color: rgba(244, 239, 230, 0.6);
+    max-width: 46ch;
+    text-wrap: pretty;
+  }
+
+  /* The three points read as a list, not as three orphan columns */
+  .private__points {
+    display: grid;
+    align-content: start;
+    border-top: 1px solid rgba(244, 239, 230, 0.28);
+  }
+  .private__point {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    align-items: baseline;
+    column-gap: var(--space-4);
+    row-gap: 0.4rem;
+    padding-block: var(--space-4);
+    border-bottom: 1px solid rgba(244, 239, 230, 0.18);
+  }
+  .private__n {
+    grid-row: 1 / span 2;
+    font-size: 1rem;
+    color: var(--night-accent-ink);
+  }
+  .private__k {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .private__v {
+    grid-column: 2;
+    font-size: var(--text-small);
+    color: rgba(244, 239, 230, 0.72);
+    max-width: 46ch;
+    text-wrap: pretty;
+  }
+
+  /* Full-bleed band: the photograph is 1.95:1, so it is never cropped tall */
+  .private__media {
+    width: 100%;
+    aspect-ratio: 2 / 1;
+  }
+  /* the photo is far brighter than the page: ease the top edge into the ink */
+  .private__media::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 22%;
+    z-index: 1;
+    background: linear-gradient(180deg, var(--night-canvas), rgba(11, 9, 14, 0));
+    pointer-events: none;
+  }
+  .private__media :global(.cap) {
+    padding-inline: var(--gutter);
+    padding-bottom: var(--space-4);
+  }
+  @media (max-width: 1000px) {
     .private {
       grid-template-columns: 1fr;
+      gap: var(--space-5);
     }
     .private__title {
       max-width: none;
     }
-    .private__points {
-      grid-template-columns: 1fr;
-      gap: var(--space-4);
+    .private__media {
+      aspect-ratio: 3 / 2;
+    }
+  }
+  @media (max-width: 620px) {
+    .private__point {
+      grid-template-columns: 2.25rem minmax(0, 1fr);
+      column-gap: var(--space-3);
     }
   }
 </style>

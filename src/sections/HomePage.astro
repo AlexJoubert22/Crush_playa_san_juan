@@ -492,16 +492,16 @@ const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? 
           </div>
           <ul class="rule-list agenda__list" data-agenda="4">
             <li class="agenda__row">
-              <span class="agenda__date num">Sat & Sun</span>
+              <span class="agenda__date num">{c.sessions.cadenzaWhen}</span>
               <span class="agenda__name">Cadenza</span>
-              <span class="agenda__time num">10:00 – 16:00</span>
-              <span class="agenda__meta">Resident DJs · Daytime sessions</span>
+              <span class="agenda__time num">{sessions.cadenza.time}</span>
+              <span class="agenda__meta">{c.sessions.cadenzaArtist} · {c.sessions.cadenzaGenre}</span>
             </li>
             <li class="agenda__row">
-              <span class="agenda__date num">2nd Saturday</span>
+              <span class="agenda__date num">{c.sessions.opusWhen}</span>
               <span class="agenda__name">OPUS</span>
-              <span class="agenda__time num">21:00 – 02:00</span>
-              <span class="agenda__meta">Many DJs · Progressive house</span>
+              <span class="agenda__time num">{sessions.opus.time}</span>
+              <span class="agenda__meta">{c.sessions.opusArtist} · {c.sessions.opusGenre}</span>
             </li>
           </ul>
         </div>

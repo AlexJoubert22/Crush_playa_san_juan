@@ -334,6 +334,8 @@ html[lang^='ru'] .em {
   text-transform: uppercase;
   line-height: 1;
   white-space: nowrap;
+  /* a long label in any language must never push past the gutter */
+  max-width: 100%;
   isolation: isolate;
   overflow: hidden;
   transition:
@@ -380,6 +382,14 @@ html[lang^='ru'] .em {
 .btn--light {
   --btn-bg: var(--day-canvas);
   --btn-fg: var(--day-ink);
+}
+/* On a phone, let the longest labels wrap rather than overflow the screen */
+@media (max-width: 560px) {
+  .btn {
+    white-space: normal;
+    text-align: center;
+    text-wrap: balance;
+  }
 }
 .btn--wa {
   --btn-bg: #25d366;

@@ -82,6 +82,20 @@ añade el locale al sitemap en `astro.config.mjs`.
 - Título y descripción propios por página e idioma, `og:locale` y `og:locale:alternate`, JSON-LD del local con `inLanguage`.
 - Sin cookies de terceros: la analítica solo se carga si se define `PUBLIC_ANALYTICS_DOMAIN`.
 
+## El calendario
+
+`src/data/events.source.json` guarda **solo la rutina fija**, y es idéntica todas las semanas:
+
+| Sesión | Cuándo | Horario |
+|---|---|---|
+| Cadenza | todos los sábados y domingos | 10:00 – 16:00 |
+| OPUS | segundo sábado de cada mes | 21:00 – 02:00 |
+
+No metas excepciones en este archivo. Cualquier cosa especial —un DJ invitado, una fiesta puntual,
+un cambio de horario, un cierre— se publica en el Google Calendar del local. Cuando hay eventos en
+el calendario conectado, esos **sustituyen por completo** a las reglas de arriba para los días que
+cubren, así que el local controla la agenda sin tocar código.
+
 ## Agenda conectada a Google Calendar
 
 El calendario de `/sound#agenda` puede alimentarse solo desde un Google Calendar del local. Es gratis y no necesita servidor.

@@ -105,16 +105,9 @@ const weekend = [
               </span>
             )}
             <span class="roster__genre">{d.genre}</span>
-            <span class="roster__origin muted">{d.origin}</span>
-            <span class="roster__links">
-              {d.soundcloud && (
-                <a href={d.soundcloud} target="_blank" rel="noopener" aria-label={`${d.name} on SoundCloud`}>
-                  SC
-                </a>
-              )}
-              <span class="roster__go" aria-hidden="true">
-                <Arrow dir="up-right" />
-              </span>
+            <span class="roster__origin muted">{c.origins[d.origin as keyof typeof c.origins] ?? d.origin}</span>
+            <span class="roster__go" aria-hidden="true">
+              <Arrow dir="up-right" />
             </span>
           </li>
         ))
@@ -185,10 +178,10 @@ const weekend = [
         <aside class="stage__card" data-reveal="fade" style="--reveal-delay: 120ms">
           <p class="label muted">{c.sound.nextSession}</p>
           <div class="next" data-next-session>
-            <span class="next__when num">Sat & Sun</span>
+            <span class="next__when num">{c.sessions.cadenzaWhen}</span>
             <span class="next__name">Cadenza</span>
-            <span class="next__time num">10:00 – 16:00</span>
-            <span class="next__meta">Resident DJs · Daytime sessions</span>
+            <span class="next__time num">{sessions.cadenza.time}</span>
+            <span class="next__meta">{c.sessions.cadenzaArtist} · {c.sessions.cadenzaGenre}</span>
           </div>
           <a href={L('/events')} class="link-line small stage__card-link">{c.sound.seeMonth}</a>
         </aside>
@@ -339,7 +332,7 @@ const weekend = [
   }
   .roster__row {
     position: relative;
-    grid-template-columns: 2.5rem 3.5rem minmax(0, 1.6fr) minmax(0, 1.3fr) minmax(0, 0.8fr) auto;
+    grid-template-columns: 2.5rem 3.5rem minmax(0, 1.7fr) minmax(0, 1.3fr) minmax(0, 0.9fr) auto;
     align-items: center;
     transition: background-color var(--dur-standard) var(--ease-out);
   }
@@ -407,31 +400,9 @@ const weekend = [
     position: relative;
     font-size: var(--text-small);
   }
-  .roster__links {
+  .roster__go {
     position: relative;
     z-index: 1;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .roster__links a {
-    display: inline-grid;
-    place-items: center;
-    width: 2.25rem;
-    height: 2.25rem;
-    border: 1px solid var(--line-strong);
-    border-radius: 50%;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: var(--ink);
-    transition: background-color var(--dur-fast), color var(--dur-fast);
-  }
-  .roster__links a:hover {
-    background: var(--ink);
-    color: var(--canvas);
-  }
-  .roster__go {
     display: inline-grid;
     place-items: center;
     width: 2.25rem;
@@ -471,7 +442,7 @@ const weekend = [
     .roster__origin {
       grid-column: 2;
     }
-    .roster__links {
+    .roster__go {
       grid-column: 3;
       grid-row: 1 / span 3;
     }
