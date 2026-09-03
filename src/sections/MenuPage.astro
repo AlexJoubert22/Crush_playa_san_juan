@@ -109,10 +109,12 @@ const film = [
  * What a dish is, in words the kitchen would recognise. Everything here comes
  * out of the item's own name and description — nothing is invented.
  */
-const SUBS: Record<string, string> = { Hot: c.menuTags.hot, Cold: c.menuTags.cold };
+/** Sub-group headings ('eggs', 'french-toast'…) in the page language. */
+const SUBS = c.menuSubs as Record<string, string>;
+const subLabel = (v?: string | null) => (v ? SUBS[v] ?? v.replace(/-/g, ' ') : '');
 const tagsFor = (i: Item, catLabel: string): string[] => {
   const out = [catLabel];
-  if (i.sub) out.push(SUBS[i.sub] ?? i.sub.replace(/-/g, ' '));
+  if (i.sub) out.push(subLabel(i.sub));
   const d = `${i.name.en} ${i.description.en}`.toLowerCase();
   const add = (v: string) => !out.includes(v) && out.push(v);
   if (d.includes('specialty coffee')) add(c.menuTags.specialtyCoffee);
@@ -317,7 +319,7 @@ const total = menu.items.length;
 
                     {groups(cc.items).map((g) => (
                       <div class="cat__group">
-                        {g.sub && <p class="label muted cat__sub">{SUBS[g.sub] ?? g.sub.replace(/-/g, ' ')}</p>}
+                        {g.sub && <p class="label muted cat__sub">{subLabel(g.sub)}</p>}
                         <ul class="rule-list cat__list">
                           {g.items.map((i) => {
                             const tag = tagFor(i);
@@ -331,7 +333,7 @@ const total = menu.items.length;
                                   data-name={txt(i.name)}
                                   data-price={eur(i.price)}
                                   data-desc={txt(i.description) || ''}
-                                  data-kicker={[cc.label, SUBS[i.sub ?? ''] ?? i.sub?.replace(/-/g, ' ')].filter(Boolean).join(' · ')}
+                                  data-kicker={[cc.label, subLabel(i.sub)].filter(Boolean).join(' · ')}
                                   data-tags={tagsFor(i, cc.label).join('|')}
                                   data-img={dialogImages.get(i.id) ?? ''}
                                   data-thumb={dialogThumbs.get(i.id) ?? ''}
@@ -450,9 +452,12 @@ const total = menu.items.length;
   .catnav__switch {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* Two equal halves, sized to the longest label in whichever language this
+       is — a fixed width clipped "НАПИТКИ". */
+    grid-template-columns: repeat(2, 1fr);
     flex-shrink: 0;
-    width: 10.5rem;
+    width: max-content;
+    min-width: 10.5rem;
     padding: 3px;
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-pill);
@@ -473,7 +478,8 @@ const total = menu.items.length;
     transform: translateX(100%);
   }
   .catnav__tab {
-    padding: 0.45rem 0.5rem;
+    padding: 0.45rem 0.7rem;
+    white-space: nowrap;
     border-radius: var(--radius-pill);
     font-family: var(--font-display);
     font-size: 0.72rem;

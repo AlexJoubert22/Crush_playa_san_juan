@@ -251,6 +251,13 @@ export const fr: Copy = {
     salads: 'Grandes salades au fromage de chèvre et légumes rôtis.',
     desserts: 'Cheesecake new-yorkais, key lime pie de Floride, cookies, gâteau au chocolat.',
   },
+  menuSubs: {
+    'Hot': 'Chaud',
+    'Cold': 'Froid',
+    'eggs': 'Œufs',
+    'french-toast': 'Pain perdu',
+    'gourmet-toast': 'Tartines gourmandes',
+  },
   menuTags: {
     houseSpecial: 'Spécialité maison',
     signature: 'Signature',

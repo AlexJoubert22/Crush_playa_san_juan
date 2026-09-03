@@ -251,6 +251,13 @@ export const es: Copy = {
     salads: 'Ensaladas grandes con queso de cabra y verduras asadas.',
     desserts: 'Tarta de queso de Nueva York, key lime pie, galletas, tarta de chocolate.',
   },
+  menuSubs: {
+    'Hot': 'Caliente',
+    'Cold': 'Frío',
+    'eggs': 'Huevos',
+    'french-toast': 'Torrijas',
+    'gourmet-toast': 'Tostas gourmet',
+  },
   menuTags: {
     houseSpecial: 'Especial de la casa',
     signature: 'De la casa',

@@ -249,6 +249,13 @@ export const en = {
     salads: "Big salads with goat's cheese and roasted vegetables.",
     desserts: 'New York cheesecake, Florida key lime pie, cookies, chocolate cake.',
   },
+  menuSubs: {
+    'Hot': 'Hot',
+    'Cold': 'Cold',
+    'eggs': 'Eggs',
+    'french-toast': 'French toast',
+    'gourmet-toast': 'Gourmet toast',
+  },
   menuTags: {
     houseSpecial: 'House special',
     signature: 'Signature',

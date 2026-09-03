@@ -251,6 +251,13 @@ export const ru: Copy = {
     salads: 'Большие салаты с козьим сыром и печёными овощами.',
     desserts: 'Нью-йоркский чизкейк, флоридский key lime pie, печенье, шоколадный торт.',
   },
+  menuSubs: {
+    'Hot': 'Горячий',
+    'Cold': 'Холодный',
+    'eggs': 'Яйца',
+    'french-toast': 'Французские тосты',
+    'gourmet-toast': 'Тосты',
+  },
   menuTags: {
     houseSpecial: 'Фирменное',
     signature: 'Наше',
