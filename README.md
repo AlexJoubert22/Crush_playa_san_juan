@@ -59,6 +59,19 @@ public/         favicons, og.jpg
 
 La agenda ("Next up") se calcula en el navegador con la hora de Alicante a partir de las reglas: Cadenza sábados y domingos 10:00–16:00; OPUS segundo sábado del mes 21:00–02:00. El chip "Open · …" también.
 
+## Despliegue
+
+Vercel construye desde `main` con `npm ci && npm run build` y sirve `dist/`. `vercel.json` fija lo
+que no conviene dejar a los valores por defecto:
+
+- `cleanUrls` + `trailingSlash: false`, que es como Astro genera las rutas aquí (`/es`, no `/es/`).
+- Caché de un año para `/_astro/*` (los nombres llevan hash, así que nunca caducan mal), un mes
+  para los vídeos y una semana para los iconos.
+- Cabeceras de seguridad básicas: `nosniff`, `Referrer-Policy` y `X-Frame-Options`.
+
+Variables de entorno a poner en Vercel (todas opcionales; sin ellas la web funciona igual):
+`PUBLIC_CRUSH_ICS` para la agenda y `PUBLIC_ANALYTICS_DOMAIN` para la analítica.
+
 ## Idiomas
 
 Inglés en la raíz (`/menu`) y los demás bajo prefijo (`/es/menu`, `/fr/menu`, `/ru/menu`). Cada
