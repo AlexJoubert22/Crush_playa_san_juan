@@ -293,6 +293,13 @@ const L = (p: string) => localise(lang, p);
       font-size: 0.85rem;
     }
   }
+  /* Under ~420px the clock, the language pill and the burger together squeezed
+     the wordmark until it clipped. The time is the expendable one. */
+  @media (max-width: 420px) {
+    .nav__clock {
+      display: none;
+    }
+  }
 
   /* ---- Full-screen menu ---- */
   .menu {
@@ -302,6 +309,7 @@ const L = (p: string) => localise(lang, p);
     background: var(--canvas);
     color: var(--ink);
     overflow-y: auto;
+    overflow-x: hidden;
     overscroll-behavior: contain;
     clip-path: inset(0 0 100% 0);
     transition: clip-path var(--dur-scene) var(--ease-inout);

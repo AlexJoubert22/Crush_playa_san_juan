@@ -433,12 +433,11 @@ export const fr: Copy = {
     head: 'Ce qu’on en dit',
     cta: 'Les lire sur Google',
     reviews: 'avis|avis',
-    prev: 'Avis précédent',
-    next: 'Avis suivant',
     translated: 'Traduit de l’espagnol',
-    goTo: 'Avis',
     photos: 'photo|photos',
     localGuide: 'Local Guide',
+    blurb: 'Près de six cents personnes sont venues et l’ont écrit. Le café, la régie DJ et l’équipe reviennent sans cesse.',
+    pause: 'Survolez pour mettre en pause',
     onSource: 'sur',
   },
   book: {
@@ -565,6 +564,7 @@ export const fr: Copy = {
     '404': ['Suivez la musique'],
   },
   alt: {
+    heroVideo: 'Crush sur la Playa de San Juan : la terrasse, le bar et la plage en face',
     heroTower: 'Un poste de secours aux rayures façon Miami sur le sable de la Playa de San Juan, Alicante',
     reelMorning: 'Un matcha glacé à la fraise servi au bar de Crush',
     reelBar: 'Un barman de Crush qui secoue et sert un cocktail',

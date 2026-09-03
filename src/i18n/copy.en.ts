@@ -432,12 +432,11 @@ export const en = {
     head: 'What people say',
     cta: 'Read them on Google',
     reviews: 'review|reviews',
-    prev: 'Previous review',
-    next: 'Next review',
     translated: 'Translated from Spanish',
-    goTo: 'Review',
     photos: 'photo|photos',
     localGuide: 'Local Guide',
+    blurb: 'Nearly six hundred people have been and said so. Coffee, the DJ booth and the team come up again and again.',
+    pause: 'Hover to pause',
     onSource: 'on',
   },
   book: {
@@ -564,6 +563,7 @@ export const en = {
     '404': ['Follow the music'],
   },
   alt: {
+    heroVideo: 'Crush on Playa de San Juan: the terrace, the bar and the beach across the road',
     heroTower: 'A lifeguard tower painted in Miami stripes on the sand of Playa de San Juan, Alicante',
     reelMorning: 'An iced strawberry matcha being poured at the Crush bar',
     reelBar: 'A Crush bartender shaking and pouring a cocktail',

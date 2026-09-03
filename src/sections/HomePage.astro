@@ -28,7 +28,6 @@ const dish = (nameEn: string) => {
   return found;
 };
 
-import towerDay from '@/assets/venue/tower-day.jpg';
 import nightSign from '@/assets/venue/noche1.webp';
 import cadenzaArt from '@/assets/events/cadenza.webp';
 import opusArt from '@/assets/events/opus.webp';
@@ -143,15 +142,19 @@ const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? 
       </div>
 
       <div class="hero__media media" data-reveal="clip">
-        <div class="hero__media-inner" data-parallax="10">
-          <Image
-            src={towerDay}
-            alt={c.alt.heroTower}
-            widths={[640, 960, 1280, 1707]}
-            sizes="(max-width: 900px) 100vw, 60vw"
-            class="reveal-scale hero__img"
-            priority
-          />
+        <div class="hero__media-inner">
+          <!-- Muted, looping, plays inline: decoration, so it carries no audio -->
+          <video
+            class="hero__video"
+            src="/video/hero.mp4"
+            poster="/video/hero-poster.jpg"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label={c.alt.heroVideo}
+          ></video>
         </div>
         <div class="hero__scroll" aria-hidden="true">
           <span class="num hero__scroll-clock" data-hero-clock>09:00</span>
@@ -710,13 +713,13 @@ const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? 
   }
   .hero__media-inner {
     position: absolute;
-    inset: -6% 0;
+    inset: 0;
   }
-  .hero__img {
+  .hero__video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 38% 55%;
+    object-position: center;
   }
   .hero__scroll {
     position: absolute;

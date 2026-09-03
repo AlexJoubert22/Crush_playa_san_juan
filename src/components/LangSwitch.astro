@@ -54,17 +54,22 @@ const c = t(lang);
     align-items: center;
     gap: 0.4rem;
     min-height: 2.25rem;
-    padding: 0.35rem 0.15rem;
+    padding: 0.35rem 0.75rem;
     cursor: pointer;
+    /* the nav floats over a dark video on the home hero, so the control
+       carries its own glass rather than relying on the page behind it */
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--canvas) 72%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     font-family: var(--font-display);
     font-size: 0.74rem;
     font-weight: 500;
     letter-spacing: 0.1em;
     line-height: 1;
     color: var(--ink);
-    border-bottom: 1px solid transparent;
     -webkit-tap-highlight-color: transparent;
-    transition: border-color 0.35s var(--ease-out);
+    transition: background-color 0.35s var(--ease-out);
   }
   .lang__btn::-webkit-details-marker {
     display: none;
@@ -74,7 +79,7 @@ const c = t(lang);
   }
   .lang:hover .lang__btn,
   .lang[open] .lang__btn {
-    border-bottom-color: var(--ink);
+    background: color-mix(in srgb, var(--canvas) 92%, transparent);
   }
   .lang__chev {
     width: 0.7rem;

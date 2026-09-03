@@ -43,6 +43,7 @@ public/         favicons, og.jpg
 | Horarios, teléfono, email, dirección, redes | `src/data/site.ts` |
 | Carta y precios | `src/data/menu.json` (`price` numérico; `photo` = archivo en `src/assets/menu/`) |
 | DJs residentes | `src/data/djs.json` + foto en `src/assets/djs/` |
+| Vídeo del hero | `public/video/hero.mp4` (9:16, sin audio) más su póster. Para cambiarlo, codifica igual: `ffmpeg -i origen.mp4 -an -vf scale=720:1280 -c:v libx264 -crf 27 -movflags +faststart public/video/hero.mp4` |
 | Fotos de la carta | `src/assets/menu/` (grandes, campo `photo`) y `src/assets/menu/thumbs/` (las 160 px de la web oficial, campo `thumb`). En la ventana del plato las grandes llenan el panel y las pequeñas se muestran enmarcadas a tamaño real, nunca estiradas. Para mejorar una: deja el archivo grande en `src/assets/menu/` y pon su nombre en `photo` |
 | Textos y citas de las fichas destacadas de la carta | `SOLO_NOTES` en `src/pages/menu.astro` (se usan en la ficha grande y en la ventana del plato) |
 | Etiquetas de la ventana del plato (Specialty coffee, 100% agave, Vegetarian…) | `tagsFor()` en `src/pages/menu.astro`; se deducen del nombre y la descripción, no se inventan |
@@ -98,9 +99,10 @@ reseña, se cae todo el valor de la sección.
 - No se marca `aggregateRating` en el JSON-LD a propósito: Google ignora (y penaliza) las
   valoraciones que un negocio se pone a sí mismo en su propia web.
 
-El carrusel es un contenedor con `scroll-snap`: el navegador hace el desplazamiento, así que el
-gesto táctil es nativo. `initReviews()` en `app.ts` solo añade flechas, puntos y un avance
-automático que se detiene en cuanto alguien toca, pasa el ratón o enfoca con el teclado.
+El carrusel es una marquesina de CSS puro, sin JavaScript: dos listas idénticas una detrás de otra
+y una animación que las desplaza hasta `-50%`, así que la costura del bucle nunca se ve. Se pausa
+al pasar el ratón o al enfocar con el teclado, y con `prefers-reduced-motion` se convierte en una
+tira con scroll manual. Para cambiar la velocidad, toca `--rvw-dur`.
 
 ## Página legal
 

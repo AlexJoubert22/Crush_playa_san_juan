@@ -321,7 +321,6 @@ type ClientCopy = {
   chip: Record<string, string[]>;
   nowLabel: string;
   closedLabel: string;
-  reviewsGoTo?: string;
 };
 const FALLBACK_COPY: ClientCopy = {
   status: {
@@ -719,9 +718,26 @@ function initMenuPage() {
     tabs.forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === tab)));
     if (push) history.replaceState(null, '', `#${tab}`);
   };
+  /**
+   * Switching tab swaps the whole list under the reader, so the page goes back
+   * to the top of the menu — landing halfway down a list you have not seen is
+   * disorientating. Lenis owns the scroll when it is running.
+   */
+  const toTop = () => {
+    const top = Math.max(0, root.getBoundingClientRect().top + window.scrollY - 96);
+    if (lenis) lenis.scrollTo(top, { duration: reduced() ? 0 : 1 });
+    else window.scrollTo({ top, behavior: reduced() ? 'auto' : 'smooth' });
+  };
   const initial = location.hash.replace('#', '');
   if (initial === 'drinks' || initial === 'food') setTab(initial, false);
-  tabs.forEach((b) => b.addEventListener('click', () => setTab(b.dataset.tab!)));
+  tabs.forEach((b) =>
+    b.addEventListener('click', () => {
+      const tab = b.dataset.tab!;
+      if (root.dataset.tab === tab) return;
+      setTab(tab);
+      toTop();
+    }),
+  );
 
   // active category chip
   const links = root.querySelectorAll<HTMLAnchorElement>('[data-cat-link]');
@@ -915,133 +931,6 @@ function initMiniNext() {
   time.textContent = next.time;
 }
 
-/* ------------------------------------------------------- reviews carousel */
-/**
- * The track is a scroll-snap container, so the browser owns the scrolling and
- * the gesture stays native. This only adds the arrows, the dots, and a gentle
- * auto-advance that stops the moment anyone touches it.
- */
-function initReviews() {
-  const root = document.querySelector<HTMLElement>('[data-reviews]');
-  if (!root) return;
-  const track = root.querySelector<HTMLElement>('[data-rvw-track]');
-  const slides = Array.from(root.querySelectorAll<HTMLElement>('[data-rvw-slide]'));
-  if (!track || slides.length < 2) return;
-
-  const dotsBox = root.querySelector<HTMLElement>('[data-rvw-dots]');
-  const prev = root.querySelector<HTMLButtonElement>('[data-rvw-prev]');
-  const next = root.querySelector<HTMLButtonElement>('[data-rvw-next]');
-  const label = words().reviewsGoTo ?? 'Review';
-
-  let index = 0;
-  let paused = false;
-
-  const dots = slides.map((_, i) => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.setAttribute('role', 'tab');
-    b.setAttribute('aria-label', `${label} ${i + 1}`);
-    b.addEventListener('click', () => {
-      paused = true;
-      go(i);
-    });
-    dotsBox?.appendChild(b);
-    return b;
-  });
-
-  /** How many slides fit at once, so the last page is not scrolled past. */
-  const perView = () => Math.max(1, Math.round(track.clientWidth / slides[0].offsetWidth));
-  const maxIndex = () => Math.max(0, slides.length - perView());
-
-  const paint = () => {
-    dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === index)));
-    if (prev) prev.disabled = index <= 0;
-    if (next) next.disabled = index >= maxIndex();
-  };
-
-  const go = (i: number) => {
-    index = Math.max(0, Math.min(maxIndex(), i));
-    track.scrollTo({ left: slides[index].offsetLeft - slides[0].offsetLeft, behavior: reduced() ? 'auto' : 'smooth' });
-    paint();
-  };
-
-  // Which slide is actually in view wins — the user may have swiped.
-  let raf = 0;
-  const onScroll = () => {
-    cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(() => {
-      const x = track.scrollLeft + slides[0].offsetLeft;
-      let best = 0;
-      let dist = Infinity;
-      slides.forEach((s, i) => {
-        const d = Math.abs(s.offsetLeft - x);
-        if (d < dist) {
-          dist = d;
-          best = i;
-        }
-      });
-      if (best !== index) {
-        index = best;
-        paint();
-      }
-    });
-  };
-
-  const onPrev = () => {
-    paused = true;
-    go(index - 1);
-  };
-  const onNext = () => {
-    paused = true;
-    go(index + 1);
-  };
-  const onKey = (e: KeyboardEvent) => {
-    if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      onNext();
-    } else if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      onPrev();
-    }
-  };
-  const hold = () => (paused = true);
-
-  track.addEventListener('scroll', onScroll, { passive: true });
-  track.addEventListener('keydown', onKey);
-  track.addEventListener('pointerdown', hold, { passive: true });
-  prev?.addEventListener('click', onPrev);
-  next?.addEventListener('click', onNext);
-  root.addEventListener('pointerenter', hold);
-  root.addEventListener('focusin', hold);
-
-  // Auto-advance only while the section is on screen, and never after a touch.
-  let visible = false;
-  const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0.35 });
-  io.observe(root);
-  const timer = window.setInterval(() => {
-    if (paused || !visible || reduced() || document.hidden) return;
-    go(index >= maxIndex() ? 0 : index + 1);
-  }, 6500);
-
-  const onResize = () => paint();
-  window.addEventListener('resize', onResize);
-
-  paint();
-  onCleanup(() => {
-    window.clearInterval(timer);
-    io.disconnect();
-    cancelAnimationFrame(raf);
-    track.removeEventListener('scroll', onScroll);
-    track.removeEventListener('keydown', onKey);
-    track.removeEventListener('pointerdown', hold);
-    prev?.removeEventListener('click', onPrev);
-    next?.removeEventListener('click', onNext);
-    root.removeEventListener('pointerenter', hold);
-    root.removeEventListener('focusin', hold);
-    window.removeEventListener('resize', onResize);
-  });
-}
-
 /* ------------------------------------------------------- language menu */
 /** The <details> switch works on its own; this only closes it politely. */
 function initLang() {
@@ -1130,7 +1019,6 @@ function init() {
   initLenis();
   initNav();
   initLang();
-  initReviews();
   initNow();
   initReveal();
   initAgenda();

@@ -434,12 +434,11 @@ export const es: Copy = {
     head: 'Lo que dice la gente',
     cta: 'Leerlas en Google',
     reviews: 'opinión|opiniones',
-    prev: 'Opinión anterior',
-    next: 'Opinión siguiente',
     translated: '',
-    goTo: 'Opinión',
     photos: 'foto|fotos',
     localGuide: 'Local Guide',
+    blurb: 'Casi seiscientas personas han venido y lo han dicho. El café, la cabina y el equipo son lo que más se repite.',
+    pause: 'Pasa el ratón para pausar',
     onSource: 'en',
   },
   book: {
@@ -566,6 +565,7 @@ export const es: Copy = {
     '404': ['Sigue la música'],
   },
   alt: {
+    heroVideo: 'Crush en la Playa de San Juan: la terraza, la barra y la playa enfrente',
     heroTower: 'Una torre de socorrista pintada a rayas estilo Miami sobre la arena de la Playa de San Juan, Alicante',
     reelMorning: 'Un iced matcha de fresa servido en la barra de Crush',
     reelBar: 'Un bartender de Crush agitando y sirviendo un cóctel',

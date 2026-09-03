@@ -91,6 +91,7 @@ const pct = Math.max(0, Math.min(100, (reviews.rating / 5) * 100));
           {' '}{plural(reviews.count, c.reviews.reviews)} {c.reviews.onSource} {reviews.source}
         </p>
       </div>
+      <p class="reviews__blurb">{c.reviews.blurb}</p>
       <a href={reviews.url} target="_blank" rel="noopener" class="btn btn--sm reviews__cta">
         {c.reviews.cta} <Arrow dir="up-right" />
       </a>
@@ -100,49 +101,36 @@ const pct = Math.max(0, Math.min(100, (reviews.rating / 5) * 100));
   {
     quotes.length > 0 && (
       <div class="rvw" data-reviews>
-        <div class="wrap rvw__wrap">
-          <ul class="rvw__track" data-rvw-track tabindex="0" aria-label={c.reviews.head}>
-            {quotes.map((q, i) => (
-              <li class="rvw__slide" data-rvw-slide aria-label={`${i + 1} / ${quotes.length}`}>
-                <figure class="rvw__card">
-                  {q.stars && (
-                    <p class="rvw__stars" role="img" aria-label={`${q.stars} / 5`}>
-                      {'★'.repeat(q.stars)}
-                    </p>
-                  )}
-                  <blockquote class="rvw__quote">{q.body}</blockquote>
-                  <figcaption class="rvw__by">
-                    <span class="rvw__author">{q.author}</span>
-                    <span class="rvw__sub">
-                      {q.when}
-                      {q.meta && ' · '}
-                      {q.meta}
-                    </span>
-                    {q.translated && <span class="rvw__translated">{c.reviews.translated}</span>}
-                  </figcaption>
-                </figure>
-              </li>
-            ))}
-          </ul>
-
-          {quotes.length > 1 && (
-            <div class="rvw__controls">
-              <div class="rvw__dots" data-rvw-dots role="tablist" aria-label={c.reviews.head} />
-              <div class="rvw__arrows">
-                <button type="button" class="rvw__btn" data-rvw-prev aria-label={c.reviews.prev}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M15 6l-6 6 6 6" />
-                  </svg>
-                </button>
-                <button type="button" class="rvw__btn" data-rvw-next aria-label={c.reviews.next}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M9 6l6 6-6 6" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          )}
+        <div class="rvw__track" data-rvw-track>
+          {
+            [false, true].map((clone) => (
+              <ul class="rvw__list" aria-hidden={clone ? 'true' : undefined}>
+                {quotes.map((qt) => (
+                  <li class="rvw__item">
+                    <figure class="rvw__card">
+                      {qt.stars && (
+                        <p class="rvw__stars" role="img" aria-label={`${qt.stars} / 5`}>
+                          {'★'.repeat(qt.stars)}
+                        </p>
+                      )}
+                      <blockquote class="rvw__quote">{qt.body}</blockquote>
+                      <figcaption class="rvw__by">
+                        <span class="rvw__author">{qt.author}</span>
+                        <span class="rvw__sub">
+                          {qt.when}
+                          {qt.meta && ' · '}
+                          {qt.meta}
+                        </span>
+                        {qt.translated && <span class="rvw__translated">{c.reviews.translated}</span>}
+                      </figcaption>
+                    </figure>
+                  </li>
+                ))}
+              </ul>
+            ))
+          }
         </div>
+        <p class="rvw__hint small muted">{c.reviews.pause}</p>
       </div>
     )
   }
@@ -154,8 +142,8 @@ const pct = Math.max(0, Math.min(100, (reviews.rating / 5) * 100));
   }
   .reviews__score {
     display: grid;
-    /* the number and its meta hug each other; the link takes the rest */
-    grid-template-columns: auto auto minmax(0, 1fr);
+    /* number · stars+count · the line · the link, all on one row */
+    grid-template-columns: auto auto minmax(0, 1fr) auto;
     align-items: center;
     gap: var(--space-4) var(--space-6);
     padding-top: var(--space-6);
@@ -202,42 +190,47 @@ const pct = Math.max(0, Math.min(100, (reviews.rating / 5) * 100));
     justify-self: end;
   }
 
-  /* ---------------- carousel ---------------- */
+  .reviews__blurb {
+    max-width: 46ch;
+    font-size: var(--text-small);
+    line-height: 1.5;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+
+  /* ---------------- marquee ---------------- */
+  /* Two identical lists flowing left forever; the second is a clone, so the
+     seam lands exactly at -50% and the loop is invisible. */
   .rvw {
     margin-top: var(--space-6);
     padding-top: var(--space-6);
     border-top: 1px solid var(--line);
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
   }
-  .rvw__wrap {
-    display: grid;
-    gap: var(--space-5);
-  }
-  /* The browser scrolls; snap points do the rest. Native momentum on touch. */
   .rvw__track {
-    /* flex, not grid: grid tracks shrink to fit and the track never overflows,
-       so there would be nothing to scroll */
     display: flex;
-    gap: var(--col-gap);
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    /* room for the card's lift on hover and for the focus ring */
-    padding: 4px;
-    margin: -4px;
+    width: max-content;
+    animation: rvw-flow var(--rvw-dur, 150s) linear infinite;
   }
-  .rvw__track::-webkit-scrollbar {
-    display: none;
+  .rvw:hover .rvw__track,
+  .rvw:focus-within .rvw__track {
+    animation-play-state: paused;
   }
-  .rvw__track:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-    border-radius: 4px;
+  @keyframes rvw-flow {
+    to {
+      transform: translateX(-50%);
+    }
   }
-  .rvw__slide {
-    flex: 0 0 var(--slide-w, 46%);
-    scroll-snap-align: start;
+  .rvw__list {
+    display: flex;
+    flex-shrink: 0;
+  }
+  .rvw__item {
+    flex: 0 0 auto;
+    width: clamp(280px, 26vw, 380px);
+    margin-right: var(--col-gap);
     display: flex;
   }
   .rvw__card {
@@ -249,13 +242,10 @@ const pct = Math.max(0, Math.min(100, (reviews.rating / 5) * 100));
     border: 1px solid var(--line);
     border-radius: 18px;
     background: color-mix(in srgb, var(--ink) 3%, var(--canvas));
-    transition:
-      border-color var(--dur-standard) var(--ease-out),
-      transform var(--dur-standard) var(--ease-out);
+    transition: border-color var(--dur-standard) var(--ease-out);
   }
-  .rvw__slide:hover .rvw__card {
+  .rvw__item:hover .rvw__card {
     border-color: var(--line-strong);
-    transform: translateY(-3px);
   }
   .rvw__stars {
     font-size: 0.85rem;
@@ -264,7 +254,7 @@ const pct = Math.max(0, Math.min(100, (reviews.rating / 5) * 100));
     color: var(--accent-ink);
   }
   .rvw__quote {
-    font-size: 1.02rem;
+    font-size: 0.95rem;
     line-height: 1.5;
     color: var(--ink);
     text-wrap: pretty;
@@ -278,7 +268,7 @@ const pct = Math.max(0, Math.min(100, (reviews.rating / 5) * 100));
   .rvw__author {
     font-family: var(--font-display);
     font-weight: 500;
-    font-size: 1.02rem;
+    font-size: 1rem;
     letter-spacing: -0.02em;
   }
   .rvw__sub,
@@ -289,64 +279,24 @@ const pct = Math.max(0, Math.min(100, (reviews.rating / 5) * 100));
   .rvw__translated {
     font-style: italic;
   }
-
-  .rvw__controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-4);
-  }
-  .rvw__dots {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .rvw__dots :global(button) {
-    width: 26px;
-    height: 2px;
-    border-radius: 2px;
-    background: var(--line-strong);
-    opacity: 0.4;
-    transition:
-      opacity var(--dur-standard),
-      background-color var(--dur-standard),
-      width var(--dur-standard) var(--ease-out);
-  }
-  .rvw__dots :global(button[aria-selected='true']) {
-    width: 44px;
-    opacity: 1;
-    background: var(--accent);
-  }
-  .rvw__arrows {
-    display: flex;
-    gap: 0.4rem;
-  }
-  .rvw__btn {
-    display: grid;
-    place-items: center;
-    width: 2.6rem;
-    height: 2.6rem;
-    border: 1px solid var(--line-strong);
-    border-radius: 50%;
-    color: var(--ink);
-    transition: background-color var(--dur-fast), color var(--dur-fast), opacity var(--dur-fast);
-  }
-  .rvw__btn:hover {
-    background: var(--ink);
-    color: var(--canvas);
-  }
-  .rvw__btn[disabled] {
-    opacity: 0.3;
-    pointer-events: none;
-  }
-  .rvw__btn svg {
-    width: 1.05rem;
-    height: 1.05rem;
+  .rvw__hint {
+    margin-top: var(--space-4);
+    padding-inline: var(--gutter);
   }
 
   @media (max-width: 1000px) {
-    .rvw__track {
-      --slide-w: 68%;
+    .rvw {
+      --rvw-dur: 120s;
+    }
+  }
+  @media (max-width: 1180px) {
+    .reviews__score {
+      grid-template-columns: auto auto minmax(0, 1fr);
+    }
+    .reviews__cta {
+      grid-column: 3;
+      grid-row: 2;
+      justify-self: start;
     }
   }
   @media (max-width: 860px) {
@@ -354,22 +304,40 @@ const pct = Math.max(0, Math.min(100, (reviews.rating / 5) * 100));
       grid-template-columns: auto minmax(0, 1fr);
       align-items: end;
     }
+    .reviews__blurb {
+      grid-column: 1 / -1;
+      max-width: none;
+    }
     .reviews__cta {
       grid-column: 1 / -1;
       justify-self: start;
     }
   }
   @media (max-width: 700px) {
-    .rvw__track {
-      --slide-w: 88%;
+    .rvw {
+      --rvw-dur: 95s;
+    }
+    .rvw__item {
+      width: min(78vw, 320px);
+    }
+    /* a pointer hint is meaningless on a touch screen */
+    .rvw__hint {
+      display: none;
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .rvw__track {
-      scroll-behavior: auto;
+    .rvw {
+      overflow-x: auto;
+      -webkit-mask-image: none;
+      mask-image: none;
     }
-    .rvw__card,
-    .rvw__dots :global(button) {
+    .rvw__track {
+      animation: none;
+    }
+    .rvw__list[aria-hidden] {
+      display: none;
+    }
+    .rvw__card {
       transition: none;
     }
   }

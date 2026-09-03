@@ -1,5 +1,5 @@
 {
-  "_comment": "REAL REVIEWS ONLY. Rating, count and the three quotes below were read on 2026-09-03 straight from the venue's Google Maps listing (Crush Playa de San Juan). `text.es` is the reviewer's own wording, verbatim, emoji included; the other languages are translations of it and the card says so. To add or swap a quote, copy it from the Google Business profile the same way: author as they sign it, the original text untouched, `date` as YYYY-MM, `reviewer` as the numbers Google shows next to their name. Never write a quote nobody left. With `quotes` empty the band still shows the rating and the carousel does not render.",
+  "_comment": "REAL REVIEWS ONLY. Rating, count and the twelve quotes below were read on 2026-09-03 straight from the venue's Google Maps listing (Crush Playa de San Juan). `text.es` is the reviewer's own wording, verbatim, emoji and typos included; the other languages are translations of it and the card says so. To add or swap a quote, copy it from the Google Business profile the same way: author as they sign it, the original text untouched, `date` as YYYY-MM, `reviewer` as the numbers Google shows next to their name. Never write a quote nobody left. With `quotes` empty the band still shows the rating and the marquee does not render.",
   "source": "Google",
   "rating": 4.9,
   "count": 561,
@@ -28,10 +28,10 @@
       "stars": 5,
       "date": "2026-05",
       "text": {
-        "es": "Muy agradable lugar. Hemos ido a desayunar y la experiencia fue muy satisfactoria. El sandwich de pullet pork con queso estaba riquísimo. El capuchino que hemos pedido estaba muy bien elaborado y no era un simple cafe con leche. El local esta muy bien decorado y el hecho que la cubierta del techo sea retráctil y quede todo prácticamente al aire libre es un detallazo. Se ve que el ambiente de noche en temporada es bueno, tienen mesa de dj y todo. Precios súper razonables. Volveremos",
-        "en": "Very pleasant place. We went for breakfast and it was a really satisfying experience. The pulled pork sandwich with cheese was delicious. The cappuccino we ordered was properly made, not just a coffee with milk. The place is beautifully decorated, and the fact that the roof is retractable so it is practically all open air is a lovely touch. You can tell the night atmosphere in season is good — they have a DJ booth and everything. Really reasonable prices. We'll be back",
-        "fr": "Endroit très agréable. Nous y sommes allés pour le petit-déjeuner et l’expérience a été très satisfaisante. Le sandwich au pulled pork avec fromage était délicieux. Le cappuccino que nous avons commandé était très bien préparé, pas un simple café au lait. Le lieu est très bien décoré, et le fait que le toit soit rétractable et que tout soit pratiquement en plein air est un vrai plus. On sent que l’ambiance du soir en saison est bonne : il y a une régie DJ et tout. Prix très raisonnables. Nous reviendrons",
-        "ru": "Очень приятное место. Пришли на завтрак — впечатления отличные. Сэндвич с рваной свининой и сыром был очень вкусным. Капучино приготовили как надо, а не просто кофе с молоком. Заведение красиво оформлено, а раздвижная крыша, благодаря которой всё практически под открытым небом, — большой плюс. Видно, что вечером в сезон атмосфера хорошая: есть диджейский пульт и всё остальное. Цены очень разумные. Вернёмся"
+        "es": "Muy agradable lugar. Hemos ido a desayunar y la experiencia fue muy satisfactoria. El sandwich de pullet pork con queso estaba riquísimo. El capuchino que hemos pedido estaba muy bien elaborado y no era un simple cafe con leche. El local esta muy bien decorado y el hecho que la cubierta del techo sea retráctil y quede todo prácticamente al aire libre es un detallazo. Precios súper razonables. Volveremos",
+        "en": "Very pleasant place. We went for breakfast and it was a really satisfying experience. The pulled pork sandwich with cheese was delicious. The cappuccino we ordered was properly made, not just a coffee with milk. The place is beautifully decorated, and the fact that the roof is retractable so it is practically all open air is a lovely touch. Really reasonable prices. We'll be back",
+        "fr": "Endroit très agréable. Nous y sommes allés pour le petit-déjeuner et l’expérience a été très satisfaisante. Le sandwich au pulled pork avec fromage était délicieux. Le cappuccino que nous avons commandé était très bien préparé, pas un simple café au lait. Le lieu est très bien décoré, et le fait que le toit soit rétractable et que tout soit pratiquement en plein air est un vrai plus. Prix très raisonnables. Nous reviendrons",
+        "ru": "Очень приятное место. Пришли на завтрак — впечатления отличные. Сэндвич с рваной свининой и сыром был очень вкусным. Капучино приготовили как надо, а не просто кофе с молоком. Заведение красиво оформлено, а раздвижная крыша, благодаря которой всё практически под открытым небом, — большой плюс. Цены очень разумные. Вернёмся"
       },
       "reviewer": {
         "localGuide": true,
@@ -53,6 +53,150 @@
         "localGuide": true,
         "reviews": 17,
         "photos": 69
+      }
+    },
+    {
+      "author": "Pablo Nezo",
+      "stars": 5,
+      "date": "2026-05",
+      "text": {
+        "es": "Increíble local con ambientación musical espectacular. Los cócteles y la música son una maravilla, pero lo que más nos ha sorprendido es la comida. Los sándwiches con pan cubano es una de las mejores cosas que he probado, y sus smash burguer todavía mejor. Un 10.",
+        "en": "Incredible place with a spectacular musical atmosphere. The cocktails and the music are wonderful, but what surprised us most was the food. The sandwiches on Cuban bread are one of the best things I have ever tasted, and their smash burgers even better. A perfect ten.",
+        "fr": "Endroit incroyable, avec une ambiance musicale spectaculaire. Les cocktails et la musique sont une merveille, mais ce qui nous a le plus surpris, c’est la cuisine. Les sandwichs au pain cubain sont l’une des meilleures choses que j’aie goûtées, et leurs smash burgers encore mieux. Un dix sur dix.",
+        "ru": "Невероятное место со потрясающей музыкальной атмосферой. Коктейли и музыка великолепны, но больше всего удивила еда. Сэндвичи на кубинском хлебе — одно из лучшего, что я пробовал, а их смэш-бургеры ещё лучше. Десять из десяти."
+      },
+      "reviewer": {
+        "localGuide": false,
+        "reviews": 1,
+        "photos": 3
+      }
+    },
+    {
+      "author": "Rafa Pc",
+      "stars": 5,
+      "date": "2026-05",
+      "text": {
+        "es": "Lo vimos de casualidad de camino a la playa de San Juan y vaya acierto. Comida súper rica, café espectacular y trato por parte del personal a la altura del sitio. Precios razonables para lo que comes. Volvería sin duda y por eso lo recomiendo.",
+        "en": "We spotted it by chance on the way to Playa de San Juan and what a find. Really tasty food, spectacular coffee and staff who live up to the place. Reasonable prices for what you eat. I'd go back without a doubt, which is why I recommend it.",
+        "fr": "On l’a repéré par hasard en allant à la Playa de San Juan et quelle trouvaille. Cuisine très bonne, café spectaculaire et un personnel à la hauteur du lieu. Prix raisonnables pour ce qu’on mange. J’y retournerais sans hésiter, et c’est pour ça que je le recommande.",
+        "ru": "Заметили его случайно по дороге на Playa de San Juan — и какая удача. Очень вкусная еда, потрясающий кофе и персонал, достойный этого места. Разумные цены за то, что получаешь. Вернусь без сомнений, поэтому и рекомендую."
+      },
+      "reviewer": {
+        "localGuide": true,
+        "reviews": 47,
+        "photos": 23
+      }
+    },
+    {
+      "author": "Mirella Jara",
+      "stars": 5,
+      "date": "2026-05",
+      "text": {
+        "es": "Todo de 10! El café buenísimo! Las tostadas frescas y deliciosas! Se nota que les importa la experiencia pero sobre todo la calidad. El dueño super simpático y atento! Y el super plus del ambiente y la musica... nos ha encantado !!!",
+        "en": "Everything a ten! The coffee is superb! The toast fresh and delicious! You can tell they care about the experience, but above all about the quality. The owner is so friendly and attentive! And the atmosphere and the music are the big bonus… we loved it!!!",
+        "fr": "Tout est parfait ! Le café excellent ! Les tartines fraîches et délicieuses ! On sent qu’ils tiennent à l’expérience, mais surtout à la qualité. Le patron est très sympathique et attentionné ! Et le gros plus, c’est l’ambiance et la musique… on a adoré !!!",
+        "ru": "Всё на десятку! Кофе великолепный! Тосты свежие и вкусные! Видно, что им важен и опыт гостя, и прежде всего качество. Хозяин очень приветливый и внимательный! А атмосфера и музыка — отдельный большой плюс… нам очень понравилось!!!"
+      },
+      "reviewer": {
+        "localGuide": false,
+        "reviews": 4,
+        "photos": 1
+      }
+    },
+    {
+      "author": "Cecilia Pogonza",
+      "stars": 5,
+      "date": "2026-04",
+      "text": {
+        "es": "Este lugar es espectacular! La atención es un 10, había una DJ en vivo que sonaba genial y la comida que pedimos estaba buenísima. Es la primera vez que venimos y sin duda repetiremos 🤍. Además, es pet friendly!",
+        "en": "This place is spectacular! The service is a ten, there was a live DJ who sounded great and the food we ordered was delicious. It's our first time here and we will definitely be back 🤍 And it's pet friendly!",
+        "fr": "Cet endroit est spectaculaire ! Le service est parfait, il y avait une DJ en direct qui sonnait très bien et ce qu’on a commandé était délicieux. C’est notre première fois et on reviendra sans hésiter 🤍 En plus, les animaux sont acceptés !",
+        "ru": "Это место потрясающее! Обслуживание на десятку, играла живая диджейка — звучало здорово, а еда, которую мы заказали, была очень вкусной. Мы здесь впервые и обязательно вернёмся 🤍 И сюда можно с животными!"
+      },
+      "reviewer": {
+        "localGuide": true,
+        "reviews": 24,
+        "photos": 20
+      }
+    },
+    {
+      "author": "Ruben JuVi",
+      "stars": 5,
+      "date": "2026-08",
+      "text": {
+        "es": "Increible Bar para brunch, platos abundantes y con buena calidad-precio para la ubicación. Muy recomendable. Dj pinchando le da mucha onda al lugar.",
+        "en": "Incredible bar for brunch, generous plates and good value for the location. Highly recommended. The DJ playing gives the place a great vibe.",
+        "fr": "Bar incroyable pour le brunch, assiettes généreuses et bon rapport qualité-prix pour l’emplacement. Très recommandé. Le DJ qui mixe donne beaucoup d’allure au lieu.",
+        "ru": "Невероятное место для бранча, порции щедрые и хорошее соотношение цены и качества для такого расположения. Очень рекомендую. Играющий диджей добавляет месту настроения."
+      },
+      "reviewer": {
+        "localGuide": true,
+        "reviews": 117,
+        "photos": 40
+      }
+    },
+    {
+      "author": "Noelia Broncini",
+      "stars": 5,
+      "date": "2026-08",
+      "text": {
+        "es": "Fuimos con unas amigas a tomar un brunch y la pasamos genial. Justo ese día había un DJ y le daba un ambiente espectacular al lugar. Se nota que es un sitio con muy buena onda, alegre y perfecto para desconectar y pasar un buen rato. ¡Seguro que volvemos!",
+        "en": "We went with friends for brunch and had a great time. There happened to be a DJ that day and it gave the place a spectacular atmosphere. You can tell it's somewhere with a really good vibe, cheerful and perfect for switching off and enjoying yourself. We'll definitely be back!",
+        "fr": "On y est allées entre copines pour un brunch et on a passé un super moment. Il y avait justement un DJ ce jour-là et ça donnait une ambiance spectaculaire au lieu. On sent que c’est un endroit avec une très bonne énergie, joyeux et parfait pour déconnecter et passer un bon moment. On reviendra, c’est sûr !",
+        "ru": "Пошли с подругами на бранч и провели время замечательно. Как раз в тот день играл диджей, и это создавало потрясающую атмосферу. Видно, что здесь очень хорошая энергетика, весело и идеально, чтобы отключиться и приятно провести время. Обязательно вернёмся!"
+      },
+      "reviewer": {
+        "localGuide": false,
+        "reviews": 6,
+        "photos": 0
+      }
+    },
+    {
+      "author": "Fiorella Converso",
+      "stars": 5,
+      "date": "2026-08",
+      "text": {
+        "es": "Experiencia espectacular!! Hemos venido ya 3 veces. Comida deliciosa, muy buen ambiente, y la atención genial!! Probamos smoothies, granizados, tostadas francesas, acaí. Todo muy rico!! ¡Lo mejor de Playa de San Juan para nosotros!",
+        "en": "Spectacular experience!! We've been three times already. Delicious food, a great atmosphere, and the service is brilliant!! We tried smoothies, frappés, French toast, açaí. All really tasty!! The best thing in Playa de San Juan for us!",
+        "fr": "Expérience spectaculaire !! On y est déjà venus 3 fois. Cuisine délicieuse, très bonne ambiance et un service génial !! On a essayé les smoothies, les granités, le pain perdu, l’açaí. Tout est très bon !! Le meilleur de la Playa de San Juan pour nous !",
+        "ru": "Потрясающие впечатления!! Мы были уже три раза. Вкусная еда, отличная атмосфера и прекрасное обслуживание!! Пробовали смузи, фраппе, французские тосты, асаи. Всё очень вкусно!! Для нас — лучшее на Playa de San Juan!"
+      },
+      "reviewer": {
+        "localGuide": false,
+        "reviews": 10,
+        "photos": 0
+      }
+    },
+    {
+      "author": "Laura Cañadilla Infante",
+      "stars": 5,
+      "date": "2026-07",
+      "text": {
+        "es": "¡Espectacular todo! y un trato muy amable de los camareros, es lo que mas hace falta hoy en dia en la hostelería. Lo recomiendo 100%. Y algo muy importante, tienen la opción de servir todo sin gluten 👏",
+        "en": "Everything spectacular! And really kind service from the waiters, which is what hospitality needs most these days. I recommend it 100%. And something very important: they can serve everything gluten free 👏",
+        "fr": "Tout est spectaculaire ! Et un accueil très aimable des serveurs, c’est ce qui manque le plus dans la restauration aujourd’hui. Je le recommande à 100 %. Et quelque chose de très important : ils peuvent tout servir sans gluten 👏",
+        "ru": "Всё потрясающе! И очень доброжелательное отношение официантов — именно этого сегодня больше всего не хватает в общепите. Рекомендую на 100%. И очень важное: у них можно всё подать без глютена 👏"
+      },
+      "reviewer": {
+        "localGuide": false,
+        "reviews": 10,
+        "photos": 1
+      }
+    },
+    {
+      "author": "Dacha Fanar",
+      "stars": 5,
+      "date": "2026-01",
+      "text": {
+        "es": "Me ha sorprendido espectacularmente este sitio. Los bocatas cubanos son ricos, frescos, deliciosos super bien elaborados. Todo un acierto. La cerveza fría fría. Una pasada de sitio al lado de la playa",
+        "en": "This place surprised me spectacularly. The Cuban sandwiches are tasty, fresh, delicious and really well made. A complete success. The beer properly cold. An amazing spot right by the beach",
+        "fr": "Cet endroit m’a spectaculairement surpris. Les sandwichs cubains sont bons, frais, délicieux et vraiment bien préparés. Une vraie réussite. La bière bien fraîche. Un lieu génial juste à côté de la plage",
+        "ru": "Это место поразило меня по-настоящему. Кубинские сэндвичи вкусные, свежие, отлично приготовленные. Прямое попадание. Пиво холодное-холодное. Потрясающее место у самого пляжа"
+      },
+      "reviewer": {
+        "localGuide": true,
+        "reviews": 141,
+        "photos": 86
       }
     }
   ]
