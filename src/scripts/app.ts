@@ -750,6 +750,7 @@ function initDishDialog() {
   const q = <T extends HTMLElement>(sel: string) => dialog.querySelector<T>(sel);
   const media = q('[data-dish-media]');
   const img = q<HTMLImageElement>('[data-dish-img]');
+  const thumb = q<HTMLImageElement>('[data-dish-thumb]');
   const kicker = q('[data-dish-kicker]');
   const name = q('[data-dish-name]');
   const price = q('[data-dish-price]');
@@ -770,13 +771,20 @@ function initDishDialog() {
 
     if (media && img) {
       const src = d.img ?? '';
+      const small = d.thumb ?? '';
       media.classList.toggle('is-empty', !src);
+      media.classList.toggle('has-thumb', !src && !!small);
       if (src) {
         img.src = src;
         img.alt = d.name ?? '';
       } else {
         img.removeAttribute('src');
         img.alt = '';
+      }
+      if (thumb) {
+        thumb.hidden = !!src || !small;
+        if (!src && small) thumb.src = small;
+        else thumb.removeAttribute('src');
       }
     }
 

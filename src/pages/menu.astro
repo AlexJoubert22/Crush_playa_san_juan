@@ -13,6 +13,12 @@ const photos = import.meta.glob<ImageMetadata>('/src/assets/menu/*.{png,jpg,jpeg
 });
 const photoFor = (name?: string | null) => (name ? photos[`/src/assets/menu/${name}`] : undefined);
 
+const thumbs = import.meta.glob<ImageMetadata>('/src/assets/menu/thumbs/*.{png,jpg,jpeg,webp}', {
+  eager: true,
+  import: 'default',
+});
+const thumbFor = (name?: string | null) => (name ? thumbs[`/src/assets/menu/thumbs/${name}`] : undefined);
+
 type Item = (typeof menu.items)[number];
 const tabs = [
   { id: 'drinks', label: 'Drinks' },
@@ -154,13 +160,21 @@ const tagsFor = (i: Item, catLabel: string): string[] => {
 const ratioOf = (img: ImageMetadata, min = 0.7, max = 1.9) =>
   Math.min(max, Math.max(min, img.width / img.height)).toFixed(3);
 
-/** One optimised still per photographed item, for the dialog. */
+/**
+ * Stills for the dialog. Two grades on purpose: the venue's own 160px menu
+ * thumbnails would fall apart blown up to fill a panel, so those are served at
+ * their native size as a framed inset instead of being stretched.
+ */
 const dialogImages = new Map<string, string>();
+const dialogThumbs = new Map<string, string>();
 for (const i of menu.items) {
-  if (!i.photo) continue;
-  const src = photoFor(i.photo);
-  if (!src) continue;
-  dialogImages.set(i.id, (await getImage({ src, width: 900, format: 'webp' })).src);
+  if (i.photo) {
+    const src = photoFor(i.photo);
+    if (src) dialogImages.set(i.id, (await getImage({ src, width: 900, format: 'webp' })).src);
+  } else if ((i as { thumb?: string }).thumb) {
+    const src = thumbFor((i as { thumb?: string }).thumb);
+    if (src) dialogThumbs.set(i.id, (await getImage({ src, width: 320, format: 'webp' })).src);
+  }
 }
 
 const eur = (n: number | null) => (n == null ? '' : `€${Number.isInteger(n) ? n : n.toFixed(2)}`);
@@ -343,6 +357,7 @@ const total = menu.items.length;
                                   data-kicker={[c.label, i.sub?.replace(/-/g, ' ')].filter(Boolean).join(' · ')}
                                   data-tags={tagsFor(i, c.label).join('|')}
                                   data-img={dialogImages.get(i.id) ?? ''}
+                                  data-thumb={dialogThumbs.get(i.id) ?? ''}
                                   data-note={note?.note ?? ''}
                                   data-quote={note?.quote ?? ''}
                                   data-by={note?.by ?? ''}

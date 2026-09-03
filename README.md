@@ -40,7 +40,7 @@ public/         favicons, og.jpg
 | Horarios, teléfono, email, dirección, redes | `src/data/site.ts` |
 | Carta y precios | `src/data/menu.json` (`price` numérico; `photo` = archivo en `src/assets/menu/`) |
 | DJs residentes | `src/data/djs.json` + foto en `src/assets/djs/` |
-| Fotos de la carta | `src/assets/menu/`; el nombre del archivo va en el campo `photo` de `menu.json` |
+| Fotos de la carta | `src/assets/menu/` (grandes, campo `photo`) y `src/assets/menu/thumbs/` (las 160 px de la web oficial, campo `thumb`). En la ventana del plato las grandes llenan el panel y las pequeñas se muestran enmarcadas a tamaño real, nunca estiradas. Para mejorar una: deja el archivo grande en `src/assets/menu/` y pon su nombre en `photo` |
 | Textos y citas de las fichas destacadas de la carta | `SOLO_NOTES` en `src/pages/menu.astro` (se usan en la ficha grande y en la ventana del plato) |
 | Etiquetas de la ventana del plato (Specialty coffee, 100% agave, Vegetarian…) | `tagsFor()` en `src/pages/menu.astro`; se deducen del nombre y la descripción, no se inventan |
 | Redes sociales del pie | `src/data/site.ts` (`instagram`, `facebook`, `tiktok`, `tripadvisor`) |
