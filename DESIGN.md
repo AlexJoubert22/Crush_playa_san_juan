@@ -74,7 +74,8 @@ Personalidad: **elegante de día, rítmica de noche.**
 8. **Tríptico** (home, tras Day essentials): tres columnas iguales, *Three ways to start*, con foto 4:5, categoría, nombre, precio y descripción.
 6. **124 BPM** (OPUS): un medidor de cuatro barras que late a 484 ms, la única animación en bucle de la noche.
 7. **Tira de fotos** (/menu): el mostrador pasando, una fila de platos a sangre completa que se detiene al pasar el ratón.
-8. **Paleta de sabores** (capítulo Day): los siete iced lattes y los seis matchas como puntos de color con nombre; información real de carta convertida en gráfica.
+8. **La ficha del plato** (/menu): cualquier línea de la carta se abre en un `<dialog>` nativo con la foto a sangre, la denominación, el precio, la descripción real y unas etiquetas deducidas del propio texto. Los platos sin foto reciben una placa tipográfica en vez de un hueco.
+9. **Paleta de sabores** (capítulo Day): los siete iced lattes y los seis matchas como puntos de color con nombre; información real de carta convertida en gráfica.
 
 ## 9. Do / Don't
 

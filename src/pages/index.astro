@@ -30,7 +30,7 @@ const rail = [
   { file: 'sweet-greek.jpeg', name: 'Sweet Greek', price: '€9' },
   { file: 'oh-my-lemon.jpeg', name: 'French Kiss', price: '€10' },
   { file: 'santiago.png', name: 'Santiago toast', price: '€7.50' },
-  { file: 'tio-sam-2.jpg', name: 'Tio Sam', price: '€7.50' },
+  { file: 'tio-sam.png', name: 'Tio Sam', price: '€7.50' },
   { file: 'cosmo.png', name: 'Cosmo', price: '€7.50' },
 ];
 
@@ -1109,8 +1109,10 @@ const eur = (n: number) => `€${Number.isInteger(n) ? n : n.toFixed(2)}`;
     gap: 0.5rem;
     align-content: start;
   }
+  /* 4:3 — wide enough that the landscape plates keep their edges, tall enough
+     that the vertical shot reads as a dish and not a sliver. */
   .tri__media {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 4 / 3;
     margin-bottom: var(--space-3);
   }
   .tri__media img {

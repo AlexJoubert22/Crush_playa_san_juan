@@ -736,6 +736,103 @@ function initMenuPage() {
   }
 }
 
+/* --------------------------------------------------------- dish dialog */
+/**
+ * Every menu row opens the same dialog, filled from the row's own data. Native
+ * <dialog> handles focus, Escape and inertness; we add the backdrop click, the
+ * scroll lock and the content.
+ */
+function initDishDialog() {
+  const dialog = document.querySelector<HTMLDialogElement>('[data-dish-dialog]');
+  const rows = document.querySelectorAll<HTMLButtonElement>('[data-dish]');
+  if (!dialog || !rows.length) return;
+
+  const q = <T extends HTMLElement>(sel: string) => dialog.querySelector<T>(sel);
+  const media = q('[data-dish-media]');
+  const img = q<HTMLImageElement>('[data-dish-img]');
+  const kicker = q('[data-dish-kicker]');
+  const name = q('[data-dish-name]');
+  const price = q('[data-dish-price]');
+  const desc = q('[data-dish-desc]');
+  const tags = q('[data-dish-tags]');
+  const note = q('[data-dish-note]');
+  const noteText = q('[data-dish-note-text]');
+  const quote = q('[data-dish-quote]');
+  const quoteText = q('[data-dish-quote-text]');
+  const quoteBy = q('[data-dish-quote-by]');
+
+  const open = (row: HTMLElement) => {
+    const d = row.dataset;
+    if (name) name.textContent = d.name ?? '';
+    if (price) price.textContent = d.price ?? '';
+    if (kicker) kicker.textContent = d.kicker ?? '';
+    if (desc) desc.textContent = d.desc ?? '';
+
+    if (media && img) {
+      const src = d.img ?? '';
+      media.classList.toggle('is-empty', !src);
+      if (src) {
+        img.src = src;
+        img.alt = d.name ?? '';
+      } else {
+        img.removeAttribute('src');
+        img.alt = '';
+      }
+    }
+
+    if (tags) {
+      tags.replaceChildren(
+        ...(d.tags ?? '')
+          .split('|')
+          .filter(Boolean)
+          .map((t) => {
+            const li = document.createElement('li');
+            li.textContent = t;
+            return li;
+          }),
+      );
+    }
+
+    const hasNote = !!d.note;
+    if (note) note.hidden = !hasNote;
+    if (noteText) noteText.textContent = d.note ?? '';
+    const hasQuote = !!d.quote;
+    if (quote) quote.hidden = !hasQuote;
+    if (quoteText) quoteText.textContent = d.quote ?? '';
+    if (quoteBy) quoteBy.textContent = d.by ?? '';
+
+    dialog.showModal();
+    document.body.style.overflow = 'hidden';
+    lenis?.stop();
+  };
+
+  const close = () => dialog.close();
+
+  const onRow = (e: Event) => open(e.currentTarget as HTMLElement);
+  rows.forEach((r) => r.addEventListener('click', onRow));
+
+  // Backdrop click: the dialog element itself is the backdrop area
+  const onClick = (e: MouseEvent) => {
+    if (e.target === dialog) close();
+  };
+  const onClose = () => {
+    document.body.style.overflow = '';
+    lenis?.start();
+  };
+  dialog.addEventListener('click', onClick);
+  dialog.addEventListener('close', onClose);
+  dialog.querySelectorAll('[data-dish-close]').forEach((b) => b.addEventListener('click', close));
+
+  onCleanup(() => {
+    rows.forEach((r) => r.removeEventListener('click', onRow));
+    dialog.removeEventListener('click', onClick);
+    dialog.removeEventListener('close', onClose);
+    if (dialog.open) dialog.close();
+    document.body.style.overflow = '';
+    lenis?.start();
+  });
+}
+
 /* ------------------------------------------------------------ reels */
 /** Self-hosted, muted reels: play only while on screen, never with reduced motion. */
 function initReels() {
@@ -808,6 +905,7 @@ function init() {
   initDayline();
   initHome();
   initMenuPage();
+  initDishDialog();
   initReels();
   initForm();
   splitLines().then(() => {

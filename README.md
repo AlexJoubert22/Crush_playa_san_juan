@@ -41,7 +41,8 @@ public/         favicons, og.jpg
 | Carta y precios | `src/data/menu.json` (`price` numérico; `photo` = archivo en `src/assets/menu/`) |
 | DJs residentes | `src/data/djs.json` + foto en `src/assets/djs/` |
 | Fotos de la carta | `src/assets/menu/`; el nombre del archivo va en el campo `photo` de `menu.json` |
-| Textos y citas de las fichas destacadas de la carta | `SOLO_NOTES` en `src/pages/menu.astro` |
+| Textos y citas de las fichas destacadas de la carta | `SOLO_NOTES` en `src/pages/menu.astro` (se usan en la ficha grande y en la ventana del plato) |
+| Etiquetas de la ventana del plato (Specialty coffee, 100% agave, Vegetarian…) | `tagsFor()` en `src/pages/menu.astro`; se deducen del nombre y la descripción, no se inventan |
 | Redes sociales del pie | `src/data/site.ts` (`instagram`, `facebook`, `tiktok`, `tripadvisor`) |
 | Reglas de eventos (días, horas, fechas saltadas, eventos puntuales) | `src/data/events.source.json` (mismo formato que el API actual) |
 | **Agenda desde Google Calendar** | variable `PUBLIC_CRUSH_ICS` — ver abajo |
