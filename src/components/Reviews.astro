@@ -2,9 +2,10 @@
 /**
  * Social proof, and only what can be verified.
  *
- * The rating and count come from `reviews.json`, checked against the venue's
- * public Google listing. Quotes render only if that file actually holds some —
- * an empty list shows the rating alone rather than inventing anything.
+ * Rating, count and quotes come from `reviews.json`, read from the venue's own
+ * Google listing. The carousel is a scroll-snap track: the browser does the
+ * scrolling, so the gesture is native and smooth on touch, and the script only
+ * wires the arrows, the dots and the gentle auto-advance.
  */
 import reviews from '@/data/reviews.json';
 import type { Lang } from '@/i18n';
@@ -17,7 +18,8 @@ interface Props {
 const { lang } = Astro.props;
 const c = t(lang);
 
-const nf = new Intl.NumberFormat(lang === 'en' ? 'en-GB' : lang);
+const locale = { en: 'en-GB', es: 'es-ES', fr: 'fr-FR', ru: 'ru-RU' }[lang];
+const nf = new Intl.NumberFormat(locale);
 const rating = nf.format(reviews.rating);
 const count = nf.format(reviews.count);
 
@@ -34,11 +36,42 @@ const plural = (n: number, forms: string) => {
   return n === 1 ? f[0] : f[f.length - 1];
 };
 
-const quotes = (reviews.quotes ?? []) as { author: string; text: string; date?: string }[];
+const monthFmt = new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' });
+const whenOf = (d?: string) => {
+  if (!d) return '';
+  const [y, m] = d.split('-').map(Number);
+  return monthFmt.format(new Date(Date.UTC(y, (m || 1) - 1, 1)));
+};
+
+type Quote = {
+  author: string;
+  stars?: number;
+  date?: string;
+  reviewer?: { localGuide?: boolean; reviews?: number; photos?: number };
+  text: Record<string, string>;
+};
+
+/** "Local Guide · 193 reviews · 348 photos", in the page's language. */
+const reviewerLine = (r?: Quote['reviewer']) => {
+  if (!r) return '';
+  const bits: string[] = [];
+  if (r.localGuide) bits.push(c.reviews.localGuide);
+  if (r.reviews) bits.push(`${nf.format(r.reviews)} ${plural(r.reviews, c.reviews.reviews)}`);
+  if (r.photos) bits.push(`${nf.format(r.photos)} ${plural(r.photos, c.reviews.photos)}`);
+  return bits.join(' · ');
+};
+const original = reviews.originalLang ?? 'es';
+const quotes = ((reviews.quotes ?? []) as Quote[]).map((q) => ({
+  ...q,
+  body: q.text[lang] || q.text[original],
+  translated: lang !== original && Boolean(q.text[lang]),
+  when: whenOf(q.date),
+  meta: reviewerLine(q.reviewer),
+}));
 const pct = Math.max(0, Math.min(100, (reviews.rating / 5) * 100));
 ---
 
-<section class="reviews" aria-label={c.reviews.head}>
+<section class="reviews" aria-label={c.reviews.head} data-chapter-theme="day" data-hour="30">
   <div class="wrap">
     <div class="chapter-head" data-reveal="fade">
       <span class="num">{rating}</span>
@@ -62,23 +95,57 @@ const pct = Math.max(0, Math.min(100, (reviews.rating / 5) * 100));
         {c.reviews.cta} <Arrow dir="up-right" />
       </a>
     </div>
-
-    {
-      quotes.length > 0 && (
-        <ul class="reviews__list" data-stagger>
-          {quotes.slice(0, 3).map((q) => (
-            <li class="reviews__item">
-              <blockquote class="reviews__quote">“{q.text}”</blockquote>
-              <p class="reviews__by">
-                <span class="reviews__author">{q.author}</span>
-                {q.date && <span class="reviews__date num">{q.date}</span>}
-              </p>
-            </li>
-          ))}
-        </ul>
-      )
-    }
   </div>
+
+  {
+    quotes.length > 0 && (
+      <div class="rvw" data-reviews>
+        <div class="wrap rvw__wrap">
+          <ul class="rvw__track" data-rvw-track tabindex="0" aria-label={c.reviews.head}>
+            {quotes.map((q, i) => (
+              <li class="rvw__slide" data-rvw-slide aria-label={`${i + 1} / ${quotes.length}`}>
+                <figure class="rvw__card">
+                  {q.stars && (
+                    <p class="rvw__stars" role="img" aria-label={`${q.stars} / 5`}>
+                      {'★'.repeat(q.stars)}
+                    </p>
+                  )}
+                  <blockquote class="rvw__quote">{q.body}</blockquote>
+                  <figcaption class="rvw__by">
+                    <span class="rvw__author">{q.author}</span>
+                    <span class="rvw__sub">
+                      {q.when}
+                      {q.meta && ' · '}
+                      {q.meta}
+                    </span>
+                    {q.translated && <span class="rvw__translated">{c.reviews.translated}</span>}
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+
+          {quotes.length > 1 && (
+            <div class="rvw__controls">
+              <div class="rvw__dots" data-rvw-dots role="tablist" aria-label={c.reviews.head} />
+              <div class="rvw__arrows">
+                <button type="button" class="rvw__btn" data-rvw-prev aria-label={c.reviews.prev}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M15 6l-6 6 6 6" />
+                  </svg>
+                </button>
+                <button type="button" class="rvw__btn" data-rvw-next aria-label={c.reviews.next}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
 </section>
 
 <style>
@@ -135,42 +202,153 @@ const pct = Math.max(0, Math.min(100, (reviews.rating / 5) * 100));
     justify-self: end;
   }
 
-  .reviews__list {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--col-gap);
+  /* ---------------- carousel ---------------- */
+  .rvw {
     margin-top: var(--space-6);
     padding-top: var(--space-6);
     border-top: 1px solid var(--line);
   }
-  .reviews__item {
+  .rvw__wrap {
     display: grid;
-    gap: var(--space-4);
-    align-content: start;
+    gap: var(--space-5);
   }
-  .reviews__quote {
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: clamp(1rem, 1.3vw, 1.15rem);
-    letter-spacing: -0.015em;
-    line-height: 1.35;
+  /* The browser scrolls; snap points do the rest. Native momentum on touch. */
+  .rvw__track {
+    /* flex, not grid: grid tracks shrink to fit and the track never overflows,
+       so there would be nothing to scroll */
+    display: flex;
+    gap: var(--col-gap);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    /* room for the card's lift on hover and for the focus ring */
+    padding: 4px;
+    margin: -4px;
+  }
+  .rvw__track::-webkit-scrollbar {
+    display: none;
+  }
+  .rvw__track:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  .rvw__slide {
+    flex: 0 0 var(--slide-w, 46%);
+    scroll-snap-align: start;
+    display: flex;
+  }
+  .rvw__card {
+    display: grid;
+    align-content: start;
+    gap: var(--space-4);
+    width: 100%;
+    padding: var(--space-5);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: color-mix(in srgb, var(--ink) 3%, var(--canvas));
+    transition:
+      border-color var(--dur-standard) var(--ease-out),
+      transform var(--dur-standard) var(--ease-out);
+  }
+  .rvw__slide:hover .rvw__card {
+    border-color: var(--line-strong);
+    transform: translateY(-3px);
+  }
+  .rvw__stars {
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    line-height: 1;
+    color: var(--accent-ink);
+  }
+  .rvw__quote {
+    font-size: 1.02rem;
+    line-height: 1.5;
+    color: var(--ink);
     text-wrap: pretty;
   }
-  .reviews__by {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.5rem 1rem;
+  .rvw__by {
+    display: grid;
+    gap: 0.25rem;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+  }
+  .rvw__author {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.02rem;
+    letter-spacing: -0.02em;
+  }
+  .rvw__sub,
+  .rvw__translated {
     font-size: var(--text-small);
-  }
-  .reviews__author {
-    font-weight: 700;
-  }
-  .reviews__date {
     color: var(--ink-3);
   }
+  .rvw__translated {
+    font-style: italic;
+  }
 
+  .rvw__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .rvw__dots {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .rvw__dots :global(button) {
+    width: 26px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--line-strong);
+    opacity: 0.4;
+    transition:
+      opacity var(--dur-standard),
+      background-color var(--dur-standard),
+      width var(--dur-standard) var(--ease-out);
+  }
+  .rvw__dots :global(button[aria-selected='true']) {
+    width: 44px;
+    opacity: 1;
+    background: var(--accent);
+  }
+  .rvw__arrows {
+    display: flex;
+    gap: 0.4rem;
+  }
+  .rvw__btn {
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    color: var(--ink);
+    transition: background-color var(--dur-fast), color var(--dur-fast), opacity var(--dur-fast);
+  }
+  .rvw__btn:hover {
+    background: var(--ink);
+    color: var(--canvas);
+  }
+  .rvw__btn[disabled] {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .rvw__btn svg {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+
+  @media (max-width: 1000px) {
+    .rvw__track {
+      --slide-w: 68%;
+    }
+  }
   @media (max-width: 860px) {
     .reviews__score {
       grid-template-columns: auto minmax(0, 1fr);
@@ -180,9 +358,19 @@ const pct = Math.max(0, Math.min(100, (reviews.rating / 5) * 100));
       grid-column: 1 / -1;
       justify-self: start;
     }
-    .reviews__list {
-      grid-template-columns: 1fr;
-      gap: var(--space-5);
+  }
+  @media (max-width: 700px) {
+    .rvw__track {
+      --slide-w: 88%;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rvw__track {
+      scroll-behavior: auto;
+    }
+    .rvw__card,
+    .rvw__dots :global(button) {
+      transition: none;
     }
   }
 </style>

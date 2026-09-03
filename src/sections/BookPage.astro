@@ -2,6 +2,7 @@
 import Base from '@/layouts/Base.astro';
 import Strap from '@/components/Strap.astro';
 import Arrow from '@/components/Arrow.astro';
+import SocialLinks from '@/components/SocialLinks.astro';
 import { site } from '@/data/site';
 import { localise, type Lang } from '@/i18n';
 import { t } from '@/i18n/copy';
@@ -219,6 +220,12 @@ const waHref = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(c.book.
           <p class="small muted">{c.book.transport}</p>
           <a href={site.maps} target="_blank" rel="noopener" class="link-line small">{c.book.directions}</a>
         </div>
+
+        <!-- Straight under the map: where to find the venue the rest of the time -->
+        <div class="where__social">
+          <p class="label muted">{c.book.socialHead}</p>
+          <SocialLinks lang={lang} columns={2} />
+        </div>
       </div>
     </div>
   </section>
@@ -323,6 +330,12 @@ const waHref = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(c.book.
     display: grid;
     gap: 0.6rem;
     justify-items: start;
+  }
+  .where__social {
+    display: grid;
+    gap: var(--space-4);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--line);
   }
   @media (max-width: 900px) {
     .where__info,

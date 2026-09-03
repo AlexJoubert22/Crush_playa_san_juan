@@ -1,9 +1,59 @@
 {
-  "_comment": "REAL REVIEWS ONLY. The rating and count below were verified against public listings citing Google on 2026-09-03. Re-check them every few months and update `verifiedAt`. To add quotes, copy them verbatim from the Google Business profile: `author` as the reviewer signs it, `text` word for word (trim with … if long), `date` as YYYY-MM or YYYY-MM-DD, `lang` the language it was written in. Never write a quote that nobody left. With `quotes` empty the band still shows the rating; the quote row simply does not render.",
+  "_comment": "REAL REVIEWS ONLY. Rating, count and the three quotes below were read on 2026-09-03 straight from the venue's Google Maps listing (Crush Playa de San Juan). `text.es` is the reviewer's own wording, verbatim, emoji included; the other languages are translations of it and the card says so. To add or swap a quote, copy it from the Google Business profile the same way: author as they sign it, the original text untouched, `date` as YYYY-MM, `reviewer` as the numbers Google shows next to their name. Never write a quote nobody left. With `quotes` empty the band still shows the rating and the carousel does not render.",
   "source": "Google",
   "rating": 4.9,
-  "count": 213,
+  "count": 561,
   "verifiedAt": "2026-09-03",
   "url": "https://maps.app.goo.gl/bnUgte6h1vCWqHkF7",
-  "quotes": []
+  "originalLang": "es",
+  "quotes": [
+    {
+      "author": "Osiris Morales Ruiz",
+      "stars": 5,
+      "date": "2026-04",
+      "text": {
+        "es": "No hay otra forma de describir el lugar, IMPRESIONANTE! Comida deliciosa, trato al comensal excelente y ambiente magnífico. Para nuestro último día de vacaciones, cerramos con broche de oro 💕 Sin duda recomendado. Dj's excelentes, en todo momento. El servicio de Florencia 10/10. Por nuestro cumpleaños fueron muy atentos con nosotros, nos sentimos especiales ✨",
+        "en": "There is no other way to describe this place: STUNNING! Delicious food, excellent service and a magnificent atmosphere. For the last day of our holiday, we finished on a high 💕 Definitely recommended. Excellent DJs, all the way through. Florencia's service 10/10. It was our birthday and they looked after us so well that we felt special ✨",
+        "fr": "Il n’y a pas d’autre mot pour décrire cet endroit : IMPRESSIONNANT ! Cuisine délicieuse, service excellent et ambiance magnifique. Pour le dernier jour de nos vacances, on a fini en beauté 💕 Vraiment recommandé. Des DJs excellents, du début à la fin. Le service de Florencia 10/10. C’était notre anniversaire et ils ont été aux petits soins, on s’est sentis spéciaux ✨",
+        "ru": "Другого слова для этого места нет — ВПЕЧАТЛЯЕТ! Вкусная еда, отличное обслуживание и великолепная атмосфера. Последний день отпуска мы завершили на высокой ноте 💕 Однозначно рекомендую. Диджеи отличные, всё время. Обслуживание Флоренсии 10/10. У нас был день рождения, и о нас так позаботились, что мы почувствовали себя особенными ✨"
+      },
+      "reviewer": {
+        "localGuide": false,
+        "reviews": 7,
+        "photos": 4
+      }
+    },
+    {
+      "author": "Leonardo Moreno",
+      "stars": 5,
+      "date": "2026-05",
+      "text": {
+        "es": "Muy agradable lugar. Hemos ido a desayunar y la experiencia fue muy satisfactoria. El sandwich de pullet pork con queso estaba riquísimo. El capuchino que hemos pedido estaba muy bien elaborado y no era un simple cafe con leche. El local esta muy bien decorado y el hecho que la cubierta del techo sea retráctil y quede todo prácticamente al aire libre es un detallazo. Se ve que el ambiente de noche en temporada es bueno, tienen mesa de dj y todo. Precios súper razonables. Volveremos",
+        "en": "Very pleasant place. We went for breakfast and it was a really satisfying experience. The pulled pork sandwich with cheese was delicious. The cappuccino we ordered was properly made, not just a coffee with milk. The place is beautifully decorated, and the fact that the roof is retractable so it is practically all open air is a lovely touch. You can tell the night atmosphere in season is good — they have a DJ booth and everything. Really reasonable prices. We'll be back",
+        "fr": "Endroit très agréable. Nous y sommes allés pour le petit-déjeuner et l’expérience a été très satisfaisante. Le sandwich au pulled pork avec fromage était délicieux. Le cappuccino que nous avons commandé était très bien préparé, pas un simple café au lait. Le lieu est très bien décoré, et le fait que le toit soit rétractable et que tout soit pratiquement en plein air est un vrai plus. On sent que l’ambiance du soir en saison est bonne : il y a une régie DJ et tout. Prix très raisonnables. Nous reviendrons",
+        "ru": "Очень приятное место. Пришли на завтрак — впечатления отличные. Сэндвич с рваной свининой и сыром был очень вкусным. Капучино приготовили как надо, а не просто кофе с молоком. Заведение красиво оформлено, а раздвижная крыша, благодаря которой всё практически под открытым небом, — большой плюс. Видно, что вечером в сезон атмосфера хорошая: есть диджейский пульт и всё остальное. Цены очень разумные. Вернёмся"
+      },
+      "reviewer": {
+        "localGuide": true,
+        "reviews": 193,
+        "photos": 348
+      }
+    },
+    {
+      "author": "Federico Lani",
+      "stars": 5,
+      "date": "2026-04",
+      "text": {
+        "es": "Hermoso sitio y ambiente, con la mejor música pinchada en directo (una crack la dj Bel González chill/house). Carta con opciones atractivas tanto en desayunos ➡️ brunchs y comidas. Nos gustaría que en la próximas visitas que hagamos el sitio agregue alguna opción más vegana 💚 a la carta. Linda energía y cercanía a la playa. Recomendamos mucho!!",
+        "en": "Beautiful place and atmosphere, with the best music played live (DJ Bel González is brilliant, chill/house). A menu with appealing options across breakfast ➡️ brunch and lunch. We'd love them to add another vegan option 💚 to the menu by our next visits. Lovely energy and right by the beach. We highly recommend it!!",
+        "fr": "Bel endroit et belle ambiance, avec la meilleure musique jouée en direct (la DJ Bel González assure, chill/house). Une carte aux options attirantes du petit-déjeuner ➡️ au brunch et aux déjeuners. On aimerait qu’ils ajoutent une option végane 💚 de plus à la carte d’ici nos prochaines visites. Belle énergie et tout près de la plage. On recommande vraiment !!",
+        "ru": "Красивое место и атмосфера, с лучшей живой музыкой (диджей Bel González — просто огонь, chill/house). В меню привлекательные варианты и на завтрак ➡️ и на бранч, и на обед. Хотелось бы, чтобы к следующим визитам добавили ещё какую-нибудь веганскую опцию 💚. Отличная энергетика и рядом пляж. Очень рекомендуем!!"
+      },
+      "reviewer": {
+        "localGuide": true,
+        "reviews": 17,
+        "photos": 69
+      }
+    }
+  ]
 }

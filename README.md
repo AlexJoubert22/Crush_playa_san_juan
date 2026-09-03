@@ -84,16 +84,23 @@ añade el locale al sitemap en `astro.config.mjs`.
 
 ## Reseñas
 
-`src/data/reviews.json` guarda la nota media y el número de opiniones, verificados contra las
-fichas públicas que citan a Google. **Solo datos reales**: si alguien inventa una reseña, se cae
-todo el valor de la sección.
+`src/data/reviews.json` guarda la nota, el número de opiniones y las citas, leídas el 2026-09-03
+directamente de la ficha de Google Maps del local. **Solo datos reales**: si alguien inventa una
+reseña, se cae todo el valor de la sección.
 
-- Para añadir citas, cópialas literalmente del perfil de Google Business al array `quotes`
-  (`author`, `text`, `date`, `lang`). Con el array vacío se muestra solo la valoración; la fila de
-  citas simplemente no se pinta.
+- `text.es` es lo que escribió la persona, literal, emojis incluidos. Las otras lenguas son
+  traducciones de ese texto y la tarjeta lo dice («Traducido del español»).
+- `reviewer` son los números que Google muestra junto al nombre (`localGuide`, `reviews`,
+  `photos`); se pintan en el idioma de la página.
+- Para añadir o cambiar una cita, cópiala igual desde el perfil de Google Business. Con `quotes`
+  vacío se muestra solo la valoración y el carrusel no se pinta.
 - Revisa `rating`, `count` y `verifiedAt` cada pocos meses.
 - No se marca `aggregateRating` en el JSON-LD a propósito: Google ignora (y penaliza) las
   valoraciones que un negocio se pone a sí mismo en su propia web.
+
+El carrusel es un contenedor con `scroll-snap`: el navegador hace el desplazamiento, así que el
+gesto táctil es nativo. `initReviews()` en `app.ts` solo añade flechas, puntos y un avance
+automático que se detiene en cuanto alguien toca, pasa el ratón o enfoca con el teclado.
 
 ## Página legal
 
