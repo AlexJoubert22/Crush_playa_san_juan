@@ -84,6 +84,18 @@ Genre: Progressive House
 
 **Importante:** la web es estática, así que los cambios entran en el siguiente `build`. En Netlify, Vercel o Cloudflare Pages se programa un *build* diario gratuito y queda automático. Si el calendario no responde o no está configurado, la agenda vuelve sola a las reglas de `events.source.json`, así que nunca se queda vacía.
 
+## Desplegar en Vercel
+
+El repositorio es https://github.com/AlexJoubert22/Crush_playa_san_juan y la raíz del repo **es** el proyecto Astro, así que Vercel lo detecta solo.
+
+1. En Vercel: *Add New… → Project* e importa el repositorio.
+2. No cambies nada: framework *Astro*, build `npm run build`, output `dist`. Deja el *Root Directory* en la raíz.
+3. Si ya tienes el Google Calendar montado, añade en *Settings → Environment Variables*:
+   `PUBLIC_CRUSH_ICS` = la dirección iCal pública. Sin esa variable la agenda usa las reglas fijas y todo funciona igual.
+4. *Deploy*.
+
+Cada `git push` a `main` publica una versión nueva. Para que los eventos nuevos del calendario entren solos, en *Settings → Cron Jobs* (o con un *Deploy Hook* llamado desde un cron gratuito) programa un despliegue diario.
+
 ## Publicar
 
 `npm run build` deja todo en `dist/`. Sube esa carpeta a cualquier hosting estático (Netlify, Vercel, Cloudflare Pages, o el hosting actual). No hay servidor ni base de datos.
